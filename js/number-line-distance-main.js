@@ -9,7 +9,7 @@
 import Sim from '../../joist/js/Sim.js';
 import SimLauncher from '../../joist/js/SimLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import numberLineDistanceStrings from './number-line-distance-strings.js';
+import numberLineDistanceStrings from './numberLineDistanceStrings.js';
 import NumberLineDistanceScreen from './number-line-distance/NumberLineDistanceScreen.js';
 
 const numberLineDistanceTitleString = numberLineDistanceStrings[ 'number-line-distance' ].title;
