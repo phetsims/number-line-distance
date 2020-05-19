@@ -12,16 +12,27 @@ class NLDGenericModel {
 
   /**
    * TODO:
+   * @param {Tandem} tandem
    */
-  constructor() {
+  constructor( tandem ) {
     //TODO:
   }
 
   /**
-   * TODO:
+   * Resets the model.
+   * @public
    */
   reset() {
     //TODO:
+  }
+
+  /**
+   * Steps the model.
+   * @param {number} dt - time step, in seconds
+   * @public
+   */
+  step( dt ) {
+    //TODO
   }
 
 }

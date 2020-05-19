@@ -28,7 +28,11 @@ class NLDExploreScreen extends Screen {
       tandem: tandem
     };
 
-    super( () => new NLDExploreModel(), model => new NLDExploreScreenView( model ), options );
+    super(
+      () => new NLDExploreModel( tandem.createTandem( 'model' ) ),
+      model => new NLDExploreScreenView( model, tandem.createTandem( 'view' ) ),
+      options
+    );
   }
 
 }

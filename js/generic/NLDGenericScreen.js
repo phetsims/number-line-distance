@@ -28,7 +28,11 @@ class NLDGenericScreen extends Screen {
       tandem: tandem
     };
 
-    super( () => new NLDGenericModel(), model => new NLDGenericScreenView( model ), options );
+    super(
+      () => new NLDGenericModel( tandem.createTandem( 'model' ) ),
+      model => new NLDGenericScreenView( model, tandem.createTandem(  'view' ) ),
+      options
+    );
   }
 
 }
