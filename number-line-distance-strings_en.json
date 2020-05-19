@@ -1,5 +1,11 @@
 {
   "number-line-distance.title": {
     "value": "Number Line: Distance"
+  },
+  "screen.explore": {
+    "value": "Explore"
+  },
+  "screen.generic": {
+    "value": "Generic"
   }
 }
