@@ -10,6 +10,8 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import NumberLineDistanceConstants from '../../common/NumberLineDistanceConstants.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
+import genericmockup from '../../../images/genericmockup_png.js';
 
 class NLDGenericScreenView extends ScreenView {
 
@@ -19,10 +21,19 @@ class NLDGenericScreenView extends ScreenView {
    * @param {Tandem} tandem
    */
   constructor( model, tandem ) {
-
     super( {
       tandem: tandem
     } );
+
+    // TODO - mockup - temporary, for design and layout
+    const mockup = new Image( genericmockup, {
+      center: this.layoutBounds.center,
+      minWidth: this.layoutBounds.width,
+      maxWidth: this.layoutBounds.width,
+      opacity: window.phet.mockupOpacityProperty.value
+    } );
+    this.addChild( mockup );
+    window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
     const resetAllButton = new ResetAllButton( {
       listener: () => {
