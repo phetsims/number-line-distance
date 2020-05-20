@@ -7,5 +7,17 @@
   },
   "screen.generic": {
     "value": "Generic"
+  },
+  "pointLabels": {
+    "value": "Point Labels"
+  },
+  "distanceLabels": {
+    "value": "Distance Labels"
+  },
+  "distanceDescription": {
+    "value": "Distance Description"
+  },
+  "tickMarks": {
+    "value": "Tick Marks"
   }
 }

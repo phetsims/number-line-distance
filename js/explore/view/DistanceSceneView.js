@@ -16,9 +16,10 @@ class DistanceSceneView extends SceneView {
 
   /**
    * @param {DistanceSceneModel} model
+   * @param {Bounds2} layoutBounds
    */
-  constructor( model ) {
-    super();
+  constructor( model, layoutBounds ) {
+    super( model, layoutBounds );
 
     //TODO: temporary mockup
     const mockup = new Image( explorescene1mockup, {

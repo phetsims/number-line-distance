@@ -16,9 +16,10 @@ class TemperatureSceneView extends SceneView {
 
   /**
    * @param {TemperatureSceneModel} model
+   * @param {Bounds2} layoutBounds
    */
-  constructor( model ) {
-    super();
+  constructor( model, layoutBounds ) {
+    super( model, layoutBounds );
     //TODO: temporary mockup
     const mockup = new Image( explorescene2mockup, {
       center: NLDConstants.LAYOUT_BOUNDS.center,

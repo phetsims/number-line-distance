@@ -16,9 +16,10 @@ class ElevationSceneView extends SceneView {
 
   /**
    * @param {ElevationSceneModel} model
+   * @param {Bounds2} layoutBounds
    */
-  constructor( model ) {
-    super();
+  constructor( model, layoutBounds ) {
+    super( model, layoutBounds );
     //TODO: temporary mockup
     const mockup = new Image( explorescene3mockup, {
       center: NLDConstants.LAYOUT_BOUNDS.center,
