@@ -15,6 +15,8 @@ import DistanceSceneView from './DistanceSceneView.js';
 import TemperatureSceneView from './TemperatureSceneView.js';
 import ElevationSceneView from './ElevationSceneView.js';
 import NLDScene from '../model/NLDScene.js';
+import RadioButtonGroup from '../../../../sun/js/buttons/RadioButtonGroup.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 
 class NLDExploreScreenView extends ScreenView {
 
@@ -30,7 +32,6 @@ class NLDExploreScreenView extends ScreenView {
 
     // the layer where the controls go
     const controlsLayer = new Node();
-    this.addChild( controlsLayer );
 
     // adds scene views as children
     const distanceSceneView = new DistanceSceneView( model.distanceSceneModel );
@@ -47,6 +48,32 @@ class NLDExploreScreenView extends ScreenView {
       elevationSceneView.visible = selectedScene === NLDScene.ELEVATION;
     } );
 
+    // map the scene selection icons to their enum values (used in the radio button group) TODO:
+    const sceneSelectionButtonsContent = NLDScene.VALUES.map(
+      value => ( { value: value, node: new Rectangle( 0, 0, 38, 38 ) } )
+    );
+
+    // create scene selector radio buttons
+    const sceneSelectorRadioButtonGroup = new RadioButtonGroup(
+      model.selectedSceneProperty,
+      sceneSelectionButtonsContent,
+      {
+        buttonContentXMargin: 5,
+        buttonContentYMargin: 5,
+        touchAreaXDilation: 3,
+        touchAreaYDilation: 3,
+        right: this.layoutBounds.maxX - 35,
+        bottom: this.layoutBounds.maxY - 107,
+        baseColor: 'white',
+        selectedLineWidth: 2,
+        deselectedLineWidth: .5,
+        deselectedButtonOpacity: 0.25,
+        orientation: 'horizontal',
+        spacing: 7
+      }
+    );
+    controlsLayer.addChild( sceneSelectorRadioButtonGroup );
+
     const resetAllButton = new ResetAllButton( {
       listener: () => {
         this.interruptSubtreeInput(); // cancel interactions that may be in progress
@@ -58,6 +85,8 @@ class NLDExploreScreenView extends ScreenView {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     controlsLayer.addChild( resetAllButton );
+
+    this.addChild( controlsLayer );
   }
 
   /**
