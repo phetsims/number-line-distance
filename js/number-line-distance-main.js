@@ -13,7 +13,7 @@ import Tandem from '../../tandem/js/Tandem.js';
 import numberLineDistanceStrings from './numberLineDistanceStrings.js';
 import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';
-import mockupOpacityControl from '../../number-line-operations/js/common/view/mockupOpacityControl.js';
+import mockupOpacityControl from '../../number-line-common/js/common/view/mockupOpacityControl.js';
 
 const numberLineDistanceTitleString = numberLineDistanceStrings[ 'number-line-distance' ].title;
 
