@@ -7,15 +7,31 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
+import NLDScene from './NLDScene.js';
+import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
+import DistanceSceneModel from './DistanceSceneModel.js';
+import ElevationSceneModel from './ElevationSceneModel.js';
+import TemperatureSceneModel from './TemperatureSceneModel.js';
 
 class NLDExploreModel {
 
   /**
-   * TODO:
    * @param {Tandem} tandem
    */
   constructor( tandem ) {
-    //TODO:
+
+    // @public {Property<NLDScene>} the currently selected scene for the explore screen
+    this.selectedSceneProperty = new EnumerationProperty( NLDScene, NLDScene.DISTANCE );
+
+    // @public {DistanceSceneModel} the instance for the model of the 'Distance' scene
+    this.distanceSceneModel = new DistanceSceneModel();
+
+    // @public {DistanceSceneModel} the instance for the model of the 'Temperature' scene
+    this.temperatureSceneModel = new TemperatureSceneModel();
+
+    // @public {DistanceSceneModel} the instance for the model of the 'Elevation' scene
+    this.elevationSceneModel = new ElevationSceneModel();
+
   }
 
   /**
@@ -23,16 +39,10 @@ class NLDExploreModel {
    * @public
    */
   reset() {
-    //TODO:
-  }
-
-  /**
-   * Steps the model.
-   * @param {number} dt - time step, in seconds
-   * @public
-   */
-  step( dt ) {
-    //TODO
+    this.selectedSceneProperty.reset();
+    this.distanceSceneModel.reset();
+    this.temperatureSceneModel.reset();
+    this.elevationSceneModel.reset();
   }
 
 }

@@ -9,7 +9,7 @@
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import NumberLineDistanceConstants from '../../common/NumberLineDistanceConstants.js';
+import NLDConstants from '../../common/NLDConstants.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import genericmockup from '../../../images/genericmockup_png.js';
 
@@ -41,8 +41,8 @@ class NLDGenericScreenView extends ScreenView {
         model.reset();
         this.reset();
       },
-      right: this.layoutBounds.maxX - NumberLineDistanceConstants.SCREEN_VIEW_X_MARGIN,
-      bottom: this.layoutBounds.maxY - NumberLineDistanceConstants.SCREEN_VIEW_Y_MARGIN,
+      right: this.layoutBounds.maxX - NLDConstants.SCREEN_VIEW_X_MARGIN,
+      bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     this.addChild( resetAllButton );

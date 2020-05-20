@@ -9,9 +9,12 @@
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import NumberLineDistanceConstants from '../../common/NumberLineDistanceConstants.js';
-import Image from '../../../../scenery/js/nodes/Image.js';
-import explorescene1mockup from '../../../images/explorescene1mockup_png.js';
+import NLDConstants from '../../common/NLDConstants.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import DistanceSceneView from './DistanceSceneView.js';
+import TemperatureSceneView from './TemperatureSceneView.js';
+import ElevationSceneView from './ElevationSceneView.js';
+import NLDScene from '../model/NLDScene.js';
 
 class NLDExploreScreenView extends ScreenView {
 
@@ -25,15 +28,24 @@ class NLDExploreScreenView extends ScreenView {
       tandem: tandem
     } );
 
-    // TODO - mockup - temporary, for design and layout
-    const mockup = new Image( explorescene1mockup, {
-      center: this.layoutBounds.center,
-      minWidth: this.layoutBounds.width,
-      maxWidth: this.layoutBounds.width,
-      opacity: window.phet.mockupOpacityProperty.value
+    // the layer where the controls go
+    const controlsLayer = new Node();
+    this.addChild( controlsLayer );
+
+    // adds scene views as children
+    const distanceSceneView = new DistanceSceneView( model.distanceSceneModel );
+    this.addChild( distanceSceneView );
+    const temperatureSceneView = new TemperatureSceneView( model.temperatureSceneModel );
+    this.addChild( temperatureSceneView );
+    const elevationSceneView = new ElevationSceneView( model.elevationSceneModel );
+    this.addChild( elevationSceneView );
+
+    // links each specific scene view's visibility with whether it is selected in the model
+    model.selectedSceneProperty.link( selectedScene => {
+      distanceSceneView.visible = selectedScene === NLDScene.DISTANCE;
+      temperatureSceneView.visible = selectedScene === NLDScene.TEMPERATURE;
+      elevationSceneView.visible = selectedScene === NLDScene.ELEVATION;
     } );
-    this.addChild( mockup );
-    window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
     const resetAllButton = new ResetAllButton( {
       listener: () => {
@@ -41,11 +53,11 @@ class NLDExploreScreenView extends ScreenView {
         model.reset();
         this.reset();
       },
-      right: this.layoutBounds.maxX - NumberLineDistanceConstants.SCREEN_VIEW_X_MARGIN,
-      bottom: this.layoutBounds.maxY - NumberLineDistanceConstants.SCREEN_VIEW_Y_MARGIN,
+      right: this.layoutBounds.maxX - NLDConstants.SCREEN_VIEW_X_MARGIN,
+      bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-    this.addChild( resetAllButton );
+    controlsLayer.addChild( resetAllButton );
   }
 
   /**

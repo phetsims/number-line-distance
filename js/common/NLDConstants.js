@@ -7,8 +7,11 @@
  */
 
 import numberLineDistance from '../numberLineDistance.js';
+import ScreenView from '../../../joist/js/ScreenView.js';
 
-const NumberLineDistanceConstants = {
+const NLDConstants = {
+
+  LAYOUT_BOUNDS: ScreenView.DEFAULT_LAYOUT_BOUNDS,
 
   SCREEN_VIEW_X_MARGIN: 15,
   SCREEN_VIEW_Y_MARGIN: 15
@@ -16,5 +19,5 @@ const NumberLineDistanceConstants = {
   //TODO
 };
 
-numberLineDistance.register( 'NumberLineDistanceConstants', NumberLineDistanceConstants );
-export default NumberLineDistanceConstants;
+numberLineDistance.register( 'NLDConstants', NLDConstants );
+export default NLDConstants;
