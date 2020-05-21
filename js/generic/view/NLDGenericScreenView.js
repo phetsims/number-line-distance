@@ -12,6 +12,7 @@ import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.j
 import NLDConstants from '../../common/NLDConstants.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import genericmockup from '../../../images/genericmockup_png.js';
+import ControlsView from '../../common/view/ControlsView.js';
 
 class NLDGenericScreenView extends ScreenView {
 
@@ -46,6 +47,8 @@ class NLDGenericScreenView extends ScreenView {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     this.addChild( resetAllButton );
+
+    this.addChild( new ControlsView( model, this.layoutBounds ) );
   }
 
   /**
@@ -53,15 +56,6 @@ class NLDGenericScreenView extends ScreenView {
    * @public
    */
   reset() {
-    //TODO
-  }
-
-  /**
-   * Steps the view.
-   * @param {number} dt - time step, in seconds
-   * @public
-   */
-  step( dt ) {
     //TODO
   }
 

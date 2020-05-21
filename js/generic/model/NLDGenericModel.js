@@ -7,14 +7,15 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
+import NLDModel from '../../common/model/NLDModel.js';
 
-class NLDGenericModel {
+class NLDGenericModel extends NLDModel {
 
   /**
-   * TODO:
    * @param {Tandem} tandem
    */
   constructor( tandem ) {
+    super( tandem );
     //TODO:
   }
 
@@ -23,16 +24,8 @@ class NLDGenericModel {
    * @public
    */
   reset() {
+    super.reset();
     //TODO:
-  }
-
-  /**
-   * Steps the model.
-   * @param {number} dt - time step, in seconds
-   * @public
-   */
-  step( dt ) {
-    //TODO
   }
 
 }
