@@ -71,16 +71,16 @@ class ControlsView extends Node {
       [
         {
           value: DistanceRepresentation.ABSOLUTE,
-          node: new Text( absoluteValueString )
+          node: new Text( absoluteValueString, NLCConstants.CHECKBOX_TEXT_OPTIONS )
         },
         {
           value: DistanceRepresentation.DIRECTED,
-          node: new Text( directedDistanceString )
+          node: new Text( directedDistanceString, NLCConstants.CHECKBOX_TEXT_OPTIONS )
         }
       ],
       {
         left: 50,
-        top: 50
+        top: 25
       }
     );
     this.addChild( distanceTypeSelector );
