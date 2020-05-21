@@ -13,11 +13,15 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
+import DistanceType from '../model/DistanceType.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
 const distanceDescriptionString = numberLineDistanceStrings.distanceDescription;
 const tickMarksString = numberLineDistanceStrings.tickMarks;
+const absoluteValueString = numberLineDistanceStrings.absoluteValue;
+const directedDistanceString = numberLineDistanceStrings.directedDistance;
 
 class SceneView extends Node {
 
@@ -61,6 +65,25 @@ class SceneView extends Node {
       top: layoutBounds.minY + 10
     } );
     this.addChild( this.checkboxGroup );
+
+    const distanceTypeSelector = new VerticalAquaRadioButtonGroup(
+      model.distanceTypeProperty,
+      [
+        {
+          value: DistanceType.ABSOLUTE,
+          node: new Text( absoluteValueString )
+        },
+        {
+          value: DistanceType.DIRECTED,
+          node: new Text( directedDistanceString )
+        }
+      ],
+      {
+        left: 50,
+        top: 50
+      }
+    );
+    this.addChild( distanceTypeSelector );
 
   }
 

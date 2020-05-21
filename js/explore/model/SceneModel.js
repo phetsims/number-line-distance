@@ -8,6 +8,8 @@
 
 import numberLineDistance from '../../numberLineDistance.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
+import DistanceType from './DistanceType.js';
 
 class SceneModel {
 
@@ -24,6 +26,9 @@ class SceneModel {
 
     // @public {Property<Boolean>}
     this.tickMarksVisibleProperty = new BooleanProperty( false );
+
+    // @public {Property<DistanceType>}
+    this.distanceTypeProperty = new EnumerationProperty( DistanceType, DistanceType.ABSOLUTE );
 
   }
 

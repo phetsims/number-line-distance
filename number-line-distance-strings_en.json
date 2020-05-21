@@ -19,5 +19,11 @@
   },
   "tickMarks": {
     "value": "Tick Marks"
+  },
+  "absoluteValue": {
+    "value": "Absolute Value"
+  },
+  "directedDistance": {
+    "value": "Directed Distance"
   }
 }
