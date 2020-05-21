@@ -9,6 +9,6 @@
 import Enumeration from '../../../../phet-core/js/Enumeration.js';
 import numberLineDistance from '../../numberLineDistance.js';
 
-const DistanceType = Enumeration.byKeys( [ 'ABSOLUTE', 'DIRECTED' ] );
-numberLineDistance.register( 'DistanceType', DistanceType );
-export default DistanceType;
+const DistanceRepresentation = Enumeration.byKeys( [ 'ABSOLUTE', 'DIRECTED' ] );
+numberLineDistance.register( 'DistanceRepresentation', DistanceRepresentation );
+export default DistanceRepresentation;
