@@ -1,20 +1,22 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * base class for all scene models in the "Explore" screen
+ * Model for common properties used by all scenes/screens in the sim
  *
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import DistanceRepresentation from './DistanceRepresentation.js';
+import numberLineDistance from '../../numberLineDistance.js';
 
-class SceneModel {
+class NLDModel {
 
-  constructor() {
-
+  /**
+   * @param {Tandem} tandem
+   */
+  constructor( tandem ) {
     // @public {Property<Boolean>}
     this.pointLabelsVisibleProperty = new BooleanProperty( false );
 
@@ -29,10 +31,20 @@ class SceneModel {
 
     // @public {Property<DistanceRepresentation>}
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
+  }
 
+  /**
+   * Resets the model
+   */
+  reset() {
+    this.pointLabelsVisibleProperty.reset();
+    this.distanceLabelsVisibleProperty.reset();
+    this.distanceDescriptionVisibleProperty.reset();
+    this.tickMarksVisibleProperty.reset();
+    this.distanceRepresentationProperty.reset();
   }
 
 }
 
-numberLineDistance.register( 'SceneModel', SceneModel );
-export default SceneModel;
+numberLineDistance.register( 'NLDModel', NLDModel );
+export default NLDModel;

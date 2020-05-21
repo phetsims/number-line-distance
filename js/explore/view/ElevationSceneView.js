@@ -7,19 +7,21 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import SceneView from './SceneView.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene3mockup from '../../../images/explorescene3mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
+import ControlsView from '../../common/view/ControlsView.js';
 
-class ElevationSceneView extends SceneView {
+class ElevationSceneView extends Node {
 
   /**
    * @param {ElevationSceneModel} model
    * @param {Bounds2} layoutBounds
    */
   constructor( model, layoutBounds ) {
-    super( model, layoutBounds );
+    super();
+
     //TODO: temporary mockup
     const mockup = new Image( explorescene3mockup, {
       center: NLDConstants.LAYOUT_BOUNDS.center,
@@ -31,6 +33,8 @@ class ElevationSceneView extends SceneView {
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
     //TODO:
+
+    this.addChild( new ControlsView( model, layoutBounds ) );
   }
 
 }

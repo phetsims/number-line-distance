@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * base class for scene views in the "Explore" screen
+ * A view that contains controls that are used in all scenes/screens of the sim
  *
  * @author Saurabh Totey
  */
@@ -14,7 +14,7 @@ import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.
 import VBox from '../../../../scenery/js/nodes/VBox.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
-import DistanceRepresentation from '../model/DistanceRepresentation.js';
+import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -23,10 +23,10 @@ const tickMarksString = numberLineDistanceStrings.tickMarks;
 const absoluteValueString = numberLineDistanceStrings.absoluteValue;
 const directedDistanceString = numberLineDistanceStrings.directedDistance;
 
-class SceneView extends Node {
+class ControlsView extends Node {
 
   /**
-   * @param {SceneModel} model
+   * @param {NLDModel} model
    * @param {Bounds2} layoutBounds
    */
   constructor( model, layoutBounds ) {
@@ -89,5 +89,5 @@ class SceneView extends Node {
 
 }
 
-numberLineDistance.register( 'SceneView', SceneView );
-export default SceneView;
+numberLineDistance.register( 'ControlsView', ControlsView );
+export default ControlsView;

@@ -7,15 +7,15 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import SceneModel from './SceneModel.js';
+import NLDModel from '../../common/model/NLDModel.js';
 
-class ElevationSceneModel extends SceneModel {
+class ElevationSceneModel extends NLDModel {
 
   /**
-   * TODO:
+   * @param {Tandem} tandem
    */
-  constructor() {
-    super();
+  constructor( tandem ) {
+    super( tandem );
     //TODO:
   }
 
@@ -24,6 +24,7 @@ class ElevationSceneModel extends SceneModel {
    * @public
    */
   reset() {
+    super.reset();
     //TODO:
   }
 

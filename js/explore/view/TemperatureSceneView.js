@@ -7,19 +7,21 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import SceneView from './SceneView.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene2mockup from '../../../images/explorescene2mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
+import ControlsView from '../../common/view/ControlsView.js';
 
-class TemperatureSceneView extends SceneView {
+class TemperatureSceneView extends Node {
 
   /**
    * @param {TemperatureSceneModel} model
    * @param {Bounds2} layoutBounds
    */
   constructor( model, layoutBounds ) {
-    super( model, layoutBounds );
+    super();
+
     //TODO: temporary mockup
     const mockup = new Image( explorescene2mockup, {
       center: NLDConstants.LAYOUT_BOUNDS.center,
@@ -31,6 +33,8 @@ class TemperatureSceneView extends SceneView {
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
     //TODO:
+
+    this.addChild( new ControlsView( model, layoutBounds ) );
   }
 
 }

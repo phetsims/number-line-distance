@@ -24,13 +24,13 @@ class NLDExploreModel {
     this.selectedSceneProperty = new EnumerationProperty( NLDScene, NLDScene.DISTANCE );
 
     // @public {DistanceSceneModel} the instance for the model of the 'Distance' scene
-    this.distanceSceneModel = new DistanceSceneModel();
+    this.distanceSceneModel = new DistanceSceneModel( tandem );
 
     // @public {DistanceSceneModel} the instance for the model of the 'Temperature' scene
-    this.temperatureSceneModel = new TemperatureSceneModel();
+    this.temperatureSceneModel = new TemperatureSceneModel( tandem );
 
     // @public {DistanceSceneModel} the instance for the model of the 'Elevation' scene
-    this.elevationSceneModel = new ElevationSceneModel();
+    this.elevationSceneModel = new ElevationSceneModel( tandem );
 
   }
 

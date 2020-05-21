@@ -21,7 +21,6 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 class NLDExploreScreenView extends ScreenView {
 
   /**
-   * TODO:
    * @param {NLDExploreModel} model
    * @param {Tandem} tandem
    */
