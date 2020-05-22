@@ -121,7 +121,7 @@ class NLDCommonElementsView extends Node {
     const swapPrimaryNodesButton = new RectangularPushButton( {
       content: new Rectangle( 0, 0, 50, nodeOrderDisplay.height ) ,
       left: nodeOrderDisplay.right + 20,
-      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
+      centerY: nodeOrderDisplay.centerY,
       listener: () => { model.isPrimaryNodeSwappedProperty.value = !model.isPrimaryNodeSwappedProperty.value; }
     } );
     this.addChild( swapPrimaryNodesButton );
