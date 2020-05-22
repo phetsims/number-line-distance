@@ -9,13 +9,13 @@
 import Node from '../../../../scenery/js/nodes/Node.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import NLDConstants from '../NLDConstants.js';
 import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -23,6 +23,11 @@ const distanceDescriptionString = numberLineDistanceStrings.distanceDescription;
 const tickMarksString = numberLineDistanceStrings.tickMarks;
 const absoluteValueString = numberLineDistanceStrings.absoluteValue;
 const directedDistanceString = numberLineDistanceStrings.directedDistance;
+
+const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
+  font: new PhetFont( 16 ),
+  maxWidth: 200
+};
 
 class ControlsView extends Node {
 
@@ -52,11 +57,11 @@ class ControlsView extends Node {
       [
         {
           value: DistanceRepresentation.ABSOLUTE,
-          node: new Text( absoluteValueString, NLCConstants.CHECKBOX_TEXT_OPTIONS )
+          node: new Text( absoluteValueString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
         },
         {
           value: DistanceRepresentation.DIRECTED,
-          node: new Text( directedDistanceString, NLCConstants.CHECKBOX_TEXT_OPTIONS )
+          node: new Text( directedDistanceString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
         }
       ],
       {
