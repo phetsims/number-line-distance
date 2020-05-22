@@ -8,7 +8,6 @@
 
 import Node from '../../../../scenery/js/nodes/Node.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import Checkbox from '../../../../sun/js/Checkbox.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
@@ -16,6 +15,7 @@ import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import NLDConstants from '../NLDConstants.js';
+import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -32,33 +32,14 @@ class ControlsView extends Node {
   constructor( model ) {
     super();
 
-    const checkboxes = [
-      new Checkbox(
-        new Text( pointLabelsString, NLCConstants.CHECKBOX_TEXT_OPTIONS ),
-        model.pointLabelsVisibleProperty,
-        NLCConstants.CHECKBOX_OPTIONS
-      ),
-      new Checkbox(
-        new Text( distanceLabelsString, NLCConstants.CHECKBOX_TEXT_OPTIONS ),
-        model.distanceLabelsVisibleProperty,
-        NLCConstants.CHECKBOX_OPTIONS
-      ),
-      new Checkbox(
-        new Text( distanceDescriptionString, NLCConstants.CHECKBOX_TEXT_OPTIONS ),
-        model.distanceDescriptionVisibleProperty,
-        NLCConstants.CHECKBOX_OPTIONS
-      ),
-      new Checkbox(
-        new Text( tickMarksString, NLCConstants.CHECKBOX_TEXT_OPTIONS ),
-        model.tickMarksVisibleProperty,
-        NLCConstants.CHECKBOX_OPTIONS
-      )
-    ];
-    checkboxes.forEach( checkbox => { checkbox.touchArea = checkbox.localBounds.dilated( NLCConstants.CHECKBOX_DILATION ); } );
-
     // @protected {VBox} - node containing the checkboxes that control common model properties
     this.checkboxGroup = new VBox( {
-      children: checkboxes,
+      children: [
+        new NLCheckbox( pointLabelsString, model.pointLabelsVisibleProperty ),
+        new NLCheckbox( distanceLabelsString, model.distanceLabelsVisibleProperty ),
+        new NLCheckbox( distanceDescriptionString, model.distanceDescriptionVisibleProperty ),
+        new NLCheckbox( tickMarksString, model.tickMarksVisibleProperty )
+      ],
       spacing: 15,
       align: 'left',
       right: NLDConstants.NLD_LAYOUT_BOUNDS.maxX - 35,
