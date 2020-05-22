@@ -11,7 +11,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene3mockup from '../../../images/explorescene3mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import ControlsView from '../../common/view/ControlsView.js';
+import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
 
 class ElevationSceneView extends Node {
 
@@ -34,7 +34,7 @@ class ElevationSceneView extends Node {
 
     //TODO:
 
-    this.addChild( new ControlsView( model, layoutBounds ) );
+    this.addChild( new NLDCommonElementsView( model, layoutBounds ) );
   }
 
 }

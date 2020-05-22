@@ -11,7 +11,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene1mockup from '../../../images/explorescene1mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import ControlsView from '../../common/view/ControlsView.js';
+import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
 
 class DistanceSceneView extends Node {
 
@@ -34,7 +34,7 @@ class DistanceSceneView extends Node {
 
     //TODO:
 
-    this.addChild( new ControlsView( model, layoutBounds ) );
+    this.addChild( new NLDCommonElementsView( model, layoutBounds ) );
   }
 
 }

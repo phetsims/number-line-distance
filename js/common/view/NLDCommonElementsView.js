@@ -1,7 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A view that contains controls that are used in all scenes/screens of the sim
+ * A view that contains elements that are used in all scenes/screens of the sim
+ * Has controls as well as display elements
+ * Is meant to be at the bottom layer
  *
  * @author Saurabh Totey
  */
@@ -29,7 +31,7 @@ const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
   maxWidth: 200
 };
 
-class ControlsView extends Node {
+class NLDCommonElementsView extends Node {
 
   /**
    * @param {NLDModel} model
@@ -37,8 +39,8 @@ class ControlsView extends Node {
   constructor( model ) {
     super();
 
-    // @protected {VBox} - node containing the checkboxes that control common model properties
-    this.checkboxGroup = new VBox( {
+    // checkboxes that control common model properties for what should be visible
+    const checkboxGroup = new VBox( {
       children: [
         new NLCheckbox( pointLabelsString, model.pointLabelsVisibleProperty ),
         new NLCheckbox( distanceLabelsString, model.distanceLabelsVisibleProperty ),
@@ -50,8 +52,9 @@ class ControlsView extends Node {
       right: NLDConstants.NLD_LAYOUT_BOUNDS.maxX - 35,
       top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 10
     } );
-    this.addChild( this.checkboxGroup );
+    this.addChild( checkboxGroup );
 
+    // checkboxes for how distance should be represented
     const distanceTypeSelector = new VerticalAquaRadioButtonGroup(
       model.distanceRepresentationProperty,
       [
@@ -75,5 +78,5 @@ class ControlsView extends Node {
 
 }
 
-numberLineDistance.register( 'ControlsView', ControlsView );
-export default ControlsView;
+numberLineDistance.register( 'NLDCommonElementsView', NLDCommonElementsView );
+export default NLDCommonElementsView;
