@@ -13,6 +13,7 @@ import NLDConstants from '../../common/NLDConstants.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import genericmockup from '../../../images/genericmockup_png.js';
 import ControlsView from '../../common/view/ControlsView.js';
+import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
 
 class NLDGenericScreenView extends ScreenView {
 
@@ -36,6 +37,11 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
+    // number line
+    const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
+    this.addChild( numberLineNode );
+
+    // reset all button
     const resetAllButton = new ResetAllButton( {
       listener: () => {
         this.interruptSubtreeInput(); // cancel interactions that may be in progress
@@ -48,6 +54,7 @@ class NLDGenericScreenView extends ScreenView {
     } );
     this.addChild( resetAllButton );
 
+    // adds sim controls that show on every screen/scene
     this.addChild( new ControlsView( model, this.layoutBounds ) );
   }
 

@@ -24,9 +24,9 @@ class DistanceSceneView extends Node {
 
     //TODO: temporary mockup
     const mockup = new Image( explorescene1mockup, {
-      center: NLDConstants.LAYOUT_BOUNDS.center,
-      minWidth: NLDConstants.LAYOUT_BOUNDS.width,
-      maxWidth: NLDConstants.LAYOUT_BOUNDS.width,
+      center: NLDConstants.NLD_LAYOUT_BOUNDS.center,
+      minWidth: NLDConstants.NLD_LAYOUT_BOUNDS.width,
+      maxWidth: NLDConstants.NLD_LAYOUT_BOUNDS.width,
       opacity: window.phet.mockupOpacityProperty.value
     } );
     this.addChild( mockup );

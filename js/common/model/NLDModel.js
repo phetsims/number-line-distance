@@ -15,8 +15,9 @@ class NLDModel {
 
   /**
    * @param {Tandem} tandem
+   * @param {NumberLine} numberLine
    */
-  constructor( tandem ) {
+  constructor( tandem, numberLine ) {
     // @public {Property<Boolean>}
     this.pointLabelsVisibleProperty = new BooleanProperty( false );
 
@@ -31,6 +32,9 @@ class NLDModel {
 
     // @public {Property<DistanceRepresentation>}
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
+
+    // @public {NumberLine}
+    this.numberLine = numberLine;
   }
 
   /**

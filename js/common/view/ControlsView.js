@@ -15,6 +15,7 @@ import VBox from '../../../../scenery/js/nodes/VBox.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
+import NLDConstants from '../NLDConstants.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -27,9 +28,8 @@ class ControlsView extends Node {
 
   /**
    * @param {NLDModel} model
-   * @param {Bounds2} layoutBounds
    */
-  constructor( model, layoutBounds ) {
+  constructor( model ) {
     super();
 
     const checkboxes = [
@@ -61,8 +61,8 @@ class ControlsView extends Node {
       children: checkboxes,
       spacing: 15,
       align: 'left',
-      right: layoutBounds.maxX - 35,
-      top: layoutBounds.minY + 10
+      right: NLDConstants.NLD_LAYOUT_BOUNDS.maxX - 35,
+      top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 10
     } );
     this.addChild( this.checkboxGroup );
 
