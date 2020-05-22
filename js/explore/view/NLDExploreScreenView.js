@@ -10,7 +10,6 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
 import DistanceSceneView from './DistanceSceneView.js';
 import TemperatureSceneView from './TemperatureSceneView.js';
 import ElevationSceneView from './ElevationSceneView.js';
@@ -28,9 +27,6 @@ class NLDExploreScreenView extends ScreenView {
     super( {
       tandem: tandem
     } );
-
-    // the layer where the controls go
-    const controlsLayer = new Node();
 
     // adds scene views as children
     const distanceSceneView = new DistanceSceneView( model.distanceSceneModel, this.layoutBounds );
@@ -71,7 +67,7 @@ class NLDExploreScreenView extends ScreenView {
         spacing: 7
       }
     );
-    controlsLayer.addChild( sceneSelectorRadioButtonGroup );
+    this.addChild( sceneSelectorRadioButtonGroup );
 
     const resetAllButton = new ResetAllButton( {
       listener: () => {
@@ -83,9 +79,7 @@ class NLDExploreScreenView extends ScreenView {
       bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-    controlsLayer.addChild( resetAllButton );
-
-    this.addChild( controlsLayer );
+    this.addChild( resetAllButton );
   }
 
   /**

@@ -37,10 +37,6 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    // number line
-    const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
-    this.addChild( numberLineNode );
-
     // reset all button
     const resetAllButton = new ResetAllButton( {
       listener: () => {
@@ -56,6 +52,10 @@ class NLDGenericScreenView extends ScreenView {
 
     // adds sim controls that show on every screen/scene
     this.addChild( new NLDCommonElementsView( model, this.layoutBounds ) );
+
+    // number line
+    const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
+    this.addChild( numberLineNode );
   }
 
   /**
