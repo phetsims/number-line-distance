@@ -24,6 +24,8 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
+import Path from '../../../../scenery/js/nodes/Path.js';
+import Shape from '../../../../kite/js/Shape.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -118,8 +120,13 @@ class NLDCommonElementsView extends Node {
     this.addChild( nodeOrderDisplay );
 
     // button that swaps the primary point controller and secondary point controller when pressed
+    const swapIconControlWidth = 25;
+    const swapIconControlHeight = nodeOrderDisplay.height - 50;
+    const swapIconShape = new Shape()
+      .moveTo( 0, 0 )
+      .cubicCurveTo( swapIconControlWidth, 0, swapIconControlWidth, swapIconControlHeight, 0, swapIconControlHeight );
     const swapPrimaryNodesButton = new RectangularPushButton( {
-      content: new Rectangle( 0, 0, 50, nodeOrderDisplay.height ) ,
+      content: new Path( swapIconShape, { stroke: 'black' } ),
       left: nodeOrderDisplay.right + 20,
       centerY: nodeOrderDisplay.centerY,
       listener: () => { model.isPrimaryNodeSwappedProperty.value = !model.isPrimaryNodeSwappedProperty.value; }
