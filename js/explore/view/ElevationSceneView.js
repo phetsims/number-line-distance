@@ -17,9 +17,8 @@ class ElevationSceneView extends Node {
 
   /**
    * @param {ElevationSceneModel} model
-   * @param {Bounds2} layoutBounds
    */
-  constructor( model, layoutBounds ) {
+  constructor( model ) {
     super();
 
     //TODO: temporary mockup
@@ -34,7 +33,7 @@ class ElevationSceneView extends Node {
 
     //TODO:
 
-    this.addChild( new NLDCommonElementsView( model, layoutBounds ) );
+    this.addChild( new NLDCommonElementsView( model, new Node(), new Node() ) );
   }
 
 }

@@ -28,7 +28,7 @@ class NLDModel {
 
   /**
    * @param {Tandem} tandem
-   * @param {NumberLine} numberLine
+   * @param {SpatializedNumberLine} numberLine
    */
   constructor( tandem, numberLine ) {
     // @public {Property<Boolean>}
@@ -46,7 +46,7 @@ class NLDModel {
     // @public {Property<DistanceRepresentation>}
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
 
-    // @public {NumberLine}
+    // @public {SpatializedNumberLine}
     this.numberLine = numberLine;
 
     // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to; can change with numberline orientation

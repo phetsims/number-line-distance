@@ -29,11 +29,11 @@ class NLDExploreScreenView extends ScreenView {
     } );
 
     // adds scene views as children
-    const distanceSceneView = new DistanceSceneView( model.distanceSceneModel, this.layoutBounds );
+    const distanceSceneView = new DistanceSceneView( model.distanceSceneModel );
     this.addChild( distanceSceneView );
-    const temperatureSceneView = new TemperatureSceneView( model.temperatureSceneModel, this.layoutBounds );
+    const temperatureSceneView = new TemperatureSceneView( model.temperatureSceneModel );
     this.addChild( temperatureSceneView );
-    const elevationSceneView = new ElevationSceneView( model.elevationSceneModel, this.layoutBounds );
+    const elevationSceneView = new ElevationSceneView( model.elevationSceneModel );
     this.addChild( elevationSceneView );
 
     // links each specific scene view's visibility with whether it is selected in the model

@@ -14,6 +14,7 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import genericmockup from '../../../images/genericmockup_png.js';
 import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
 import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 
 class NLDGenericScreenView extends ScreenView {
 
@@ -51,7 +52,7 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( resetAllButton );
 
     // adds sim controls that show on every screen/scene
-    this.addChild( new NLDCommonElementsView( model, this.layoutBounds ) );
+    this.addChild( new NLDCommonElementsView( model, new Node(), new Node() ) );
 
     // number line
     const numberLineNode = new SpatializedNumberLineNode( model.numberLine );

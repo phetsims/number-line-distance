@@ -19,6 +19,7 @@ import NLDConstants from '../NLDConstants.js';
 import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import HBox from '../../../../scenery/js/nodes/HBox.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -35,9 +36,14 @@ const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
 class NLDCommonElementsView extends Node {
 
   /**
+   * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view
+   * Is what is used to display x_1 and x_2 or y_1 and y_2 and allows them to be switched
+   *
    * @param {NLDModel} model
+   * @param {Node} pointControllerRepresentationOne
+   * @param {Node} pointControllerRepresentationTwo
    */
-  constructor( model ) {
+  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo ) {
     super();
 
     // checkboxes that control common model properties for what should be visible
@@ -85,6 +91,23 @@ class NLDCommonElementsView extends Node {
         cornerRadius: 6
       } );
       this.addChild( pointControllerBoxNode );
+    } );
+
+    // controls on the bottom left for which node is considered to be first and second
+    const firstNodeText = new Text( 'TOOD: x_1' );
+    const secondNodeText = new Text( 'TODO: x_2' );
+    const firstNodeHBox = new HBox( { children: [ firstNodeText, pointControllerRepresentationOne ] } );
+    const secondNodeHBox = new HBox( { children: [ secondNodeText, pointControllerRepresentationTwo ] } );
+    this.addChild( new VBox( {
+      children: [ firstNodeHBox, secondNodeHBox ],
+      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 20
+    } ) );
+
+    //TODO: add a button to switch the first node and the second node (presumably change a model property, and have a listener for that property change to actually change them)
+
+    // switches the firstNodeText and secondNodeText to use either x or y based on number line orientation
+    model.numberLine.orientationProperty.link( orientation => {
+      //TODO: modify firstNodeText and secondNodeText
     } );
   }
 

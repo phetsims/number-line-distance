@@ -8,6 +8,8 @@
 
 import numberLineDistance from '../../numberLineDistance.js';
 import NLDModel from '../../common/model/NLDModel.js';
+import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
+import NLDConstants from '../../common/NLDConstants.js';
 
 class ElevationSceneModel extends NLDModel {
 
@@ -15,7 +17,12 @@ class ElevationSceneModel extends NLDModel {
    * @param {Tandem} tandem
    */
   constructor( tandem ) {
-    super( tandem );
+    //TODO:
+    const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center, {
+      widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
+      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160
+    } );
+    super( tandem, numberLine );
     //TODO:
   }
 
