@@ -46,6 +46,9 @@ class NLDModel {
     // @public {Property<DistanceRepresentation>}
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
 
+    // @public {Property<Boolean>} - whether the x_1 and x_2 or y_1 and y_2 nodes are swapped
+    this.isPrimaryNodeSwappedProperty = new BooleanProperty( false );
+
     // @public {SpatializedNumberLine}
     this.numberLine = numberLine;
 

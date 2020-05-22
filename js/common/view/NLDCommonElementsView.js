@@ -20,6 +20,9 @@ import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import HBox from '../../../../scenery/js/nodes/HBox.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -27,10 +30,18 @@ const distanceDescriptionString = numberLineDistanceStrings.distanceDescription;
 const tickMarksString = numberLineDistanceStrings.tickMarks;
 const absoluteValueString = numberLineDistanceStrings.absoluteValue;
 const directedDistanceString = numberLineDistanceStrings.directedDistance;
+const x1EqualsString = numberLineDistanceStrings.x1Equals;
+const x2EqualsString = numberLineDistanceStrings.x2Equals;
+const y1EqualsString = numberLineDistanceStrings.y1Equals;
+const y2EqualsString = numberLineDistanceStrings.y2Equals;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
   font: new PhetFont( 16 ),
   maxWidth: 200
+};
+const NODE_SWAP_TEXT_OPTIONS = {
+  font: new MathSymbolFont( 30 ),
+  maxWidth: 100
 };
 
 class NLDCommonElementsView extends Node {
@@ -94,20 +105,27 @@ class NLDCommonElementsView extends Node {
     } );
 
     // controls on the bottom left for which node is considered to be first and second
-    const firstNodeText = new Text( 'TOOD: x_1' );
-    const secondNodeText = new Text( 'TODO: x_2' );
+    const firstNodeText = new RichText( x1EqualsString, NODE_SWAP_TEXT_OPTIONS );
+    const secondNodeText = new RichText( x2EqualsString, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( { children: [ firstNodeText, pointControllerRepresentationOne ] } );
     const secondNodeHBox = new HBox( { children: [ secondNodeText, pointControllerRepresentationTwo ] } );
     this.addChild( new VBox( {
       children: [ firstNodeHBox, secondNodeHBox ],
-      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 20
+      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
+      left: 30
     } ) );
 
-    //TODO: add a button to switch the first node and the second node (presumably change a model property, and have a listener for that property change to actually change them)
+    //TODO: add a button to switch model.isPrimaryNodeSwappedProperty and add a listener to actually swap the nodes
 
     // switches the firstNodeText and secondNodeText to use either x or y based on number line orientation
     model.numberLine.orientationProperty.link( orientation => {
-      //TODO: modify firstNodeText and secondNodeText
+      if (orientation === Orientation.HORIZONTAL) {
+        firstNodeText.text = x1EqualsString;
+        secondNodeText.text = x2EqualsString;
+      } else {
+        firstNodeText.text = y1EqualsString;
+        secondNodeText.text = y2EqualsString;
+      }
     } );
   }
 

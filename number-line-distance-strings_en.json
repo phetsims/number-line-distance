@@ -25,5 +25,17 @@
   },
   "directedDistance": {
     "value": "Directed Distance"
+  },
+  "x1Equals": {
+    "value": "x<sub>1</sub> = "
+  },
+  "x2Equals": {
+    "value": "x<sub>2</sub> = "
+  },
+  "y1Equals": {
+    "value": "y<sub>1</sub> = "
+  },
+  "y2Equals": {
+    "value": "y<sub>2</sub> = "
   }
 }
