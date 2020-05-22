@@ -18,6 +18,7 @@ import DistanceRepresentation from '../../common/model/DistanceRepresentation.js
 import NLDConstants from '../NLDConstants.js';
 import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -74,6 +75,17 @@ class NLDCommonElementsView extends Node {
     );
     this.addChild( distanceTypeSelector );
 
+    // box for point controllers
+    let pointControllerBoxNode = null;
+    model.pointControllerBoxProperty.link( pointControllerBox => {
+      pointControllerBoxNode && this.removeChild(pointControllerBoxNode);
+      pointControllerBoxNode = new Rectangle( pointControllerBox, {
+        fill: 'white',
+        stroke: 'black',
+        cornerRadius: 6
+      } );
+      this.addChild( pointControllerBoxNode );
+    } );
   }
 
 }
