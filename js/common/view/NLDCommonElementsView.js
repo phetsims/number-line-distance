@@ -23,6 +23,7 @@ import HBox from '../../../../scenery/js/nodes/HBox.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
+import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -109,13 +110,36 @@ class NLDCommonElementsView extends Node {
     const secondNodeText = new RichText( x2EqualsString, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( { children: [ firstNodeText, pointControllerRepresentationOne ] } );
     const secondNodeHBox = new HBox( { children: [ secondNodeText, pointControllerRepresentationTwo ] } );
-    this.addChild( new VBox( {
+    const nodeOrderDisplay = new VBox( {
       children: [ firstNodeHBox, secondNodeHBox ],
       bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
       left: 30
-    } ) );
+    } );
+    this.addChild( nodeOrderDisplay );
 
-    //TODO: add a button to switch model.isPrimaryNodeSwappedProperty and add a listener to actually swap the nodes
+    // button that swaps the primary point controller and secondary point controller when pressed
+    const swapPrimaryNodesButton = new RectangularPushButton( {
+      content: new Rectangle( 0, 0, 50, nodeOrderDisplay.height ) ,
+      left: nodeOrderDisplay.right + 20,
+      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
+      listener: () => { model.isPrimaryNodeSwappedProperty.value = !model.isPrimaryNodeSwappedProperty.value; }
+    } );
+    this.addChild( swapPrimaryNodesButton );
+
+    // listens for when the primary node should be swapped, and swaps the representations
+    model.isPrimaryNodeSwappedProperty.link( isPrimaryNodeSwapped => {
+      let firstNodeHBoxChildren;
+      let secondNodeHBoxChildren;
+      if ( isPrimaryNodeSwapped ) {
+        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationTwo ];
+        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationOne ];
+      } else {
+        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationOne ];
+        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationTwo ];
+      }
+      firstNodeHBox.children = firstNodeHBoxChildren;
+      secondNodeHBox.children = secondNodeHBoxChildren;
+    } );
 
     // switches the firstNodeText and secondNodeText to use either x or y based on number line orientation
     model.numberLine.orientationProperty.link( orientation => {
