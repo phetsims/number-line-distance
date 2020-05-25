@@ -167,6 +167,7 @@ class NLDCommonElementsView extends Node {
     } );
 
     // an accordion box for the distance statement
+    //TODO: make this open on reset
     //TODO: content being Rectangle is temporary: maybe allow owner to pass content in through options
     const distanceStatementAccordionBox = new AccordionBox( new Rectangle( 0, 0, 340, 35 ), {
       top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
