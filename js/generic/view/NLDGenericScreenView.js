@@ -17,11 +17,11 @@ import SpatializedNumberLineNode from '../../../../number-line-common/js/common/
 import Node from '../../../../scenery/js/nodes/Node.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
+import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
 
 class NLDGenericScreenView extends ScreenView {
 
   /**
-   * TODO:
    * @param {NLDGenericModel} model
    * @param {Tandem} tandem
    */
@@ -57,10 +57,22 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( new NLDCommonElementsView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
 
     // adds orientation selectors for the number line
-    this.addChild( new NumberLineOrientationSelector( model.numberLine.orientationProperty, {
+    const orientationSelector = new NumberLineOrientationSelector( model.numberLine.orientationProperty, {
       bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 50,
       right: resetAllButton.left - 50
-    } ) );
+    } );
+    this.addChild( orientationSelector );
+
+    // adds range selectors for the number line
+    this.addChild( new NumberLineRangeSelector(
+      model.numberLine.displayedRangeProperty,
+      NLDConstants.GENERIC_NUMBER_LINE_RANGES,
+      this,
+      {
+        bottom: orientationSelector.top - 15,
+        left: orientationSelector.left
+      }
+    ) );
 
     // number line
     const numberLineNode = new SpatializedNumberLineNode( model.numberLine );

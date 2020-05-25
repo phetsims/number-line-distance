@@ -10,6 +10,9 @@
     "grunt": "~1.0.0"
   },
   "phet": {
+    "phetLibs": [
+      "number-line-common"
+    ],
     "requirejsNamespace": "NUMBER_LINE_DISTANCE",
     "simulation": true,
     "runnable": true,

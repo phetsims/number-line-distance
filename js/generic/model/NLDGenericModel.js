@@ -19,7 +19,8 @@ class NLDGenericModel extends NLDModel {
   constructor( tandem ) {
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center, {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
-      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160
+      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
+      initialDisplayedRange: NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 0 ]
     } );
     super( tandem, numberLine );
     //TODO: change pointControllerBoxProperty bounds on orientation change
