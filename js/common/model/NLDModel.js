@@ -32,16 +32,10 @@ class NLDModel {
    */
   constructor( tandem, numberLine ) {
     // @public {Property<Boolean>}
-    this.pointLabelsVisibleProperty = new BooleanProperty( false );
-
-    // @public {Property<Boolean>}
     this.distanceLabelsVisibleProperty = new BooleanProperty( false );
 
     // @public {Property<Boolean>}
     this.distanceDescriptionVisibleProperty = new BooleanProperty( false );
-
-    // @public {Property<Boolean>}
-    this.tickMarksVisibleProperty = new BooleanProperty( false );
 
     // @public {Property<DistanceRepresentation>}
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
@@ -60,11 +54,12 @@ class NLDModel {
    * Resets the model
    */
   reset() {
-    this.pointLabelsVisibleProperty.reset();
     this.distanceLabelsVisibleProperty.reset();
     this.distanceDescriptionVisibleProperty.reset();
-    this.tickMarksVisibleProperty.reset();
     this.distanceRepresentationProperty.reset();
+    this.isPrimaryNodeSwappedProperty.reset();
+    this.numberLine.reset();
+    this.pointControllerBoxProperty.reset();
   }
 
 }

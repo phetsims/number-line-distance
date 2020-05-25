@@ -70,10 +70,10 @@ class NLDCommonElementsView extends Node {
     // checkboxes that control common model properties for what should be visible
     const checkboxGroup = new VBox( {
       children: [
-        new NLCheckbox( pointLabelsString, model.pointLabelsVisibleProperty ),
+        new NLCheckbox( pointLabelsString, model.numberLine.showPointLabelsProperty ),
         new NLCheckbox( distanceLabelsString, model.distanceLabelsVisibleProperty ),
         new NLCheckbox( distanceDescriptionString, model.distanceDescriptionVisibleProperty ),
-        new NLCheckbox( tickMarksString, model.tickMarksVisibleProperty )
+        new NLCheckbox( tickMarksString, model.numberLine.showTickMarksProperty )
       ],
       spacing: 15,
       align: 'left',
