@@ -12,6 +12,7 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene3mockup from '../../../images/explorescene3mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
+import StringProperty from '../../../../axon/js/StringProperty.js';
 
 class ElevationSceneView extends Node {
 
@@ -33,7 +34,7 @@ class ElevationSceneView extends Node {
 
     //TODO:
 
-    this.addChild( new NLDCommonElementsView( model, new Node(), new Node() ) );
+    this.addChild( new NLDCommonElementsView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
   }
 
 }

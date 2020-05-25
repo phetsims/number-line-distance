@@ -27,6 +27,7 @@ import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushBut
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Shape from '../../../../kite/js/Shape.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
+import merge from '../../../../phet-core/js/merge.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -47,6 +48,10 @@ const NODE_SWAP_TEXT_OPTIONS = {
   font: new MathSymbolFont( 30 ),
   maxWidth: 100
 };
+const DISTANCE_DESCRIPTION_TEXT_OPTIONS = {
+  font: new PhetFont( 16 ),
+  maxWidth: 300
+};
 
 class NLDCommonElementsView extends Node {
 
@@ -57,8 +62,9 @@ class NLDCommonElementsView extends Node {
    * @param {NLDModel} model
    * @param {Node} pointControllerRepresentationOne
    * @param {Node} pointControllerRepresentationTwo
+   * @param {Property<String>} distanceDescriptionProperty
    */
-  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo ) {
+  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, distanceDescriptionProperty ) {
     super();
 
     // checkboxes that control common model properties for what should be visible
@@ -180,6 +186,17 @@ class NLDCommonElementsView extends Node {
       }
     } );
     this.addChild( distanceStatementAccordionBox );
+
+    // a description for the distance
+    const distanceDescriptionText = new Text( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
+      top: distanceStatementAccordionBox.bottom + 5
+    } ) );
+    distanceDescriptionProperty.link( distanceDescription => {
+      distanceDescriptionText.text = distanceDescription;
+      distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
+    } );
+    model.distanceDescriptionVisibleProperty.linkAttribute( distanceDescriptionText, 'visible' );
+    this.addChild( distanceDescriptionText );
   }
 
 }
