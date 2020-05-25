@@ -17,13 +17,12 @@ class NLDGenericModel extends NLDModel {
    * @param {Tandem} tandem
    */
   constructor( tandem ) {
-    //TODO: numberline size copied from NLI generic screen
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center, {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160
     } );
     super( tandem, numberLine );
-    //TODO:
+    //TODO: change pointControllerBoxProperty bounds on orientation change
   }
 
   /**

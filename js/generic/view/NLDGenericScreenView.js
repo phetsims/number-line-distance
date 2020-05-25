@@ -16,6 +16,7 @@ import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
 import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
+import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 
 class NLDGenericScreenView extends ScreenView {
 
@@ -54,6 +55,12 @@ class NLDGenericScreenView extends ScreenView {
 
     // adds sim controls that show on every screen/scene
     this.addChild( new NLDCommonElementsView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
+
+    // adds orientation selectors for the number line
+    this.addChild( new NumberLineOrientationSelector( model.numberLine.orientationProperty, {
+      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 50,
+      right: resetAllButton.left - 50
+    } ) );
 
     // number line
     const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
