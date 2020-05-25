@@ -26,6 +26,7 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Shape from '../../../../kite/js/Shape.js';
+import AccordionBox from '../../../../sun/js/AccordionBox.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -158,6 +159,27 @@ class NLDCommonElementsView extends Node {
         secondNodeText.text = y2EqualsString;
       }
     } );
+
+    // an accordion box for the distance statement
+    //TODO: content being Rectangle is temporary: maybe allow owner to pass content in through options
+    const distanceStatementAccordionBox = new AccordionBox( new Rectangle( 0, 0, 340, 35 ), {
+      top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
+      centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
+      fill: 'white',
+      cornerRadius: 5,
+      contentAlign: 'center',
+      minWidth: 340,
+      maxWidth: 340,
+      buttonXMargin: 8,
+      buttonYMargin: 6,
+      expandCollapseButtonOptions: {
+        touchAreaXDilation: 15,
+        touchAreaYDilation: 15,
+        mouseAreaXDilation: 5,
+        mouseAreaYDilation: 5
+      }
+    } );
+    this.addChild( distanceStatementAccordionBox );
   }
 
 }
