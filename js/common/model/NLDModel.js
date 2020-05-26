@@ -38,8 +38,10 @@ class NLDModel {
     // @public {SpatializedNumberLine}
     this.numberLine = numberLine;
 
+    const pointControllerOptions = { numberLines: [ this.numberLine ] };
+
     // @public {PointController[]}
-    this.pointControllers = [ new PointController(), new PointController() ];
+    this.pointControllers = [ new PointController( pointControllerOptions ), new PointController( pointControllerOptions ) ];
 
     // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to; can change with numberline orientation
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );

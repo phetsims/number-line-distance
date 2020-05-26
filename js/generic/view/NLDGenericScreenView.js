@@ -18,6 +18,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
+import PointControllerNode from '../../../../number-line-integers/js/common/view/PointControllerNode.js';
 
 class NLDGenericScreenView extends ScreenView {
 
@@ -77,6 +78,10 @@ class NLDGenericScreenView extends ScreenView {
     // number line
     const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
     this.addChild( numberLineNode );
+
+    // point controllers
+    const pointControllerNodes = model.pointControllers.map( pointController => new PointControllerNode( pointController ) );
+    pointControllerNodes.forEach( pointControllerNode => { this.addChild( pointControllerNode ); } );
   }
 
   /**
