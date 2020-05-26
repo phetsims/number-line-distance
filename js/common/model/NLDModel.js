@@ -173,6 +173,10 @@ class NLDModel {
    * Resets the model
    */
   reset() {
+    this.pointControllers.forEach( pointController => {
+      pointController.reset();
+      this.putPointControllerInBox( pointController );
+    } );
     this.distanceLabelsVisibleProperty.reset();
     this.distanceDescriptionVisibleProperty.reset();
     this.distanceRepresentationProperty.reset();

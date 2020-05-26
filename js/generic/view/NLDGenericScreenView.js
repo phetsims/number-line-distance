@@ -75,13 +75,15 @@ class NLDGenericScreenView extends ScreenView {
       }
     ) );
 
+    // point controllers
+    const pointControllerNodeLayer = new Node( {
+      children: model.pointControllers.map( pointController => new PointControllerNode( pointController ) )
+    } );
+    this.addChild( pointControllerNodeLayer );
+
     // number line
     const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
     this.addChild( numberLineNode );
-
-    // point controllers
-    const pointControllerNodes = model.pointControllers.map( pointController => new PointControllerNode( pointController ) );
-    pointControllerNodes.forEach( pointControllerNode => { this.addChild( pointControllerNode ); } );
   }
 
   /**
