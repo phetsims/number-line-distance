@@ -48,6 +48,7 @@ const NODE_SWAP_TEXT_OPTIONS = {
   font: new MathSymbolFont( 30 ),
   maxWidth: 100
 };
+const NODE_SWAP_HBOX_SPACING = 15;
 const DISTANCE_DESCRIPTION_TEXT_OPTIONS = {
   font: new PhetFont( 16 ),
   maxWidth: 300
@@ -117,8 +118,14 @@ class NLDCommonElementsView extends Node {
     // controls on the bottom left for which node is considered to be first and second
     const firstNodeText = new RichText( x1EqualsString, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeText = new RichText( x2EqualsString, NODE_SWAP_TEXT_OPTIONS );
-    const firstNodeHBox = new HBox( { children: [ firstNodeText, pointControllerRepresentationOne ] } );
-    const secondNodeHBox = new HBox( { children: [ secondNodeText, pointControllerRepresentationTwo ] } );
+    const firstNodeHBox = new HBox( {
+      children: [ firstNodeText, pointControllerRepresentationOne ],
+      spacing: NODE_SWAP_HBOX_SPACING
+    } );
+    const secondNodeHBox = new HBox( {
+      children: [ secondNodeText, pointControllerRepresentationTwo ],
+      spacing: NODE_SWAP_HBOX_SPACING
+    } );
     const nodeOrderDisplay = new VBox( {
       children: [ firstNodeHBox, secondNodeHBox ],
       bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,

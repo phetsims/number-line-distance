@@ -19,6 +19,9 @@ import StringProperty from '../../../../axon/js/StringProperty.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
 import PointControllerNode from '../../../../number-line-integers/js/common/view/PointControllerNode.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+
+const CIRCLE_REPRESENTATION_RADIUS = 5;
 
 class NLDGenericScreenView extends ScreenView {
 
@@ -55,7 +58,16 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( resetAllButton );
 
     // adds sim controls that show on every screen/scene
-    this.addChild( new NLDCommonElementsView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
+    const firstControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'magenta' } );
+    const secondControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'blue' } );
+    this.addChild(
+      new NLDCommonElementsView(
+        model,
+        firstControllerRepresentation,
+        secondControllerRepresentation,
+        new StringProperty( 'TODO:' )
+      )
+    );
 
     // adds orientation selectors for the number line
     const orientationSelector = new NumberLineOrientationSelector( model.numberLine.orientationProperty, {
