@@ -13,7 +13,6 @@ import numberLineDistance from '../../numberLineDistance.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
-import PointController from '../../../../number-line-integers/js/common/model/PointController.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
 class NLDModel {
@@ -21,8 +20,11 @@ class NLDModel {
   /**
    * @param {Tandem} tandem
    * @param {SpatializedNumberLine} numberLine
+   * @param {PointController[]} pointControllers
    */
-  constructor( tandem, numberLine ) {
+  constructor( tandem, numberLine, pointControllers ) {
+    assert && assert( pointControllers.length === 2, 'all NLD models should only have 2 point controllers' );
+
     // @public {Property<Boolean>}
     this.distanceLabelsVisibleProperty = new BooleanProperty( false );
 
@@ -38,10 +40,8 @@ class NLDModel {
     // @public {SpatializedNumberLine}
     this.numberLine = numberLine;
 
-    const pointControllerOptions = { numberLines: [ this.numberLine ] };
-
     // @public {PointController[]}
-    this.pointControllers = [ new PointController( pointControllerOptions ), new PointController( pointControllerOptions ) ];
+    this.pointControllers = pointControllers;
 
     // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to; can change with numberline orientation
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
@@ -75,7 +75,6 @@ class NLDModel {
 
     // if point controllers were in the box and the box bounds changed, move the points
     this.pointControllerBoxProperty.lazyLink( ( newBoxBounds, oldBoxBounds ) => {
-      this.pointControllerBoxProperty.value = newBoxBounds;
       this.pointControllers.forEach( pointController => {
 
         // if the point controller is animating, stop it and put it in the box
@@ -134,7 +133,6 @@ class NLDModel {
     const numberOfPositions = this.pointControllers.length;
 
     // error checking
-    assert && assert( numberOfPositions === 2, 'all models in NLD should have 2 point controllers' );
     assert && assert( index >= 0, 'point controller not found on list' );
     assert && assert(
       !pointController.isControllingNumberLinePoint(),

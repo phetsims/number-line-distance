@@ -10,6 +10,7 @@ import numberLineDistance from '../../numberLineDistance.js';
 import NLDModel from '../../common/model/NLDModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
+import PointController from '../../../../number-line-integers/js/common/model/PointController.js';
 
 class TemperatureSceneModel extends NLDModel {
 
@@ -22,7 +23,14 @@ class TemperatureSceneModel extends NLDModel {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160
     } );
-    super( tandem, numberLine );
+    super( tandem, numberLine, [
+      new PointController( {
+        numberLines: [ numberLine ]
+      } ),
+      new PointController( {
+        numberLines: [ numberLine ]
+      } )
+    ] );
     //TODO:
   }
 

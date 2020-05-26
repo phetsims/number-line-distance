@@ -199,8 +199,6 @@ class NLDCommonElementsView extends Node {
     } );
     model.distanceDescriptionVisibleProperty.linkAttribute( distanceDescriptionText, 'visible' );
     this.addChild( distanceDescriptionText );
-
-    //TODO: decide whether number line node should be added here instead of in each individual view
   }
 
 }
