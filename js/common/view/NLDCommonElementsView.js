@@ -105,7 +105,7 @@ class NLDCommonElementsView extends Node {
     // box for point controllers
     let pointControllerBoxNode = null;
     model.pointControllerBoxProperty.link( pointControllerBox => {
-      pointControllerBoxNode && this.removeChild(pointControllerBoxNode);
+      pointControllerBoxNode && this.removeChild( pointControllerBoxNode );
       pointControllerBoxNode = new Rectangle( pointControllerBox, {
         fill: 'white',
         stroke: 'black',
@@ -127,6 +127,7 @@ class NLDCommonElementsView extends Node {
     this.addChild( nodeOrderDisplay );
 
     // button that swaps the primary point controller and secondary point controller when pressed
+    //TODO: get a better swap icon
     const swapIconControlWidth = 25;
     const swapIconControlHeight = nodeOrderDisplay.height - 50;
     const swapIconShape = new Shape()
