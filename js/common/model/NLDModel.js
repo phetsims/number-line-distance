@@ -85,7 +85,7 @@ class NLDModel {
 
         // if the point controller was sitting in the previous box, move it to the new one
         else if ( oldBoxBounds.containsPoint( pointController.positionProperty.value ) &&
-          !pointController.isDraggingProperty.value ) {
+          !pointController.isDraggingProperty.value && !pointController.isControllingNumberLinePoint() ) {
           this.putPointControllerInBox( pointController );
         }
       } );
