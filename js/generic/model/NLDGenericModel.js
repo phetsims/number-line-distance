@@ -10,6 +10,7 @@ import numberLineDistance from '../../numberLineDistance.js';
 import NLDModel from '../../common/model/NLDModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
 
 class NLDGenericModel extends NLDModel {
 
@@ -23,7 +24,11 @@ class NLDGenericModel extends NLDModel {
       initialDisplayedRange: NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 0 ]
     } );
     super( tandem, numberLine );
-    //TODO: change pointControllerBoxProperty bounds on orientation change
+
+    this.numberLine.orientationProperty.link( orientation => {
+      this.pointControllerBoxProperty.value = ( orientation === Orientation.HORIZONTAL ) ?
+        NLDConstants.BOTTOM_BOX_BOUNDS : NLDConstants.SIDE_BOX_BOUNDS;
+    } );
   }
 
   /**

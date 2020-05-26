@@ -14,16 +14,6 @@ import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 
-const BOTTOM_BOX_WIDTH = 320;
-const BOTTOM_BOX_HEIGHT = 70;
-const INSET = 30;
-const BOTTOM_BOX_BOUNDS = new Bounds2(
-  NLDConstants.NLD_LAYOUT_BOUNDS.centerX - BOTTOM_BOX_WIDTH / 2,
-  NLDConstants.NLD_LAYOUT_BOUNDS.maxY - BOTTOM_BOX_HEIGHT - INSET,
-  NLDConstants.NLD_LAYOUT_BOUNDS.centerX + BOTTOM_BOX_WIDTH / 2,
-  NLDConstants.NLD_LAYOUT_BOUNDS.maxY - INSET
-);
-
 class NLDModel {
 
   /**
@@ -47,7 +37,9 @@ class NLDModel {
     this.numberLine = numberLine;
 
     // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to; can change with numberline orientation
-    this.pointControllerBoxProperty = new Property( BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
+    this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
+
+    //TODO: move point controllers on pointControllerBoxProperty change
   }
 
   /**
