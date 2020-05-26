@@ -11,7 +11,7 @@ import NLDModel from '../../common/model/NLDModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import PointController from '../../../../number-line-integers/js/common/model/PointController.js';
+import PointController from '../../../../number-line-common/js/common/model/PointController.js';
 
 class ElevationSceneModel extends NLDModel {
 

@@ -18,7 +18,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
-import PointControllerNode from '../../../../number-line-integers/js/common/view/PointControllerNode.js';
+import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 
 const CIRCLE_REPRESENTATION_RADIUS = 5;
