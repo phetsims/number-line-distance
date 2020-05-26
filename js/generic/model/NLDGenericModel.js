@@ -18,9 +18,9 @@ class NLDGenericModel extends NLDModel {
    * @param {Tandem} tandem
    */
   constructor( tandem ) {
-    const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center, {
+    const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, 50 ), {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
-      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
+      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 185,
       initialDisplayedRange: NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 0 ]
     } );
     super( tandem, numberLine );
