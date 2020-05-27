@@ -20,6 +20,7 @@ import NumberLineOrientationSelector from '../../../../number-line-common/js/com
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
+import DistanceDisplayNode from '../../common/view/DistanceDisplayNode.js';
 
 const CIRCLE_REPRESENTATION_RADIUS = 5;
 
@@ -95,6 +96,7 @@ class NLDGenericScreenView extends ScreenView {
 
     // number line
     const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
+    this.addChild( new DistanceDisplayNode( model ) );
     this.addChild( numberLineNode );
   }
 
