@@ -12,6 +12,11 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Shape from '../../../../kite/js/Shape.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Property from '../../../../axon/js/Property.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import NLDConstants from '../NLDConstants.js';
+import Util from '../../../../dot/js/Utils.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 class DistanceDisplayNode extends Node {
 
@@ -38,6 +43,12 @@ class DistanceDisplayNode extends Node {
     } );
     this.addChild( pathNode );
 
+    const distanceText = new Text( '', {
+      maxWidth: 50,
+      font: new PhetFont( 16 )
+    } );
+    this.addChild( distanceText );
+
     Property.multilink(
       [
         model.distanceLabelsVisibleProperty,
@@ -55,16 +66,43 @@ class DistanceDisplayNode extends Node {
           return;
         }
 
+        // gets number line values
+        const value0 = model.numberLine.modelPositionToValue( position0 );
+        const value1 = model.numberLine.modelPositionToValue( position1 );
+
         // makes path between nodes
-        const valuePosition0 = model.numberLine.valueToModelPosition( model.numberLine.modelPositionToValue( position0 ) );
-        const valuePosition1 = model.numberLine.valueToModelPosition( model.numberLine.modelPositionToValue( position1 ) );
+        const valuePosition0 = model.numberLine.valueToModelPosition( value0 );
+        const valuePosition1 = model.numberLine.valueToModelPosition( value1 );
         const shape = new Shape().moveToPoint( valuePosition0 ).lineToPoint( valuePosition1 );
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
-          //TODO: add arrow to shape depending on whether isPrimaryNodeSwapped
+          //TODO: add arrow to shape from 1 to 0 if isPrimaryNodeSwapped or otherwise 0 to 1
         }
         pathNode.shape = shape;
 
-        // TODO: text
+        // makes the text that displays the difference
+        let displayedDifference = value1 - value0;
+        if ( isPrimaryNodeSwapped ) {
+          displayedDifference = -displayedDifference;
+        }
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
+          displayedDifference = Math.abs( displayedDifference );
+        }
+        displayedDifference = Util.roundSymmetric( displayedDifference );
+        if ( displayedDifference === 0 ) { //TODO: I think this condition is wrong: it is question mark when a point is on the number line but outside the displayed range
+          displayedDifference = '?';
+        }
+        distanceText.text = `${displayedDifference}`;
+
+        // positions text TODO: adjust padding based on whether point labels are visible
+        if ( displayedDifference === '?' ) {
+          distanceText.center = NLDConstants.NLD_LAYOUT_BOUNDS.center;
+        } else if ( orientation === Orientation.HORIZONTAL ) {
+          distanceText.bottom = pathNode.top - 20;
+          distanceText.centerX = pathNode.centerX;
+        } else {
+          distanceText.right = pathNode.left - 20;
+          distanceText.centerY = pathNode.centerY;
+        }
 
       }
     );
