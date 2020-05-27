@@ -55,10 +55,11 @@ class DistanceDisplayNode extends Node {
         model.distanceRepresentationProperty,
         model.isPrimaryNodeSwappedProperty,
         model.numberLine.orientationProperty,
+        model.numberLine.showPointLabelsProperty,
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty
       ],
-      ( distanceLabelsVisible, distanceRepresentation, isPrimaryNodeSwapped, orientation, position0, position1 ) => {
+      ( distanceLabelsVisible, distanceRepresentation, isPrimaryNodeSwapped, orientation, showPointLabels, position0, position1 ) => {
 
         // controls visibility
         this.visible = distanceLabelsVisible && bothPointControllersOnNumberLine();
@@ -93,14 +94,18 @@ class DistanceDisplayNode extends Node {
         }
         distanceText.text = `${displayedDifference}`;
 
-        // positions text TODO: adjust padding based on whether point labels are visible
+        // positions text
+        let padding = 20;
+        if ( showPointLabels ) {
+          padding += 25;
+        }
         if ( displayedDifference === '?' ) {
           distanceText.center = NLDConstants.NLD_LAYOUT_BOUNDS.center;
         } else if ( orientation === Orientation.HORIZONTAL ) {
-          distanceText.bottom = pathNode.top - 20;
+          distanceText.bottom = pathNode.top - padding;
           distanceText.centerX = pathNode.centerX;
         } else {
-          distanceText.right = pathNode.left - 20;
+          distanceText.right = pathNode.left - padding;
           distanceText.centerY = pathNode.centerY;
         }
 
