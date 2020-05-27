@@ -7,12 +7,12 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import NLDModel from '../../common/model/NLDModel.js';
+import NLDBaseModel from '../../common/model/NLDBaseModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
 
-class DistanceSceneModel extends NLDModel {
+class DistanceSceneModel extends NLDBaseModel {
 
   /**
    * @param {Tandem} tandem

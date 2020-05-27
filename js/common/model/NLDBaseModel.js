@@ -1,7 +1,8 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * Model for common properties used by all scenes/screens in the sim
+ * Model for common properties/behaviours used by all scenes/screens in the sim
+ * Is incomplete and meant to be subclassed
  *
  * @author Saurabh Totey
  */
@@ -15,7 +16,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
-class NLDModel {
+class NLDBaseModel {
 
   /**
    * @param {Tandem} tandem
@@ -185,5 +186,5 @@ class NLDModel {
 
 }
 
-numberLineDistance.register( 'NLDModel', NLDModel );
-export default NLDModel;
+numberLineDistance.register( 'NLDBaseModel', NLDBaseModel );
+export default NLDBaseModel;

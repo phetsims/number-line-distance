@@ -21,7 +21,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 class DistanceDisplayNode extends Node {
 
   /**
-   * @param {NLDModel} model
+   * @param {NLDBaseModel} model
    */
   constructor( model ) {
     super();

@@ -60,7 +60,7 @@ class NLDCommonElementsView extends Node {
    * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view
    * Is what is used to display x_1 and x_2 or y_1 and y_2 and allows them to be switched
    *
-   * @param {NLDModel} model
+   * @param {NLDBaseModel} model
    * @param {Node} pointControllerRepresentationOne
    * @param {Node} pointControllerRepresentationTwo
    * @param {Property<String>} distanceDescriptionProperty
