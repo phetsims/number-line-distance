@@ -17,6 +17,13 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import NLDConstants from '../NLDConstants.js';
 import Util from '../../../../dot/js/Utils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
+
+const ARROW_SHAPE_OPTIONS = {
+  tailWidth: 3,
+  headWidth: 5,
+  headHeight: 5
+};
 
 class DistanceDisplayNode extends Node {
 
@@ -37,10 +44,7 @@ class DistanceDisplayNode extends Node {
       return model.numberLine.hasPoint( numberLinePoint );
     } );
 
-    const pathNode = new Path( null, {
-      lineWidth: 5,
-      stroke: 'gray'
-    } );
+    const pathNode = new Path( null, { stroke: 'gray' } );
     this.addChild( pathNode );
 
     const distanceText = new Text( '', {
@@ -74,11 +78,20 @@ class DistanceDisplayNode extends Node {
         // makes path between nodes
         const valuePosition0 = model.numberLine.valueToModelPosition( value0 );
         const valuePosition1 = model.numberLine.valueToModelPosition( value1 );
-        const shape = new Shape().moveToPoint( valuePosition0 ).lineToPoint( valuePosition1 );
+        let shape;
+        let lineWidth = 5;
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
-          //TODO: add arrow to shape from 1 to 0 if isPrimaryNodeSwapped or otherwise 0 to 1
+          if ( isPrimaryNodeSwapped ) {
+            shape = new ArrowShape( valuePosition1.x, valuePosition1.y, valuePosition0.x, valuePosition0.y, ARROW_SHAPE_OPTIONS );
+          } else {
+            shape = new ArrowShape( valuePosition0.x, valuePosition0.y, valuePosition1.x, valuePosition1.y, ARROW_SHAPE_OPTIONS );
+          }
+        } else {
+          shape = new Shape().moveToPoint( valuePosition0 ).lineToPoint( valuePosition1 );
+          lineWidth = 8;
         }
         pathNode.shape = shape;
+        pathNode.lineWidth = lineWidth;
 
         // makes the text that displays the difference
         let displayedDifference = value1 - value0;
