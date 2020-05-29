@@ -21,6 +21,19 @@ import PointControllerNode from '../../../../number-line-common/js/common/view/P
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 import DistanceDisplayNode from '../../common/view/DistanceDisplayNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import Util from '../../../../dot/js/Utils.js';
+
+const x1String = numberLineDistanceStrings.x1;
+const x2String = numberLineDistanceStrings.x2;
+const y1String = numberLineDistanceStrings.y1;
+const y2String = numberLineDistanceStrings.y2;
+const genericAbsoluteDistanceTemplateString = numberLineDistanceStrings.genericAbsoluteDistanceTemplate;
+const genericDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.genericDirectedPositiveDistanceTemplate;
+const genericDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.genericDirectedNegativeDistanceTemplate;
 
 const CIRCLE_REPRESENTATION_RADIUS = 5;
 
@@ -62,15 +75,41 @@ class NLDGenericScreenView extends ScreenView {
     const distanceDescriptionProperty = new DerivedProperty(
       [
         model.distanceRepresentationProperty,
+        model.numberLine.orientationProperty,
         model.isPrimaryNodeSwappedProperty,
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty
       ],
-      ( distanceRepresentation, isPrimaryNodeSwapped, position0, position1 ) => {
+      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, position0, position1 ) => {
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
           return '';
         }
-        return 'TODO:';
+        const value0 = model.numberLine.modelPositionToValue( position0 );
+        const value1 = model.numberLine.modelPositionToValue( position1 );
+        let primaryXY = x1String;
+        let secondaryXY = x2String;
+        if ( orientation === Orientation.VERTICAL ) {
+          primaryXY = y1String;
+          secondaryXY = y2String;
+        }
+        let difference = Util.roundSymmetric( value1 - value0 );
+        if ( isPrimaryNodeSwapped ) {
+          difference = -difference;
+        }
+        const fillInValues = {
+          primaryXY: primaryXY,
+          secondaryXY: secondaryXY,
+          difference: Math.abs( difference )
+        };
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
+          return StringUtils.fillIn( genericAbsoluteDistanceTemplateString, fillInValues );
+        }
+        if ( difference > 0 ) {
+          return StringUtils.fillIn( genericDirectedPositiveDistanceTemplateString, fillInValues );
+        } else if ( difference < 0 ) {
+          return StringUtils.fillIn( genericDirectedNegativeDistanceTemplateString, fillInValues );
+        }
+        return '';
       }
     );
 

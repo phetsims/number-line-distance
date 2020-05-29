@@ -28,6 +28,7 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Shape from '../../../../kite/js/Shape.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import merge from '../../../../phet-core/js/merge.js';
+import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -35,10 +36,10 @@ const distanceDescriptionString = numberLineDistanceStrings.distanceDescription;
 const tickMarksString = numberLineDistanceStrings.tickMarks;
 const absoluteValueString = numberLineDistanceStrings.absoluteValue;
 const directedDistanceString = numberLineDistanceStrings.directedDistance;
-const x1EqualsString = numberLineDistanceStrings.x1Equals;
-const x2EqualsString = numberLineDistanceStrings.x2Equals;
-const y1EqualsString = numberLineDistanceStrings.y1Equals;
-const y2EqualsString = numberLineDistanceStrings.y2Equals;
+const x1String = numberLineDistanceStrings.x1;
+const x2String = numberLineDistanceStrings.x2;
+const y1String = numberLineDistanceStrings.y1;
+const y2String = numberLineDistanceStrings.y2;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
   font: new PhetFont( 16 ),
@@ -116,8 +117,8 @@ class NLDCommonElementsView extends Node {
     } );
 
     // controls on the bottom left for which node is considered to be first and second
-    const firstNodeText = new RichText( x1EqualsString, NODE_SWAP_TEXT_OPTIONS );
-    const secondNodeText = new RichText( x2EqualsString, NODE_SWAP_TEXT_OPTIONS );
+    const firstNodeText = new RichText( `${x1String} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
+    const secondNodeText = new RichText( `${x2String} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( {
       children: [ firstNodeText, pointControllerRepresentationOne ],
       spacing: NODE_SWAP_HBOX_SPACING
@@ -166,11 +167,11 @@ class NLDCommonElementsView extends Node {
     // switches the firstNodeText and secondNodeText to use either x or y based on number line orientation
     model.numberLine.orientationProperty.link( orientation => {
       if (orientation === Orientation.HORIZONTAL) {
-        firstNodeText.text = x1EqualsString;
-        secondNodeText.text = x2EqualsString;
+        firstNodeText.text = `${x1String} ${MathSymbols.EQUAL_TO}`;
+        secondNodeText.text = `${x2String} ${MathSymbols.EQUAL_TO}`;
       } else {
-        firstNodeText.text = y1EqualsString;
-        secondNodeText.text = y2EqualsString;
+        firstNodeText.text = `${y1String} ${MathSymbols.EQUAL_TO}`;
+        secondNodeText.text = `${y2String} ${MathSymbols.EQUAL_TO}`;
       }
     } );
 
@@ -197,7 +198,7 @@ class NLDCommonElementsView extends Node {
     this.addChild( distanceStatementAccordionBox );
 
     // a description for the distance
-    const distanceDescriptionText = new Text( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
+    const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
       top: distanceStatementAccordionBox.bottom + 5
     } ) );
     distanceDescriptionProperty.link( distanceDescription => {

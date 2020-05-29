@@ -26,16 +26,25 @@
   "directedDistance": {
     "value": "Directed Distance"
   },
-  "x1Equals": {
-    "value": "x<sub>1</sub> = "
+  "x1": {
+    "value": "x<sub>1</sub>"
   },
-  "x2Equals": {
-    "value": "x<sub>2</sub> = "
+  "x2": {
+    "value": "x<sub>2</sub>"
   },
-  "y1Equals": {
-    "value": "y<sub>1</sub> = "
+  "y1": {
+    "value": "y<sub>1</sub>"
   },
-  "y2Equals": {
-    "value": "y<sub>2</sub> = "
+  "y2": {
+    "value": "y<sub>2</sub>"
+  },
+  "genericAbsoluteDistanceTemplate": {
+    "value": "{{secondaryXY}} and {{primaryXY}} are {{difference}} units apart."
+  },
+  "genericDirectedPositiveDistanceTemplate": {
+    "value": "{{secondaryXY}} is {{difference}} units more positive than {{primaryXY}}."
+  },
+  "genericDirectedNegativeDistanceTemplate": {
+    "value": "{{secondaryXY}} is {{difference}} units more negative than {{primaryXY}}."
   }
 }
