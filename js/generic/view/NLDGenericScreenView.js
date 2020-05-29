@@ -26,6 +26,7 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Util from '../../../../dot/js/Utils.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -97,8 +98,8 @@ class NLDGenericScreenView extends ScreenView {
           difference = -difference;
         }
         const fillInValues = {
-          primaryXY: primaryXY,
-          secondaryXY: secondaryXY,
+          primaryXY: MathSymbolFont.getRichTextMarkup( primaryXY ),
+          secondaryXY: MathSymbolFont.getRichTextMarkup( secondaryXY ),
           difference: Math.abs( difference )
         };
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
