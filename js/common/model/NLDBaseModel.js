@@ -169,6 +169,20 @@ class NLDBaseModel {
   }
 
   /**
+   * A function that returns whether both point controllers are controlling number line points that live on the numberline
+   * @public
+   */
+  areBothPointControllersControllingOnNumberLine() {
+    return this.pointControllers.every( pointController => {
+      if ( !pointController.isControllingNumberLinePoint() ) {
+        return false;
+      }
+      const numberLinePoint = pointController.numberLinePoints[ 0 ];
+      return this.numberLine.hasPoint( numberLinePoint );
+    } );
+  }
+
+  /**
    * Resets the model
    */
   reset() {

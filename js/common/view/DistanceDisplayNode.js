@@ -33,17 +33,6 @@ class DistanceDisplayNode extends Node {
   constructor( model ) {
     super();
 
-    /**
-     * A function that returns whether both points are on the number line
-     */
-    const bothPointControllersOnNumberLine = () => model.pointControllers.every( pointController => {
-      if ( !pointController.isControllingNumberLinePoint() ) {
-        return false;
-      }
-      const numberLinePoint = pointController.numberLinePoints[ 0 ];
-      return model.numberLine.hasPoint( numberLinePoint );
-    } );
-
     const pathNode = new Path( null, { stroke: 'gray' } );
     this.addChild( pathNode );
 
@@ -66,7 +55,7 @@ class DistanceDisplayNode extends Node {
       ( distanceLabelsVisible, distanceRepresentation, isPrimaryNodeSwapped, orientation, showPointLabels, position0, position1 ) => {
 
         // controls visibility
-        this.visible = distanceLabelsVisible && bothPointControllersOnNumberLine();
+        this.visible = distanceLabelsVisible && model.areBothPointControllersControllingOnNumberLine();
         if ( !this.visible ) {
           return;
         }

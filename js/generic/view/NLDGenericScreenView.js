@@ -15,12 +15,12 @@ import genericmockup from '../../../images/genericmockup_png.js';
 import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
 import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 import DistanceDisplayNode from '../../common/view/DistanceDisplayNode.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 const CIRCLE_REPRESENTATION_RADIUS = 5;
 
@@ -58,6 +58,22 @@ class NLDGenericScreenView extends ScreenView {
     } );
     this.addChild( resetAllButton );
 
+    // a property that returns a string that describes the distance between both the point controllers
+    const distanceDescriptionProperty = new DerivedProperty(
+      [
+        model.distanceRepresentationProperty,
+        model.isPrimaryNodeSwappedProperty,
+        model.pointControllers[ 0 ].positionProperty,
+        model.pointControllers[ 1 ].positionProperty
+      ],
+      ( distanceRepresentation, isPrimaryNodeSwapped, position0, position1 ) => {
+        if ( !model.areBothPointControllersControllingOnNumberLine() ) {
+          return '';
+        }
+        return 'TODO:';
+      }
+    );
+
     // adds sim controls that show on every screen/scene
     const firstControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'magenta' } );
     const secondControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'blue' } );
@@ -66,7 +82,7 @@ class NLDGenericScreenView extends ScreenView {
         model,
         firstControllerRepresentation,
         secondControllerRepresentation,
-        new StringProperty( 'TODO:' )
+        distanceDescriptionProperty
       )
     );
 
