@@ -45,6 +45,7 @@ class DistanceDisplayNode extends Node {
     Property.multilink(
       [
         model.distanceLabelsVisibleProperty,
+        model.numberLine.displayedRangeProperty,
         model.distanceRepresentationProperty,
         model.isPrimaryNodeSwappedProperty,
         model.numberLine.orientationProperty,
@@ -52,7 +53,8 @@ class DistanceDisplayNode extends Node {
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty
       ],
-      ( distanceLabelsVisible, distanceRepresentation, isPrimaryNodeSwapped, orientation, showPointLabels, position0, position1 ) => {
+      ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation,
+        showPointLabels, position0, position1 ) => {
 
         // controls visibility
         this.visible = distanceLabelsVisible && model.areBothPointControllersControllingOnNumberLine();
@@ -60,13 +62,18 @@ class DistanceDisplayNode extends Node {
           return;
         }
 
-        // gets number line values
+        // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
+        const pointOffNumberLineEndpointValueOffset = ( orientation === Orientation.HORIZONTAL ) ? 0.4 : 0.75;
+        const endpointValueMin = displayedRange.min - pointOffNumberLineEndpointValueOffset;
+        const endpointValueMax = displayedRange.max + pointOffNumberLineEndpointValueOffset;
         const value0 = model.numberLine.modelPositionToValue( position0 );
         const value1 = model.numberLine.modelPositionToValue( position1 );
+        const endPointValue0 = Util.clamp( value0, endpointValueMin, endpointValueMax );
+        const endPointValue1 = Util.clamp( value1, endpointValueMin, endpointValueMax );
 
         // makes path between nodes
-        const valuePosition0 = model.numberLine.valueToModelPosition( value0 );
-        const valuePosition1 = model.numberLine.valueToModelPosition( value1 );
+        const valuePosition0 = model.numberLine.valueToModelPosition( endPointValue0 );
+        const valuePosition1 = model.numberLine.valueToModelPosition( endPointValue1 );
         let shape;
         let lineWidth = 5;
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
@@ -90,18 +97,14 @@ class DistanceDisplayNode extends Node {
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
           displayedDifference = Math.abs( displayedDifference );
         }
-        displayedDifference = Util.roundSymmetric( displayedDifference );
-        if ( displayedDifference === 0 ) { //TODO: I think this condition is wrong: it is question mark when a point is on the number line but outside the displayed range
-          displayedDifference = '?';
-        }
-        distanceText.text = `${displayedDifference}`;
+        distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
 
         // positions text
         let padding = 20;
         if ( showPointLabels ) {
           padding += 25;
         }
-        if ( displayedDifference === '?' ) {
+        if ( displayedDifference === 0 ) {
           distanceText.center = NLDConstants.NLD_LAYOUT_BOUNDS.center;
         } else if ( orientation === Orientation.HORIZONTAL ) {
           distanceText.bottom = pathNode.top - padding;

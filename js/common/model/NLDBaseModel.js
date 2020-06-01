@@ -91,34 +91,6 @@ class NLDBaseModel {
         }
       } );
     } );
-
-    // Add a listener to handle any cases where a change to the number line's display range causes a point that was
-    // already on the number line to be outside of the displayed range.
-    this.numberLine.displayedRangeProperty.lazyLink( displayedRange => {
-      this.pointControllers.forEach( pointController => {
-        if ( pointController.isControllingNumberLinePoint() ) {
-
-          // state checking
-          assert && assert(
-            pointController.numberLinePoints.length === 1,
-            'point controllers on the "Generic" screen should never control multiple points'
-          );
-
-          // get the point on the number line that is currently controlled by this point controller
-          const numberLinePoint = pointController.numberLinePoints[ 0 ];
-
-          if ( !displayedRange.contains( numberLinePoint.valueProperty.value ) ) {
-
-            // the point controlled by this controller is out of the displayed range, so get rid of it
-            pointController.dissociateFromNumberLinePoint( numberLinePoint );
-            this.numberLine.removePoint( numberLinePoint );
-
-            // put the controller away
-            this.putPointControllerInBox( pointController );
-          }
-        }
-      } );
-    } );
   }
 
   /**
