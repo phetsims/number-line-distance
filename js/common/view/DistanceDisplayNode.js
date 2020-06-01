@@ -14,7 +14,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Property from '../../../../axon/js/Property.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import NLDConstants from '../NLDConstants.js';
 import Util from '../../../../dot/js/Utils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
@@ -74,22 +73,25 @@ class DistanceDisplayNode extends Node {
         // makes path between nodes
         const valuePosition0 = model.numberLine.valueToModelPosition( endPointValue0 );
         const valuePosition1 = model.numberLine.valueToModelPosition( endPointValue1 );
-        let shape;
-        let lineWidth = 5;
+        let shape = new Shape().moveToPoint( valuePosition0 ).lineToPoint( valuePosition1 );
+        let lineWidth = 8;
+
+        // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
+        // that is on the number line (it hasn't been clamped)
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
-          if ( isPrimaryNodeSwapped ) {
+          if ( isPrimaryNodeSwapped && value0 === endPointValue0 ) {
+            lineWidth = 5;
             shape = new ArrowShape( valuePosition1.x, valuePosition1.y, valuePosition0.x, valuePosition0.y, ARROW_SHAPE_OPTIONS );
-          } else {
+          } else if ( value1 === endPointValue1 ) {
+            lineWidth = 5;
             shape = new ArrowShape( valuePosition0.x, valuePosition0.y, valuePosition1.x, valuePosition1.y, ARROW_SHAPE_OPTIONS );
           }
-        } else {
-          shape = new Shape().moveToPoint( valuePosition0 ).lineToPoint( valuePosition1 );
-          lineWidth = 8;
         }
+
         pathNode.shape = shape;
         pathNode.lineWidth = lineWidth;
 
-        // makes the text that displays the difference
+        // calculates the difference to display
         let displayedDifference = value1 - value0;
         if ( isPrimaryNodeSwapped ) {
           displayedDifference = -displayedDifference;
@@ -97,6 +99,12 @@ class DistanceDisplayNode extends Node {
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
           displayedDifference = Math.abs( displayedDifference );
         }
+
+        if ( displayedDifference === 0 ) {
+          this.visible = false;
+          return;
+        }
+
         distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
 
         // positions text
@@ -104,9 +112,7 @@ class DistanceDisplayNode extends Node {
         if ( showPointLabels ) {
           padding += 25;
         }
-        if ( displayedDifference === 0 ) {
-          distanceText.center = NLDConstants.NLD_LAYOUT_BOUNDS.center;
-        } else if ( orientation === Orientation.HORIZONTAL ) {
+        if ( orientation === Orientation.HORIZONTAL ) {
           distanceText.bottom = pathNode.top - padding;
           distanceText.centerX = pathNode.centerX;
         } else {
