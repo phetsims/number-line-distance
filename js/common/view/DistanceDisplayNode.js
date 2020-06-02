@@ -62,8 +62,8 @@ class DistanceDisplayNode extends Node {
         }
 
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
-        //TODO: pointOffNumberLineEndpointValueOffset needs to be scaled: values only look nice for the -10 to 10 range
-        const pointOffNumberLineEndpointValueOffset = ( orientation === Orientation.HORIZONTAL ) ? 0.35 : 0.75;
+        const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
+        const pointOffNumberLineEndpointValueOffset = halfRange * ( ( orientation === Orientation.HORIZONTAL ) ? 0.035 : 0.075 );
         const endpointValueMin = displayedRange.min - pointOffNumberLineEndpointValueOffset;
         const endpointValueMax = displayedRange.max + pointOffNumberLineEndpointValueOffset;
         const value0 = model.numberLine.modelPositionToValue( position0 );
