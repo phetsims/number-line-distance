@@ -20,8 +20,8 @@ import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
-  headWidth: 5,
-  headHeight: 5
+  headWidth: 14,
+  headHeight: 14
 };
 
 class DistanceDisplayNode extends Node {
@@ -32,7 +32,7 @@ class DistanceDisplayNode extends Node {
   constructor( model ) {
     super();
 
-    const pathNode = new Path( null, { stroke: 'gray' } );
+    const pathNode = new Path( null, { stroke: 'gray', fill: 'gray' } );
     this.addChild( pathNode );
 
     const distanceText = new Text( '', {
@@ -62,7 +62,8 @@ class DistanceDisplayNode extends Node {
         }
 
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
-        const pointOffNumberLineEndpointValueOffset = ( orientation === Orientation.HORIZONTAL ) ? 0.4 : 0.75;
+        //TODO: pointOffNumberLineEndpointValueOffset needs to be scaled: values only look nice for the -10 to 10 range
+        const pointOffNumberLineEndpointValueOffset = ( orientation === Orientation.HORIZONTAL ) ? 0.35 : 0.75;
         const endpointValueMin = displayedRange.min - pointOffNumberLineEndpointValueOffset;
         const endpointValueMax = displayedRange.max + pointOffNumberLineEndpointValueOffset;
         const value0 = model.numberLine.modelPositionToValue( position0 );
