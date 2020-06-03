@@ -135,14 +135,12 @@ class NLDCommonElementsView extends Node {
     this.addChild( nodeOrderDisplay );
 
     // button that swaps the primary point controller and secondary point controller when pressed
-    //TODO: get a better swap icon
-    const swapIconControlWidth = 25;
-    const swapIconControlHeight = nodeOrderDisplay.height - 50;
+    //TODO: take a look at NORMALIZED_ARROWHEAD_SHAPE from NumberLineOperationNode
     const swapIconShape = new Shape()
-      .moveTo( 0, 0 )
-      .cubicCurveTo( swapIconControlWidth, 0, swapIconControlWidth, swapIconControlHeight, 0, swapIconControlHeight );
+      .ellipticalArc( 0, 0, 8, 12, 0, -Math.PI / 2, Math.PI / 2 );
     const swapPrimaryNodesButton = new RectangularPushButton( {
-      content: new Path( swapIconShape, { stroke: 'black' } ),
+      content: new Path( swapIconShape, { stroke: 'black', lineWidth: 4 } ),
+      baseColor: 'white',
       left: nodeOrderDisplay.right + 20,
       centerY: nodeOrderDisplay.centerY,
       listener: () => { model.isPrimaryNodeSwappedProperty.value = !model.isPrimaryNodeSwappedProperty.value; }
