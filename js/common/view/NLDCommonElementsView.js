@@ -29,6 +29,8 @@ import Shape from '../../../../kite/js/Shape.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import merge from '../../../../phet-core/js/merge.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
+import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
+import Matrix3 from '../../../../dot/js/Matrix3.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -47,9 +49,16 @@ const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
 };
 const NODE_SWAP_TEXT_OPTIONS = {
   font: new MathSymbolFont( 30 ),
-  maxWidth: 100
+  maxWidth: 50
 };
 const NODE_SWAP_HBOX_SPACING = 15;
+const SWAP_ICON_PATH_OPTIONS = { stroke: 'black', lineWidth: 4 };
+const ARROW_SIZE = 5;
+const ARROW_SHAPE_OPTIONS = {
+  tailWidth: 0,
+  headHeight: ARROW_SIZE,
+  headWidth: ARROW_SIZE
+};
 const DISTANCE_DESCRIPTION_TEXT_OPTIONS = {
   font: new PhetFont( 16 ),
   maxWidth: 300
@@ -135,11 +144,26 @@ class NLDCommonElementsView extends Node {
     this.addChild( nodeOrderDisplay );
 
     // button that swaps the primary point controller and secondary point controller when pressed
-    //TODO: take a look at NORMALIZED_ARROWHEAD_SHAPE from NumberLineOperationNode
-    const swapIconShape = new Shape()
-      .ellipticalArc( 0, 0, 8, 12, 0, -Math.PI / 2, Math.PI / 2 );
+    const swapIcon = new Node();
+    const ellipseAngleInset = Math.PI / 12;
+    const arrowXTranslation = 4;
+    const arrowYTranslation = 10;
+    swapIcon.addChild( new Path(
+      new Shape().ellipticalArc( 0, 0, 8, 12, 0, -Math.PI / 2 + ellipseAngleInset, Math.PI / 2 - ellipseAngleInset ),
+      SWAP_ICON_PATH_OPTIONS
+    ) );
+    swapIcon.addChild( new Path(
+      new ArrowShape( 0, 0, -ARROW_SIZE, ARROW_SIZE, ARROW_SHAPE_OPTIONS )
+        .transformed( Matrix3.translation( arrowXTranslation, arrowYTranslation ) ),
+      SWAP_ICON_PATH_OPTIONS
+    ) );
+    swapIcon.addChild( new Path(
+      new ArrowShape( 0, 0, -ARROW_SIZE, -ARROW_SIZE, ARROW_SHAPE_OPTIONS )
+        .transformed( Matrix3.translation( arrowXTranslation, -arrowYTranslation ) ),
+      SWAP_ICON_PATH_OPTIONS
+    ) );
     const swapPrimaryNodesButton = new RectangularPushButton( {
-      content: new Path( swapIconShape, { stroke: 'black', lineWidth: 4 } ),
+      content: swapIcon,
       baseColor: 'white',
       left: nodeOrderDisplay.right + 20,
       centerY: nodeOrderDisplay.centerY,
