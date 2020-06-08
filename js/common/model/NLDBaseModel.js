@@ -156,6 +156,7 @@ class NLDBaseModel {
 
   /**
    * Resets the model
+   * @public
    */
   reset() {
     this.pointControllers.forEach( pointController => {
