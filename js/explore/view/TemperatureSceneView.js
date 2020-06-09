@@ -11,7 +11,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene2mockup from '../../../images/explorescene2mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
+import NLDBaseView from '../../common/view/NLDBaseView.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 
@@ -35,7 +35,7 @@ class TemperatureSceneView extends Node {
 
     //TODO:
 
-    this.addChild( new NLDCommonElementsView( model, new Node(), new Node(), new StringProperty( 'TODO:' ), new Rectangle( 0, 0, 340, 35 ) ) );
+    this.addChild( new NLDBaseView( model, new Node(), new Node(), new StringProperty( 'TODO:' ), new Rectangle( 0, 0, 340, 35 ) ) );
   }
 
 }

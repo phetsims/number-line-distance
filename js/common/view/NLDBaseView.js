@@ -3,8 +3,7 @@
 /**
  * A view that contains elements that are used in all scenes/screens of the sim
  * Has controls as well as display elements
- * Is meant to be at the bottom layer
- * TODO: rename to NLDBaseView
+ * Is a 'base' view because it is meant to be used as the bottom layer for all scenes/screens
  *
  * @author Saurabh Totey
  */
@@ -65,7 +64,7 @@ const DISTANCE_DESCRIPTION_TEXT_OPTIONS = {
   maxWidth: 300
 };
 
-class NLDCommonElementsView extends Node {
+class NLDBaseView extends Node {
 
   /**
    * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view
@@ -234,5 +233,5 @@ class NLDCommonElementsView extends Node {
 
 }
 
-numberLineDistance.register( 'NLDCommonElementsView', NLDCommonElementsView );
-export default NLDCommonElementsView;
+numberLineDistance.register( 'NLDBaseView', NLDBaseView );
+export default NLDBaseView;

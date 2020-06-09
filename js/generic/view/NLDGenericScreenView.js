@@ -12,7 +12,7 @@ import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.j
 import NLDConstants from '../../common/NLDConstants.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import genericmockup from '../../../images/genericmockup_png.js';
-import NLDCommonElementsView from '../../common/view/NLDCommonElementsView.js';
+import NLDBaseView from '../../common/view/NLDBaseView.js';
 import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
@@ -119,7 +119,7 @@ class NLDGenericScreenView extends ScreenView {
     const firstControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'magenta' } );
     const secondControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'blue' } );
     this.addChild(
-      new NLDCommonElementsView(
+      new NLDBaseView(
         model,
         firstControllerRepresentation,
         secondControllerRepresentation,
