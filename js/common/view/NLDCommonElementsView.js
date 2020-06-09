@@ -4,6 +4,7 @@
  * A view that contains elements that are used in all scenes/screens of the sim
  * Has controls as well as display elements
  * Is meant to be at the bottom layer
+ * TODO: rename to NLDBaseView
  *
  * @author Saurabh Totey
  */
@@ -74,8 +75,9 @@ class NLDCommonElementsView extends Node {
    * @param {Node} pointControllerRepresentationOne
    * @param {Node} pointControllerRepresentationTwo
    * @param {Property<String>} distanceDescriptionProperty
+   * @param {Node} distanceStatementNode
    */
-  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, distanceDescriptionProperty ) {
+  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, distanceDescriptionProperty, distanceStatementNode ) {
     super();
 
     // checkboxes that control common model properties for what should be visible
@@ -199,8 +201,7 @@ class NLDCommonElementsView extends Node {
 
     // an accordion box for the distance statement
     //TODO: make this open on reset
-    //TODO: content being Rectangle is temporary: maybe allow owner to pass content in through options
-    const distanceStatementAccordionBox = new AccordionBox( new Rectangle( 0, 0, 340, 35 ), {
+    const distanceStatementAccordionBox = new AccordionBox( distanceStatementNode, {
       top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
       centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
       fill: 'white',
