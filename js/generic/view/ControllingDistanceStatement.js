@@ -49,14 +49,14 @@ class ControllingDistanceStatement extends Node {
     const valueProperty1 = makePointControllerValueProperty( model.pointControllers[ 1 ] );
 
     //TODO: colors
-    const firstNumberPicker = new NumberPicker( valueProperty0, model.numberLine.displayedRangeProperty );
-    const secondNumberPicker = new NumberPicker( valueProperty1, model.numberLine.displayedRangeProperty );
+    const numberPicker0 = new NumberPicker( valueProperty0, model.numberLine.displayedRangeProperty );
+    const numberPicker1 = new NumberPicker( valueProperty1, model.numberLine.displayedRangeProperty );
 
     const minusSignText = new Text( MathSymbols.MINUS );
 
     //TODO: make this look nice
     this.addChild( new HBox( {
-      children: [ firstNumberPicker, minusSignText, secondNumberPicker ]
+      children: [ numberPicker0, minusSignText, numberPicker1 ]
     } ) );
 
     //TODO: change the hbox children and replace a number picker with a text if a point is not on the number line
