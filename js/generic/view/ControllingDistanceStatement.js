@@ -16,6 +16,7 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
+import Property from '../../../../axon/js/Property.js';
 
 class ControllingDistanceStatement extends Node {
 
@@ -48,17 +49,29 @@ class ControllingDistanceStatement extends Node {
     const valueProperty0 = makePointControllerValueProperty( model.pointControllers[ 0 ] );
     const valueProperty1 = makePointControllerValueProperty( model.pointControllers[ 1 ] );
 
-    const numberPicker0 = new NumberPicker( valueProperty0, model.numberLine.displayedRangeProperty, { color: model.pointControllers[ 0 ].color } );
-    const numberPicker1 = new NumberPicker( valueProperty1, model.numberLine.displayedRangeProperty, { color: model.pointControllers[ 1 ].color } );
+    const numberPicker0 = new NumberPicker( valueProperty0, model.numberLine.displayedRangeProperty, {
+      color: model.pointControllers[ 0 ].color
+    } );
+    const numberPicker1 = new NumberPicker( valueProperty1, model.numberLine.displayedRangeProperty, {
+      color: model.pointControllers[ 1 ].color
+    } );
 
     const minusSignText = new Text( MathSymbols.MINUS );
 
-    const hBox = new HBox( { children: [ numberPicker0, minusSignText, numberPicker1 ] } );
+    const hBox = new HBox( { children: [ numberPicker1, minusSignText, numberPicker0 ] } );
     this.addChild( hBox );
 
-    //TODO: change the hbox children and replace a number picker with a text if a point is not on the number line
-
-    //TODO: hook this up with model properties like isPrimaryNodeSwapped and orientationProperty
+    Property.multilink(
+      [ valueProperty0, valueProperty1, model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty, model.numberLine.orientationProperty ],
+      ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
+        //TODO: instead of making a number picker a child, make a text a child if the value is -101 (invalid)
+        if ( isPrimaryNodeSwapped ) {
+          hBox.children = [ numberPicker0, minusSignText, numberPicker1 ];
+        } else {
+          hBox.children = [ numberPicker1, minusSignText, numberPicker0 ];
+        }
+      }
+    );
   }
 
 }
