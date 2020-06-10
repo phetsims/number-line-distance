@@ -64,7 +64,9 @@ class ControllingDistanceStatement extends Node {
     Property.multilink(
       [ valueProperty0, valueProperty1, model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty, model.numberLine.orientationProperty ],
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
-        //TODO: instead of making a number picker a child, make a text a child if the value is -101 (invalid)
+        //TODO: instead of making a number picker a child, make a text a child if the value is -101 (invalid) (text depends on orientation)
+        //TODO: equals statement as a part of the hbox
+        //TODO: absolute value marks if distanceRepresentation is ABSOLUTE
         if ( isPrimaryNodeSwapped ) {
           hBox.children = [ numberPicker0, minusSignText, numberPicker1 ];
         } else {
