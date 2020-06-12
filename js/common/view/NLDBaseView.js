@@ -215,7 +215,8 @@ class NLDBaseView extends Node {
         touchAreaYDilation: 15,
         mouseAreaXDilation: 5,
         mouseAreaYDilation: 5
-      }
+      },
+      showTitleWhenExpanded: false
     } );
     this.addChild( distanceStatementAccordionBox );
 
