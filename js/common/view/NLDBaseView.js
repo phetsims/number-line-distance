@@ -127,6 +127,7 @@ class NLDBaseView extends Node {
     } );
 
     // controls on the bottom left for which node is considered to be first and second
+    // TODO: these don't look good when the strings are longer
     const firstNodeText = new RichText( `${x1String} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeText = new RichText( `${x2String} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( {
@@ -220,7 +221,7 @@ class NLDBaseView extends Node {
     } );
     this.addChild( distanceStatementAccordionBox );
 
-    // a description for the distance
+    // a text description for the distance under the distance statement accordion box
     const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
       top: distanceStatementAccordionBox.bottom + 5
     } ) );

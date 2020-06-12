@@ -2,7 +2,7 @@
 
 /**
  * A distance statement that not only shows the distance between point controllers, but can actually control their value
- * TODO: figure out how this should handle a point that is outside of the range
+ * TODO: figure out how this should handle a point that is outside of the range (it doesn't work correctly right now)
  * TODO: this allows points to have the same value when they shouldn't: look at piggy bank scene in NLI
  *
  * @author Saurabh Totey
@@ -28,6 +28,8 @@ const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
 const y1String = numberLineDistanceStrings.y1;
 const y2String = numberLineDistanceStrings.y2;
+
+const TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 50 };
 
 class ControllingDistanceStatement extends Node {
 
@@ -69,15 +71,14 @@ class ControllingDistanceStatement extends Node {
     } );
 
     // The nodes that will be showed instead of the number pickers if the number pickers shouldn't be shown
-    const altTextOptions = { font: new MathSymbolFont( 16 ), maxWidth: 50 };
     const numberPickerAltNode0 = new Rectangle( numberPicker0.localBounds );
     const numberPickerAltNode1 = new Rectangle( numberPicker1.localBounds );
-    const numberPickerAltText0 = new RichText( x1String, merge( altTextOptions, { center: numberPickerAltNode0.center } ) );
-    const numberPickerAltText1 = new RichText( x2String, merge( altTextOptions, { center: numberPickerAltNode1.center } ) );
+    const numberPickerAltText0 = new RichText( x1String, merge( TEXT_OPTIONS, { center: numberPickerAltNode0.center } ) );
+    const numberPickerAltText1 = new RichText( x2String, merge( TEXT_OPTIONS, { center: numberPickerAltNode1.center } ) );
     numberPickerAltNode0.addChild( numberPickerAltText0 );
     numberPickerAltNode1.addChild( numberPickerAltText1 );
 
-    const minusSignText = new Text( MathSymbols.MINUS );
+    const minusSignText = new Text( MathSymbols.MINUS, TEXT_OPTIONS );
 
     const hBox = new HBox( { children: [ numberPicker1, minusSignText, numberPicker0 ], spacing: 5 } );
     this.addChild( hBox );
@@ -114,8 +115,11 @@ class ControllingDistanceStatement extends Node {
         }
 
         //TODO: equals statement as a part of the hbox
+
         //TODO: absolute value marks if distanceRepresentation is ABSOLUTE
+
         hBox.children = [ firstChild, minusSignText, secondChild ];
+
       }
     );
   }

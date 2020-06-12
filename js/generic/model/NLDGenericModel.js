@@ -45,15 +45,6 @@ class NLDGenericModel extends NLDBaseModel {
     } );
   }
 
-  /**
-   * Resets the model.
-   * @public
-   */
-  reset() {
-    super.reset();
-    //TODO:
-  }
-
 }
 
 numberLineDistance.register( 'NLDGenericModel', NLDGenericModel );

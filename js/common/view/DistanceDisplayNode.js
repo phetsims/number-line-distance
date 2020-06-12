@@ -109,7 +109,7 @@ class DistanceDisplayNode extends Node {
 
         distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
 
-        // positions text
+        // positions distance text
         let padding = 20;
         if ( showPointLabels ) {
           padding += 25;

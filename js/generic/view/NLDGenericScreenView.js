@@ -83,21 +83,30 @@ class NLDGenericScreenView extends ScreenView {
         model.pointControllers[ 1 ].positionProperty
       ],
       ( distanceRepresentation, orientation, isPrimaryNodeSwapped, position0, position1 ) => {
+
+        // Can't say anything about distance if both point controllers aren't on the number line
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
           return '';
         }
+
         const value0 = model.numberLine.modelPositionToValue( position0 );
         const value1 = model.numberLine.modelPositionToValue( position1 );
+
+        // Get the strings for the point controllers based off of orientation
         let primaryXY = x1String;
         let secondaryXY = x2String;
         if ( orientation === Orientation.VERTICAL ) {
           primaryXY = y1String;
           secondaryXY = y2String;
         }
+
         let difference = Util.roundSymmetric( value1 - value0 );
         if ( isPrimaryNodeSwapped ) {
           difference = -difference;
         }
+
+        // Fills in a string template for the distance text based off of the distance representation
+        // and whether the distance is positive or negative
         const fillInValues = {
           primaryXY: MathSymbolFont.getRichTextMarkup( primaryXY ),
           secondaryXY: MathSymbolFont.getRichTextMarkup( secondaryXY ),
@@ -111,7 +120,10 @@ class NLDGenericScreenView extends ScreenView {
         } else if ( difference < 0 ) {
           return StringUtils.fillIn( genericDirectedNegativeDistanceTemplateString, fillInValues );
         }
+
+        // Reaching here means that the difference was 0, so there is nothing to say
         return '';
+
       }
     );
 
