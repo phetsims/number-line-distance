@@ -79,8 +79,9 @@ class ControllingDistanceStatement extends Node {
     numberPickerAltNode1.addChild( numberPickerAltText1 );
 
     const minusSignText = new Text( MathSymbols.MINUS, TEXT_OPTIONS );
+    const equalsSignText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
 
-    const hBox = new HBox( { children: [ numberPicker1, minusSignText, numberPicker0 ], spacing: 5 } );
+    const hBox = new HBox( { children: [ numberPicker1, minusSignText, numberPicker0, equalsSignText ], spacing: 5 } );
     this.addChild( hBox );
 
     Property.multilink(
@@ -118,7 +119,7 @@ class ControllingDistanceStatement extends Node {
 
         //TODO: absolute value marks if distanceRepresentation is ABSOLUTE
 
-        hBox.children = [ firstChild, minusSignText, secondChild ];
+        hBox.children = [ firstChild, minusSignText, secondChild, equalsSignText ];
 
       }
     );
