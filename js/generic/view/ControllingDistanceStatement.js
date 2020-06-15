@@ -23,6 +23,8 @@ import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import merge from '../../../../phet-core/js/merge.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -81,7 +83,15 @@ class ControllingDistanceStatement extends Node {
     const minusSignText = new Text( MathSymbols.MINUS, TEXT_OPTIONS );
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
 
-    const hBox = new HBox( { children: [ numberPicker1, minusSignText, numberPicker0, equalsSignText ], spacing: 5 } );
+    // A text that displays the distance between the two point controllers (or '?' if invalid distance)
+    //TODO: '?' is hardcoded everywhere: perhaps at least make it a constant
+    const distanceText = new Text( '?', merge( TEXT_OPTIONS, { font: new PhetFont( 25 ) } ) );
+
+    // Layoutbox for the actual content of this node
+    const hBox = new HBox( {
+      children: [ numberPicker1, minusSignText, numberPicker0, equalsSignText, distanceText ],
+      spacing: 5
+    } );
     this.addChild( hBox );
 
     Property.multilink(
@@ -97,29 +107,37 @@ class ControllingDistanceStatement extends Node {
           numberPickerAltText1.text = y2String;
         }
 
-        // Choose the children for the distance statement: will be number pickers if points are on the number line
+        // Chooses the ordering for children for the distance statement
         let firstChild = numberPicker1;
         let secondChild = numberPicker0;
         let firstChildValue = valueProperty1.value;
         let secondChildValue = valueProperty0.value;
+        let distance = Utils.roundSymmetric( firstChildValue - secondChildValue );
         if ( isPrimaryNodeSwapped ) {
           firstChild = numberPicker0;
           firstChildValue = valueProperty0.value;
           secondChild = numberPicker1;
           secondChildValue = valueProperty1.value;
+          distance = -distance;
         }
+
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
+          distance = Math.abs( distance );
+          //TODO: absolute value marks
+        }
+
+        // Replaces number pickers with alternatives if their value is invalid
         if ( firstChildValue === -101 ) {
           firstChild = numberPickerAltNode1;
+          distance = '?';
         }
         if ( secondChildValue === -101 ) {
           secondChild = numberPickerAltNode0;
+          distance = '?';
         }
 
-        //TODO: equals statement as a part of the hbox
-
-        //TODO: absolute value marks if distanceRepresentation is ABSOLUTE
-
-        hBox.children = [ firstChild, minusSignText, secondChild, equalsSignText ];
+        distanceText.text = `${distance}`;
+        hBox.children = [ firstChild, minusSignText, secondChild, equalsSignText, distanceText ];
 
       }
     );
