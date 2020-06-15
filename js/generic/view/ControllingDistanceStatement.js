@@ -123,7 +123,7 @@ class ControllingDistanceStatement extends Node {
 
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
           distance = Math.abs( distance );
-          //TODO: absolute value marks
+          //TODO: absolute value marks look at AbsoluteValueLine in AbsoluteValueSpanNode
         }
 
         // Replaces number pickers with alternatives if their value is invalid

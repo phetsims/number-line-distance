@@ -201,6 +201,7 @@ class NLDBaseView extends Node {
 
     // an accordion box for the distance statement
     //TODO: make this open on reset
+    //TODO: look at NLOConstants ACCORDION_BOX_COMMON_OPTIONS
     const distanceStatementAccordionBox = new AccordionBox( distanceStatementNode, {
       top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
       centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
