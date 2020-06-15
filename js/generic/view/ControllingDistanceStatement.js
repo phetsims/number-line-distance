@@ -32,6 +32,8 @@ const y1String = numberLineDistanceStrings.y1;
 const y2String = numberLineDistanceStrings.y2;
 
 const TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 50 };
+const INVALID_VALUE = -101;
+const INVALID_DISTANCE_STRING = '?';
 
 class ControllingDistanceStatement extends Node {
 
@@ -41,18 +43,17 @@ class ControllingDistanceStatement extends Node {
   constructor( model ) {
     super();
 
-    // creates value properties that correspond to a point controller's value if it is on the number line and -101 otherwise
-    // if the value becomes -101, the number picker should be replaced by an alternative node
-    // the -101 is necessary because number pickers require a number property even though point controllers don't always have a value
-    // TODO: see if there is a better workaround for this
+    // creates value properties that correspond to a point controller's value if it is on the number line and INVALID_VALUE otherwise
+    // if the value becomes INVALID_VALUE, the number picker should be replaced by an alternative node
+    // the INVALID_VALUE is necessary because number pickers require a number property even though point controllers don't always have a value
     const makePointControllerValueProperty = pointController => {
-      const valueProperty = new NumberProperty( -101, { reentrant: true } );
+      const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
       pointController.positionProperty.link( position => {
         if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints[ 0 ] ) ) {
           valueProperty.value = Utils.roundSymmetric( model.numberLine.modelPositionToValue( position ) );
         }
         else {
-          valueProperty.value = -101;
+          valueProperty.value = INVALID_VALUE;
         }
       } );
       valueProperty.link( value => {
@@ -84,8 +85,7 @@ class ControllingDistanceStatement extends Node {
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
 
     // A text that displays the distance between the two point controllers (or '?' if invalid distance)
-    //TODO: '?' is hardcoded everywhere: perhaps at least make it a constant
-    const distanceText = new Text( '?', merge( TEXT_OPTIONS, { font: new PhetFont( 25 ) } ) );
+    const distanceText = new Text( INVALID_DISTANCE_STRING, merge( TEXT_OPTIONS, { font: new PhetFont( 25 ) } ) );
 
     // Layoutbox for the actual content of this node
     const hBox = new HBox( {
@@ -127,13 +127,13 @@ class ControllingDistanceStatement extends Node {
         }
 
         // Replaces number pickers with alternatives if their value is invalid
-        if ( firstChildValue === -101 ) {
+        if ( firstChildValue === INVALID_VALUE ) {
           firstChild = numberPickerAltNode1;
-          distance = '?';
+          distance = INVALID_DISTANCE_STRING;
         }
-        if ( secondChildValue === -101 ) {
+        if ( secondChildValue === INVALID_VALUE ) {
           secondChild = numberPickerAltNode0;
-          distance = '?';
+          distance = INVALID_DISTANCE_STRING;
         }
 
         distanceText.text = `${distance}`;
