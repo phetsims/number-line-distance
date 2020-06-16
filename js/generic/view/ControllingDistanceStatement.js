@@ -25,6 +25,7 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
+import AbsoluteValueLine from '../../../../number-line-common/js/common/view/AbsoluteValueLine.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -87,16 +88,24 @@ class ControllingDistanceStatement extends Node {
     // A text that displays the distance between the two point controllers (or '?' if invalid distance)
     const distanceText = new Text( INVALID_DISTANCE_STRING, merge( TEXT_OPTIONS, { font: new PhetFont( 25 ) } ) );
 
-    // Layoutbox for the actual content of this node
-    const hBox = new HBox( {
-      children: [ numberPicker1, minusSignText, numberPicker0, equalsSignText, distanceText ],
+    // Absolute value marks
+    const leftAbsoluteValueMark = new AbsoluteValueLine( numberPicker1 );
+    const rightAbsoluteValueMark = new AbsoluteValueLine( numberPicker0 );
+
+    // Layout boxes for this node's actual content
+    const firstChildHBox = new HBox( { children: [ numberPicker1 ], spacing: 2 } );
+    const secondChildHBox = new HBox( { children: [ numberPicker0 ], spacing: 2 } );
+    this.addChild( new HBox( {
+      children: [ firstChildHBox, minusSignText, secondChildHBox, equalsSignText, distanceText ],
       spacing: 5
-    } );
-    this.addChild( hBox );
+    } ) );
 
     Property.multilink(
       [ valueProperty0, valueProperty1, model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty, model.numberLine.orientationProperty ],
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
+
+        firstChildHBox.removeAllChildren();
+        secondChildHBox.removeAllChildren();
 
         // Change the alt text based off of number line orientation
         if ( orientation === Orientation.HORIZONTAL ) {
@@ -121,9 +130,11 @@ class ControllingDistanceStatement extends Node {
           distance = -distance;
         }
 
+        // Adds absolute value marks and makes the distance positive if the distance representation is absolute
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
           distance = Math.abs( distance );
-          //TODO: absolute value marks look at AbsoluteValueLine in AbsoluteValueSpanNode
+          firstChildHBox.addChild( leftAbsoluteValueMark );
+          secondChildHBox.addChild( rightAbsoluteValueMark );
         }
 
         // Replaces number pickers with alternatives if their value is invalid
@@ -137,7 +148,8 @@ class ControllingDistanceStatement extends Node {
         }
 
         distanceText.text = `${distance}`;
-        hBox.children = [ firstChild, minusSignText, secondChild, equalsSignText, distanceText ];
+        firstChildHBox.addChild( firstChild );
+        secondChildHBox.children = [ secondChild ].concat( secondChildHBox.children );
 
       }
     );
