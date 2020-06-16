@@ -31,6 +31,7 @@ import merge from '../../../../phet-core/js/merge.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import Matrix3 from '../../../../dot/js/Matrix3.js';
+import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -201,25 +202,16 @@ class NLDBaseView extends Node {
 
     // an accordion box for the distance statement
     //TODO: make this open on reset
-    //TODO: look at NLOConstants ACCORDION_BOX_COMMON_OPTIONS
-    const distanceStatementAccordionBox = new AccordionBox( distanceStatementNode, {
-      top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
-      centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
-      fill: 'white',
-      cornerRadius: 5,
-      contentAlign: 'center',
-      minWidth: 340,
-      maxWidth: 340,
-      buttonXMargin: 8,
-      buttonYMargin: 6,
-      expandCollapseButtonOptions: {
-        touchAreaXDilation: 15,
-        touchAreaYDilation: 15,
-        mouseAreaXDilation: 5,
-        mouseAreaYDilation: 5
-      },
-      showTitleWhenExpanded: false
-    } );
+    const distanceStatementAccordionBox = new AccordionBox(
+      distanceStatementNode,
+      merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
+        top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
+        centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
+        contentAlign: 'center',
+        minWidth: 340,
+        maxWidth: 340
+      } )
+    );
     this.addChild( distanceStatementAccordionBox );
 
     // a text description for the distance under the distance statement accordion box
