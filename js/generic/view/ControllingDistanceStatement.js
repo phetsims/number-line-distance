@@ -58,7 +58,12 @@ class ControllingDistanceStatement extends Node {
         }
       } );
       valueProperty.link( value => {
-        if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints[ 0 ] ) ) {
+        assert && assert(
+          value === INVALID_VALUE ||
+            pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints[ 0 ] ),
+          'value property should not be set to anything except invalid value if the point controller is not on the number line'
+        );
+        if ( value !== INVALID_VALUE ) {
           pointController.numberLinePoints[ 0 ].proposeValue( value );
         }
       } );
@@ -67,6 +72,7 @@ class ControllingDistanceStatement extends Node {
     const valueProperty0 = makePointControllerValueProperty( model.pointControllers[ 0 ] );
     const valueProperty1 = makePointControllerValueProperty( model.pointControllers[ 1 ] );
 
+    // TODO: perhaps pass in our own up and down functions to correctly handle when the point is outside the displayedRange
     const numberPicker0 = new NumberPicker( valueProperty0, model.numberLine.displayedRangeProperty, {
       color: model.pointControllers[ 0 ].color
     } );
