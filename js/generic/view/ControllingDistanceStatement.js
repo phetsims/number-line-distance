@@ -2,7 +2,7 @@
 
 /**
  * A distance statement that not only shows the distance between point controllers, but can actually control their value
- * TODO: figure out how this should handle a point that is outside of the range (it doesn't work correctly right now)
+ * TODO: figure out how this should handle a point that is outside of the range
  * TODO: this allows points to have the same value when they shouldn't: look at piggy bank scene in NLI
  *
  * @author Saurabh Totey
@@ -72,12 +72,17 @@ class ControllingDistanceStatement extends Node {
     const valueProperty0 = makePointControllerValueProperty( model.pointControllers[ 0 ] );
     const valueProperty1 = makePointControllerValueProperty( model.pointControllers[ 1 ] );
 
-    // TODO: perhaps pass in our own up and down functions to correctly handle when the point is outside the displayedRange
+    const upFunction = value => Math.max( value + 1, model.numberLine.displayedRangeProperty.value.min );
+    const downFunction = value => Math.min( value - 1, model.numberLine.displayedRangeProperty.value.max );
     const numberPicker0 = new NumberPicker( valueProperty0, model.numberLine.displayedRangeProperty, {
-      color: model.pointControllers[ 0 ].color
+      color: model.pointControllers[ 0 ].color,
+      upFunction: upFunction,
+      downFunction: downFunction
     } );
     const numberPicker1 = new NumberPicker( valueProperty1, model.numberLine.displayedRangeProperty, {
-      color: model.pointControllers[ 1 ].color
+      color: model.pointControllers[ 1 ].color,
+      upFunction: upFunction,
+      downFunction: downFunction
     } );
 
     // The nodes that will be showed instead of the number pickers if the number pickers shouldn't be shown
