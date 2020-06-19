@@ -58,12 +58,8 @@ class ControllingDistanceStatement extends Node {
         }
       } );
       valueProperty.link( value => {
-        assert && assert(
-          value === INVALID_VALUE ||
-            pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints[ 0 ] ),
-          'value property should not be set to anything except invalid value if the point controller is not on the number line'
-        );
-        if ( value !== INVALID_VALUE ) {
+        if ( value !== INVALID_VALUE && pointController.isControllingNumberLinePoint()
+          && model.numberLine.hasPoint( pointController.numberLinePoints[ 0 ] ) ) {
           pointController.numberLinePoints[ 0 ].proposeValue( value );
         }
       } );
