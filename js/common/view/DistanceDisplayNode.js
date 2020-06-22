@@ -18,7 +18,7 @@ import Util from '../../../../dot/js/Utils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 
-//TODO: arrow looks ugly when the range is -100 to 100 and the points are close to each other (eg. 1 apart)
+//TODO: arrow looks ugly when the range is -100 to 100 and the points are 1 apart; scale arrow based on range
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
   headWidth: 14,
