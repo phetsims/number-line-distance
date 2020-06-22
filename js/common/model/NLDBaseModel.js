@@ -70,7 +70,7 @@ class NLDBaseModel {
         .forEach( pointController => {
           // there should only be one controlled point
           assert && assert( pointController.numberLinePoints.length === 1 );
-          pointController.setPositionRelativeToPoint( pointController.numberLinePoints[ 0 ] );
+          pointController.setPositionRelativeToPoint( pointController.numberLinePoints.get( 0 ) );
         } );
     } );
 
@@ -149,7 +149,7 @@ class NLDBaseModel {
       if ( !pointController.isControllingNumberLinePoint() ) {
         return false;
       }
-      const numberLinePoint = pointController.numberLinePoints[ 0 ];
+      const numberLinePoint = pointController.numberLinePoints.get( 0 );
       return this.numberLine.hasPoint( numberLinePoint );
     } );
   }

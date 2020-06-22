@@ -50,7 +50,7 @@ class ControllingDistanceStatement extends Node {
     const makePointControllerValueProperty = pointController => {
       const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
       pointController.positionProperty.link( position => {
-        if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints[ 0 ] ) ) {
+        if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
           valueProperty.value = Utils.roundSymmetric( model.numberLine.modelPositionToValue( position ) );
         }
         else {
@@ -59,8 +59,8 @@ class ControllingDistanceStatement extends Node {
       } );
       valueProperty.link( value => {
         if ( value !== INVALID_VALUE && pointController.isControllingNumberLinePoint()
-          && model.numberLine.hasPoint( pointController.numberLinePoints[ 0 ] ) ) {
-          pointController.numberLinePoints[ 0 ].proposeValue( value );
+          && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
+          pointController.numberLinePoints.get( 0 ).proposeValue( value );
         }
       } );
       return valueProperty;
