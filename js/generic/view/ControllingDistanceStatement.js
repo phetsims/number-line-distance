@@ -3,7 +3,6 @@
 /**
  * A distance statement that not only shows the distance between point controllers, but can actually control their value
  * TODO: figure out how this should handle a point that is outside of the range
- * TODO: this allows points to have the same value when they shouldn't: look at piggy bank scene in NLI
  *
  * @author Saurabh Totey
  */
@@ -68,17 +67,30 @@ class ControllingDistanceStatement extends Node {
     const valueProperty0 = makePointControllerValueProperty( model.pointControllers[ 0 ] );
     const valueProperty1 = makePointControllerValueProperty( model.pointControllers[ 1 ] );
 
-    const upFunction = value => Math.max( value + 1, model.numberLine.displayedRangeProperty.value.min );
-    const downFunction = value => Math.min( value - 1, model.numberLine.displayedRangeProperty.value.max );
+    // functions that create up and down functions for a value property given the other value property
+    // the other value property is needed to make sure the function doesn't give a value that the other value property has
+    // ensures that value properties are always distinct
+    // TODO: this isn't how the piggy bank scene in NLI handles this, look into whether this should be changed to be consistent
+    const createUpFunction = oppositeValueProperty =>
+        value => {
+          const newValue = Math.max( value + 1, model.numberLine.displayedRangeProperty.value.min );
+          return ( newValue === oppositeValueProperty.value ) ? newValue + 1 : newValue;
+        };
+    const createDownFunction = oppositeValueProperty =>
+        value => {
+          const newValue = Math.min( value - 1, model.numberLine.displayedRangeProperty.value.max );
+          return ( newValue === oppositeValueProperty.value ) ? newValue - 1 : newValue;
+        };
+
     const numberPicker0 = new NumberPicker( valueProperty0, model.numberLine.displayedRangeProperty, {
       color: model.pointControllers[ 0 ].color,
-      upFunction: upFunction,
-      downFunction: downFunction
+      upFunction: createUpFunction( valueProperty1 ),
+      downFunction: createDownFunction( valueProperty1 )
     } );
     const numberPicker1 = new NumberPicker( valueProperty1, model.numberLine.displayedRangeProperty, {
       color: model.pointControllers[ 1 ].color,
-      upFunction: upFunction,
-      downFunction: downFunction
+      upFunction: createUpFunction( valueProperty0 ),
+      downFunction: createDownFunction( valueProperty0 )
     } );
 
     // The nodes that will be showed instead of the number pickers if the number pickers shouldn't be shown
