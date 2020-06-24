@@ -17,12 +17,18 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import Util from '../../../../dot/js/Utils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
+import merge from '../../../../phet-core/js/merge.js';
 
-//TODO: arrow looks ugly when the range is -100 to 100 and the points are 1 apart; scale arrow based on range
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
   headWidth: 14,
   headHeight: 14
+};
+// maps a half-width of a range (eg -10 to 10 becomes 10, -30 to 30 becomes 30, etc.) to a scaling factor for the arrow
+const ARROW_SCALE_FACTOR = {
+  10: 1,
+  30: 0.5,
+  100: 0.25
 };
 
 class DistanceDisplayNode extends Node {
@@ -81,12 +87,17 @@ class DistanceDisplayNode extends Node {
         // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
         // that is on the number line (it hasn't been clamped)
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
+          const scale = ARROW_SCALE_FACTOR[ halfRange ];
+          const scaledArrowShapeOptions = merge( {}, ARROW_SHAPE_OPTIONS, {
+            headWidth: ARROW_SHAPE_OPTIONS.headWidth * scale,
+            headHeight: ARROW_SHAPE_OPTIONS.headHeight * scale
+          } );
           if ( isPrimaryNodeSwapped && value0 === endPointValue0 ) {
             lineWidth = 5;
-            shape = new ArrowShape( valuePosition1.x, valuePosition1.y, valuePosition0.x, valuePosition0.y, ARROW_SHAPE_OPTIONS );
+            shape = new ArrowShape( valuePosition1.x, valuePosition1.y, valuePosition0.x, valuePosition0.y, scaledArrowShapeOptions );
           } else if ( value1 === endPointValue1 ) {
             lineWidth = 5;
-            shape = new ArrowShape( valuePosition0.x, valuePosition0.y, valuePosition1.x, valuePosition1.y, ARROW_SHAPE_OPTIONS );
+            shape = new ArrowShape( valuePosition0.x, valuePosition0.y, valuePosition1.x, valuePosition1.y, scaledArrowShapeOptions );
           }
         }
 
