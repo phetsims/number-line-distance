@@ -82,23 +82,6 @@ class NLDExploreScreenView extends ScreenView {
     this.addChild( resetAllButton );
   }
 
-  /**
-   * Resets the view.
-   * @public
-   */
-  reset() {
-    //TODO
-  }
-
-  /**
-   * Steps the view.
-   * @param {number} dt - time step, in seconds
-   * @public
-   */
-  step( dt ) {
-    //TODO
-  }
-
 }
 
 numberLineDistance.register( 'NLDExploreScreenView', NLDExploreScreenView );

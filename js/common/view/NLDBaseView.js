@@ -32,6 +32,7 @@ import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import Matrix3 from '../../../../dot/js/Matrix3.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -202,12 +203,15 @@ class NLDBaseView extends Node {
       }
     } );
 
+    // @public {BooleanProperty} - controls whether the distance statement accordion box is opened or closed
+    this.accordionBoxOpenedProperty = new BooleanProperty( true );
+
     // an accordion box for the distance statement
-    //TODO: make this open on reset
     const distanceStatementAccordionBox = new AccordionBox(
       distanceStatementNode,
       merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
         titleNode: new Text( distanceStatementString, DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS ),
+        expandedProperty: this.accordionBoxOpenedProperty,
         top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
         centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
         contentAlign: 'center',

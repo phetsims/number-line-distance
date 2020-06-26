@@ -60,19 +60,6 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    // reset all button
-    const resetAllButton = new ResetAllButton( {
-      listener: () => {
-        this.interruptSubtreeInput(); // cancel interactions that may be in progress
-        model.reset();
-        this.reset();
-      },
-      right: this.layoutBounds.maxX - NLDConstants.SCREEN_VIEW_X_MARGIN,
-      bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
-      tandem: tandem.createTandem( 'resetAllButton' )
-    } );
-    this.addChild( resetAllButton );
-
     // a property that returns a string that describes the distance between both the point controllers
     const distanceDescriptionProperty = new DerivedProperty(
       [
@@ -127,18 +114,31 @@ class NLDGenericScreenView extends ScreenView {
       }
     );
 
-    // adds sim controls that show on every screen/scene
+    // the point controllers are represented as circles on the bottom left corner of the screen
     const firstControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'magenta' } );
     const secondControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'blue' } );
-    this.addChild(
-      new NLDBaseView(
-        model,
-        firstControllerRepresentation,
-        secondControllerRepresentation,
-        distanceDescriptionProperty,
-        new ControllingDistanceStatement( model )
-      )
+
+    const baseView = new NLDBaseView(
+      model,
+      firstControllerRepresentation,
+      secondControllerRepresentation,
+      distanceDescriptionProperty,
+      new ControllingDistanceStatement( model )
     );
+    this.addChild( baseView );
+
+    // reset all button
+    const resetAllButton = new ResetAllButton( {
+      listener: () => {
+        this.interruptSubtreeInput(); // cancel interactions that may be in progress
+        model.reset();
+        baseView.accordionBoxOpenedProperty.reset();
+      },
+      right: this.layoutBounds.maxX - NLDConstants.SCREEN_VIEW_X_MARGIN,
+      bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
+      tandem: tandem.createTandem( 'resetAllButton' )
+    } );
+    this.addChild( resetAllButton );
 
     // adds orientation selectors for the number line
     const orientationSelector = new NumberLineOrientationSelector( model.numberLine.orientationProperty, {
@@ -168,14 +168,6 @@ class NLDGenericScreenView extends ScreenView {
     const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
     this.addChild( new DistanceDisplayNode( model ) );
     this.addChild( numberLineNode );
-  }
-
-  /**
-   * Resets the view.
-   * @public
-   */
-  reset() {
-    //TODO
   }
 
 }
