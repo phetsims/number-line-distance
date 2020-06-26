@@ -43,6 +43,7 @@ const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
 const y1String = numberLineDistanceStrings.y1;
 const y2String = numberLineDistanceStrings.y2;
+const distanceStatementString = numberLineDistanceStrings.distanceStatement;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
   font: new PhetFont( 16 ),
@@ -64,6 +65,7 @@ const DISTANCE_DESCRIPTION_TEXT_OPTIONS = {
   font: new PhetFont( 16 ),
   maxWidth: 300
 };
+const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFont( 16 ) };
 
 class NLDBaseView extends Node {
 
@@ -205,6 +207,7 @@ class NLDBaseView extends Node {
     const distanceStatementAccordionBox = new AccordionBox(
       distanceStatementNode,
       merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
+        titleNode: new Text( distanceStatementString, DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS ),
         top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
         centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
         contentAlign: 'center',

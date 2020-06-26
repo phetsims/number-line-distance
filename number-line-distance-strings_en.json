@@ -17,6 +17,9 @@
   "distanceDescription": {
     "value": "Distance Description"
   },
+  "distanceStatement": {
+    "value": "Distance Statement"
+  },
   "tickMarks": {
     "value": "Tick Marks"
   },
