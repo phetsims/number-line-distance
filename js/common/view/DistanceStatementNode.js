@@ -113,14 +113,17 @@ class DistanceStatementNode extends Node {
     }
 
     // The nodes that will be shown instead of the value representations if the point controllers aren't on the number line
-    // TODO: longer names (alternative instead of alt)
     // TODO: use BackgroundNode on a altNodeContent or something and add everything to that
-    const altNode0 = new Rectangle( valueRepresentations[ 0 ].localBounds );
-    const altNode1 = new Rectangle( valueRepresentations[ 1 ].localBounds );
-    const altText0 = new RichText( x1String, merge( TEXT_OPTIONS, { center: altNode0.center } ) );
-    const altText1 = new RichText( x2String, merge( TEXT_OPTIONS, { center: altNode1.center } ) );
-    altNode0.addChild( altText0 );
-    altNode1.addChild( altText1 );
+    const alternativeNodes = [
+      new Rectangle( valueRepresentations[ 0 ].localBounds ),
+      new Rectangle( valueRepresentations[ 1 ].localBounds )
+    ];
+    const alternativeTexts = [
+      new RichText( x1String, merge( TEXT_OPTIONS, { center: alternativeNodes[ 0 ].center } ) ),
+      new RichText( x2String, merge( TEXT_OPTIONS, { center: alternativeNodes[ 1 ].center } ) )
+    ];
+    alternativeNodes[ 0 ].addChild( alternativeTexts[ 0 ] );
+    alternativeNodes[ 1 ].addChild( alternativeTexts[ 1 ] );
 
     const minusSignText = new Text( MathSymbols.MINUS, TEXT_OPTIONS );
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
@@ -141,7 +144,7 @@ class DistanceStatementNode extends Node {
     } ) );
 
     Property.multilink(
-      [ valueProperties[ 0 ], valueProperties[ 1 ], model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty, model.numberLine.orientationProperty ],
+      valueProperties.concat( [ model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty, model.numberLine.orientationProperty ] ),
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
 
         firstChildHBox.removeAllChildren();
@@ -149,11 +152,11 @@ class DistanceStatementNode extends Node {
 
         // Change the alt text based off of number line orientation
         if ( orientation === Orientation.HORIZONTAL ) {
-          altText0.text = x1String;
-          altText1.text = x2String;
+          alternativeTexts[ 0 ].text = x1String;
+          alternativeTexts[ 1 ].text = x2String;
         } else {
-          altText0.text = y1String;
-          altText1.text = y2String;
+          alternativeTexts[ 0 ].text = y1String;
+          alternativeTexts[ 1 ].text = y2String;
         }
 
         // Chooses the ordering for children for the distance statement
@@ -179,11 +182,11 @@ class DistanceStatementNode extends Node {
 
         // Replaces value representations with alternatives if their value is invalid
         if ( firstChildValue === INVALID_VALUE ) {
-          firstChild = altNode1;
+          firstChild = alternativeNodes[ 1 ];
           distance = INVALID_DISTANCE_STRING;
         }
         if ( secondChildValue === INVALID_VALUE ) {
-          secondChild = altNode0;
+          secondChild = alternativeNodes[ 0 ];
           distance = INVALID_DISTANCE_STRING;
         }
 
