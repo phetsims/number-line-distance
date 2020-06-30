@@ -27,7 +27,7 @@ import DistanceRepresentation from '../../common/model/DistanceRepresentation.js
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Util from '../../../../dot/js/Utils.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import ControllingDistanceStatement from './ControllingDistanceStatement.js';
+import DistanceStatementNode from '../../common/view/DistanceStatementNode.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -123,7 +123,7 @@ class NLDGenericScreenView extends ScreenView {
       firstControllerRepresentation,
       secondControllerRepresentation,
       distanceDescriptionProperty,
-      new ControllingDistanceStatement( model )
+      new DistanceStatementNode( model, { controlsValues: true } ) //TODO: make NLDBaseView handle this
     );
     this.addChild( baseView );
 

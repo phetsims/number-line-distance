@@ -78,7 +78,7 @@ class NLDBaseView extends Node {
    * @param {Node} pointControllerRepresentationOne
    * @param {Node} pointControllerRepresentationTwo
    * @param {Property<String>} distanceDescriptionProperty
-   * @param {Node} distanceStatementNode
+   * @param {DistanceStatementNode} distanceStatementNode
    */
   constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, distanceDescriptionProperty, distanceStatementNode ) {
     super();
