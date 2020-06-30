@@ -109,6 +109,8 @@ class DistanceStatementNode extends Node {
     } else {
 
       //TODO:
+      valueProperties = [ new NumberProperty( INVALID_VALUE ), new NumberProperty( INVALID_VALUE ) ];
+      valueRepresentations = [ new Rectangle( 0, 0, 1, 1 ), new Rectangle( 0, 0, 1, 1 ) ];
 
     }
 
@@ -119,8 +121,8 @@ class DistanceStatementNode extends Node {
       new Rectangle( valueRepresentations[ 1 ].localBounds )
     ];
     const alternativeTexts = [
-      new RichText( x1String, merge( TEXT_OPTIONS, { center: alternativeNodes[ 0 ].center } ) ),
-      new RichText( x2String, merge( TEXT_OPTIONS, { center: alternativeNodes[ 1 ].center } ) )
+      new RichText( x1String, merge( { center: alternativeNodes[ 0 ].center }, TEXT_OPTIONS ) ),
+      new RichText( x2String, merge( { center: alternativeNodes[ 1 ].center }, TEXT_OPTIONS ) )
     ];
     alternativeNodes[ 0 ].addChild( alternativeTexts[ 0 ] );
     alternativeNodes[ 1 ].addChild( alternativeTexts[ 1 ] );
@@ -129,7 +131,7 @@ class DistanceStatementNode extends Node {
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
 
     // A text that displays the distance between the two point controllers (or '?' if invalid distance)
-    const distanceText = new Text( INVALID_DISTANCE_STRING, merge( TEXT_OPTIONS, { font: new PhetFont( 25 ) } ) );
+    const distanceText = new Text( INVALID_DISTANCE_STRING, merge( { font: new PhetFont( 25 ) }, TEXT_OPTIONS ) );
 
     // Absolute value marks
     const leftAbsoluteValueMark = new AbsoluteValueLine( valueRepresentations[ 1 ] );

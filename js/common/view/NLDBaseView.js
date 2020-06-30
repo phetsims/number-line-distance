@@ -33,6 +33,7 @@ import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import Matrix3 from '../../../../dot/js/Matrix3.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DistanceStatementNode from './DistanceStatementNode.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -78,9 +79,14 @@ class NLDBaseView extends Node {
    * @param {Node} pointControllerRepresentationOne
    * @param {Node} pointControllerRepresentationTwo
    * @param {Property<String>} distanceDescriptionProperty
-   * @param {DistanceStatementNode} distanceStatementNode
+   * @param {Object} [options]
    */
-  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, distanceDescriptionProperty, distanceStatementNode ) {
+  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, distanceDescriptionProperty, options ) {
+
+    options = merge( {
+      distanceStatementNodeOptions: { controlsValues: false }
+    }, options );
+
     super();
 
     // checkboxes that control common model properties for what should be visible
@@ -208,7 +214,7 @@ class NLDBaseView extends Node {
 
     // an accordion box for the distance statement
     const distanceStatementAccordionBox = new AccordionBox(
-      distanceStatementNode,
+      new DistanceStatementNode( model, options.distanceStatementNodeOptions ),
       merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
         titleNode: new Text( distanceStatementString, DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS ),
         expandedProperty: this.accordionBoxOpenedProperty,
