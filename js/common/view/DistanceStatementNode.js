@@ -57,7 +57,7 @@ class DistanceStatementNode extends Node {
       // creates value properties that correspond to a point controller's value if it is on the number line and INVALID_VALUE otherwise
       // if the value becomes INVALID_VALUE, the number picker should be replaced by an alternative node
       // the INVALID_VALUE is necessary because number pickers require a number property even though point controllers don't always have a value
-      const makePointControllerValueProperty = pointController => {
+      valueProperties = model.pointControllers.map( pointController => {
         const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
         pointController.positionProperty.link( position => {
           if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
@@ -74,8 +74,7 @@ class DistanceStatementNode extends Node {
           }
         } );
         return valueProperty;
-      };
-      valueProperties = model.pointControllers.map( makePointControllerValueProperty );
+      } );
 
       assert && assert( valueProperties.length === 2, 'Mapping point controllers to value properties should result in only 2 value properties' );
 
@@ -94,17 +93,18 @@ class DistanceStatementNode extends Node {
           return ( newValue === oppositeValueProperty.value ) ? newValue - 1 : newValue;
         };
 
-      const numberPicker0 = new NumberPicker( valueProperties[ 0 ], model.numberLine.displayedRangeProperty, {
-        color: model.pointControllers[ 0 ].color,
-        upFunction: createUpFunction( valueProperties[ 1 ] ),
-        downFunction: createDownFunction( valueProperties[ 1 ] )
-      } );
-      const numberPicker1 = new NumberPicker( valueProperties[ 1 ], model.numberLine.displayedRangeProperty, {
-        color: model.pointControllers[ 1 ].color,
-        upFunction: createUpFunction( valueProperties[ 0 ] ),
-        downFunction: createDownFunction( valueProperties[ 0 ] )
-      } );
-      valueRepresentations = [ numberPicker0, numberPicker1 ];
+      valueRepresentations = [
+        new NumberPicker( valueProperties[ 0 ], model.numberLine.displayedRangeProperty, {
+          color: model.pointControllers[ 0 ].color,
+          upFunction: createUpFunction( valueProperties[ 1 ] ),
+          downFunction: createDownFunction( valueProperties[ 1 ] )
+        } ),
+        new NumberPicker( valueProperties[ 1 ], model.numberLine.displayedRangeProperty, {
+          color: model.pointControllers[ 1 ].color,
+          upFunction: createUpFunction( valueProperties[ 0 ] ),
+          downFunction: createDownFunction( valueProperties[ 0 ] )
+        } )
+      ];
 
     } else {
 
