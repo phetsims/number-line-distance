@@ -131,7 +131,7 @@ class DistanceStatementNode extends Node {
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
 
     // A text that displays the distance between the two point controllers (or '?' if invalid distance)
-    const distanceText = new Text( INVALID_DISTANCE_STRING, merge( { font: new PhetFont( 25 ) }, TEXT_OPTIONS ) );
+    const distanceText = new Text( INVALID_DISTANCE_STRING, merge( {}, TEXT_OPTIONS, { font: new PhetFont( 25 ) } ) );
 
     // Absolute value marks
     const leftAbsoluteValueMark = new AbsoluteValueLine( valueRepresentations[ 1 ] );
