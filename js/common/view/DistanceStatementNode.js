@@ -37,7 +37,7 @@ const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 40 };
 const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
-const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 50, 55 ); //TODO: this looks a little ugly
+const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 45, 55 ); //TODO: this looks a little ugly because the equals sign doesn't have this spacing
 
 class DistanceStatementNode extends Node {
 
@@ -179,14 +179,14 @@ class DistanceStatementNode extends Node {
         // Chooses the ordering for children for the distance statement
         let firstChild = valueRepresentations[ 1 ];
         let secondChild = valueRepresentations[ 0 ];
-        let firstChildValue = valueProperties[ 1 ].value;
-        let secondChildValue = valueProperties[ 0 ].value;
+        let firstChildValue = value1;
+        let secondChildValue = value0;
         let distance = Utils.roundSymmetric( firstChildValue - secondChildValue );
         if ( isPrimaryNodeSwapped ) {
           firstChild = valueRepresentations[ 0 ];
-          firstChildValue = valueProperties[ 0 ].value;
+          firstChildValue = value0;
           secondChild = valueRepresentations[ 1 ];
-          secondChildValue = valueProperties[ 1 ].value;
+          secondChildValue = value1;
           distance = -distance;
         }
 
