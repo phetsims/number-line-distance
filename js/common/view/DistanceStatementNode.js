@@ -32,7 +32,8 @@ const x2String = numberLineDistanceStrings.x2;
 const y1String = numberLineDistanceStrings.y1;
 const y2String = numberLineDistanceStrings.y2;
 
-const TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 50 };
+const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 50 };
+const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 50 };
 const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
 
@@ -51,32 +52,38 @@ class DistanceStatementNode extends Node {
     super();
 
     let valueRepresentations;
-    let valueProperties;
+
+    // Creates value properties for each point controller
+    // The property corresponds to the point controller's value if it is on the number line
+    // Otherwise, the property is INVALID_VALUE (which is still a number for the number property)
+    // Value property updates on point controller value change, but point controller values do not update on value property change
+    //  unless options.controlsValues is true
+    const valueProperties = model.pointControllers.map( pointController => {
+      const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
+      pointController.positionProperty.link( position => {
+        if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
+          valueProperty.value = Utils.roundSymmetric( model.numberLine.modelPositionToValue( position ) );
+        }
+        else {
+          valueProperty.value = INVALID_VALUE;
+        }
+      } );
+      return valueProperty;
+    } );
+
+    assert && assert( valueProperties.length === 2, 'Mapping point controllers to value properties should result in only 2 value properties' );
+
     if ( options.controlsValues ) {
 
-      // creates value properties that correspond to a point controller's value if it is on the number line and INVALID_VALUE otherwise
-      // if the value becomes INVALID_VALUE, the number picker should be replaced by an alternative node
-      // the INVALID_VALUE is necessary because number pickers require a number property even though point controllers don't always have a value
-      valueProperties = model.pointControllers.map( pointController => {
-        const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
-        pointController.positionProperty.link( position => {
-          if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
-            valueProperty.value = Utils.roundSymmetric( model.numberLine.modelPositionToValue( position ) );
-          }
-          else {
-            valueProperty.value = INVALID_VALUE;
-          }
-        } );
-        valueProperty.link( value => {
+      // makes changing the value properties affect the point controllers' values
+      model.pointControllers.forEach( ( pointController, i ) => {
+        valueProperties[ i ].link( value => {
           if ( value !== INVALID_VALUE && pointController.isControllingNumberLinePoint()
             && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
             pointController.numberLinePoints.get( 0 ).proposeValue( value );
           }
         } );
-        return valueProperty;
       } );
-
-      assert && assert( valueProperties.length === 2, 'Mapping point controllers to value properties should result in only 2 value properties' );
 
       // functions that create up and down functions for a value property given the other value property
       // the other value property is needed to make sure the function doesn't give a value that the other value property has
@@ -108,9 +115,16 @@ class DistanceStatementNode extends Node {
 
     } else {
 
-      //TODO:
-      valueProperties = [ new NumberProperty( INVALID_VALUE ), new NumberProperty( INVALID_VALUE ) ];
-      valueRepresentations = [ new Rectangle( 0, 0, 1, 1 ), new Rectangle( 0, 0, 1, 1 ) ];
+      valueRepresentations = [
+        new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS ),
+        new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS )
+      ];
+
+      valueProperties.forEach( ( valueProperty, i ) => {
+        valueProperty.link( value => {
+          valueRepresentations[ i ].text = `${value}`;
+        } );
+      } );
 
     }
 
@@ -121,17 +135,17 @@ class DistanceStatementNode extends Node {
       new Rectangle( valueRepresentations[ 1 ].localBounds )
     ];
     const alternativeTexts = [
-      new RichText( x1String, merge( { center: alternativeNodes[ 0 ].center }, TEXT_OPTIONS ) ),
-      new RichText( x2String, merge( { center: alternativeNodes[ 1 ].center }, TEXT_OPTIONS ) )
+      new RichText( x1String, merge( { center: alternativeNodes[ 0 ].center }, MATH_TEXT_OPTIONS ) ),
+      new RichText( x2String, merge( { center: alternativeNodes[ 1 ].center }, MATH_TEXT_OPTIONS ) )
     ];
     alternativeNodes[ 0 ].addChild( alternativeTexts[ 0 ] );
     alternativeNodes[ 1 ].addChild( alternativeTexts[ 1 ] );
 
-    const minusSignText = new Text( MathSymbols.MINUS, TEXT_OPTIONS );
-    const equalsSignText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
+    const minusSignText = new Text( MathSymbols.MINUS, MATH_TEXT_OPTIONS );
+    const equalsSignText = new Text( MathSymbols.EQUAL_TO, MATH_TEXT_OPTIONS );
 
     // A text that displays the distance between the two point controllers (or '?' if invalid distance)
-    const distanceText = new Text( INVALID_DISTANCE_STRING, merge( {}, TEXT_OPTIONS, { font: new PhetFont( 25 ) } ) );
+    const distanceText = new Text( INVALID_DISTANCE_STRING, NORMAL_TEXT_OPTIONS );
 
     // Absolute value marks
     const leftAbsoluteValueMark = new AbsoluteValueLine( valueRepresentations[ 1 ] );
