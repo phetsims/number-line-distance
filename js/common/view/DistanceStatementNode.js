@@ -26,16 +26,18 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
 const y1String = numberLineDistanceStrings.y1;
 const y2String = numberLineDistanceStrings.y2;
 
-const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 50 };
-const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 50 };
+const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
+const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 40 };
 const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
+const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 50, 55 ); //TODO: this looks a little ugly
 
 class DistanceStatementNode extends Node {
 
@@ -128,18 +130,16 @@ class DistanceStatementNode extends Node {
 
     }
 
+    // TODO: consider use of BackgroundNode
+    // Background nodes to parent the value representations to ensure constant spacing regardless of children
+    // assumes that REPRESENTATION_BOUNDS is always larger than any of the possible children
+    const backgroundNodes = [
+      new Rectangle( REPRESENTATION_BOUNDS ),
+      new Rectangle( REPRESENTATION_BOUNDS )
+    ];
+
     // The nodes that will be shown instead of the value representations if the point controllers aren't on the number line
-    // TODO: use BackgroundNode on a altNodeContent or something and add everything to that
-    const alternativeNodes = [
-      new Rectangle( valueRepresentations[ 0 ].localBounds ),
-      new Rectangle( valueRepresentations[ 1 ].localBounds )
-    ];
-    const alternativeTexts = [
-      new RichText( x1String, merge( { center: alternativeNodes[ 0 ].center }, MATH_TEXT_OPTIONS ) ),
-      new RichText( x2String, merge( { center: alternativeNodes[ 1 ].center }, MATH_TEXT_OPTIONS ) )
-    ];
-    alternativeNodes[ 0 ].addChild( alternativeTexts[ 0 ] );
-    alternativeNodes[ 1 ].addChild( alternativeTexts[ 1 ] );
+    const alternativeTexts = [ new RichText( x1String, MATH_TEXT_OPTIONS ), new RichText( x2String, MATH_TEXT_OPTIONS ) ];
 
     const minusSignText = new Text( MathSymbols.MINUS, MATH_TEXT_OPTIONS );
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, MATH_TEXT_OPTIONS );
@@ -148,12 +148,13 @@ class DistanceStatementNode extends Node {
     const distanceText = new Text( INVALID_DISTANCE_STRING, NORMAL_TEXT_OPTIONS );
 
     // Absolute value marks
-    const leftAbsoluteValueMark = new AbsoluteValueLine( valueRepresentations[ 1 ] );
-    const rightAbsoluteValueMark = new AbsoluteValueLine( valueRepresentations[ 0 ] );
+    const leftAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 0 ] );
+    const rightAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 1 ] );
 
     // Layout boxes for this node's actual content
-    const firstChildHBox = new HBox( { children: [ valueRepresentations[ 1 ] ], spacing: 2 } );
-    const secondChildHBox = new HBox( { children: [ valueRepresentations[ 0 ] ], spacing: 2 } );
+    // Children HBoxes are for putting absolute values alongside valueRepresentations
+    const firstChildHBox = new HBox( { children: [ backgroundNodes[ 0 ] ], spacing: 2 } );
+    const secondChildHBox = new HBox( { children: [ backgroundNodes[ 1 ] ], spacing: 2 } );
     this.addChild( new HBox( {
       children: [ firstChildHBox, minusSignText, secondChildHBox, equalsSignText, distanceText ],
       spacing: 5
@@ -198,17 +199,23 @@ class DistanceStatementNode extends Node {
 
         // Replaces value representations with alternatives if their value is invalid
         if ( firstChildValue === INVALID_VALUE ) {
-          firstChild = alternativeNodes[ 1 ];
+          firstChild = alternativeTexts[ 1 ];
           distance = INVALID_DISTANCE_STRING;
         }
         if ( secondChildValue === INVALID_VALUE ) {
-          secondChild = alternativeNodes[ 0 ];
+          secondChild = alternativeTexts[ 0 ];
           distance = INVALID_DISTANCE_STRING;
         }
 
+        // Adds children to background nodes
+        backgroundNodes[ 0 ].children = [ firstChild ];
+        backgroundNodes[ 1 ].children = [ secondChild ];
+        firstChild.center = REPRESENTATION_BOUNDS.center;
+        secondChild.center = REPRESENTATION_BOUNDS.center;
+
         distanceText.text = `${distance}`;
-        firstChildHBox.addChild( firstChild );
-        secondChildHBox.children = [ secondChild ].concat( secondChildHBox.children );
+        firstChildHBox.addChild( backgroundNodes[ 0 ] );
+        secondChildHBox.children = [ backgroundNodes[ 1 ] ].concat( secondChildHBox.children );
 
       }
     );
