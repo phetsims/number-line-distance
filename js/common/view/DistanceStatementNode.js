@@ -27,6 +27,7 @@ import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -117,14 +118,27 @@ class DistanceStatementNode extends Node {
 
     } else {
 
-      valueRepresentations = [
+      const texts = [
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS ),
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS )
       ];
 
+      const textBackgroundOptions = {
+        xMargin: 5,
+        yMargin: 5,
+        backgroundOptions: { stroke: 'black', cornerXRadius: 5, cornerYRadius: 5 }
+      };
+
+      // TODO: perhaps BackgroundNode isn't the best option here: set scale to -100 to 100 and put points at -100 and 100
+      //  the above configuration looks really bad; furthermore, the BackgroundNode resizes whenever the text changes
+      valueRepresentations = [
+        new BackgroundNode( texts[ 0 ], textBackgroundOptions ),
+        new BackgroundNode( texts[ 1 ], textBackgroundOptions )
+      ];
+
       valueProperties.forEach( ( valueProperty, i ) => {
         valueProperty.link( value => {
-          valueRepresentations[ i ].text = `${value}`;
+          texts[ i ].text = `${value}`;
         } );
       } );
 
