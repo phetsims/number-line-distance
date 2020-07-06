@@ -164,7 +164,7 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( pointControllerNodeLayer );
 
     // number line
-    const numberLineNode = new SpatializedNumberLineNode( model.numberLine );
+    const numberLineNode = new SpatializedNumberLineNode( model.numberLine, { allowPointsOutsideRangeIndicator: true } );
     this.addChild( new DistanceDisplayNode( model ) );
     this.addChild( numberLineNode );
   }
