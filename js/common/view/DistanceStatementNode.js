@@ -27,7 +27,6 @@ import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -35,10 +34,10 @@ const y1String = numberLineDistanceStrings.y1;
 const y2String = numberLineDistanceStrings.y2;
 
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
-const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 40 };
+const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
 const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
-const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 45, 55 ); //TODO: this looks a little ugly because the equals sign doesn't have this spacing
+const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 ); //TODO: this looks a little ugly because the equals sign doesn't have this spacing
 
 class DistanceStatementNode extends Node {
 
@@ -118,33 +117,28 @@ class DistanceStatementNode extends Node {
 
     } else {
 
-      const texts = [
+      const textNodes = [
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS ),
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS )
       ];
 
-      const textBackgroundOptions = {
-        xMargin: 5,
-        yMargin: 5,
-        backgroundOptions: { stroke: 'black', cornerXRadius: 5, cornerYRadius: 5 }
-      };
+      const textBackgroundOptions = { stroke: 'black', cornerXRadius: 5, cornerYRadius: 5 };
 
-      // TODO: perhaps BackgroundNode isn't the best option here: set scale to -100 to 100 and put points at -100 and 100
-      //  the above configuration looks really bad; furthermore, the BackgroundNode resizes whenever the text changes
-      valueRepresentations = [
-        new BackgroundNode( texts[ 0 ], textBackgroundOptions ),
-        new BackgroundNode( texts[ 1 ], textBackgroundOptions )
-      ];
+      valueRepresentations = textNodes.map( textNode => {
+        const textHolder = new Rectangle( textNode.localBounds.dilatedXY( 5, 10 ), textBackgroundOptions );
+        textHolder.addChild( textNode );
+        return textHolder;
+      } );
 
       valueProperties.forEach( ( valueProperty, i ) => {
         valueProperty.link( value => {
-          texts[ i ].text = `${value}`;
+          textNodes[ i ].text = `${value}`;
+          textNodes[ i ].center = valueRepresentations[ i ].rectBounds.center;
         } );
       } );
 
     }
 
-    // TODO: consider use of BackgroundNode
     // Background nodes to parent the value representations to ensure constant spacing regardless of children
     // assumes that REPRESENTATION_BOUNDS is always larger than any of the possible children
     const backgroundNodes = [
