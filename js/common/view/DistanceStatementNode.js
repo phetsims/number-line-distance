@@ -27,6 +27,7 @@ import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import NLDConstants from '../NLDConstants.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -82,7 +83,7 @@ class DistanceStatementNode extends Node {
         valueProperties[ i ].link( value => {
           if ( value !== INVALID_VALUE && pointController.isControllingNumberLinePoint()
             && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
-            pointController.numberLinePoints.get( 0 ).proposeValue( value );
+            pointController.numberLinePoints.get( 0 ).valueProperty.value = value;
           }
         } );
       } );
@@ -102,13 +103,14 @@ class DistanceStatementNode extends Node {
           return ( newValue === oppositeValueProperty.value ) ? newValue - 1 : newValue;
         };
 
+      const numberPickerRangeProperty = new Property( NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 2 ] );
       valueRepresentations = [
-        new NumberPicker( valueProperties[ 0 ], model.numberLine.displayedRangeProperty, {
+        new NumberPicker( valueProperties[ 0 ], numberPickerRangeProperty, {
           color: model.pointControllers[ 0 ].color,
           upFunction: createUpFunction( valueProperties[ 1 ] ),
           downFunction: createDownFunction( valueProperties[ 1 ] )
         } ),
-        new NumberPicker( valueProperties[ 1 ], model.numberLine.displayedRangeProperty, {
+        new NumberPicker( valueProperties[ 1 ], numberPickerRangeProperty, {
           color: model.pointControllers[ 1 ].color,
           upFunction: createUpFunction( valueProperties[ 0 ] ),
           downFunction: createDownFunction( valueProperties[ 0 ] )
