@@ -3,7 +3,6 @@
 /**
  * A node that is a number line and shades the distance between point controllers
  * The space between point controllers are only shaded when both point controllers are on the number line
- * TODO: show large distance label if distance labels is checked
  *
  * @author Saurabh Totey
  */
@@ -18,6 +17,8 @@ import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import merge from '../../../../phet-core/js/merge.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import numberLineDistance from '../../numberLineDistance.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
 
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
@@ -30,6 +31,7 @@ const ARROW_SCALE_FACTOR = {
   30: 0.5,
   100: 0.25
 };
+const DISTANCE_TEXT_PADDING = 50;
 
 class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
@@ -45,6 +47,13 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     this.addChild( pathNode );
     pathNode.moveToBack();
 
+    const distanceText = new Text( '', {
+      maxWidth: 50,
+      font: new PhetFont( 28 )
+    } );
+    this.addChild( distanceText );
+    model.distanceLabelsVisibleProperty.linkAttribute( distanceText, 'visible' );
+
     Property.multilink(
       [
         model.numberLine.displayedRangeProperty,
@@ -54,12 +63,14 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty
       ],
-      ( displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation,
-        position0, position1 ) => {
+      ( displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, position0, position1 ) => {
 
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
+          distanceText.text = '';
+          pathNode.visible = false;
           return;
         }
+        pathNode.visible = true;
 
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
         const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
@@ -96,6 +107,31 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         pathNode.shape = shape;
         pathNode.lineWidth = lineWidth;
+
+        // calculates the difference to display
+        let displayedDifference = value1 - value0;
+        if ( isPrimaryNodeSwapped ) {
+          displayedDifference = -displayedDifference;
+        }
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
+          displayedDifference = Math.abs( displayedDifference );
+        }
+
+        if ( displayedDifference === 0 ) {
+          distanceText.text = '';
+          return;
+        }
+
+        distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
+
+        // positions distance text TODO: this moves when switching distance types because pathnode changes to an arrow
+        if ( orientation === Orientation.HORIZONTAL ) {
+          distanceText.bottom = pathNode.top - DISTANCE_TEXT_PADDING;
+          distanceText.centerX = pathNode.centerX;
+        } else {
+          distanceText.right = pathNode.left - DISTANCE_TEXT_PADDING;
+          distanceText.centerY = pathNode.centerY;
+        }
 
       }
     );
