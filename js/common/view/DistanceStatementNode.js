@@ -3,7 +3,6 @@
 /**
  * A generic distance statement as a node
  * Can either be set to be able to control point controller values (using number pickers) or just show values (using texts)
- * TODO: figure out how this should handle controlling a point that is outside of the range
  *
  * @author Saurabh Totey
  */
@@ -88,34 +87,19 @@ class DistanceStatementNode extends Node {
         } );
       } );
 
-      // functions that create up and down functions for a value property given the other value property
-      // the other value property is needed to make sure the function doesn't give a value that the other value property has
-      // ensures that value properties are always distinct
-      // TODO: this isn't how the piggy bank scene in NLI handles this, look into whether this should be changed to be consistent
-      const createUpFunction = oppositeValueProperty =>
-        value => {
-          const newValue = Math.max( value + 1, model.numberLine.displayedRangeProperty.value.min );
-          return ( newValue === oppositeValueProperty.value ) ? newValue + 1 : newValue;
-        };
-      const createDownFunction = oppositeValueProperty =>
-        value => {
-          const newValue = Math.min( value - 1, model.numberLine.displayedRangeProperty.value.max );
-          return ( newValue === oppositeValueProperty.value ) ? newValue - 1 : newValue;
-        };
-
+      // property for number pickers; is the largest number line range always
       const numberPickerRangeProperty = new Property( NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 2 ] );
+
       valueRepresentations = [
         new NumberPicker( valueProperties[ 0 ], numberPickerRangeProperty, {
-          color: model.pointControllers[ 0 ].color,
-          upFunction: createUpFunction( valueProperties[ 1 ] ),
-          downFunction: createDownFunction( valueProperties[ 1 ] )
+          color: model.pointControllers[ 0 ].color
         } ),
         new NumberPicker( valueProperties[ 1 ], numberPickerRangeProperty, {
-          color: model.pointControllers[ 1 ].color,
-          upFunction: createUpFunction( valueProperties[ 0 ] ),
-          downFunction: createDownFunction( valueProperties[ 0 ] )
+          color: model.pointControllers[ 1 ].color
         } )
       ];
+
+      //TODO: handle number pickers allowing duplicate values between point controllers
 
     } else {
 
