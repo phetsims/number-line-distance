@@ -13,13 +13,11 @@ import NLDConstants from '../../common/NLDConstants.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import genericmockup from '../../../images/genericmockup_png.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
-import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
-import DistanceDisplayNode from '../../common/view/DistanceDisplayNode.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
@@ -27,6 +25,7 @@ import DistanceRepresentation from '../../common/model/DistanceRepresentation.js
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Util from '../../../../dot/js/Utils.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -164,8 +163,7 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( pointControllerNodeLayer );
 
     // number line
-    const numberLineNode = new SpatializedNumberLineNode( model.numberLine, { allowPointsOutsideRangeIndicator: true } );
-    this.addChild( new DistanceDisplayNode( model ) );
+    const numberLineNode = new DistanceShadedNumberLineNode( model, { allowPointsOutsideRangeIndicator: true } );
     this.addChild( numberLineNode );
   }
 

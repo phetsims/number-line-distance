@@ -1,23 +1,23 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A node that displays the distance between two point controllers on a numberline
+ * A node that is a number line and shades the distance between point controllers
+ * The space between point controllers are only shaded when both point controllers are on the number line
+ * TODO: show large distance label if distance labels is checked
  *
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import DistanceRepresentation from '../model/DistanceRepresentation.js';
+import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
-import Shape from '../../../../kite/js/Shape.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
 import Property from '../../../../axon/js/Property.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Util from '../../../../dot/js/Utils.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
+import Shape from '../../../../kite/js/Shape.js';
+import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import merge from '../../../../phet-core/js/merge.js';
+import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
+import numberLineDistance from '../../numberLineDistance.js';
 
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
@@ -31,40 +31,33 @@ const ARROW_SCALE_FACTOR = {
   100: 0.25
 };
 
-class DistanceDisplayNode extends Node {
+class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
   /**
+   *
    * @param {NLDBaseModel} model
+   * @param {Object} [options]
    */
-  constructor( model ) {
-    super();
+  constructor( model, options ) {
+    super( model.numberLine, options );
 
     const pathNode = new Path( null, { stroke: 'gray', fill: 'gray' } );
     this.addChild( pathNode );
-
-    const distanceText = new Text( '', {
-      maxWidth: 50,
-      font: new PhetFont( 16 )
-    } );
-    this.addChild( distanceText );
+    pathNode.moveToBack();
 
     Property.multilink(
       [
-        model.distanceLabelsVisibleProperty,
         model.numberLine.displayedRangeProperty,
         model.distanceRepresentationProperty,
         model.isPrimaryNodeSwappedProperty,
         model.numberLine.orientationProperty,
-        model.numberLine.showPointLabelsProperty,
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty
       ],
-      ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation,
-        showPointLabels, position0, position1 ) => {
+      ( displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation,
+        position0, position1 ) => {
 
-        // controls visibility
-        this.visible = distanceLabelsVisible && model.areBothPointControllersControllingOnNumberLine();
-        if ( !this.visible ) {
+        if ( !model.areBothPointControllersControllingOnNumberLine() ) {
           return;
         }
 
@@ -104,41 +97,11 @@ class DistanceDisplayNode extends Node {
         pathNode.shape = shape;
         pathNode.lineWidth = lineWidth;
 
-        // calculates the difference to display
-        let displayedDifference = value1 - value0;
-        if ( isPrimaryNodeSwapped ) {
-          displayedDifference = -displayedDifference;
-        }
-        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
-          displayedDifference = Math.abs( displayedDifference );
-        }
-
-        if ( displayedDifference === 0 ) {
-          this.visible = false;
-          return;
-        }
-
-        distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
-
-        // positions distance text
-        let padding = 20;
-        if ( showPointLabels ) {
-          padding += 25;
-        }
-        if ( orientation === Orientation.HORIZONTAL ) {
-          distanceText.bottom = pathNode.top - padding;
-          distanceText.centerX = pathNode.centerX;
-        } else {
-          distanceText.right = pathNode.left - padding;
-          distanceText.centerY = pathNode.centerY;
-        }
-
       }
     );
-
   }
 
 }
 
-numberLineDistance.register( 'DistanceDisplayNode', DistanceDisplayNode );
-export default DistanceDisplayNode;
+numberLineDistance.register( 'DistanceShadedNumberLineNode', DistanceShadedNumberLineNode );
+export default DistanceShadedNumberLineNode;
