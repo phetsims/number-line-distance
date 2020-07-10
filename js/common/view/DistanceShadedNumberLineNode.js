@@ -117,20 +117,15 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           displayedDifference = Math.abs( displayedDifference );
         }
 
-        if ( displayedDifference === 0 ) {
-          distanceText.text = '';
-          return;
-        }
-
         distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
 
-        // positions distance text TODO: this moves when switching distance types because pathnode changes to an arrow
+        // positions distance text
         if ( orientation === Orientation.HORIZONTAL ) {
-          distanceText.bottom = pathNode.top - DISTANCE_TEXT_PADDING;
-          distanceText.centerX = pathNode.centerX;
+          distanceText.bottom = valuePosition0.y - DISTANCE_TEXT_PADDING;
+          distanceText.centerX = ( valuePosition1.x + valuePosition0.x ) / 2;
         } else {
-          distanceText.right = pathNode.left - DISTANCE_TEXT_PADDING;
-          distanceText.centerY = pathNode.centerY;
+          distanceText.right = valuePosition0.x - DISTANCE_TEXT_PADDING;
+          distanceText.centerY = ( valuePosition1.y + valuePosition0.y ) / 2;
         }
 
       }
