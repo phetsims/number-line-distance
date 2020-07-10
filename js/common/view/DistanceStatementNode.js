@@ -147,8 +147,14 @@ class DistanceStatementNode extends Node {
 
     // Layout boxes for this node's actual content
     // Children HBoxes are for putting absolute values alongside valueRepresentations
-    const firstChildHBox = new HBox( { children: [ backgroundNodes[ 0 ] ], spacing: 2 } );
-    const secondChildHBox = new HBox( { children: [ backgroundNodes[ 1 ] ], spacing: 2 } );
+    const firstChildHBox = new HBox( {
+      children: [ leftAbsoluteValueMark, backgroundNodes[ 0 ] ],
+      excludeInvisibleChildrenFromBounds: false
+    } );
+    const secondChildHBox = new HBox( {
+      children: [ backgroundNodes[ 1 ], rightAbsoluteValueMark ],
+      excludeInvisibleChildrenFromBounds: false
+    } );
     this.addChild( new HBox( {
       children: [ firstChildHBox, minusSignText, secondChildHBox, equalsSignText, distanceText ],
       spacing: 5
@@ -157,9 +163,6 @@ class DistanceStatementNode extends Node {
     Property.multilink(
       valueProperties.concat( [ model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty, model.numberLine.orientationProperty ] ),
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
-
-        firstChildHBox.removeAllChildren();
-        secondChildHBox.removeAllChildren();
 
         // Change the alt text based off of number line orientation
         if ( orientation === Orientation.HORIZONTAL ) {
@@ -185,10 +188,12 @@ class DistanceStatementNode extends Node {
         }
 
         // Adds absolute value marks and makes the distance positive if the distance representation is absolute
+        leftAbsoluteValueMark.visible = false;
+        rightAbsoluteValueMark.visible = false;
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
           distance = Math.abs( distance );
-          firstChildHBox.addChild( leftAbsoluteValueMark );
-          secondChildHBox.addChild( rightAbsoluteValueMark );
+          leftAbsoluteValueMark.visible = true;
+          rightAbsoluteValueMark.visible = true;
         }
 
         // Replaces value representations with alternatives if their value is invalid
@@ -208,8 +213,6 @@ class DistanceStatementNode extends Node {
         secondChild.center = REPRESENTATION_BOUNDS.center;
 
         distanceText.text = `${distance}`;
-        firstChildHBox.addChild( backgroundNodes[ 0 ] );
-        secondChildHBox.children = [ backgroundNodes[ 1 ] ].concat( secondChildHBox.children );
 
       }
     );
