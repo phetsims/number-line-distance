@@ -26,6 +26,7 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Util from '../../../../dot/js/Utils.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
+import PointsOffScaleCondition from '../../../../number-line-common/js/common/model/PointsOffScaleCondition.js';
 
 const x1String = numberLineDistanceStrings.x1;
 const x2String = numberLineDistanceStrings.x2;
@@ -163,7 +164,7 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( pointControllerNodeLayer );
 
     // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model, { allowPointsOutsideRangeIndicator: true } );
+    const numberLineNode = new DistanceShadedNumberLineNode( model, { pointsOffScaleCondition: PointsOffScaleCondition.SOME } );
     this.addChild( numberLineNode );
   }
 
