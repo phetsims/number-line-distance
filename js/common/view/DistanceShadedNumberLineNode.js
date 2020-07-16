@@ -47,6 +47,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     this.addChild( pathNode );
     pathNode.moveToBack();
 
+    //TODO: figure out layering between this and 'points off scale' indicators
     const distanceText = new Text( '', {
       maxWidth: 50,
       font: new PhetFont( 28 )
