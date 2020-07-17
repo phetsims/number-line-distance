@@ -30,16 +30,16 @@
     "value": "Directed Distance"
   },
   "x1": {
-    "value": "x<sub>1</sub>"
+    "value": "x<sub style='fontStyle:normal'>1</sub>"
   },
   "x2": {
-    "value": "x<sub>2</sub>"
+    "value": "x<sub style='fontStyle:normal'>2</sub>"
   },
   "y1": {
-    "value": "y<sub>1</sub>"
+    "value": "y<sub style='fontStyle:normal'>1</sub>"
   },
   "y2": {
-    "value": "y<sub>2</sub>"
+    "value": "y<sub style='fontStyle:normal'>2</sub>"
   },
   "genericAbsoluteDistanceTemplate": {
     "value": "{{secondaryXY}} and {{primaryXY}} are {{difference}} units apart."
