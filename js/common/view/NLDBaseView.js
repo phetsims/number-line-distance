@@ -137,7 +137,6 @@ class NLDBaseView extends Node {
     } );
 
     // controls on the bottom left for which node is considered to be first and second
-    // TODO: these don't look good when the strings are longer
     const firstNodeText = new RichText( `${x1String} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeText = new RichText( `${x2String} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( {
@@ -150,6 +149,7 @@ class NLDBaseView extends Node {
     } );
     const nodeOrderDisplay = new VBox( {
       children: [ firstNodeHBox, secondNodeHBox ],
+      spacing: ( 40 - firstNodeText.height ) / 2,
       bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
       left: 30
     } );
