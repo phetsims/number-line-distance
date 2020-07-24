@@ -19,6 +19,8 @@ import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
+import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
@@ -47,13 +49,13 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     this.addChild( pathNode );
     pathNode.moveToBack();
 
-    //TODO: figure out layering between this and 'points off scale' indicators
     const distanceText = new Text( '', {
       maxWidth: 50,
       font: new PhetFont( 28 )
     } );
-    this.addChild( distanceText );
-    model.distanceLabelsVisibleProperty.linkAttribute( distanceText, 'visible' );
+    const distanceTextBackground = new BackgroundNode( distanceText, NLCConstants.LABEL_BACKGROUND_OPTIONS );
+    this.addChild( distanceTextBackground );
+    model.distanceLabelsVisibleProperty.linkAttribute( distanceTextBackground, 'visible' );
 
     Property.multilink(
       [
@@ -122,11 +124,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // positions distance text
         if ( orientation === Orientation.HORIZONTAL ) {
-          distanceText.bottom = valuePosition0.y - DISTANCE_TEXT_PADDING;
-          distanceText.centerX = ( valuePosition1.x + valuePosition0.x ) / 2;
+          distanceTextBackground.bottom = valuePosition0.y - DISTANCE_TEXT_PADDING;
+          distanceTextBackground.centerX = ( valuePosition1.x + valuePosition0.x ) / 2;
         } else {
-          distanceText.right = valuePosition0.x - DISTANCE_TEXT_PADDING;
-          distanceText.centerY = ( valuePosition1.y + valuePosition0.y ) / 2;
+          distanceTextBackground.right = valuePosition0.x - DISTANCE_TEXT_PADDING;
+          distanceTextBackground.centerY = ( valuePosition1.y + valuePosition0.y ) / 2;
         }
 
       }
