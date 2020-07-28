@@ -92,17 +92,17 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         let lineWidth = 8;
 
         // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
-        // that is on the number line (it hasn't been clamped)
+        // that is on the number line
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
           const scale = ARROW_SCALE_FACTOR[ halfRange ];
           const scaledArrowShapeOptions = merge( {}, ARROW_SHAPE_OPTIONS, {
             headWidth: ARROW_SHAPE_OPTIONS.headWidth * scale,
             headHeight: ARROW_SHAPE_OPTIONS.headHeight * scale
           } );
-          if ( isPrimaryNodeSwapped && value0 === endPointValue0 ) {
+          if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( valuePosition1.x, valuePosition1.y, valuePosition0.x, valuePosition0.y, scaledArrowShapeOptions );
-          } else if ( value1 === endPointValue1 ) {
+          } else if ( displayedRange.min <= value1 && value1 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( valuePosition0.x, valuePosition0.y, valuePosition1.x, valuePosition1.y, scaledArrowShapeOptions );
           }
