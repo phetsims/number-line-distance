@@ -9,7 +9,6 @@
 
 import numberLineDistance from '../../numberLineDistance.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import merge from '../../../../phet-core/js/merge.js';
@@ -27,11 +26,6 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
-
-const x1String = numberLineDistanceStrings.x1;
-const x2String = numberLineDistanceStrings.x2;
-const y1String = numberLineDistanceStrings.y1;
-const y2String = numberLineDistanceStrings.y2;
 
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
@@ -133,7 +127,10 @@ class DistanceStatementNode extends Node {
     ];
 
     // The nodes that will be shown instead of the value representations if the point controllers aren't on the number line
-    const alternativeTexts = [ new RichText( x1String, MATH_TEXT_OPTIONS ), new RichText( x2String, MATH_TEXT_OPTIONS ) ];
+    const alternativeTexts = [
+      new RichText( NLDConstants.X_1_STRING, MATH_TEXT_OPTIONS ),
+      new RichText( NLDConstants.X_2_STRING, MATH_TEXT_OPTIONS )
+    ];
 
     const minusSignText = new Text( MathSymbols.MINUS, MATH_TEXT_OPTIONS );
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, MATH_TEXT_OPTIONS );
@@ -166,11 +163,11 @@ class DistanceStatementNode extends Node {
 
         // Change the alt text based off of number line orientation
         if ( orientation === Orientation.HORIZONTAL ) {
-          alternativeTexts[ 0 ].text = x1String;
-          alternativeTexts[ 1 ].text = x2String;
+          alternativeTexts[ 0 ].text = NLDConstants.X_1_STRING;
+          alternativeTexts[ 1 ].text = NLDConstants.X_2_STRING;
         } else {
-          alternativeTexts[ 0 ].text = y1String;
-          alternativeTexts[ 1 ].text = y2String;
+          alternativeTexts[ 0 ].text = NLDConstants.Y_1_STRING;
+          alternativeTexts[ 1 ].text = NLDConstants.Y_2_STRING;
         }
 
         // Chooses the ordering for children for the distance statement

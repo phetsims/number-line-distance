@@ -11,12 +11,18 @@ import numberLineDistance from '../numberLineDistance.js';
 import ScreenView from '../../../joist/js/ScreenView.js';
 import Range from '../../../dot/js/Range.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
+import StringUtils from '../../../phetcommon/js/util/StringUtils.js';
+import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
+
+const xString = numberLineDistanceStrings.symbol.x;
+const yString = numberLineDistanceStrings.symbol.y;
 
 const BOX_INSET = 30;
 const BOTTOM_BOX_WIDTH = 320;
 const BOTTOM_BOX_HEIGHT = 70;
 const SIDE_BOX_WIDTH = BOTTOM_BOX_HEIGHT;
 const SIDE_BOX_HEIGHT = BOTTOM_BOX_WIDTH;
+const variableSubscriptTemplate = '{{variable}}<sub style=\'fontStyle:normal\'>{{subscript}}</sub>';
 
 const NLDConstants = {
 
@@ -42,7 +48,12 @@ const NLDConstants = {
     ScreenView.DEFAULT_LAYOUT_BOUNDS.centerY - SIDE_BOX_HEIGHT / 2,
     ScreenView.DEFAULT_LAYOUT_BOUNDS.minX + BOX_INSET + SIDE_BOX_WIDTH,
     ScreenView.DEFAULT_LAYOUT_BOUNDS.centerY + SIDE_BOX_HEIGHT / 2
-  )
+  ),
+
+  X_1_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: xString, subscript: 1 }),
+  X_2_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: xString, subscript: 2 }),
+  Y_1_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: yString, subscript: 1 }),
+  Y_2_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: yString, subscript: 2 })
 
 };
 

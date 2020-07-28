@@ -28,10 +28,6 @@ import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import PointsOffScaleCondition from '../../../../number-line-common/js/common/view/PointsOffScaleCondition.js';
 
-const x1String = numberLineDistanceStrings.x1;
-const x2String = numberLineDistanceStrings.x2;
-const y1String = numberLineDistanceStrings.y1;
-const y2String = numberLineDistanceStrings.y2;
 const genericAbsoluteDistanceTemplateString = numberLineDistanceStrings.genericAbsoluteDistanceTemplate;
 const genericDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.genericDirectedPositiveDistanceTemplate;
 const genericDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.genericDirectedNegativeDistanceTemplate;
@@ -79,11 +75,11 @@ class NLDGenericScreenView extends ScreenView {
         const value1 = model.numberLine.modelPositionToValue( position1 );
 
         // Get the strings for the point controllers based off of orientation
-        let primaryXY = x1String;
-        let secondaryXY = x2String;
+        let primaryXY = NLDConstants.X_1_STRING;
+        let secondaryXY = NLDConstants.X_2_STRING;
         if ( orientation === Orientation.VERTICAL ) {
-          primaryXY = y1String;
-          secondaryXY = y2String;
+          primaryXY = NLDConstants.Y_1_STRING;
+          secondaryXY = NLDConstants.Y_2_STRING;
         }
 
         let difference = Util.roundSymmetric( value1 - value0 );
