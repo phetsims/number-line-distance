@@ -78,12 +78,25 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
         const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
         const pointOffNumberLineEndpointValueOffset = halfRange * ( ( orientation === Orientation.HORIZONTAL ) ? 0.035 : 0.075 );
-        const endpointValueMin = displayedRange.min - pointOffNumberLineEndpointValueOffset;
-        const endpointValueMax = displayedRange.max + pointOffNumberLineEndpointValueOffset;
+        const endPointValueMin = displayedRange.min - pointOffNumberLineEndpointValueOffset;
+        const endPointValueMax = displayedRange.max + pointOffNumberLineEndpointValueOffset;
         const value0 = model.numberLine.modelPositionToValue( position0 );
         const value1 = model.numberLine.modelPositionToValue( position1 );
-        const endPointValue0 = Util.clamp( value0, endpointValueMin, endpointValueMax );
-        const endPointValue1 = Util.clamp( value1, endpointValueMin, endpointValueMax );
+        let endPointValue0 = value0;
+        let endPointValue1 = value1;
+
+        // Clamps endPointValue to be between endPointValueMin and endPointValueMax
+        // cannot use Util.clamp because, for example, value0 can be greater than displayedRange.max but still less than endPointValueMax
+        if ( value0 < displayedRange.min ) {
+          endPointValue0 = endPointValueMin;
+        } else if ( value0 > displayedRange.max ) {
+          endPointValue0 = endPointValueMax;
+        }
+        if ( value1 < displayedRange.min ) {
+          endPointValue1 = endPointValueMin;
+        } else if ( value1 > displayedRange.max ) {
+          endPointValue1 = endPointValueMax;
+        }
 
         // makes path between nodes
         const valuePosition0 = model.numberLine.valueToModelPosition( endPointValue0 );
