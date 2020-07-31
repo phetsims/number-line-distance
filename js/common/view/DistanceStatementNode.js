@@ -31,7 +31,7 @@ const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
 const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
-const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 ); //TODO: this looks a little ugly because the equals sign doesn't have this spacing
+const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 );
 
 class DistanceStatementNode extends Node {
 
@@ -84,16 +84,46 @@ class DistanceStatementNode extends Node {
       // property for number pickers; is the largest number line range always
       const numberPickerRangeProperty = new Property( NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 2 ] );
 
+      // TODO: figure out whether this behaviour is desired or what the actual behaviour should be
+      // functions that return up and down functions for the number pickers
+      // take in the other value property to ensure that going up or down doesn't cause a collision
+      const createUpFunction = oppositeValueProperty =>
+        value => {
+          const newValue = value + 1;
+          if ( newValue === oppositeValueProperty.value ) {
+            if ( newValue === 100 ) {
+              oppositeValueProperty.value -= 1;
+            } else {
+              return newValue + 1;
+            }
+          }
+          return newValue;
+        };
+      const createDownFunction = oppositeValueProperty =>
+        value => {
+          const newValue = value - 1;
+          if ( newValue === oppositeValueProperty.value ) {
+            if ( newValue === -100 ) {
+              oppositeValueProperty.value += 1;
+            } else {
+              return newValue - 1;
+            }
+          }
+          return newValue;
+        };
+
       valueRepresentations = [
         new NumberPicker( valueProperties[ 0 ], numberPickerRangeProperty, {
-          color: model.pointControllers[ 0 ].color
+          color: model.pointControllers[ 0 ].color,
+          upFunction: createUpFunction( valueProperties[ 1 ] ),
+          downFunction: createDownFunction( valueProperties[ 1 ] )
         } ),
         new NumberPicker( valueProperties[ 1 ], numberPickerRangeProperty, {
-          color: model.pointControllers[ 1 ].color
+          color: model.pointControllers[ 1 ].color,
+          upFunction: createUpFunction( valueProperties[ 0 ] ),
+          downFunction: createDownFunction( valueProperties[ 0 ] )
         } )
       ];
-
-      //TODO: handle number pickers allowing duplicate values between point controllers
 
     } else {
 
