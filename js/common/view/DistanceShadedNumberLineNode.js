@@ -21,6 +21,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
@@ -77,30 +78,32 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
         const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
-        const pointOffNumberLineEndpointValueOffset = halfRange * ( ( orientation === Orientation.HORIZONTAL ) ? 0.035 : 0.075 );
-        const endPointValueMin = displayedRange.min - pointOffNumberLineEndpointValueOffset;
-        const endPointValueMax = displayedRange.max + pointOffNumberLineEndpointValueOffset;
+        const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
+        const insetVector = ( model.numberLine.orientationProperty.value === Orientation.HORIZONTAL )
+          ? new Vector2( insetSize, 0 ) : new Vector2( 0, -insetSize );
+        const endPointPositionMin = model.numberLine.valueToModelPosition( displayedRange.min ).minus( insetVector );
+        const endPointPositionMax = model.numberLine.valueToModelPosition( displayedRange.max ).plus( insetVector );
         const value0 = model.numberLine.modelPositionToValue( position0 );
         const value1 = model.numberLine.modelPositionToValue( position1 );
-        let endPointValue0 = value0;
-        let endPointValue1 = value1;
+        let endPointPosition0 = model.numberLine.valueToModelPosition( value0 );
+        let endPointPosition1 = model.numberLine.valueToModelPosition( value1 );
 
         // Clamps endPointValue to be between endPointValueMin and endPointValueMax
         // cannot use Util.clamp because, for example, value0 can be greater than displayedRange.max but still less than endPointValueMax
         if ( value0 < displayedRange.min ) {
-          endPointValue0 = endPointValueMin;
+          endPointPosition0 = endPointPositionMin;
         } else if ( value0 > displayedRange.max ) {
-          endPointValue0 = endPointValueMax;
+          endPointPosition0 = endPointPositionMax;
         }
         if ( value1 < displayedRange.min ) {
-          endPointValue1 = endPointValueMin;
+          endPointPosition1 = endPointPositionMin;
         } else if ( value1 > displayedRange.max ) {
-          endPointValue1 = endPointValueMax;
+          endPointPosition1 = endPointPositionMax;
         }
 
         // makes path between nodes
-        const valuePosition0 = model.numberLine.valueToModelPosition( endPointValue0 );
-        const valuePosition1 = model.numberLine.valueToModelPosition( endPointValue1 );
+        const valuePosition0 = endPointPosition0;
+        const valuePosition1 = endPointPosition1;
         let shape = new Shape().moveToPoint( valuePosition0 ).lineToPoint( valuePosition1 );
         let lineWidth = 8;
 
