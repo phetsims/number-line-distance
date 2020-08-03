@@ -44,7 +44,10 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
    * @param {Object} [options]
    */
   constructor( model, options ) {
-    super( model.numberLine, options );
+    super( model.numberLine, merge( {
+      offScaleIndicatorVerticalOffset: -90,
+      offScaleIndicatorHorizontalOffset: -120
+    }, options ) );
 
     const pathNode = new Path( null, { stroke: 'gray', fill: 'gray' } );
     this.addChild( pathNode );
