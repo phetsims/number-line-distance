@@ -121,7 +121,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( valuePosition1.x, valuePosition1.y, valuePosition0.x, valuePosition0.y, scaledArrowShapeOptions );
-          } else if ( displayedRange.min <= value1 && value1 <= displayedRange.max ) {
+          } else if ( !isPrimaryNodeSwapped && displayedRange.min <= value1 && value1 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( valuePosition0.x, valuePosition0.y, valuePosition1.x, valuePosition1.y, scaledArrowShapeOptions );
           }
