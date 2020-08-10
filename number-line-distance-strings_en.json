@@ -35,6 +35,12 @@
   "symbol.y": {
     "value": "y"
   },
+  "symbol.east": {
+    "value": "E"
+  },
+  "symbol.west": {
+    "value": "W"
+  },
   "genericAbsoluteDistanceTemplate": {
     "value": "{{secondaryXY}} and {{primaryXY}} are {{difference}} units apart."
   },

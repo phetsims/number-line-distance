@@ -19,8 +19,8 @@ class DistanceSceneModel extends NLDBaseModel {
    */
   constructor( tandem ) {
     //TODO:
-    const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center, {
-      widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
+    const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, -75 ), {
+      widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 250,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160
     } );
     super( tandem, numberLine, [
