@@ -132,10 +132,8 @@ class DistanceStatementNode extends Node {
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS )
       ];
 
-      const textBackgroundOptions = { stroke: 'black', cornerXRadius: 5, cornerYRadius: 5 };
-
       valueRepresentations = textNodes.map( textNode => {
-        const textHolder = new Rectangle( textNode.localBounds.dilatedXY( 5, 10 ), textBackgroundOptions );
+        const textHolder = new Rectangle( textNode.localBounds.dilatedXY( 5, 10 ) );
         textHolder.addChild( textNode );
         return textHolder;
       } );
