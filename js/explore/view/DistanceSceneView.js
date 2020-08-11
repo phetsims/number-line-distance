@@ -56,13 +56,15 @@ class DistanceSceneView extends Node {
     this.addChild( numberLineNode );
 
     // symbols at edges of number line denoting east and west
+    const textOffsetFromNumberLine = numberLineNode.options.displayedRangeInset + numberLineNode.options.arrowSize + 15;
+    const range = model.numberLine.displayedRangeProperty.value;
     const eastSymbolText = new Text( eastString, {
       font: CARDINALITY_INDICATOR_FONT,
-      center: model.numberLine.valueToModelPosition( 10 ).plusXY( 50, 0 )
+      center: model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 )
     } );
     const westSymbolText = new Text( westString, {
       font: CARDINALITY_INDICATOR_FONT,
-      center: model.numberLine.valueToModelPosition( -10 ).plusXY( -50, 0 )
+      center: model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 )
     } );
     this.addChild( eastSymbolText );
     this.addChild( westSymbolText );
