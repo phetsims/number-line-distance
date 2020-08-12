@@ -105,9 +105,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         }
 
         // makes path between nodes
-        const valuePosition0 = endPointPosition0;
-        const valuePosition1 = endPointPosition1;
-        let shape = new Shape().moveToPoint( valuePosition0 ).lineToPoint( valuePosition1 );
+        let shape = new Shape().moveToPoint( endPointPosition0 ).lineToPoint( endPointPosition1 );
         let lineWidth = 8;
 
         // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
@@ -120,10 +118,10 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           } );
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             lineWidth = 5;
-            shape = new ArrowShape( valuePosition1.x, valuePosition1.y, valuePosition0.x, valuePosition0.y, scaledArrowShapeOptions );
+            shape = new ArrowShape( endPointPosition1.x, endPointPosition1.y, endPointPosition0.x, endPointPosition0.y, scaledArrowShapeOptions );
           } else if ( !isPrimaryNodeSwapped && displayedRange.min <= value1 && value1 <= displayedRange.max ) {
             lineWidth = 5;
-            shape = new ArrowShape( valuePosition0.x, valuePosition0.y, valuePosition1.x, valuePosition1.y, scaledArrowShapeOptions );
+            shape = new ArrowShape( endPointPosition0.x, endPointPosition0.y, endPointPosition1.x, endPointPosition1.y, scaledArrowShapeOptions );
           }
         }
 
@@ -143,11 +141,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // positions distance text
         if ( orientation === Orientation.HORIZONTAL ) {
-          distanceTextBackground.bottom = valuePosition0.y - DISTANCE_TEXT_PADDING;
-          distanceTextBackground.centerX = ( valuePosition1.x + valuePosition0.x ) / 2;
+          distanceTextBackground.bottom = endPointPosition0.y - DISTANCE_TEXT_PADDING;
+          distanceTextBackground.centerX = ( endPointPosition1.x + endPointPosition0.x ) / 2;
         } else {
-          distanceTextBackground.right = valuePosition0.x - DISTANCE_TEXT_PADDING;
-          distanceTextBackground.centerY = ( valuePosition1.y + valuePosition0.y ) / 2;
+          distanceTextBackground.right = endPointPosition0.x - DISTANCE_TEXT_PADDING;
+          distanceTextBackground.centerY = ( endPointPosition1.y + endPointPosition0.y ) / 2;
         }
 
       }
