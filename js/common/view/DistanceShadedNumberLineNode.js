@@ -77,7 +77,6 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           pathNode.visible = false;
           return;
         }
-        pathNode.visible = true;
 
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
         const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
@@ -90,6 +89,12 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         const value1 = model.numberLine.modelPositionToValue( position1 );
         let endPointPosition0 = model.numberLine.valueToModelPosition( value0 );
         let endPointPosition1 = model.numberLine.valueToModelPosition( value1 );
+
+        // TODO: figure out why this check is necessary; it has been placed for #8
+        if ( isNaN( endPointPosition0.x + endPointPosition0.y + endPointPosition1.x + endPointPosition1.y ) ) {
+          return;
+        }
+        pathNode.visible = true;
 
         // Clamps endPointValue to be between endPointValueMin and endPointValueMax
         // cannot use Util.clamp because, for example, value0 can be greater than displayedRange.max but still less than endPointValueMax
