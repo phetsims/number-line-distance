@@ -13,6 +13,8 @@ import explorescene3mockup from '../../../images/explorescene3mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
+import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
+import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 
 class ElevationSceneView extends Node {
 
@@ -32,9 +34,17 @@ class ElevationSceneView extends Node {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    //TODO:
-
     this.addChild( new NLDBaseView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
+
+    // point controllers
+    const pointControllerNodeLayer = new Node( {
+      children: model.pointControllers.map( pointController => new PointControllerNode( pointController ) )
+    } );
+    this.addChild( pointControllerNodeLayer );
+
+    // number line
+    const numberLineNode = new DistanceShadedNumberLineNode( model );
+    this.addChild( numberLineNode );
   }
 
 }
