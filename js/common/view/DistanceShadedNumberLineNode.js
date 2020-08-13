@@ -59,10 +59,10 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     } );
     const distanceTextBackground = new BackgroundNode( distanceText, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( distanceTextBackground );
-    model.distanceLabelsVisibleProperty.linkAttribute( distanceTextBackground, 'visible' );
 
     Property.multilink(
       [
+        model.distanceLabelsVisibleProperty,
         model.numberLine.displayedRangeProperty,
         model.distanceRepresentationProperty,
         model.isPrimaryNodeSwappedProperty,
@@ -70,11 +70,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty
       ],
-      ( displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, position0, position1 ) => {
+      ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, position0, position1 ) => {
 
+        distanceTextBackground.visible = false;
+        pathNode.visible = false;
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
-          distanceText.text = '';
-          pathNode.visible = false;
           return;
         }
 
@@ -94,6 +94,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         if ( isNaN( endPointPosition0.x + endPointPosition0.y + endPointPosition1.x + endPointPosition1.y ) ) {
           return;
         }
+        distanceTextBackground.visible = distanceLabelsVisible;
         pathNode.visible = true;
 
         // Clamps endPointValue to be between endPointValueMin and endPointValueMax
