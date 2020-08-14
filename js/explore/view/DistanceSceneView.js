@@ -19,7 +19,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Util from '../../../../dot/js/Utils.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
@@ -84,8 +83,8 @@ class DistanceSceneView extends Node {
         // Fills in a string template for the distance text based off of the distance representation
         // and whether the distance is positive or negative
         const fillInValues = {
-          primaryX: MathSymbolFont.getRichTextMarkup( primaryX ),
-          secondaryX: MathSymbolFont.getRichTextMarkup( secondaryX ),
+          primaryX: primaryX,
+          secondaryX: secondaryX,
           difference: Math.abs( difference )
         };
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
