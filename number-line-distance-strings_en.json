@@ -49,5 +49,20 @@
   },
   "genericDirectedNegativeDistanceTemplate": {
     "value": "{{secondaryXY}} is {{difference}} units more negative than {{primaryXY}}."
+  },
+  "person": {
+    "value": "person"
+  },
+  "house": {
+    "value": "house"
+  },
+  "distanceSceneAbsoluteDistanceTemplate": {
+    "value": "The {{secondaryX}} and the {{primaryX}} are {{difference}} meters apart."
+  },
+  "distanceSceneDirectedPositiveDistanceTemplate": {
+    "value": "The {{secondaryX}} is {{difference}} meters east of the {{primaryX}}."
+  },
+  "distanceSceneDirectedNegativeDistanceTemplate": {
+    "value": "The {{secondaryX}} is {{difference}} meters west of the {{primaryX}}."
   }
 }

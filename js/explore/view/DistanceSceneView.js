@@ -12,15 +12,24 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene1mockup from '../../../images/explorescene1mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import Util from '../../../../dot/js/Utils.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
+const houseString = numberLineDistanceStrings.house;
+const personString = numberLineDistanceStrings.person;
+const distanceSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings.distanceSceneAbsoluteDistanceTemplate;
+const distanceSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.distanceSceneDirectedPositiveDistanceTemplate;
+const distanceSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.distanceSceneDirectedNegativeDistanceTemplate;
 
 const CARDINALITY_INDICATOR_FONT = new PhetFont( 25 );
 
@@ -42,8 +51,59 @@ class DistanceSceneView extends Node {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    //TODO:
-    this.addChild( new NLDBaseView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
+    // a property that returns a string that describes the distance between both the point controllers
+    const distanceDescriptionProperty = new DerivedProperty(
+      [
+        model.distanceRepresentationProperty,
+        model.numberLine.orientationProperty,
+        model.isPrimaryNodeSwappedProperty,
+        model.pointControllers[ 0 ].positionProperty,
+        model.pointControllers[ 1 ].positionProperty
+      ],
+      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, position0, position1 ) => {
+
+        // Can't say anything about distance if both point controllers aren't on the number line
+        if ( !model.areBothPointControllersControllingOnNumberLine() ) {
+          return '';
+        }
+
+        const value0 = model.numberLine.modelPositionToValue( position0 );
+        const value1 = model.numberLine.modelPositionToValue( position1 );
+
+        // Get the strings for the point controllers based off of orientation
+        let primaryX = houseString;
+        let secondaryX = personString;
+
+        let difference = Util.roundSymmetric( value1 - value0 );
+        if ( isPrimaryNodeSwapped ) {
+          difference = -difference;
+          primaryX = personString;
+          secondaryX = houseString;
+        }
+
+        // Fills in a string template for the distance text based off of the distance representation
+        // and whether the distance is positive or negative
+        const fillInValues = {
+          primaryX: MathSymbolFont.getRichTextMarkup( primaryX ),
+          secondaryX: MathSymbolFont.getRichTextMarkup( secondaryX ),
+          difference: Math.abs( difference )
+        };
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
+          return StringUtils.fillIn( distanceSceneAbsoluteDistanceTemplateString, fillInValues );
+        }
+        if ( difference > 0 ) {
+          return StringUtils.fillIn( distanceSceneDirectedPositiveDistanceTemplateString, fillInValues );
+        } else if ( difference < 0 ) {
+          return StringUtils.fillIn( distanceSceneDirectedNegativeDistanceTemplateString, fillInValues );
+        }
+
+        // Reaching here means that the difference was 0, so there is nothing to say
+        return '';
+
+      }
+    );
+
+    this.addChild( new NLDBaseView( model, new Node(), new Node(), distanceDescriptionProperty ) );
 
     // point controllers
     const pointControllerNodeLayer = new Node( {
