@@ -15,6 +15,7 @@ import NLDBaseView from '../../common/view/NLDBaseView.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 
 class ElevationSceneView extends Node {
 
@@ -35,6 +36,9 @@ class ElevationSceneView extends Node {
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
     this.addChild( new NLDBaseView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
+
+    //TODO: temporary rectangle
+    this.addChild( new Rectangle( model.elevationAreaBounds, { stroke: 'black' } ) );
 
     // point controllers
     const pointControllerNodeLayer = new Node( {

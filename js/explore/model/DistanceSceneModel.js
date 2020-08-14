@@ -11,6 +11,7 @@ import NLDBaseModel from '../../common/model/NLDBaseModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
+import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
 class DistanceSceneModel extends NLDBaseModel {
 
@@ -25,10 +26,12 @@ class DistanceSceneModel extends NLDBaseModel {
     } );
     super( tandem, numberLine, [
       new PointController( {
-        numberLines: [ numberLine ]
+        numberLines: [ numberLine ],
+        lockToNumberLine: LockToNumberLine.NEVER
       } ),
       new PointController( {
-        numberLines: [ numberLine ]
+        numberLines: [ numberLine ],
+        lockToNumberLine: LockToNumberLine.NEVER
       } )
     ] );
     //TODO:

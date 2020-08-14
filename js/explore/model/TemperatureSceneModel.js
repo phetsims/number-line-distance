@@ -12,6 +12,7 @@ import SpatializedNumberLine from '../../../../number-line-common/js/common/mode
 import NLDConstants from '../../common/NLDConstants.js';
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
 import Range from '../../../../dot/js/Range.js';
+import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
 class TemperatureSceneModel extends NLDBaseModel {
 
@@ -27,10 +28,12 @@ class TemperatureSceneModel extends NLDBaseModel {
     } );
     super( tandem, numberLine, [
       new PointController( {
-        numberLines: [ numberLine ]
+        numberLines: [ numberLine ],
+        lockToNumberLine: LockToNumberLine.NEVER
       } ),
       new PointController( {
-        numberLines: [ numberLine ]
+        numberLines: [ numberLine ],
+        lockToNumberLine: LockToNumberLine.NEVER
       } )
     ] );
     //TODO:
