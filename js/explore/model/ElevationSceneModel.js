@@ -41,18 +41,19 @@ class ElevationSceneModel extends NLDBaseModel {
     ] );
 
     // @public (readonly) the bounds where point controllers can be TODO: get real bounds
-    this.elevationAreaBounds = new Bounds2( 400, 400, 500, 500 );
+    this.elevationAreaBounds = new Bounds2( 400, 100, 800, 500 );
 
     this.pointControllers.forEach( pointController => {
       pointController.positionProperty.link( position => {
         if ( this.elevationAreaBounds.containsPoint( position ) && !pointController.isControllingNumberLinePoint() && pointController.isDraggingProperty.value ) {
-          pointController.associateWithNumberLinePoint(
-            new NumberLinePoint(
-              numberLine,
-              { controller: pointController, initialValue: numberLine.modelPositionToValue( position ) }
-            )
+          const numberLinePoint = new NumberLinePoint(
+            numberLine,
+            { controller: pointController, initialValue: numberLine.modelPositionToValue( position ) }
           );
+          numberLine.addPoint( numberLinePoint );
+          pointController.associateWithNumberLinePoint( numberLinePoint );
         } else if ( !this.elevationAreaBounds.containsPoint( position ) && pointController.isControllingNumberLinePoint() ) {
+          pointController.removePointsFromNumberLines();
           pointController.clearNumberLinePoints();
         }
       } );

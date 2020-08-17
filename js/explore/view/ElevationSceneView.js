@@ -42,7 +42,7 @@ class ElevationSceneView extends Node {
 
     // point controllers
     const pointControllerNodeLayer = new Node( {
-      children: model.pointControllers.map( pointController => new PointControllerNode( pointController ) )
+      children: model.pointControllers.map( pointController => new PointControllerNode( pointController, { connectorLine: false } ) )
     } );
     this.addChild( pointControllerNodeLayer );
 
