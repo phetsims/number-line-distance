@@ -70,5 +70,20 @@
   },
   "distanceSceneDirectedNegativeDistanceTemplate": {
     "value": "The {{secondaryX}} is {{difference}} meters west of the {{primaryX}}."
+  },
+  "fish": {
+    "value": "fish"
+  },
+  "bird": {
+    "value": "bird"
+  },
+  "elevationSceneAbsoluteDistanceTemplate": {
+    "value": "The {{secondaryY}} and the {{primaryY}} are {{difference}} meters apart."
+  },
+  "elevationSceneDirectedPositiveDistanceTemplate": {
+    "value": "The {{secondaryY}} is {{difference}} meters above the {{primaryY}}."
+  },
+  "elevationSceneDirectedNegativeDistanceTemplate": {
+    "value": "The {{secondaryY}} is {{difference}} meters below the {{primaryY}}."
   }
 }
