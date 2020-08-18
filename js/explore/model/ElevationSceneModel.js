@@ -25,31 +25,37 @@ class ElevationSceneModel extends NLDBaseModel {
   constructor( tandem ) {
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( -275, 0 ), {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
-      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 250,
+      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 275,
       initialOrientation: Orientation.VERTICAL,
       initialDisplayedRange: new Range( -20, 20 )
     } );
     super( tandem, numberLine, [
       new PointController( {
         numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.NEVER
+        lockToNumberLine: LockToNumberLine.NEVER,
+        color: 'black'
       } ),
       new PointController( {
         numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.NEVER
+        lockToNumberLine: LockToNumberLine.NEVER,
+        color: '#446ab7'
       } )
     ] );
 
     // @public (readonly) the bounds where point controllers can be TODO: get real bounds
-    this.elevationAreaBounds = new Bounds2( 400, 100, 800, 500 );
+    this.elevationAreaBounds = new Bounds2(
+      350, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).y,
+      750, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).y
+    );
 
     this.pointControllers.forEach( pointController => {
       pointController.positionProperty.link( position => {
         if ( this.elevationAreaBounds.containsPoint( position ) && !pointController.isControllingNumberLinePoint() && pointController.isDraggingProperty.value ) {
-          const numberLinePoint = new NumberLinePoint(
-            numberLine,
-            { controller: pointController, initialValue: numberLine.modelPositionToValue( position ) }
-          );
+          const numberLinePoint = new NumberLinePoint( numberLine, {
+            controller: pointController,
+            initialValue: numberLine.modelPositionToValue( position ),
+            initialColor: pointController.color
+          } );
           numberLine.addPoint( numberLinePoint );
           pointController.associateWithNumberLinePoint( numberLinePoint );
         } else if ( !this.elevationAreaBounds.containsPoint( position ) && pointController.isControllingNumberLinePoint() ) {
