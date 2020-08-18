@@ -22,7 +22,7 @@ class TemperatureSceneModel extends NLDBaseModel {
   constructor( tandem ) {
     //TODO:
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, -75 ), {
-      widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
+      widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 250,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
       initialDisplayedRange: new Range( -50, 50 )
     } );

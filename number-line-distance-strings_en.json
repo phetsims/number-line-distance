@@ -41,6 +41,12 @@
   "symbol.west": {
     "value": "W"
   },
+  "symbol.meters": {
+    "value": "m"
+  },
+  "symbol.degreesCelsius": {
+    "value": "° C"
+  },
   "genericAbsoluteDistanceTemplate": {
     "value": "{{secondaryXY}} and {{primaryXY}} are {{difference}} units apart."
   },

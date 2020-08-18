@@ -16,6 +16,9 @@ import StringProperty from '../../../../axon/js/StringProperty.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+
+const metersString = numberLineDistanceStrings.symbol.meters;
 
 class ElevationSceneView extends Node {
 
@@ -47,7 +50,7 @@ class ElevationSceneView extends Node {
     this.addChild( pointControllerNodeLayer );
 
     // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model );
+    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersString } );
     this.addChild( numberLineNode );
   }
 

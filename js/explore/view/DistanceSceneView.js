@@ -29,6 +29,7 @@ const personString = numberLineDistanceStrings.person;
 const distanceSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings.distanceSceneAbsoluteDistanceTemplate;
 const distanceSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.distanceSceneDirectedPositiveDistanceTemplate;
 const distanceSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.distanceSceneDirectedNegativeDistanceTemplate;
+const metersString = numberLineDistanceStrings.symbol.meters;
 
 const CARDINALITY_INDICATOR_FONT = new PhetFont( 25 );
 
@@ -111,7 +112,7 @@ class DistanceSceneView extends Node {
     this.addChild( pointControllerNodeLayer );
 
     // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model );
+    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersString } );
     this.addChild( numberLineNode );
 
     // symbols at edges of number line denoting east and west
