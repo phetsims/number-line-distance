@@ -47,6 +47,12 @@
   "symbol.degreesCelsius": {
     "value": "° C"
   },
+  "symbol.a": {
+    "value": "A"
+  },
+  "symbol.b": {
+    "value": "B"
+  },
   "genericAbsoluteDistanceTemplate": {
     "value": "{{secondaryXY}} and {{primaryXY}} are {{difference}} units apart."
   },
@@ -70,6 +76,15 @@
   },
   "distanceSceneDirectedNegativeDistanceTemplate": {
     "value": "The {{secondaryX}} is {{difference}} meters west of the {{primaryX}}."
+  },
+  "temperatureSceneAbsoluteDistanceTemplate": {
+    "value": "The difference in temperature is {{difference}} degrees."
+  },
+  "temperatureSceneDirectedPositiveDistanceTemplate": {
+    "value": "Location {{secondaryX}} is {{difference}} degrees hotter than location {{primaryX}}."
+  },
+  "temperatureSceneDirectedNegativeDistanceTemplate": {
+    "value": "Location {{secondaryX}} is {{difference}} degrees colder than location {{primaryX}}."
   },
   "fish": {
     "value": "fish"
