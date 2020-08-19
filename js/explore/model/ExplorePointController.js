@@ -9,6 +9,8 @@
 
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
 import numberLineDistance from '../../numberLineDistance.js';
+import merge from '../../../../phet-core/js/merge.js';
+import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
 class ExplorePointController extends PointController {
 
@@ -19,9 +21,12 @@ class ExplorePointController extends PointController {
    * @param {Object} [options]
    */
   constructor( isPositionInBoundsFunction, options ) {
+    options = merge( { lockToNumberLine: LockToNumberLine.NEVER }, options );
+    assert && assert( options.lockToNumberLine === LockToNumberLine.NEVER, 'lockToNumberLine should only be set to NEVER if set' );
+
     super( options );
 
-    // @private
+    // @public (read-only)
     this.isPositionInBoundsFunction = isPositionInBoundsFunction;
   }
 

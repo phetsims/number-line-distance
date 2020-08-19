@@ -7,17 +7,15 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import NLDBaseModel from '../../common/model/NLDBaseModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Range from '../../../../dot/js/Range.js';
-import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 import ExplorePointController from './ExplorePointController.js';
+import SceneModel from './SceneModel.js';
 
-class ElevationSceneModel extends NLDBaseModel {
+class ElevationSceneModel extends SceneModel {
 
   /**
    * @param {Tandem} tandem
@@ -35,42 +33,21 @@ class ElevationSceneModel extends NLDBaseModel {
       350, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).y,
       750, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).y
     );
-    const isPositionOverBounds = position => elevationAreaBounds.containsPoint( position );
+    const isPositionInBounds = position => elevationAreaBounds.containsPoint( position );
 
     super( tandem, numberLine, [
-      new ExplorePointController( isPositionOverBounds, {
+      new ExplorePointController( isPositionInBounds, {
         numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.NEVER,
         color: 'black'
       } ),
-      new ExplorePointController( isPositionOverBounds, {
+      new ExplorePointController( isPositionInBounds, {
         numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.NEVER,
         color: '#446ab7'
       } )
     ] );
 
     // @public (readonly) the bounds where point controllers can be
     this.elevationAreaBounds = elevationAreaBounds;
-
-    // Handles attaching and detaching number line points to the point controllers whenever they enter or leave the bounds
-    // TODO: consider moving this block of code into NLDExploreModel
-    this.pointControllers.forEach( pointController => {
-      pointController.positionProperty.link( position => {
-        if ( isPositionOverBounds( position ) && !pointController.isControllingNumberLinePoint() && pointController.isDraggingProperty.value ) {
-          const numberLinePoint = new NumberLinePoint( numberLine, {
-            controller: pointController,
-            initialValue: numberLine.modelPositionToValue( position ),
-            initialColor: pointController.color
-          } );
-          numberLine.addPoint( numberLinePoint );
-          pointController.associateWithNumberLinePoint( numberLinePoint );
-        } else if ( !isPositionOverBounds( position ) && pointController.isControllingNumberLinePoint() ) {
-          pointController.removePointsFromNumberLines();
-          pointController.clearNumberLinePoints();
-        }
-      } );
-    } );
   }
 
   /**

@@ -7,14 +7,13 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import NLDBaseModel from '../../common/model/NLDBaseModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import PointController from '../../../../number-line-common/js/common/model/PointController.js';
 import Range from '../../../../dot/js/Range.js';
-import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
+import SceneModel from './SceneModel.js';
+import ExplorePointController from './ExplorePointController.js';
 
-class TemperatureSceneModel extends NLDBaseModel {
+class TemperatureSceneModel extends SceneModel {
 
   /**
    * @param {Tandem} tandem
@@ -26,17 +25,16 @@ class TemperatureSceneModel extends NLDBaseModel {
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
       initialDisplayedRange: new Range( -50, 50 )
     } );
+
+    //TODO:
     super( tandem, numberLine, [
-      new PointController( {
-        numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.NEVER
+      new ExplorePointController( () => false, {
+        numberLines: [ numberLine ]
       } ),
-      new PointController( {
-        numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.NEVER
+      new ExplorePointController( () => false, {
+        numberLines: [ numberLine ]
       } )
     ] );
-    //TODO:
   }
 
   /**
