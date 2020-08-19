@@ -20,6 +20,8 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Util from '../../../../dot/js/Utils.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 const aString = numberLineDistanceStrings.symbol.a;
 const bString = numberLineDistanceStrings.symbol.b;
@@ -27,6 +29,8 @@ const temperatureSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings
 const temperatureSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedPositiveDistanceTemplate;
 const temperatureSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedNegativeDistanceTemplate;
 const degreesCelsiusString = numberLineDistanceStrings.symbol.degreesCelsius;
+
+const REPRESENTATION_FONT = new PhetFont( 20 );
 
 class TemperatureSceneView extends Node {
 
@@ -98,7 +102,19 @@ class TemperatureSceneView extends Node {
       }
     );
 
-    this.addChild( new NLDBaseView( model, new Node(), new Node(), distanceDescriptionProperty ) );
+    // Texts that represent the point controllers in the swap area at the bottom left
+    const aText = new Text( aString, { font: REPRESENTATION_FONT } );
+    const bText = new Text( bString, { font: REPRESENTATION_FONT } );
+
+    this.addChild( new NLDBaseView( model, aText, bText, distanceDescriptionProperty ) );
+
+    // Links the color of the point controller with the representation texts
+    model.pointControllers[ 0 ].positionProperty.link( () => {
+      aText.fill = model.pointControllers[ 0 ].color;
+    } );
+    model.pointControllers[ 1 ].positionProperty.link( () => {
+      bText.fill = model.pointControllers[ 1 ].color;
+    } );
 
     //TODO: temporary rectangle
     this.addChild( new Rectangle( model.temperatureAreaBounds, { stroke: 'black' } ) );
