@@ -16,6 +16,7 @@ import StringProperty from '../../../../axon/js/StringProperty.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 
 const degreesCelsiusString = numberLineDistanceStrings.symbol.degreesCelsius;
 
@@ -39,9 +40,12 @@ class TemperatureSceneView extends Node {
 
     this.addChild( new NLDBaseView( model, new Node(), new Node(), new StringProperty( 'TODO:' ) ) );
 
+    //TODO: temporary rectangle
+    this.addChild( new Rectangle( model.temperatureAreaBounds, { stroke: 'black' } ) );
+
     // point controllers
     const pointControllerNodeLayer = new Node( {
-      children: model.pointControllers.map( pointController => new PointControllerNode( pointController ) )
+      children: model.pointControllers.map( pointController => new PointControllerNode( pointController, { connectorLine: false } ) )
     } );
     this.addChild( pointControllerNodeLayer );
 

@@ -12,6 +12,7 @@ import NLDConstants from '../../common/NLDConstants.js';
 import Range from '../../../../dot/js/Range.js';
 import SceneModel from './SceneModel.js';
 import ExplorePointController from './ExplorePointController.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 
 class TemperatureSceneModel extends SceneModel {
 
@@ -26,15 +27,24 @@ class TemperatureSceneModel extends SceneModel {
       initialDisplayedRange: new Range( -50, 50 )
     } );
 
+    const temperatureAreaBounds = new Bounds2(
+      numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).x, 300,
+      numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x, 400
+    );
+    const isPositionInBounds = position => temperatureAreaBounds.containsPoint( position );
+
     //TODO:
     super( tandem, numberLine, [
-      new ExplorePointController( () => false, {
+      new ExplorePointController( isPositionInBounds, {
         numberLines: [ numberLine ]
       } ),
-      new ExplorePointController( () => false, {
+      new ExplorePointController( isPositionInBounds, {
         numberLines: [ numberLine ]
       } )
     ] );
+
+    // @public (readonly) the bounds where point controllers can be
+    this.temperatureAreaBounds = temperatureAreaBounds;
   }
 
   /**

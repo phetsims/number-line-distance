@@ -28,9 +28,8 @@ class ElevationSceneModel extends SceneModel {
       initialDisplayedRange: new Range( -20, 20 )
     } );
 
-    // TODO: get real bounds
     const elevationAreaBounds = new Bounds2(
-      350, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).y,
+      300, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).y,
       750, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).y
     );
     const isPositionInBounds = position => elevationAreaBounds.containsPoint( position );
