@@ -11,7 +11,7 @@ import SpatializedNumberLine from '../../../../number-line-common/js/common/mode
 import NLDConstants from '../../common/NLDConstants.js';
 import Range from '../../../../dot/js/Range.js';
 import SceneModel from './SceneModel.js';
-import ExplorePointController from './ExplorePointController.js';
+import TemperaturePointController from './TemperaturePointController.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 
 class TemperatureSceneModel extends SceneModel {
@@ -35,10 +35,10 @@ class TemperatureSceneModel extends SceneModel {
 
     //TODO:
     super( tandem, numberLine, [
-      new ExplorePointController( isPositionInBounds, {
+      new TemperaturePointController( isPositionInBounds, {
         numberLines: [ numberLine ]
       } ),
-      new ExplorePointController( isPositionInBounds, {
+      new TemperaturePointController( isPositionInBounds, {
         numberLines: [ numberLine ]
       } )
     ] );

@@ -12,7 +12,6 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene2mockup from '../../../images/explorescene2mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
-import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
@@ -22,6 +21,7 @@ import DistanceRepresentation from '../../common/model/DistanceRepresentation.js
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import TemperaturePointControllerNode from './TemperaturePointControllerNode.js';
 
 const aString = numberLineDistanceStrings.symbol.a;
 const bString = numberLineDistanceStrings.symbol.b;
@@ -119,15 +119,15 @@ class TemperatureSceneView extends Node {
     //TODO: temporary rectangle
     this.addChild( new Rectangle( model.temperatureAreaBounds, { stroke: 'black' } ) );
 
-    // point controllers
-    const pointControllerNodeLayer = new Node( {
-      children: model.pointControllers.map( pointController => new PointControllerNode( pointController, { connectorLine: false } ) )
-    } );
-    this.addChild( pointControllerNodeLayer );
-
     // number line
     const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: degreesCelsiusString } );
     this.addChild( numberLineNode );
+
+    // point controllers
+    const pointControllerNodeLayer = new Node( {
+      children: model.pointControllers.map( pointController => new TemperaturePointControllerNode( pointController, 'TODO:' ) )
+    } );
+    this.addChild( pointControllerNodeLayer );
   }
 
 }
