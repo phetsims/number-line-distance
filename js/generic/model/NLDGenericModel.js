@@ -22,7 +22,8 @@ class NLDGenericModel extends NLDBaseModel {
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center, {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 185,
-      initialDisplayedRange: NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 0 ]
+      initialDisplayedRange: NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 0 ],
+      preventOverlap: false
     } );
 
     // Changes the center position of the number line depending on its orientation
