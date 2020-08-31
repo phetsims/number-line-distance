@@ -85,8 +85,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
         const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
         const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
-        const insetVector = ( model.numberLine.orientationProperty.value === Orientation.HORIZONTAL )
-                            ? new Vector2( insetSize, 0 ) : new Vector2( 0, -insetSize );
+        const insetVector = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
+                            new Vector2( insetSize, 0 ) :
+                            new Vector2( 0, -insetSize );
         const endPointPositionMin = model.numberLine.valueToModelPosition( displayedRange.min ).minus( insetVector );
         const endPointPositionMax = model.numberLine.valueToModelPosition( displayedRange.max ).plus( insetVector );
         const value0 = model.numberLine.modelPositionToValue( position0 );
