@@ -41,7 +41,8 @@ class ExplorePointController extends PointController {
   proposePosition( proposedPosition ) {
     if ( this.isControllingNumberLinePoint() && this.isPositionInBoundsFunction( proposedPosition ) ) {
       super.proposePosition( proposedPosition );
-    } else {
+    }
+    else {
       this.positionProperty.value = proposedPosition;
     }
   }

@@ -92,7 +92,8 @@ class TemperatureSceneView extends Node {
         }
         if ( difference > 0 ) {
           return StringUtils.fillIn( temperatureSceneDirectedPositiveDistanceTemplateString, fillInValues );
-        } else if ( difference < 0 ) {
+        }
+        else if ( difference < 0 ) {
           return StringUtils.fillIn( temperatureSceneDirectedNegativeDistanceTemplateString, fillInValues );
         }
 

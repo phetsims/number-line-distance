@@ -75,7 +75,7 @@ class DistanceStatementNode extends Node {
       model.pointControllers.forEach( ( pointController, i ) => {
         valueProperties[ i ].link( value => {
           if ( value !== INVALID_VALUE && pointController.isControllingNumberLinePoint()
-            && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
+               && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
             pointController.numberLinePoints.get( 0 ).valueProperty.value = value;
           }
         } );
@@ -93,7 +93,8 @@ class DistanceStatementNode extends Node {
         } )
       ];
 
-    } else {
+    }
+    else {
 
       const textNodes = [
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS ),
@@ -161,7 +162,8 @@ class DistanceStatementNode extends Node {
         if ( orientation === Orientation.HORIZONTAL ) {
           alternativeTexts[ 0 ].text = NLDConstants.X_1_STRING;
           alternativeTexts[ 1 ].text = NLDConstants.X_2_STRING;
-        } else {
+        }
+        else {
           alternativeTexts[ 0 ].text = NLDConstants.Y_1_STRING;
           alternativeTexts[ 1 ].text = NLDConstants.Y_2_STRING;
         }

@@ -50,10 +50,10 @@ const NLDConstants = {
     ScreenView.DEFAULT_LAYOUT_BOUNDS.centerY + SIDE_BOX_HEIGHT / 2
   ),
 
-  X_1_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: xString, subscript: 1 }),
-  X_2_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: xString, subscript: 2 }),
-  Y_1_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: yString, subscript: 1 }),
-  Y_2_STRING: StringUtils.fillIn(variableSubscriptTemplate, { variable: yString, subscript: 2 })
+  X_1_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: xString, subscript: 1 } ),
+  X_2_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: xString, subscript: 2 } ),
+  Y_1_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: yString, subscript: 1 } ),
+  Y_2_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: yString, subscript: 2 } )
 
 };
 

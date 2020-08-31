@@ -88,7 +88,8 @@ class ElevationSceneView extends Node {
         }
         if ( difference > 0 ) {
           return StringUtils.fillIn( elevationSceneDirectedPositiveDistanceTemplateString, fillInValues );
-        } else if ( difference < 0 ) {
+        }
+        else if ( difference < 0 ) {
           return StringUtils.fillIn( elevationSceneDirectedNegativeDistanceTemplateString, fillInValues );
         }
 

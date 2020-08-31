@@ -99,7 +99,8 @@ class NLDGenericScreenView extends ScreenView {
         }
         if ( difference > 0 ) {
           return StringUtils.fillIn( genericDirectedPositiveDistanceTemplateString, fillInValues );
-        } else if ( difference < 0 ) {
+        }
+        else if ( difference < 0 ) {
           return StringUtils.fillIn( genericDirectedNegativeDistanceTemplateString, fillInValues );
         }
 

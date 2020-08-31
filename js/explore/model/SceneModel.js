@@ -24,7 +24,7 @@ class SceneModel extends NLDBaseModel {
     pointControllers.forEach( pointController => {
       pointController.positionProperty.link( position => {
         if ( pointController.isPositionInBoundsFunction( position )
-          && !pointController.isControllingNumberLinePoint() && pointController.isDraggingProperty.value ) {
+             && !pointController.isControllingNumberLinePoint() && pointController.isDraggingProperty.value ) {
           const numberLinePoint = new NumberLinePoint( numberLine, {
             controller: pointController,
             initialValue: numberLine.modelPositionToValue( position ),
@@ -32,8 +32,9 @@ class SceneModel extends NLDBaseModel {
           } );
           numberLine.addPoint( numberLinePoint );
           pointController.associateWithNumberLinePoint( numberLinePoint );
-        } else if ( !pointController.isPositionInBoundsFunction( position )
-          && pointController.isControllingNumberLinePoint() ) {
+        }
+        else if ( !pointController.isPositionInBoundsFunction( position )
+                  && pointController.isControllingNumberLinePoint() ) {
           pointController.removePointsFromNumberLines();
           pointController.clearNumberLinePoints();
         }

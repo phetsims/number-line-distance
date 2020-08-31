@@ -93,7 +93,8 @@ class DistanceSceneView extends Node {
         }
         if ( difference > 0 ) {
           return StringUtils.fillIn( distanceSceneDirectedPositiveDistanceTemplateString, fillInValues );
-        } else if ( difference < 0 ) {
+        }
+        else if ( difference < 0 ) {
           return StringUtils.fillIn( distanceSceneDirectedNegativeDistanceTemplateString, fillInValues );
         }
 

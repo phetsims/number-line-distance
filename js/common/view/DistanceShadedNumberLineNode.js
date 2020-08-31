@@ -86,7 +86,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
         const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
         const insetVector = ( model.numberLine.orientationProperty.value === Orientation.HORIZONTAL )
-          ? new Vector2( insetSize, 0 ) : new Vector2( 0, -insetSize );
+                            ? new Vector2( insetSize, 0 ) : new Vector2( 0, -insetSize );
         const endPointPositionMin = model.numberLine.valueToModelPosition( displayedRange.min ).minus( insetVector );
         const endPointPositionMax = model.numberLine.valueToModelPosition( displayedRange.max ).plus( insetVector );
         const value0 = model.numberLine.modelPositionToValue( position0 );
@@ -98,12 +98,14 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         // cannot use Util.clamp because, for example, value0 can be greater than displayedRange.max but still less than endPointValueMax
         if ( value0 < displayedRange.min ) {
           endPointPosition0 = endPointPositionMin;
-        } else if ( value0 > displayedRange.max ) {
+        }
+        else if ( value0 > displayedRange.max ) {
           endPointPosition0 = endPointPositionMax;
         }
         if ( value1 < displayedRange.min ) {
           endPointPosition1 = endPointPositionMin;
-        } else if ( value1 > displayedRange.max ) {
+        }
+        else if ( value1 > displayedRange.max ) {
           endPointPosition1 = endPointPositionMax;
         }
 
@@ -122,7 +124,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( endPointPosition1.x, endPointPosition1.y, endPointPosition0.x, endPointPosition0.y, scaledArrowShapeOptions );
-          } else if ( !isPrimaryNodeSwapped && displayedRange.min <= value1 && value1 <= displayedRange.max ) {
+          }
+          else if ( !isPrimaryNodeSwapped && displayedRange.min <= value1 && value1 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( endPointPosition0.x, endPointPosition0.y, endPointPosition1.x, endPointPosition1.y, scaledArrowShapeOptions );
           }
@@ -146,7 +149,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         if ( orientation === Orientation.HORIZONTAL ) {
           distanceTextBackground.bottom = endPointPosition0.y - DISTANCE_TEXT_PADDING;
           distanceTextBackground.centerX = ( endPointPosition1.x + endPointPosition0.x ) / 2;
-        } else {
+        }
+        else {
           distanceTextBackground.right = endPointPosition0.x - DISTANCE_TEXT_PADDING;
           distanceTextBackground.centerY = ( endPointPosition1.y + endPointPosition0.y ) / 2;
         }

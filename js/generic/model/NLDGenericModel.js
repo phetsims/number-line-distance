@@ -30,7 +30,8 @@ class NLDGenericModel extends NLDBaseModel {
     numberLine.orientationProperty.link( orientation => {
       if ( orientation === Orientation.HORIZONTAL ) {
         numberLine.centerPositionProperty.value = NLDConstants.NLD_LAYOUT_BOUNDS.center;
-      } else {
+      }
+      else {
         numberLine.centerPositionProperty.value = NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, 50 );
       }
     } );
@@ -51,7 +52,7 @@ class NLDGenericModel extends NLDBaseModel {
     // change box bounds when number line orientation changes
     this.numberLine.orientationProperty.link( orientation => {
       this.pointControllerBoxProperty.value = ( orientation === Orientation.HORIZONTAL ) ?
-        NLDConstants.BOTTOM_BOX_BOUNDS : NLDConstants.SIDE_BOX_BOUNDS;
+                                              NLDConstants.BOTTOM_BOX_BOUNDS : NLDConstants.SIDE_BOX_BOUNDS;
     } );
   }
 

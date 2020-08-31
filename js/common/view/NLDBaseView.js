@@ -186,7 +186,8 @@ class NLDBaseView extends Node {
       if ( isPrimaryNodeSwapped ) {
         firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationTwo ];
         secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationOne ];
-      } else {
+      }
+      else {
         firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationOne ];
         secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationTwo ];
       }
@@ -196,10 +197,11 @@ class NLDBaseView extends Node {
 
     // switches the firstNodeText and secondNodeText to use either x or y based on number line orientation
     model.numberLine.orientationProperty.link( orientation => {
-      if (orientation === Orientation.HORIZONTAL) {
+      if ( orientation === Orientation.HORIZONTAL ) {
         firstNodeText.text = `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`;
         secondNodeText.text = `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`;
-      } else {
+      }
+      else {
         firstNodeText.text = `${NLDConstants.Y_1_STRING} ${MathSymbols.EQUAL_TO}`;
         secondNodeText.text = `${NLDConstants.Y_2_STRING} ${MathSymbols.EQUAL_TO}`;
       }
