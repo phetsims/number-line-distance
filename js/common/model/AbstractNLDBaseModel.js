@@ -16,7 +16,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
-class NLDBaseModel {
+class AbstractNLDBaseModel {
 
   /**
    * @param {Tandem} tandem
@@ -173,5 +173,5 @@ class NLDBaseModel {
 
 }
 
-numberLineDistance.register( 'NLDBaseModel', NLDBaseModel );
-export default NLDBaseModel;
+numberLineDistance.register( 'AbstractNLDBaseModel', AbstractNLDBaseModel );
+export default AbstractNLDBaseModel;

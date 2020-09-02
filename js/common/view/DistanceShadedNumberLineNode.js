@@ -42,7 +42,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
   /**
    *
-   * @param {NLDBaseModel} model
+   * @param {AbstractNLDBaseModel} model
    * @param {Object} [options]
    */
   constructor( model, options ) {

@@ -6,11 +6,11 @@
  * @author Saurabh Totey
  */
 
-import NLDBaseModel from '../../common/model/NLDBaseModel.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 
-class SceneModel extends NLDBaseModel {
+class SceneModel extends AbstractNLDBaseModel {
 
   /**
    * @param {Tandem} tandem

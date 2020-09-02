@@ -36,7 +36,7 @@ const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 );
 class DistanceStatementNode extends Node {
 
   /**
-   * @param {NLDBaseModel} model,
+   * @param {AbstractNLDBaseModel} model,
    * @param {Object} [options]
    */
   constructor( model, options ) {

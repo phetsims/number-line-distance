@@ -7,13 +7,13 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import NLDBaseModel from '../../common/model/NLDBaseModel.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
 
-class NLDGenericModel extends NLDBaseModel {
+class NLDGenericModel extends AbstractNLDBaseModel {
 
   /**
    * @param {Tandem} tandem
