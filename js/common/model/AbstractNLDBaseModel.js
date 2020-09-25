@@ -41,8 +41,12 @@ class AbstractNLDBaseModel {
     // @public {SpatializedNumberLine}
     this.numberLine = numberLine;
 
-    // @public {PointController[]}
-    this.pointControllers = pointControllers;
+    // @public {PointController} - the point controllers in the sim; this.pointControllerOne is the 'primary' point controller
+    // unless this.isPrimaryNodeSwappedProperty in which case this.pointControllerTwo is the 'primary' point controller
+    // ordering of point controllers is necessary for all sorts of behaviours in this sim (e.g. directed distance,
+    // distance statements, etc.)
+    this.pointControllerOne = pointControllers[ 0 ];
+    this.pointControllerTwo = pointControllers[ 1 ];
 
     // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to; can change with numberline orientation
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
@@ -139,6 +143,19 @@ class AbstractNLDBaseModel {
 
     pointController.goToPosition( destination, animate );
   }
+
+  /**
+   * Get both point controllers as a list
+   * Always return this.pointControllerOne as the first element of the list
+   * Method doesn't account for ordering point controllers by which one is the primary one
+   *
+   * @returns {PointController[]}
+   * @public
+   */
+  getPointControllers() {
+    return [ this.pointControllerOne, this.pointControllerTwo ];
+  }
+  get pointControllers() { return this.getPointControllers(); }
 
   /**
    * A function that returns whether both point controllers are controlling number line points that live on the numberline
