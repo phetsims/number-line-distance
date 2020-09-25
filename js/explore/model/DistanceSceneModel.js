@@ -25,14 +25,16 @@ class DistanceSceneModel extends SceneModel {
     } );
 
     //TODO:
-    super( tandem, numberLine, [
+    super(
+      tandem,
+      numberLine,
       new ExplorePointController( () => false, {
         numberLines: [ numberLine ]
       } ),
       new ExplorePointController( () => false, {
         numberLines: [ numberLine ]
       } )
-    ] );
+    );
   }
 
   /**

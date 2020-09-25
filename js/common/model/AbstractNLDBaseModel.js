@@ -21,10 +21,10 @@ class AbstractNLDBaseModel {
   /**
    * @param {Tandem} tandem
    * @param {SpatializedNumberLine} numberLine
-   * @param {PointController[]} pointControllers
+   * @param {PointController} pointControllerOne
+   * @param {PointController} pointControllerTwo
    */
-  constructor( tandem, numberLine, pointControllers ) {
-    assert && assert( pointControllers.length === 2, 'all NLD models should only have 2 point controllers' );
+  constructor( tandem, numberLine, pointControllerOne, pointControllerTwo ) {
 
     // @public {Property<Boolean>}
     this.distanceLabelsVisibleProperty = new BooleanProperty( false );
@@ -45,8 +45,8 @@ class AbstractNLDBaseModel {
     // unless this.isPrimaryNodeSwappedProperty in which case this.pointControllerTwo is the 'primary' point controller
     // ordering of point controllers is necessary for all sorts of behaviours in this sim (e.g. directed distance,
     // distance statements, etc.)
-    this.pointControllerOne = pointControllers[ 0 ];
-    this.pointControllerTwo = pointControllers[ 1 ];
+    this.pointControllerOne = pointControllerOne;
+    this.pointControllerTwo = pointControllerTwo;
 
     // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to; can change with numberline orientation
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );

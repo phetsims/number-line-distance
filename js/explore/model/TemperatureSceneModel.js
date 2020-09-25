@@ -34,14 +34,16 @@ class TemperatureSceneModel extends SceneModel {
     const isPositionInBounds = position => temperatureAreaBounds.containsPoint( position );
 
     //TODO:
-    super( tandem, numberLine, [
+    super(
+      tandem,
+      numberLine,
       new TemperaturePointController( isPositionInBounds, {
         numberLines: [ numberLine ]
       } ),
       new TemperaturePointController( isPositionInBounds, {
         numberLines: [ numberLine ]
       } )
-    ] );
+    );
 
     // @public (readonly) the bounds where point controllers can be
     this.temperatureAreaBounds = temperatureAreaBounds;

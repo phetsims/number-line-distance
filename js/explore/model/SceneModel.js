@@ -15,13 +15,14 @@ class SceneModel extends AbstractNLDBaseModel {
   /**
    * @param {Tandem} tandem
    * @param {SpatializedNumberLine} numberLine
-   * @param {ExplorePointController[]} pointControllers
+   * @param {ExplorePointController} pointControllerOne
+   * @param {ExplorePointController} pointControllerTwo
    */
-  constructor( tandem, numberLine, pointControllers ) {
-    super( tandem, numberLine, pointControllers );
+  constructor( tandem, numberLine, pointControllerOne, pointControllerTwo ) {
+    super( tandem, numberLine, pointControllerOne, pointControllerTwo );
 
     // Handles attaching and detaching number line points to the point controllers whenever they enter or leave the bounds
-    pointControllers.forEach( pointController => {
+    this.pointControllers.forEach( pointController => {
       pointController.positionProperty.link( position => {
         if ( pointController.isPositionInBoundsFunction( position )
              && !pointController.isControllingNumberLinePoint() && pointController.isDraggingProperty.value ) {
