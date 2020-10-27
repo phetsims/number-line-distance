@@ -14,7 +14,7 @@ import DistanceSceneView from './DistanceSceneView.js';
 import TemperatureSceneView from './TemperatureSceneView.js';
 import ElevationSceneView from './ElevationSceneView.js';
 import NLDScene from '../model/NLDScene.js';
-import RadioButtonGroup from '../../../../sun/js/buttons/RadioButtonGroup.js';
+import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 
 class NLDExploreScreenView extends ScreenView {
@@ -49,7 +49,7 @@ class NLDExploreScreenView extends ScreenView {
     );
 
     // create scene selector radio buttons
-    const sceneSelectorRadioButtonGroup = new RadioButtonGroup(
+    const sceneSelectorRadioButtonGroup = new RectangularRadioButtonGroup(
       model.selectedSceneProperty,
       sceneSelectionButtonsContent,
       {
