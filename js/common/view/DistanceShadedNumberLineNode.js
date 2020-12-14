@@ -28,14 +28,6 @@ const ARROW_SHAPE_OPTIONS = {
   headWidth: 14,
   headHeight: 14
 };
-// maps a half-width of a range (eg -10 to 10 becomes 10, -30 to 30 becomes 30, etc.) to a scaling factor for the arrow
-const ARROW_SCALE_FACTOR = {
-  10: 1,
-  20: 0.7,
-  30: 0.5,
-  50: 0.35,
-  100: 0.25
-};
 const DISTANCE_TEXT_PADDING = 50;
 
 class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
@@ -83,7 +75,6 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         pathNode.visible = true;
 
         // gets number line values for the endpoints (will be clamped if the point is outside the displayed range)
-        const halfRange = ( displayedRange.max - displayedRange.min ) / 2;
         const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
         const insetVector = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
                             new Vector2( insetSize, 0 ) :
@@ -117,11 +108,25 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
         // that is on the number line
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
-          const scale = ARROW_SCALE_FACTOR[ halfRange ];
+
+          // scales the arrow based on how close the point controllers are
+          // if the point controllers are too close, then the arrow might be too big and be distorted
+          // if the point controllers are closer than 1/20th of the number line's range, they are scaled
+          // TODO: current scale determination is arbitrary (e.g. the 1/20th number is pulled from wanting to not scale
+          //  on the -10 to 10 range, but then actually determining the new scale by dividing the proportion of the
+          //  arrow compared to the numberline's range by 0.05 is arbitrary)
+          // TODO: this needs to scale the tail too
+          // see #7
+          let scale = 1;
+          const proportionOfArrowToNumberLine = Math.abs( value1 - value0 ) / ( displayedRange.max - displayedRange.min );
+          if ( proportionOfArrowToNumberLine < 0.05 ) {
+            scale = proportionOfArrowToNumberLine / 0.05;
+          }
           const scaledArrowShapeOptions = merge( {}, ARROW_SHAPE_OPTIONS, {
             headWidth: ARROW_SHAPE_OPTIONS.headWidth * scale,
             headHeight: ARROW_SHAPE_OPTIONS.headHeight * scale
           } );
+
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( endPointPosition1.x, endPointPosition1.y, endPointPosition0.x, endPointPosition0.y, scaledArrowShapeOptions );
