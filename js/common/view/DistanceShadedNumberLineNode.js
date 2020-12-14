@@ -118,7 +118,10 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           // TODO: this needs to scale the tail too
           // see #7
           let scale = 1;
-          const proportionOfArrowToNumberLine = Math.abs( value1 - value0 ) / ( displayedRange.max - displayedRange.min );
+          const arrowModelWidth = Math.abs(
+            model.numberLine.modelPositionToValue( endPointPosition1 ) - model.numberLine.modelPositionToValue( endPointPosition0 )
+          );
+          const proportionOfArrowToNumberLine = arrowModelWidth / ( displayedRange.max - displayedRange.min );
           if ( proportionOfArrowToNumberLine < 0.05 ) {
             scale = proportionOfArrowToNumberLine / 0.05;
           }
