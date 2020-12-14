@@ -126,7 +126,10 @@ class TemperatureSceneView extends Node {
 
     // point controllers
     const pointControllerNodeLayer = new Node( {
-      children: model.pointControllers.map( pointController => new TemperaturePointControllerNode( pointController, 'TODO:' ) )
+      children: [
+        new TemperaturePointControllerNode( model.pointControllerOne, aString ),
+        new TemperaturePointControllerNode( model.pointControllerTwo, bString )
+      ]
     } );
     this.addChild( pointControllerNodeLayer );
   }
