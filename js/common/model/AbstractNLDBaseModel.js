@@ -15,6 +15,7 @@ import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import merge from '../../../../phet-core/js/merge.js';
 
 class AbstractNLDBaseModel {
 
@@ -23,8 +24,13 @@ class AbstractNLDBaseModel {
    * @param {SpatializedNumberLine} numberLine
    * @param {PointController} pointControllerOne
    * @param {PointController} pointControllerTwo
+   * @param {Object} [options]
    */
-  constructor( tandem, numberLine, pointControllerOne, pointControllerTwo ) {
+  constructor( tandem, numberLine, pointControllerOne, pointControllerTwo, options ) {
+
+    this.options = merge( {
+      positionInBoxOffset: new Vector2( 0, 0 )
+    }, options );
 
     // @public {Property<Boolean>}
     this.distanceLabelsVisibleProperty = new BooleanProperty( false );
@@ -126,7 +132,7 @@ class AbstractNLDBaseModel {
       destination = new Vector2(
         NLDConstants.BOTTOM_BOX_BOUNDS.minX + spacing / 2 + spacing * index,
         NLDConstants.BOTTOM_BOX_BOUNDS.centerY
-      );
+      ).plus( this.options.positionInBoxOffset );
     }
     else if ( this.pointControllerBoxProperty.value === NLDConstants.SIDE_BOX_BOUNDS ) {
 
@@ -135,7 +141,7 @@ class AbstractNLDBaseModel {
       destination = new Vector2(
         NLDConstants.SIDE_BOX_BOUNDS.centerX,
         NLDConstants.SIDE_BOX_BOUNDS.minY + spacing / 2 + spacing * index
-      );
+      ).plus( this.options.positionInBoxOffset );
     }
     else {
       assert && assert( false, 'cannot put point controller away if box is not the bottom box or side box' );

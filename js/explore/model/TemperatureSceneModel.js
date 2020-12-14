@@ -13,6 +13,10 @@ import Range from '../../../../dot/js/Range.js';
 import SceneModel from './SceneModel.js';
 import TemperaturePointController from './TemperaturePointController.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+
+// constants
+const TEMPERATURE_POINT_CONTROLLER_BOX_SCALE = 0.4;
 
 class TemperatureSceneModel extends SceneModel {
 
@@ -33,16 +37,18 @@ class TemperatureSceneModel extends SceneModel {
     );
     const isPositionInBounds = position => temperatureAreaBounds.containsPoint( position );
 
-    //TODO:
     super(
       tandem,
       numberLine,
       new TemperaturePointController( isPositionInBounds, {
-        numberLines: [ numberLine ]
+        numberLines: [ numberLine ],
+        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE
       } ),
       new TemperaturePointController( isPositionInBounds, {
-        numberLines: [ numberLine ]
-      } )
+        numberLines: [ numberLine ],
+        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE
+      } ),
+      { positionInBoxOffset: new Vector2( 0, 20 ) } // empirically determined
     );
 
     // @public (readonly) the bounds where point controllers can be
