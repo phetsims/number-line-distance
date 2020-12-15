@@ -125,7 +125,7 @@ class TemperatureSceneView extends Node {
       model.temperatureAreaBounds.minY,
       model.temperatureAreaBounds.maxX,
       model.temperatureAreaBounds.maxY
-    ).addColorStop( 0, 'blue' ).addColorStop( 0.5, 'white' ).addColorStop( 1, 'red' );
+    ).addColorStop( 0, '#3d4798' ).addColorStop( 0.5, 'white' ).addColorStop( 1, '#ba352d' );
     this.addChild( new Rectangle( model.temperatureAreaBounds, {
       fill: rectangleGradient
     } ) );
