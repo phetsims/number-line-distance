@@ -118,8 +118,9 @@ class TemperatureSceneView extends Node {
       bText.fill = model.pointControllers[ 1 ].color;
     } );
 
-    // TODO: get better colors for the gradient and then move it to where the temperaturePointControllers can query
-    //  the color
+    // TODO: find if there is a way to query a color from a gradient: if that's possible, move this gradient into a
+    //  model so that the temperature point controllers can use this to set their color; otherwise, use a function
+    //  to map temperature to color (like NLI's TemperatureToColorMapper)
     const rectangleGradient = new LinearGradient(
       model.temperatureAreaBounds.minX,
       model.temperatureAreaBounds.minY,
