@@ -20,7 +20,9 @@ class TemperaturePointController extends ExplorePointController {
   constructor( isPositionInBoundsFunction, options ) {
     super( isPositionInBoundsFunction, options );
 
-    // @public (read-only) PaintColorProperty
+    // @public (read-only) PaintColorProperty is different from this.color where this.color is the point controller's
+    //  color for the purposes of the other number-line classes; this colorProperty instead is just representative of
+    //  the temperature of this point controller
     this.colorProperty = new PaintColorProperty( 'white' );
   }
 

@@ -36,7 +36,8 @@ class TemperaturePointControllerNode extends PointControllerNode {
 
     options = merge( {
       node: compositeThermometerNode,
-      connectorLine: false
+      connectorLine: false,
+      thermometerFluidHighlightColor: new Color( 0, 210, 0 )
     }, options );
 
     // a property that reflects the value of the point controller
@@ -53,8 +54,8 @@ class TemperaturePointControllerNode extends PointControllerNode {
       pointController.colorProperty,
       {
         thermometerNodeOptions: {
-          fluidMainColor: new Color( 0, 120, 0 ),
-          fluidHighlightColor: new Color( 0, 210, 0 ),
+          fluidMainColor: pointController.color,
+          fluidHighlightColor: options.thermometerFluidHighlightColor,
           backgroundFill: 'rgba( 255, 255, 255, 0.9 )',
           tickSpacingTemperature: 20,
           majorTickLength: 0,

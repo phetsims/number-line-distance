@@ -42,11 +42,13 @@ class TemperatureSceneModel extends SceneModel {
       numberLine,
       new TemperaturePointController( isPositionInBounds, {
         numberLines: [ numberLine ],
-        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE
+        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
+        color: '#693cc2'
       } ),
       new TemperaturePointController( isPositionInBounds, {
         numberLines: [ numberLine ],
-        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE
+        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
+        color: '#52c23c'
       } ),
       { positionInBoxOffset: new Vector2( 0, 20 ) } // empirically determined
     );

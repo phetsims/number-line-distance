@@ -138,7 +138,9 @@ class TemperatureSceneView extends Node {
     // point controllers
     const pointControllerNodeLayer = new Node( {
       children: [
-        new TemperaturePointControllerNode( model.pointControllerOne, aString ),
+        new TemperaturePointControllerNode( model.pointControllerOne, aString, {
+          thermometerFluidHighlightColor: '#ad3dc3'
+        } ),
         new TemperaturePointControllerNode( model.pointControllerTwo, bString )
       ]
     } );
