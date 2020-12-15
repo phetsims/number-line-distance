@@ -22,6 +22,7 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import TemperaturePointControllerNode from './TemperaturePointControllerNode.js';
+import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 
 const aString = numberLineDistanceStrings.symbol.a;
 const bString = numberLineDistanceStrings.symbol.b;
@@ -117,8 +118,17 @@ class TemperatureSceneView extends Node {
       bText.fill = model.pointControllers[ 1 ].color;
     } );
 
-    //TODO: temporary rectangle
-    this.addChild( new Rectangle( model.temperatureAreaBounds, { stroke: 'black' } ) );
+    // TODO: get better colors for the gradient and then move it to where the temperaturePointControllers can query
+    //  the color
+    const rectangleGradient = new LinearGradient(
+      model.temperatureAreaBounds.minX,
+      model.temperatureAreaBounds.minY,
+      model.temperatureAreaBounds.maxX,
+      model.temperatureAreaBounds.maxY
+    ).addColorStop( 0, 'blue' ).addColorStop( 0.5, 'white' ).addColorStop( 1, 'red' );
+    this.addChild( new Rectangle( model.temperatureAreaBounds, {
+      fill: rectangleGradient
+    } ) );
 
     // number line
     const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: degreesCelsiusString } );
