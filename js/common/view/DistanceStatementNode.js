@@ -107,9 +107,10 @@ class DistanceStatementNode extends Node {
         return textHolder;
       } );
 
+      //TODO: check whether the parentheses should only be around negative values if they are the second value in the statement
       valueProperties.forEach( ( valueProperty, i ) => {
         valueProperty.link( value => {
-          textNodes[ i ].text = `${value}`;
+          textNodes[ i ].text = ( value < 0 ) ? `(${value})` : `${value}`;
           textNodes[ i ].center = valueRepresentations[ i ].rectBounds.center;
         } );
       } );
