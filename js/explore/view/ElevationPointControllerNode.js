@@ -7,7 +7,6 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import merge from '../../../../phet-core/js/merge.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 
@@ -20,12 +19,9 @@ class ElevationPointControllerNode extends PointControllerNode {
    * @param {PointController} pointController
    * @param {Image} belowSeaLevelImage - what this node should look like when below sea-level
    * @param {Image} aboveSeaLevelImage - what this node should look like when above sea-level
-   * @param {Object} [options]
    * @public
    */
-  constructor( pointController, belowSeaLevelImage, aboveSeaLevelImage, options ) {
-
-    assert && assert( !options || !options.node, 'options should not include a node for this constructor' );
+  constructor( pointController, belowSeaLevelImage, aboveSeaLevelImage ) {
 
     // dilates each image's touch area
     belowSeaLevelImage.touchArea = belowSeaLevelImage.localBounds.dilated( IMAGE_DILATION );
@@ -34,17 +30,8 @@ class ElevationPointControllerNode extends PointControllerNode {
     // create a node with all the images that will be used to depict this elevatable item
     const compositeImageNode = new Node( { children: [ belowSeaLevelImage, aboveSeaLevelImage ]} );
 
-    options = merge( {
-
-      // pass in the parent node that includes all images as the mode that will control the point
-      node: compositeImageNode,
-
-      connectorLine: false
-
-    }, options );
-
     // update the visibility of the images as the position changes
-    pointController.positionProperty.link( position => {
+    pointController.positionProperty.link( () => {
       if ( pointController.isControllingNumberLinePoint() && pointController.numberLinePoints[ 0 ].valueProperty.value < 0 ) {
         aboveSeaLevelImage.visible = false;
         belowSeaLevelImage.visible = true;
@@ -54,7 +41,10 @@ class ElevationPointControllerNode extends PointControllerNode {
       }
     } );
 
-    super( pointController, options );
+    super( pointController, {
+      node: compositeImageNode,
+      connectorLine: false
+    } );
   }
 
 }
