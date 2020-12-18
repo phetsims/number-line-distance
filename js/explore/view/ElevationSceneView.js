@@ -116,16 +116,20 @@ class ElevationSceneView extends Node {
     //TODO: temporary rectangle
     this.addChild( new Rectangle( model.elevationAreaBounds, { stroke: 'black' } ) );
 
+    const seaLevel = model.numberLine.valueToModelPosition( 0 ).y;
+
     // point controllers
     const pointControllerNodeLayer = new Node( {
       children: [
         new ElevationPointControllerNode(
           model.pointControllerOne,
+          seaLevel,
           new Image( birdInWater, { center: Vector2.ZERO, maxWidth: 65 } ),
           new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
         ),
         new ElevationPointControllerNode(
           model.pointControllerTwo,
+          seaLevel,
           new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 60 } ),
           new Image( fishInAir, { center: Vector2.ZERO, maxWidth: 60 } )
         )

@@ -17,11 +17,12 @@ class ElevationPointControllerNode extends PointControllerNode {
 
   /**
    * @param {PointController} pointController
+   * @param {number} seaLevel - the sea-level in view-coordinates
    * @param {Image} belowSeaLevelImage - what this node should look like when below sea-level
    * @param {Image} aboveSeaLevelImage - what this node should look like when above sea-level
    * @public
    */
-  constructor( pointController, belowSeaLevelImage, aboveSeaLevelImage ) {
+  constructor( pointController, seaLevel, belowSeaLevelImage, aboveSeaLevelImage ) {
 
     // dilates each image's touch area
     belowSeaLevelImage.touchArea = belowSeaLevelImage.localBounds.dilated( IMAGE_DILATION );
@@ -31,9 +32,8 @@ class ElevationPointControllerNode extends PointControllerNode {
     const compositeImageNode = new Node( { children: [ belowSeaLevelImage, aboveSeaLevelImage ]} );
 
     // update the visibility of the images as the position changes
-    // TODO: this doesn't behave the same as it does in NLI: in NLI it doesn't matter if the point controllers are within bounds
-    pointController.positionProperty.link( () => {
-      if ( pointController.isControllingNumberLinePoint() && pointController.numberLinePoints[ 0 ].valueProperty.value < 0 ) {
+    pointController.positionProperty.link( position => {
+      if ( position.y > seaLevel ) {
         aboveSeaLevelImage.visible = false;
         belowSeaLevelImage.visible = true;
       } else {
