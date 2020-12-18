@@ -12,7 +12,7 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene3mockup from '../../../images/explorescene3mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
-import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
+import ElevationPointControllerNode from './ElevationPointControllerNode.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
@@ -20,6 +20,11 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Util from '../../../../dot/js/Utils.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import fishInWater from '../../../../number-line-common/images/fish-water_png.js';
+import fishInAir from '../../../../number-line-common/images/fish-air_png.js';
+import birdInWater from '../../../../number-line-common/images/bird-water_png.js';
+import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
 
 const fishString = numberLineDistanceStrings.fish;
 const birdString = numberLineDistanceStrings.bird;
@@ -106,7 +111,18 @@ class ElevationSceneView extends Node {
 
     // point controllers
     const pointControllerNodeLayer = new Node( {
-      children: model.pointControllers.map( pointController => new PointControllerNode( pointController, { connectorLine: false } ) )
+      children: [
+        new ElevationPointControllerNode(
+          model.pointControllerOne,
+          new Image( birdInWater, { center: Vector2.ZERO, maxWidth: 65 } ),
+          new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
+        ),
+        new ElevationPointControllerNode(
+          model.pointControllerTwo,
+          new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 60 } ),
+          new Image( fishInAir, { center: Vector2.ZERO, maxWidth: 60 } )
+        )
+      ]
     } );
     this.addChild( pointControllerNodeLayer );
 
