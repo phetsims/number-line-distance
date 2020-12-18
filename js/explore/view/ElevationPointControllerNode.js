@@ -31,6 +31,7 @@ class ElevationPointControllerNode extends PointControllerNode {
     const compositeImageNode = new Node( { children: [ belowSeaLevelImage, aboveSeaLevelImage ]} );
 
     // update the visibility of the images as the position changes
+    // TODO: this doesn't behave the same as it does in NLI: in NLI it doesn't matter if the point controllers are within bounds
     pointController.positionProperty.link( () => {
       if ( pointController.isControllingNumberLinePoint() && pointController.numberLinePoints[ 0 ].valueProperty.value < 0 ) {
         aboveSeaLevelImage.visible = false;
