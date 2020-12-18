@@ -104,7 +104,14 @@ class ElevationSceneView extends Node {
       }
     );
 
-    this.addChild( new NLDBaseView( model, new Node(), new Node(), distanceDescriptionProperty ) );
+    this.addChild(
+      new NLDBaseView(
+        model,
+        new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 30 } ),
+        new Image( fishInAir, { center: Vector2.ZERO, maxWidth: 30 } ),
+        distanceDescriptionProperty
+      )
+    );
 
     //TODO: temporary rectangle
     this.addChild( new Rectangle( model.elevationAreaBounds, { stroke: 'black' } ) );
