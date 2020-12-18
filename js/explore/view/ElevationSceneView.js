@@ -118,6 +118,10 @@ class ElevationSceneView extends Node {
 
     const seaLevel = model.numberLine.valueToModelPosition( 0 ).y;
 
+    // number line
+    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersString } );
+    this.addChild( numberLineNode );
+
     // point controllers
     const pointControllerNodeLayer = new Node( {
       children: [
@@ -136,10 +140,6 @@ class ElevationSceneView extends Node {
       ]
     } );
     this.addChild( pointControllerNodeLayer );
-
-    // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersString } );
-    this.addChild( numberLineNode );
   }
 
 }
