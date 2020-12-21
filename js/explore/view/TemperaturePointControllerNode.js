@@ -18,7 +18,7 @@ import Range from '../../../../dot/js/Range.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 
 // constants
-const DEFAULT_VALUE = 0;
+const DEFAULT_TEMPERATURE_VALUE = 0;
 const TOUCH_DILATION = 5;
 
 class TemperaturePointControllerNode extends PointControllerNode {
@@ -45,7 +45,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
       if ( pointController.isControllingNumberLinePoint() && pointController.isPositionInBoundsFunction( position ) ) {
         return pointController.numberLinePoints.get( 0 ).valueProperty.value;
       }
-      return DEFAULT_VALUE;
+      return DEFAULT_TEMPERATURE_VALUE;
     } );
 
     const temperatureAndColorSensorNode = new TemperatureAndColorSensorNode(

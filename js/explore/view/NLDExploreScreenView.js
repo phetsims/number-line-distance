@@ -45,7 +45,7 @@ class NLDExploreScreenView extends ScreenView {
 
     // map the scene selection icons to their enum values (used in the radio button group) TODO:
     const sceneSelectionButtonsContent = NLDScene.VALUES.map(
-      value => ( { value: value, node: new Rectangle( 0, 0, 38, 38 ) } )
+      value => ( { value: value, node: new Rectangle( 0, 0, 38, 38 ) } ) // empirically determined
     );
 
     // create scene selector radio buttons

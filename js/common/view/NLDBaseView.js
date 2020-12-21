@@ -69,7 +69,7 @@ class NLDBaseView extends Node {
 
   /**
    * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view
-   * Is what is used to display x_1 and x_2 or y_1 and y_2 and allows them to be switched
+   * Is what is used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped
    *
    * @param {AbstractNLDBaseModel} model
    * @param {Node} pointControllerRepresentationOne
@@ -152,12 +152,14 @@ class NLDBaseView extends Node {
     this.addChild( nodeOrderDisplay );
 
     // button that swaps the primary point controller and secondary point controller when pressed
+    // all of the numbers used for this button were empirically determined
     const swapIcon = new Node();
     const ellipseAngleInset = Math.PI / 12;
     const arrowXTranslation = 4;
     const arrowYTranslation = 10;
     swapIcon.addChild( new Path(
-      new Shape().ellipticalArc( 0, 0, 8, 12, 0, -Math.PI / 2 + ellipseAngleInset, Math.PI / 2 - ellipseAngleInset ),
+      new Shape().ellipticalArc( 0, 0, 8, 12, 0,
+        -Math.PI / 2 + ellipseAngleInset, Math.PI / 2 - ellipseAngleInset ),
       SWAP_ICON_PATH_OPTIONS
     ) );
     swapIcon.addChild( new Path(
