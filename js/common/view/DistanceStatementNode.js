@@ -3,6 +3,7 @@
 /**
  * A generic distance statement as a node
  * Can either be set to be able to control point controller values (using number pickers) or just show values (using texts)
+ * Doesn't need to unlink properties because all instances of DistanceStatementNode are always on their screen
  *
  * @author Saurabh Totey
  */
