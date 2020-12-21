@@ -42,23 +42,27 @@ class DistanceStatementNode extends Node {
    */
   constructor( model, options ) {
     options = merge( {
-      // {boolean} - changes whether this statement uses number pickers or texts (whether this can change a point controller's value)
+      // {boolean} - changes whether this statement uses number pickers or texts
+      //  this affects whether this can change a point controller's value or not
       controlsValues: false
     }, options );
 
     super();
 
+    // a list of size 2 that contains nodes that 'represent' a point controller's value
+    // will either be number pickers or texts depending on options.controlsValues
     let valueRepresentations;
 
     // Creates value properties for each point controller
     // The property corresponds to the point controller's value if it is on the number line
     // Otherwise, the property is INVALID_VALUE (which is still a number for the number property)
-    // Value property updates on point controller value change, but point controller values do not update on value property change
-    //  unless options.controlsValues is true
+    // The value property will update when the point controller's value changes, but the point controller's value
+    //  will not update when the value property changes unless options.controlsValues is true
     const valueProperties = model.pointControllers.map( pointController => {
       const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
       pointController.positionProperty.link( position => {
-        if ( pointController.isControllingNumberLinePoint() && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
+        if ( pointController.isControllingNumberLinePoint()
+          && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
           valueProperty.value = Utils.roundSymmetric( model.numberLine.modelPositionToValue( position ) );
         }
         else {
@@ -68,7 +72,10 @@ class DistanceStatementNode extends Node {
       return valueProperty;
     } );
 
-    assert && assert( valueProperties.length === 2, 'Mapping point controllers to value properties should result in only 2 value properties' );
+    assert && assert(
+      valueProperties.length === 2,
+      'Mapping point controllers to value properties should result in only 2 value properties'
+    );
 
     if ( options.controlsValues ) {
 
@@ -103,7 +110,7 @@ class DistanceStatementNode extends Node {
       ];
 
       valueRepresentations = textNodes.map( textNode => {
-        const textHolder = new Rectangle( textNode.localBounds.dilatedXY( 5, 10 ) );
+        const textHolder = new Rectangle( textNode.localBounds.dilatedXY( 5, 10 ) ); // empirically determined
         textHolder.addChild( textNode );
         return textHolder;
       } );
@@ -120,6 +127,11 @@ class DistanceStatementNode extends Node {
       } );
 
     }
+
+    assert && assert(
+      valueRepresentations.length === 2,
+      'DistanceStatementNode requires there to be 2 value representations.'
+    );
 
     // Background nodes to parent the value representations to ensure constant spacing regardless of children
     // assumes that REPRESENTATION_BOUNDS is always larger than any of the possible children
@@ -160,7 +172,8 @@ class DistanceStatementNode extends Node {
     } ) );
 
     Property.multilink(
-      valueProperties.concat( [ model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty, model.numberLine.orientationProperty ] ),
+      valueProperties.concat( [ model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty,
+        model.numberLine.orientationProperty ] ),
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
 
         // Change the alt text based off of number line orientation
