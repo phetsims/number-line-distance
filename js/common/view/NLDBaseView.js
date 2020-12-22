@@ -270,7 +270,7 @@ class NLDBaseView extends Node {
           difference = -difference;
         }
 
-        // Get the strings for the point controllers based off of orientation
+        // Get the strings for the point controllers
         const primaryPointControllerLabel = getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
         const secondaryPointControllerLabel = getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
 
