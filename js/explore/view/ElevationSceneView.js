@@ -21,6 +21,7 @@ import fishInWater from '../../../../number-line-common/images/fish-water_png.js
 import fishInAir from '../../../../number-line-common/images/fish-air_png.js';
 import birdInWater from '../../../../number-line-common/images/bird-water_png.js';
 import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
+import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 
 const fishString = numberLineDistanceStrings.fish;
 const birdString = numberLineDistanceStrings.bird;
@@ -61,7 +62,14 @@ class ElevationSceneView extends Node {
     );
 
     //TODO: temporary rectangle
-    this.addChild( new Rectangle( model.elevationAreaBounds, { stroke: 'black' } ) );
+    this.addChild( new Rectangle( model.elevationAreaBounds, {
+      fill: new LinearGradient(
+        model.elevationAreaBounds.minX,
+        model.elevationAreaBounds.minY,
+        model.elevationAreaBounds.minX,
+        model.elevationAreaBounds.maxY
+      ).addColorStop( 0, 'blue' ).addColorStop( 0.5, 'white' )
+    } ) );
 
     const seaLevel = model.numberLine.valueToModelPosition( 0 ).y;
 
