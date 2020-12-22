@@ -40,8 +40,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
    */
   constructor( model, options ) {
     super( model.numberLine, merge( {
-      offScaleIndicatorVerticalOffset: -90,
-      offScaleIndicatorHorizontalOffset: -120
+      offScaleIndicatorVerticalOffset: -90, // determined empirically
+      offScaleIndicatorHorizontalOffset: -120 // determined empirically
     }, options ) );
 
     // the path that shades the distance between point controllers
@@ -50,8 +50,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     distanceShadingPath.moveToBack();
 
     const distanceText = new Text( '', {
-      maxWidth: 50,
-      font: new PhetFont( 28 )
+      maxWidth: 50, // determined empirically
+      font: new PhetFont( 28 ) // determined empirically
     } );
     const distanceTextBackground = new BackgroundNode( distanceText, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( distanceTextBackground );
@@ -116,7 +116,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // makes shading path between nodes
         let shape = new Shape().moveToPoint( endPointPosition0 ).lineToPoint( endPointPosition1 );
-        let lineWidth = 8;
+        let lineWidth = 8; // determined empirically
 
         // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
         // that is on the number line
@@ -144,6 +144,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           } );
 
           // only sets the shape to the arrow shape if the point that the arrow points to is in the numberline's range
+          // the thinner line width of 5 was determined empirically such that switching from absolute to directed distance
+          // doesn't change the width of the shading
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             lineWidth = 5;
             shape = new ArrowShape( endPointPosition1.x, endPointPosition1.y, endPointPosition0.x, endPointPosition0.y, scaledArrowShapeOptions );

@@ -101,6 +101,7 @@ class NLDBaseView extends Node {
     super();
 
     // checkboxes that control common model properties for what should be visible
+    // all used spacings and paddings were empirically determined
     const checkboxGroup = new VBox( {
       children: [
         new NLCheckbox( pointLabelsString, model.numberLine.showPointLabelsProperty ),
@@ -129,7 +130,7 @@ class NLDBaseView extends Node {
         }
       ],
       {
-        left: 50,
+        left: 50, // empirically determined
         top: 25
       }
     );
@@ -148,6 +149,7 @@ class NLDBaseView extends Node {
     } );
 
     // controls on the bottom left for which node is considered to be first and second
+    // all values used in nodeOrderDispaly were empirically determined
     const firstNodeText = new RichText( `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeText = new RichText( `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( {
@@ -190,7 +192,7 @@ class NLDBaseView extends Node {
     const swapPrimaryNodesButton = new RectangularPushButton( {
       content: swapIcon,
       baseColor: 'white',
-      left: nodeOrderDisplay.right + 20,
+      left: nodeOrderDisplay.right + 20, // determined empirically
       centerY: nodeOrderDisplay.centerY,
       listener: () => { model.isPrimaryNodeSwappedProperty.value = !model.isPrimaryNodeSwappedProperty.value; }
     } );
@@ -228,6 +230,7 @@ class NLDBaseView extends Node {
     this.accordionBoxOpenedProperty = new BooleanProperty( true );
 
     // an accordion box for the distance statement
+    // paddings and width were empirically determined
     const distanceStatementAccordionBox = new AccordionBox(
       new DistanceStatementNode( model, options.distanceStatementNodeOptions ),
       merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
@@ -244,7 +247,7 @@ class NLDBaseView extends Node {
 
     // a text description for the distance under the distance statement accordion box
     const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
-      top: distanceStatementAccordionBox.bottom + 5
+      top: distanceStatementAccordionBox.bottom + 5 // padding of 5 is empirically determined
     } ) );
     Property.multilink(
       [

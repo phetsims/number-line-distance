@@ -226,7 +226,6 @@ class DistanceStatementNode extends Node {
         secondChild.center = REPRESENTATION_BOUNDS.center;
 
         distanceText.text = `${distance}`;
-
       }
     );
 
