@@ -34,6 +34,9 @@ import Matrix3 from '../../../../dot/js/Matrix3.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
+import Property from '../../../../axon/js/Property.js';
+import Util from '../../../../dot/js/Utils.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -71,13 +74,25 @@ class NLDBaseView extends Node {
    * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view
    * Is what is used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped
    *
+   * The last 5 parameters are all used to construct a distance description
+   * The last 2 parameters describe the primary and secondary point controllers when given isPrimaryNodeSwapped and the
+   *  numberline orientation
+   * TODO: this is a lot of parameters; maybe split this off somehow? Maybe put these as options so that they are labelled?
+   *
    * @param {AbstractNLDBaseModel} model
    * @param {Node} pointControllerRepresentationOne
    * @param {Node} pointControllerRepresentationTwo
-   * @param {Property<String>} distanceDescriptionProperty
+   * @param {string} absoluteDistanceDescriptionTemplate
+   * @param {string} directedPositiveDistanceDescriptionTemplate
+   * @param {string} directedNegativeDistanceDescriptionTemplate
+   * @param {function(boolean, Orientation):string} getPrimaryPointControllerLabel
+   * @param {function(boolean, Orientation):string} getSecondaryPointControllerLabel
    * @param {Object} [options]
    */
-  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, distanceDescriptionProperty, options ) {
+  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo,
+               absoluteDistanceDescriptionTemplate, directedPositiveDistanceDescriptionTemplate,
+               directedNegativeDistanceDescriptionTemplate, getPrimaryPointControllerLabel,
+               getSecondaryPointControllerLabel, options ) {
 
     options = merge( {
       distanceStatementNodeOptions: { controlsValues: false }
@@ -231,10 +246,55 @@ class NLDBaseView extends Node {
     const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
       top: distanceStatementAccordionBox.bottom + 5
     } ) );
-    distanceDescriptionProperty.link( distanceDescription => {
-      distanceDescriptionText.text = distanceDescription;
-      distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
-    } );
+    Property.multilink(
+      [
+        model.distanceRepresentationProperty,
+        model.numberLine.orientationProperty,
+        model.isPrimaryNodeSwappedProperty,
+        model.pointControllers[ 0 ].positionProperty,
+        model.pointControllers[ 1 ].positionProperty
+      ],
+      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, position0, position1 ) => {
+
+        // Can't say anything about distance if both point controllers aren't on the number line
+        distanceDescriptionText.text = '';
+        distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
+        if ( !model.areBothPointControllersControllingOnNumberLine() ) {
+          return;
+        }
+
+        const value0 = model.numberLine.modelPositionToValue( position0 );
+        const value1 = model.numberLine.modelPositionToValue( position1 );
+        let difference = Util.roundSymmetric( value1 - value0 );
+        if ( isPrimaryNodeSwapped ) {
+          difference = -difference;
+        }
+
+        // Get the strings for the point controllers based off of orientation
+        const primaryPointControllerLabel = getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+        const secondaryPointControllerLabel = getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+
+        // Fills in a string template for the distance text based off of the distance representation
+        // and whether the distance is positive or negative
+        const fillInValues = {
+          primaryPointControllerLabel: primaryPointControllerLabel,
+          secondaryPointControllerLabel: secondaryPointControllerLabel,
+          difference: Math.abs( difference )
+        };
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
+          distanceDescriptionText.text = StringUtils.fillIn( absoluteDistanceDescriptionTemplate, fillInValues );
+        }
+        else if ( difference > 0 ) {
+          distanceDescriptionText.text = StringUtils.fillIn( directedPositiveDistanceDescriptionTemplate, fillInValues );
+        }
+        else if ( difference < 0 ) {
+          distanceDescriptionText.text = StringUtils.fillIn( directedNegativeDistanceDescriptionTemplate, fillInValues );
+        }
+        // Reaching the 'else' here means that the difference was 0, so there is nothing to say
+
+        distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
+      }
+    );
     model.distanceDescriptionVisibleProperty.linkAttribute( distanceDescriptionText, 'visible' );
     this.addChild( distanceDescriptionText );
   }

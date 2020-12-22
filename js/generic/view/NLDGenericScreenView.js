@@ -18,12 +18,8 @@ import NumberLineOrientationSelector from '../../../../number-line-common/js/com
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import Util from '../../../../dot/js/Utils.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import PointsOffScaleCondition from '../../../../number-line-common/js/common/view/PointsOffScaleCondition.js';
@@ -55,61 +51,6 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    // a property that returns a string that describes the distance between both the point controllers
-    const distanceDescriptionProperty = new DerivedProperty(
-      [
-        model.distanceRepresentationProperty,
-        model.numberLine.orientationProperty,
-        model.isPrimaryNodeSwappedProperty,
-        model.pointControllers[ 0 ].positionProperty,
-        model.pointControllers[ 1 ].positionProperty
-      ],
-      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, position0, position1 ) => {
-
-        // Can't say anything about distance if both point controllers aren't on the number line
-        if ( !model.areBothPointControllersControllingOnNumberLine() ) {
-          return '';
-        }
-
-        const value0 = model.numberLine.modelPositionToValue( position0 );
-        const value1 = model.numberLine.modelPositionToValue( position1 );
-
-        // Get the strings for the point controllers based off of orientation
-        let primaryXY = NLDConstants.X_1_STRING;
-        let secondaryXY = NLDConstants.X_2_STRING;
-        if ( orientation === Orientation.VERTICAL ) {
-          primaryXY = NLDConstants.Y_1_STRING;
-          secondaryXY = NLDConstants.Y_2_STRING;
-        }
-
-        let difference = Util.roundSymmetric( value1 - value0 );
-        if ( isPrimaryNodeSwapped ) {
-          difference = -difference;
-        }
-
-        // Fills in a string template for the distance text based off of the distance representation
-        // and whether the distance is positive or negative
-        const fillInValues = {
-          primaryXY: MathSymbolFont.getRichTextMarkup( primaryXY ),
-          secondaryXY: MathSymbolFont.getRichTextMarkup( secondaryXY ),
-          difference: Math.abs( difference )
-        };
-        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
-          return StringUtils.fillIn( genericAbsoluteDistanceTemplateString, fillInValues );
-        }
-        if ( difference > 0 ) {
-          return StringUtils.fillIn( genericDirectedPositiveDistanceTemplateString, fillInValues );
-        }
-        else if ( difference < 0 ) {
-          return StringUtils.fillIn( genericDirectedNegativeDistanceTemplateString, fillInValues );
-        }
-
-        // Reaching here means that the difference was 0, so there is nothing to say
-        return '';
-
-      }
-    );
-
     // the point controllers are represented as circles on the bottom left corner of the screen
     const firstControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'magenta' } );
     const secondControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'blue' } );
@@ -118,7 +59,15 @@ class NLDGenericScreenView extends ScreenView {
       model,
       firstControllerRepresentation,
       secondControllerRepresentation,
-      distanceDescriptionProperty,
+      genericAbsoluteDistanceTemplateString,
+      genericDirectedPositiveDistanceTemplateString,
+      genericDirectedNegativeDistanceTemplateString,
+      ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
+        ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_1_STRING : NLDConstants.Y_1_STRING
+      ),
+      ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
+        ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_2_STRING : NLDConstants.Y_2_STRING
+      ),
       { distanceStatementNodeOptions: { controlsValues: true } }
     );
     this.addChild( baseView );

@@ -17,10 +17,6 @@ import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumber
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import Util from '../../../../dot/js/Utils.js';
-import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -51,60 +47,16 @@ class DistanceSceneView extends Node {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    // a property that returns a string that describes the distance between both the point controllers
-    const distanceDescriptionProperty = new DerivedProperty(
-      [
-        model.distanceRepresentationProperty,
-        model.numberLine.orientationProperty,
-        model.isPrimaryNodeSwappedProperty,
-        model.pointControllers[ 0 ].positionProperty,
-        model.pointControllers[ 1 ].positionProperty
-      ],
-      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, position0, position1 ) => {
-
-        // Can't say anything about distance if both point controllers aren't on the number line
-        if ( !model.areBothPointControllersControllingOnNumberLine() ) {
-          return '';
-        }
-
-        const value0 = model.numberLine.modelPositionToValue( position0 );
-        const value1 = model.numberLine.modelPositionToValue( position1 );
-
-        // Get the strings for the point controllers based off of orientation
-        let primaryX = houseString;
-        let secondaryX = personString;
-
-        let difference = Util.roundSymmetric( value1 - value0 );
-        if ( isPrimaryNodeSwapped ) {
-          difference = -difference;
-          primaryX = personString;
-          secondaryX = houseString;
-        }
-
-        // Fills in a string template for the distance text based off of the distance representation
-        // and whether the distance is positive or negative
-        const fillInValues = {
-          primaryX: primaryX,
-          secondaryX: secondaryX,
-          difference: Math.abs( difference )
-        };
-        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
-          return StringUtils.fillIn( distanceSceneAbsoluteDistanceTemplateString, fillInValues );
-        }
-        if ( difference > 0 ) {
-          return StringUtils.fillIn( distanceSceneDirectedPositiveDistanceTemplateString, fillInValues );
-        }
-        else if ( difference < 0 ) {
-          return StringUtils.fillIn( distanceSceneDirectedNegativeDistanceTemplateString, fillInValues );
-        }
-
-        // Reaching here means that the difference was 0, so there is nothing to say
-        return '';
-
-      }
-    );
-
-    this.addChild( new NLDBaseView( model, new Node(), new Node(), distanceDescriptionProperty ) );
+    this.addChild( new NLDBaseView(
+      model,
+      new Node(),
+      new Node(),
+      distanceSceneAbsoluteDistanceTemplateString,
+      distanceSceneDirectedPositiveDistanceTemplateString,
+      distanceSceneDirectedNegativeDistanceTemplateString,
+      isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personString : houseString,
+      isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
+    ) );
 
     // point controllers
     const pointControllerNodeLayer = new Node( {

@@ -54,13 +54,13 @@
     "value": "B"
   },
   "genericAbsoluteDistanceTemplate": {
-    "value": "{{secondaryXY}} and {{primaryXY}} are {{difference}} units apart."
+    "value": "{{secondaryPointControllerLabel}} and {{primaryPointControllerLabel}} are {{difference}} units apart."
   },
   "genericDirectedPositiveDistanceTemplate": {
-    "value": "{{secondaryXY}} is {{difference}} units more positive than {{primaryXY}}."
+    "value": "{{secondaryPointControllerLabel}} is {{difference}} units more positive than {{primaryPointControllerLabel}}."
   },
   "genericDirectedNegativeDistanceTemplate": {
-    "value": "{{secondaryXY}} is {{difference}} units more negative than {{primaryXY}}."
+    "value": "{{secondaryPointControllerLabel}} is {{difference}} units more negative than {{primaryPointControllerLabel}}."
   },
   "person": {
     "value": "person"
@@ -69,22 +69,22 @@
     "value": "house"
   },
   "distanceSceneAbsoluteDistanceTemplate": {
-    "value": "The {{secondaryX}} and the {{primaryX}} are {{difference}} meters apart."
+    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} are {{difference}} meters apart."
   },
   "distanceSceneDirectedPositiveDistanceTemplate": {
-    "value": "The {{secondaryX}} is {{difference}} meters east of the {{primaryX}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters east of the {{primaryPointControllerLabel}}."
   },
   "distanceSceneDirectedNegativeDistanceTemplate": {
-    "value": "The {{secondaryX}} is {{difference}} meters west of the {{primaryX}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters west of the {{primaryPointControllerLabel}}."
   },
   "temperatureSceneAbsoluteDistanceTemplate": {
     "value": "The difference in temperature is {{difference}} degrees."
   },
   "temperatureSceneDirectedPositiveDistanceTemplate": {
-    "value": "Location {{secondaryX}} is {{difference}} degrees hotter than location {{primaryX}}."
+    "value": "Location {{secondaryPointControllerLabel}} is {{difference}} degrees hotter than location {{primaryPointControllerLabel}}."
   },
   "temperatureSceneDirectedNegativeDistanceTemplate": {
-    "value": "Location {{secondaryX}} is {{difference}} degrees colder than location {{primaryX}}."
+    "value": "Location {{secondaryPointControllerLabel}} is {{difference}} degrees colder than location {{primaryPointControllerLabel}}."
   },
   "fish": {
     "value": "fish"
@@ -93,12 +93,12 @@
     "value": "bird"
   },
   "elevationSceneAbsoluteDistanceTemplate": {
-    "value": "The {{secondaryY}} and the {{primaryY}} are {{difference}} meters apart."
+    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} are {{difference}} meters apart."
   },
   "elevationSceneDirectedPositiveDistanceTemplate": {
-    "value": "The {{secondaryY}} is {{difference}} meters above the {{primaryY}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters above the {{primaryPointControllerLabel}}."
   },
   "elevationSceneDirectedNegativeDistanceTemplate": {
-    "value": "The {{secondaryY}} is {{difference}} meters below the {{primaryY}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters below the {{primaryPointControllerLabel}}."
   }
 }
