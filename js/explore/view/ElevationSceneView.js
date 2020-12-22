@@ -61,15 +61,24 @@ class ElevationSceneView extends Node {
       )
     );
 
-    //TODO: temporary rectangle
+    // Adds rectangles in the elevation area bounds to display background
+    // First rectangle covers entire bounds and is a gradient that represents the sky
+    // Second rectangle covers the lower half of the bounds and is a constant color that represents the water
     this.addChild( new Rectangle( model.elevationAreaBounds, {
       fill: new LinearGradient(
         model.elevationAreaBounds.minX,
         model.elevationAreaBounds.minY,
         model.elevationAreaBounds.minX,
         model.elevationAreaBounds.maxY
-      ).addColorStop( 0, 'blue' ).addColorStop( 0.5, 'white' )
+      ).addColorStop( 0, '#668CB1' ).addColorStop( 0.5, 'white' )
     } ) );
+    this.addChild( new Rectangle(
+      model.elevationAreaBounds.minX,
+      model.elevationAreaBounds.minY + model.elevationAreaBounds.height / 2,
+      model.elevationAreaBounds.width,
+      model.elevationAreaBounds.height / 2,
+      { fill: 'rgba(166, 203, 229, 0.5)' }
+    ) );
 
     const seaLevel = model.numberLine.valueToModelPosition( 0 ).y;
 
