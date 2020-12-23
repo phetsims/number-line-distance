@@ -74,7 +74,7 @@ class NLDBaseView extends Node {
    * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view
    * Is what is used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped
    *
-   * The last 5 parameters are all used to construct a distance description
+   * The last 7 parameters are all used to construct a distance description
    * The last 2 parameters describe the primary and secondary point controllers when given isPrimaryNodeSwapped and the
    *  numberline orientation
    * TODO: this is a lot of parameters; maybe split this off somehow? Maybe put these as options so that they are labelled?
@@ -85,14 +85,16 @@ class NLDBaseView extends Node {
    * @param {string} absoluteDistanceDescriptionTemplate
    * @param {string} directedPositiveDistanceDescriptionTemplate
    * @param {string} directedNegativeDistanceDescriptionTemplate
+   * @param {string} singularUnits
+   * @param {string} pluralUnits
    * @param {function(boolean, Orientation):string} getPrimaryPointControllerLabel
    * @param {function(boolean, Orientation):string} getSecondaryPointControllerLabel
    * @param {Object} [options]
    */
   constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo,
                absoluteDistanceDescriptionTemplate, directedPositiveDistanceDescriptionTemplate,
-               directedNegativeDistanceDescriptionTemplate, getPrimaryPointControllerLabel,
-               getSecondaryPointControllerLabel, options ) {
+               directedNegativeDistanceDescriptionTemplate, singularUnits, pluralUnits,
+               getPrimaryPointControllerLabel, getSecondaryPointControllerLabel, options ) {
 
     options = merge( {
       distanceStatementNodeOptions: { controlsValues: false }
@@ -268,6 +270,10 @@ class NLDBaseView extends Node {
 
         const value0 = model.numberLine.modelPositionToValue( position0 );
         const value1 = model.numberLine.modelPositionToValue( position1 );
+
+        // calculates the difference with the correct sign
+        // even though only the absolute value of difference is ever displayed, the sign is still used to
+        //  determine which string template to use
         let difference = Util.roundSymmetric( value1 - value0 );
         if ( isPrimaryNodeSwapped ) {
           difference = -difference;
@@ -282,7 +288,8 @@ class NLDBaseView extends Node {
         const fillInValues = {
           primaryPointControllerLabel: primaryPointControllerLabel,
           secondaryPointControllerLabel: secondaryPointControllerLabel,
-          difference: Math.abs( difference )
+          difference: Math.abs( difference ),
+          units: ( difference === 1 || difference === -1 ) ? singularUnits : pluralUnits
         };
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
           distanceDescriptionText.text = StringUtils.fillIn( absoluteDistanceDescriptionTemplate, fillInValues );

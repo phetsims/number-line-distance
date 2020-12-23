@@ -25,7 +25,9 @@ const personString = numberLineDistanceStrings.person;
 const distanceSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings.distanceSceneAbsoluteDistanceTemplate;
 const distanceSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.distanceSceneDirectedPositiveDistanceTemplate;
 const distanceSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.distanceSceneDirectedNegativeDistanceTemplate;
-const metersString = numberLineDistanceStrings.symbol.meters;
+const metersSymbol = numberLineDistanceStrings.symbol.meters;
+const meterString = numberLineDistanceStrings.meter;
+const metersString = numberLineDistanceStrings.meters;
 
 const CARDINALITY_INDICATOR_FONT = new PhetFont( 25 );
 
@@ -54,6 +56,8 @@ class DistanceSceneView extends Node {
       distanceSceneAbsoluteDistanceTemplateString,
       distanceSceneDirectedPositiveDistanceTemplateString,
       distanceSceneDirectedNegativeDistanceTemplateString,
+      meterString,
+      metersString,
       isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personString : houseString,
       isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
     ) );
@@ -65,7 +69,7 @@ class DistanceSceneView extends Node {
     this.addChild( pointControllerNodeLayer );
 
     // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersString } );
+    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersSymbol } );
     this.addChild( numberLineNode );
 
     // symbols at edges of number line denoting east and west

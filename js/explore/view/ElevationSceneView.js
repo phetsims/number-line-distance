@@ -28,7 +28,9 @@ const birdString = numberLineDistanceStrings.bird;
 const elevationSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings.elevationSceneAbsoluteDistanceTemplate;
 const elevationSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.elevationSceneDirectedPositiveDistanceTemplate;
 const elevationSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.elevationSceneDirectedNegativeDistanceTemplate;
-const metersString = numberLineDistanceStrings.symbol.meters;
+const metersSymbol = numberLineDistanceStrings.symbol.meters;
+const meterString = numberLineDistanceStrings.meter;
+const metersString = numberLineDistanceStrings.meters;
 
 class ElevationSceneView extends Node {
 
@@ -56,6 +58,8 @@ class ElevationSceneView extends Node {
         elevationSceneAbsoluteDistanceTemplateString,
         elevationSceneDirectedPositiveDistanceTemplateString,
         elevationSceneDirectedNegativeDistanceTemplateString,
+        meterString,
+        metersString,
         isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
         isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
       )
@@ -83,7 +87,7 @@ class ElevationSceneView extends Node {
     const seaLevel = model.numberLine.valueToModelPosition( 0 ).y;
 
     // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersString } );
+    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersSymbol } );
     this.addChild( numberLineNode );
 
     // point controllers

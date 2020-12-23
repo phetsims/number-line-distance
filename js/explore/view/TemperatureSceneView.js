@@ -26,6 +26,8 @@ const temperatureSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings
 const temperatureSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedPositiveDistanceTemplate;
 const temperatureSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedNegativeDistanceTemplate;
 const degreesCelsiusString = numberLineDistanceStrings.symbol.degreesCelsius;
+const degreeString = numberLineDistanceStrings.degree;
+const degreesString = numberLineDistanceStrings.degrees;
 
 const REPRESENTATION_FONT = new PhetFont( 20 );
 
@@ -58,6 +60,8 @@ class TemperatureSceneView extends Node {
       temperatureSceneAbsoluteDistanceTemplateString,
       temperatureSceneDirectedPositiveDistanceTemplateString,
       temperatureSceneDirectedNegativeDistanceTemplateString,
+      degreeString,
+      degreesString,
       isPrimaryNodeSwapped => isPrimaryNodeSwapped ? bString : aString,
       isPrimaryNodeSwapped => isPrimaryNodeSwapped ? aString : bString
     ) );

@@ -53,14 +53,20 @@
   "symbol.b": {
     "value": "B"
   },
+  "unit": {
+    "value": "unit"
+  },
+  "units": {
+    "value": "units"
+  },
   "genericAbsoluteDistanceTemplate": {
-    "value": "{{secondaryPointControllerLabel}} and {{primaryPointControllerLabel}} are {{difference}} units apart."
+    "value": "{{secondaryPointControllerLabel}} and {{primaryPointControllerLabel}} are {{difference}} {{units}} apart."
   },
   "genericDirectedPositiveDistanceTemplate": {
-    "value": "{{secondaryPointControllerLabel}} is {{difference}} units more positive than {{primaryPointControllerLabel}}."
+    "value": "{{secondaryPointControllerLabel}} is {{difference}} {{units}} more positive than {{primaryPointControllerLabel}}."
   },
   "genericDirectedNegativeDistanceTemplate": {
-    "value": "{{secondaryPointControllerLabel}} is {{difference}} units more negative than {{primaryPointControllerLabel}}."
+    "value": "{{secondaryPointControllerLabel}} is {{difference}} {{units}} more negative than {{primaryPointControllerLabel}}."
   },
   "person": {
     "value": "person"
@@ -68,23 +74,35 @@
   "house": {
     "value": "house"
   },
+  "meter": {
+    "value": "meter"
+  },
+  "meters": {
+    "value": "meters"
+  },
   "distanceSceneAbsoluteDistanceTemplate": {
-    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} are {{difference}} meters apart."
+    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} are {{difference}} {{units}} apart."
   },
   "distanceSceneDirectedPositiveDistanceTemplate": {
-    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters east of the {{primaryPointControllerLabel}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} {{units}} east of the {{primaryPointControllerLabel}}."
   },
   "distanceSceneDirectedNegativeDistanceTemplate": {
-    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters west of the {{primaryPointControllerLabel}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} {{units}} west of the {{primaryPointControllerLabel}}."
+  },
+  "degree": {
+    "value": "degree"
+  },
+  "degrees": {
+    "value": "degrees"
   },
   "temperatureSceneAbsoluteDistanceTemplate": {
-    "value": "The difference in temperature is {{difference}} degrees."
+    "value": "The difference in temperature is {{difference}} {{units}}."
   },
   "temperatureSceneDirectedPositiveDistanceTemplate": {
-    "value": "Location {{secondaryPointControllerLabel}} is {{difference}} degrees hotter than location {{primaryPointControllerLabel}}."
+    "value": "Location {{secondaryPointControllerLabel}} is {{difference}} {{units}} hotter than location {{primaryPointControllerLabel}}."
   },
   "temperatureSceneDirectedNegativeDistanceTemplate": {
-    "value": "Location {{secondaryPointControllerLabel}} is {{difference}} degrees colder than location {{primaryPointControllerLabel}}."
+    "value": "Location {{secondaryPointControllerLabel}} is {{difference}} {{units}} colder than location {{primaryPointControllerLabel}}."
   },
   "fish": {
     "value": "fish"
@@ -93,12 +111,12 @@
     "value": "bird"
   },
   "elevationSceneAbsoluteDistanceTemplate": {
-    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} are {{difference}} meters apart."
+    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} are {{difference}} {{units}} apart."
   },
   "elevationSceneDirectedPositiveDistanceTemplate": {
-    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters above the {{primaryPointControllerLabel}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} {{units}} above the {{primaryPointControllerLabel}}."
   },
   "elevationSceneDirectedNegativeDistanceTemplate": {
-    "value": "The {{secondaryPointControllerLabel}} is {{difference}} meters below the {{primaryPointControllerLabel}}."
+    "value": "The {{secondaryPointControllerLabel}} is {{difference}} {{units}} below the {{primaryPointControllerLabel}}."
   }
 }

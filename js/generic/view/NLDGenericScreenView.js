@@ -27,6 +27,8 @@ import PointsOffScaleCondition from '../../../../number-line-common/js/common/vi
 const genericAbsoluteDistanceTemplateString = numberLineDistanceStrings.genericAbsoluteDistanceTemplate;
 const genericDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.genericDirectedPositiveDistanceTemplate;
 const genericDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.genericDirectedNegativeDistanceTemplate;
+const unitString = numberLineDistanceStrings.unit;
+const unitsString = numberLineDistanceStrings.units;
 
 const CIRCLE_REPRESENTATION_RADIUS = 5;
 
@@ -62,6 +64,8 @@ class NLDGenericScreenView extends ScreenView {
       genericAbsoluteDistanceTemplateString,
       genericDirectedPositiveDistanceTemplateString,
       genericDirectedNegativeDistanceTemplateString,
+      unitString,
+      unitsString,
       ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
         ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_1_STRING : NLDConstants.Y_1_STRING
       ),
