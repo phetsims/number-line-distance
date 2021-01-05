@@ -18,7 +18,6 @@ import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
-import Shape from '../../../../kite/js/Shape.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -64,22 +63,8 @@ class DistanceSceneView extends Node {
       isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
     ) );
 
-    // trapezoid shape that represents the plane where the person and the house can lie
-    // the constants used for the shape and the center are empirically determined
-    const planePath = new Path(
-      new Shape()
-        .moveTo( 0, 50 )
-        .lineTo( 900, 50 )
-        .lineTo( 800, 0 )
-        .lineTo( 100, 0 )
-        .close(),
-      {
-        stroke: 'black',
-        centerX: this.centerX,
-        centerY: this.centerY + 60
-      }
-    );
-    this.addChild( planePath );
+    // trapezoid path that represents the plane where the person and the house can lie
+    this.addChild( new Path( model.planeTrapezoidShape, { stroke: 'black' } ) );
 
     // point controllers
     const pointControllerNodeLayer = new Node( {
