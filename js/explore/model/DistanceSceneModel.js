@@ -35,6 +35,8 @@ class DistanceSceneModel extends SceneModel {
     const numberLineY = numberLine.centerPositionProperty.value.y;
 
     // TODO: this needs more reworking
+    //  all constants are empirically determined, but the locking behaviour feels wonky
+    //  might require instead reworking isPositionInPlaneFunction
     const planeTrapezoidShape = new Shape()
       .moveTo( numberLineMinimumXPosition - 50, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT )
       .lineTo( numberLineMaximumXPosition + 50, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT )
@@ -44,7 +46,6 @@ class DistanceSceneModel extends SceneModel {
 
     const isPositionInPlaneFunction = position => planeTrapezoidShape.containsPoint( position );
 
-    //TODO:
     super(
       tandem,
       numberLine,
