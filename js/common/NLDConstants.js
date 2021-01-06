@@ -22,7 +22,7 @@ const BOTTOM_BOX_WIDTH = 320;
 const BOTTOM_BOX_HEIGHT = 70;
 const SIDE_BOX_WIDTH = BOTTOM_BOX_HEIGHT;
 const SIDE_BOX_HEIGHT = BOTTOM_BOX_WIDTH;
-const variableSubscriptTemplate = '{{variable}}<sub style=\'fontStyle:normal\'>{{subscript}}</sub>';
+const VARIABLE_SUBSCRIPT_TEMPLATE = '{{variable}}<sub style=\'fontStyle:normal\'>{{subscript}}</sub>';
 
 const NLDConstants = {
 
@@ -50,10 +50,10 @@ const NLDConstants = {
     ScreenView.DEFAULT_LAYOUT_BOUNDS.centerY + SIDE_BOX_HEIGHT / 2
   ),
 
-  X_1_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: xString, subscript: 1 } ),
-  X_2_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: xString, subscript: 2 } ),
-  Y_1_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: yString, subscript: 1 } ),
-  Y_2_STRING: StringUtils.fillIn( variableSubscriptTemplate, { variable: yString, subscript: 2 } )
+  X_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xString, subscript: 1 } ),
+  X_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xString, subscript: 2 } ),
+  Y_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yString, subscript: 1 } ),
+  Y_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yString, subscript: 2 } )
 
 };
 
