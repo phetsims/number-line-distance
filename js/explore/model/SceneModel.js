@@ -37,8 +37,7 @@ class SceneModel extends AbstractNLDBaseModel {
         }
         else if ( !pointController.isPositionInBoundsFunction( position )
                   && pointController.isControllingNumberLinePoint() ) {
-          pointController.removePointsFromNumberLines();
-          pointController.clearNumberLinePoints();
+          pointController.removeClearAndDisposePoints();
         }
       } );
     } );
