@@ -1,9 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A node that is a number line and shades the distance between point controllers
- * The space between point controllers are only shaded when both point controllers are on the number line
- * Is used in every screen and scene of this sim
+ * A node that is a number line and that also shades the distance between point controllers.
+ * The space between point controllers is only shaded when both point controllers are on the number line.
+ * Is used in every screen and scene of this sim.
  *
  * @author Saurabh Totey
  */
@@ -34,7 +34,6 @@ const DISTANCE_TEXT_PADDING = 50;
 class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
   /**
-   *
    * @param {AbstractNLDBaseModel} model
    * @param {Object} [options]
    */

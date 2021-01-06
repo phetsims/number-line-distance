@@ -1,8 +1,8 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * enum of how distance will be represented
- * absolute is unsigned distance and directed is signed distance
+ * An enumeration of how distance will be represented.
+ * Absolute is unsigned distance and directed is signed distance.
  *
  * @author Saurabh Totey
  */

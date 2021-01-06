@@ -1,9 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A view that contains elements that are used in all scenes/screens of the sim
- * Has controls as well as display elements
- * Is a 'base' view because it is meant to be used as the bottom layer for all scenes/screens
+ * A view that contains elements that are used in all scenes/screens of the sim.
+ * This view has all the common controls as well as the common display elements.
+ * Is a 'base' view because it is meant to be used as the bottom layer for all scenes/screens.
  *
  * @author Saurabh Totey
  */
@@ -71,12 +71,12 @@ const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFon
 class NLDBaseView extends Node {
 
   /**
-   * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view
-   * Is what is used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped
+   * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view:
+   * they are used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped.
    *
-   * The last 7 parameters are all used to construct a distance description
+   * The last 7 parameters are all used to construct a distance description.
    * The last 2 parameters describe the primary and secondary point controllers when given isPrimaryNodeSwapped and the
-   *  numberline orientation
+   *  numberline's orientation.
    * TODO: this is a lot of parameters; maybe split this off somehow? Maybe put these as options so that they are labelled?
    *
    * @param {AbstractNLDBaseModel} model
@@ -89,7 +89,7 @@ class NLDBaseView extends Node {
    * @param {string} pluralUnits
    * @param {function(boolean, Orientation):string} getPrimaryPointControllerLabel
    * @param {function(boolean, Orientation):string} getSecondaryPointControllerLabel
-   * @param {Object} [options]
+   * @param {Object} [options] - are not bubbled to Node superconstructor
    */
   constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo,
                absoluteDistanceDescriptionTemplate, directedPositiveDistanceDescriptionTemplate,

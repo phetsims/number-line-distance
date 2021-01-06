@@ -1,9 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A generic distance statement as a node
- * Can either be set to be able to control point controller values (using number pickers) or just show values (using texts)
- * Doesn't need to unlink properties because all instances of DistanceStatementNode are always on their screen
+ * A generic distance statement as a node.
+ * Can either be set to be able to control point controller values (using number pickers) or just show values (using texts).
+ * Doesn't need to unlink properties because all instances of DistanceStatementNode are present for the lifetime of the sim.
  *
  * @author Saurabh Totey
  */
@@ -38,7 +38,7 @@ class DistanceStatementNode extends Node {
 
   /**
    * @param {AbstractNLDBaseModel} model,
-   * @param {Object} [options]
+   * @param {Object} [options] - do not get bubbled up to Node
    */
   constructor( model, options ) {
     options = merge( {
@@ -58,6 +58,7 @@ class DistanceStatementNode extends Node {
     // Otherwise, the property is INVALID_VALUE (which is still a number for the number property)
     // The value property will update when the point controller's value changes, but the point controller's value
     //  will not update when the value property changes unless options.controlsValues is true
+    // The INVALID_VALUE hack is required because the number pickers require the value property to always have a value
     const valueProperties = model.pointControllers.map( pointController => {
       const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
       pointController.positionProperty.link( position => {

@@ -1,8 +1,8 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * Model for common properties/behaviours used by all scenes/screens in the sim
- * Is incomplete and meant to be subclassed
+ * Model for common properties/behaviours used by all scenes/screens in the sim.
+ * This class is incomplete and meant to be subclassed.
  *
  * @author Saurabh Totey
  */
@@ -20,6 +20,9 @@ import merge from '../../../../phet-core/js/merge.js';
 class AbstractNLDBaseModel {
 
   /**
+   * This constructor initializes common values and properties for the model.
+   * Parameters require two point controllers because every screen/scene in this sim have two point controllers.
+   *
    * @param {Tandem} tandem
    * @param {SpatializedNumberLine} numberLine
    * @param {PointController} pointControllerOne
@@ -28,6 +31,7 @@ class AbstractNLDBaseModel {
    */
   constructor( tandem, numberLine, pointControllerOne, pointControllerTwo, options ) {
 
+    // @private
     this.options = merge( {
       positionInBoxOffset: new Vector2( 0, 0 )
     }, options );
@@ -42,6 +46,9 @@ class AbstractNLDBaseModel {
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
 
     // @public {Property<Boolean>} - whether the x_1 and x_2 or y_1 and y_2 nodes are swapped
+    // an 'isSwapped' approach was taken rather than reordering the point controllers in some array because it is
+    // often useful to know which point controller is which and to be able to consistently access the same point controller
+    // TODO: rename to isPrimaryControllerSwappedProperty
     this.isPrimaryNodeSwappedProperty = new BooleanProperty( false );
 
     // @public {SpatializedNumberLine}
@@ -54,7 +61,8 @@ class AbstractNLDBaseModel {
     this.pointControllerOne = pointControllerOne;
     this.pointControllerTwo = pointControllerTwo;
 
-    // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to; can change with numberline orientation
+    // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to
+    // can change with numberline orientation
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
 
     this.pointControllers.forEach( pointController => {
@@ -104,8 +112,9 @@ class AbstractNLDBaseModel {
   }
 
   /**
-   * place the provided point controller into the currently active box, generally done on init, reset, and when the
-   * user "puts it away"
+   * Place the provided point controller into the currently active box.
+   * Generally done on init, reset, and when the user "puts it away".
+   *
    * @param {PointController} pointController
    * @param {boolean} [animate] - controls whether to animate the return to the box or do it instantly
    * @private
@@ -151,9 +160,9 @@ class AbstractNLDBaseModel {
   }
 
   /**
-   * Get both point controllers as a list
-   * Always return this.pointControllerOne as the first element of the list
-   * Method doesn't account for ordering point controllers by which one is the primary one
+   * Get both point controllers as a list.
+   * Always returns this.pointControllerOne as the first element of the list, which means that this method
+   * doesn't order the point controllers by which one is the primary one.
    *
    * @returns {PointController[]}
    * @public
