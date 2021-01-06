@@ -64,7 +64,7 @@ class DistanceSceneView extends Node {
     ) );
 
     // trapezoid path that represents the plane where the person and the house can lie
-    this.addChild( new Path( model.planeTrapezoidShape, { stroke: 'black' } ) );
+    this.addChild( new Path( model.planeTrapezoidShape, { fill: '#ba9b6f' } ) );
 
     // point controllers
     const pointControllerNodeLayer = new Node( {
