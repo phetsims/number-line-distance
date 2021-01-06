@@ -43,7 +43,7 @@ class NLDExploreScreenView extends ScreenView {
       elevationSceneView.visible = selectedScene === NLDScene.ELEVATION;
     } );
 
-    // map the scene selection icons to their enum values (used in the radio button group) TODO:
+    // map the scene selection icons to their enum values (used in the radio button group)
     const sceneSelectionButtonsContent = NLDScene.VALUES.map(
       value => ( { value: value, node: new Rectangle( 0, 0, 38, 38 ) } ) // empirically determined
     );

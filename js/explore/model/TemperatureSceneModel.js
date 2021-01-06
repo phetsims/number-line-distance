@@ -24,11 +24,12 @@ class TemperatureSceneModel extends SceneModel {
    * @param {Tandem} tandem
    */
   constructor( tandem ) {
-    //TODO:
+
+    // values empirically determined
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, -75 ), {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 250,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
-      initialDisplayedRange: new Range( -50, 50 )
+      initialDisplayedRange: new Range( -50, 50 ) // TODO: maybe factor this out into a constant somewhere else?
     } );
 
     const temperatureAreaBounds = new Bounds2(
