@@ -61,15 +61,6 @@ class DistanceSceneModel extends SceneModel {
     this.planeTrapezoidShape = planeTrapezoidShape;
   }
 
-  /**
-   * Resets this specific scene
-   * @public
-   */
-  reset() {
-    super.reset();
-    //TODO:
-  }
-
 }
 
 numberLineDistance.register( 'DistanceSceneModel', DistanceSceneModel );

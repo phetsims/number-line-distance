@@ -51,15 +51,6 @@ class ElevationSceneModel extends SceneModel {
     this.elevationAreaBounds = elevationAreaBounds;
   }
 
-  /**
-   * Resets this specific scene
-   * @public
-   */
-  reset() {
-    super.reset();
-    //TODO:
-  }
-
 }
 
 numberLineDistance.register( 'ElevationSceneModel', ElevationSceneModel );

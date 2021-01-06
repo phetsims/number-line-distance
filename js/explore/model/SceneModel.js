@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * Common functionality for scene models for the explore screen
+ * A model with common functionality for scene models for the explore screen.
  *
  * @author Saurabh Totey
  */

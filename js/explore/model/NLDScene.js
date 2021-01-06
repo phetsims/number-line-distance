@@ -1,7 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * enum of possible scene values for the Number Line: Distance "Explore" screen
+ * Enumeration of possible scene values for the Number Line: Distance "Explore" screen.
+ * TODO: distance scene refers to the scene with the house and the person, but the
+ *  name 'distance scene' isn't terriby descriptive/useful
  *
  * @author Saurabh Totey
  */

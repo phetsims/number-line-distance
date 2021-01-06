@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * Main model for the 'Explore' screen
+ * Main model for the 'Explore' screen. This model holds all the scene models.
  *
  * @author Saurabh Totey
  */

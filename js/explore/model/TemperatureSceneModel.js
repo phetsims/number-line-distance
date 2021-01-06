@@ -57,15 +57,6 @@ class TemperatureSceneModel extends SceneModel {
     this.temperatureAreaBounds = temperatureAreaBounds;
   }
 
-  /**
-   * Resets this specific scene
-   * @public
-   */
-  reset() {
-    super.reset();
-    //TODO:
-  }
-
 }
 
 numberLineDistance.register( 'TemperatureSceneModel', TemperatureSceneModel );
