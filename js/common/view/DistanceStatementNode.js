@@ -118,7 +118,7 @@ class DistanceStatementNode extends Node {
 
       valueProperties.forEach( ( valueProperty, i ) => {
         Property.multilink(
-          [ valueProperty, model.isPrimaryNodeSwappedProperty ],
+          [ valueProperty, model.isPrimaryControllerSwappedProperty ],
           ( value, isPrimaryNodeSwapped ) => {
             const isSecondDisplayedValue = i === 1 && isPrimaryNodeSwapped || i === 0 && !isPrimaryNodeSwapped;
             textNodes[ i ].text = ( value < 0 && isSecondDisplayedValue ) ? `(${value})` : `${value}`;
@@ -173,7 +173,7 @@ class DistanceStatementNode extends Node {
     } ) );
 
     Property.multilink(
-      valueProperties.concat( [ model.distanceRepresentationProperty, model.isPrimaryNodeSwappedProperty,
+      valueProperties.concat( [ model.distanceRepresentationProperty, model.isPrimaryControllerSwappedProperty,
         model.numberLine.orientationProperty ] ),
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
 

@@ -63,7 +63,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         model.distanceLabelsVisibleProperty,
         model.numberLine.displayedRangeProperty,
         model.distanceRepresentationProperty,
-        model.isPrimaryNodeSwappedProperty,
+        model.isPrimaryControllerSwappedProperty,
         model.numberLine.orientationProperty,
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty

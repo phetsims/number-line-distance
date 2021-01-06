@@ -48,8 +48,7 @@ class AbstractNLDBaseModel {
     // @public {Property<Boolean>} - whether the x_1 and x_2 or y_1 and y_2 nodes are swapped
     // an 'isSwapped' approach was taken rather than reordering the point controllers in some array because it is
     // often useful to know which point controller is which and to be able to consistently access the same point controller
-    // TODO: rename to isPrimaryControllerSwappedProperty
-    this.isPrimaryNodeSwappedProperty = new BooleanProperty( false );
+    this.isPrimaryControllerSwappedProperty = new BooleanProperty( false );
 
     // @public {SpatializedNumberLine}
     this.numberLine = numberLine;
@@ -198,7 +197,7 @@ class AbstractNLDBaseModel {
     this.distanceLabelsVisibleProperty.reset();
     this.distanceDescriptionVisibleProperty.reset();
     this.distanceRepresentationProperty.reset();
-    this.isPrimaryNodeSwappedProperty.reset();
+    this.isPrimaryControllerSwappedProperty.reset();
     this.numberLine.reset();
     this.pointControllerBoxProperty.reset();
   }

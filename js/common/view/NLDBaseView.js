@@ -196,12 +196,12 @@ class NLDBaseView extends Node {
       baseColor: 'white',
       left: nodeOrderDisplay.right + 20, // determined empirically
       centerY: nodeOrderDisplay.centerY,
-      listener: () => { model.isPrimaryNodeSwappedProperty.value = !model.isPrimaryNodeSwappedProperty.value; }
+      listener: () => { model.isPrimaryControllerSwappedProperty.value = !model.isPrimaryControllerSwappedProperty.value; }
     } );
     this.addChild( swapPrimaryNodesButton );
 
     // listens for when the primary node should be swapped, and swaps the representations
-    model.isPrimaryNodeSwappedProperty.link( isPrimaryNodeSwapped => {
+    model.isPrimaryControllerSwappedProperty.link(isPrimaryNodeSwapped => {
       let firstNodeHBoxChildren;
       let secondNodeHBoxChildren;
       if ( isPrimaryNodeSwapped ) {
@@ -255,7 +255,7 @@ class NLDBaseView extends Node {
       [
         model.distanceRepresentationProperty,
         model.numberLine.orientationProperty,
-        model.isPrimaryNodeSwappedProperty,
+        model.isPrimaryControllerSwappedProperty,
         model.pointControllers[ 0 ].positionProperty,
         model.pointControllers[ 1 ].positionProperty
       ],
