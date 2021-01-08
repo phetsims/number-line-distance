@@ -111,7 +111,7 @@
     "value": "bird"
   },
   "elevationSceneAbsoluteDistanceTemplate": {
-    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} are {{difference}} {{units}} apart."
+    "value": "The {{secondaryPointControllerLabel}} and the {{primaryPointControllerLabel}} have a vertical distance of {{difference}} {{units}}."
   },
   "elevationSceneDirectedPositiveDistanceTemplate": {
     "value": "The {{secondaryPointControllerLabel}} is {{difference}} {{units}} above the {{primaryPointControllerLabel}}."
