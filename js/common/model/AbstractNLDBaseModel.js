@@ -36,16 +36,16 @@ class AbstractNLDBaseModel {
       positionInBoxOffset: new Vector2( 0, 0 )
     }, options );
 
-    // @public {Property<Boolean>}
+    // @public {Property.<Boolean>}
     this.distanceLabelsVisibleProperty = new BooleanProperty( false );
 
-    // @public {Property<Boolean>}
+    // @public {Property.<Boolean>}
     this.distanceDescriptionVisibleProperty = new BooleanProperty( false );
 
-    // @public {Property<DistanceRepresentation>}
+    // @public {Property.<DistanceRepresentation>}
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
 
-    // @public {Property<Boolean>} - whether the x_1 and x_2 or y_1 and y_2 nodes are swapped
+    // @public {Property.<Boolean>} - whether the x_1 and x_2 or y_1 and y_2 nodes are swapped
     // an 'isSwapped' approach was taken rather than reordering the point controllers in some array because it is
     // often useful to know which point controller is which and to be able to consistently access the same point controller
     this.isPrimaryControllerSwappedProperty = new BooleanProperty( false );
@@ -60,7 +60,7 @@ class AbstractNLDBaseModel {
     this.pointControllerOne = pointControllerOne;
     this.pointControllerTwo = pointControllerTwo;
 
-    // @public {Property<Bounds2>} the bounds of the toolbox that point controllers return to
+    // @public {Property.<Bounds2>} the bounds of the toolbox that point controllers return to
     // can change with numberline orientation
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
 

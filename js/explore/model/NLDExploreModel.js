@@ -20,7 +20,7 @@ class NLDExploreModel {
    */
   constructor( tandem ) {
 
-    // @public {Property<NLDScene>} the currently selected scene for the explore screen
+    // @public {Property.<NLDScene>} the currently selected scene for the explore screen
     this.selectedSceneProperty = new EnumerationProperty( NLDScene, NLDScene.DISTANCE );
 
     // @public {DistanceSceneModel} the instance for the model of the 'Distance' scene
