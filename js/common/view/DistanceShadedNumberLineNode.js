@@ -1,9 +1,10 @@
 // Copyright 2020, University of Colorado Boulder
 
+// REVIEW - The header doc says that this "shades the distance between point controllers".  Isn't actually between points?
 /**
  * A node that is a number line and that also shades the distance between point controllers.
  * The space between point controllers is only shaded when both point controllers are on the number line.
- * Is used in every screen and scene of this sim.
+ * Is used in every screen and scene of this sim. // REVIEW I'd recommend removing this line, since it might not always be true.
  *
  * @author Saurabh Totey
  */
@@ -43,8 +44,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
       offScaleIndicatorHorizontalOffset: -120 // determined empirically
     }, options ) );
 
-    // the path that shades the distance between point controllers
-    const distanceShadingPath = new Path( null, { stroke: 'gray', fill: 'gray' } );
+    // the Path that shades the distance between point controllers
+    // REVIEW: The color should be factored out as a constant
+    const distanceShadingPath = new Path( null, { stroke: null, fill: 'gray' } );
     this.addChild( distanceShadingPath );
     distanceShadingPath.moveToBack();
 
@@ -70,6 +72,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
       ],
       ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, position0, position1 ) => {
 
+        // REVIEW - These should probably be inside the following 'if' clause, otherwise they get set and re-set.
         distanceTextBackground.visible = false;
         distanceShadingPath.visible = false;
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
@@ -129,6 +132,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           //  arrow compared to the numberline's range by 0.05 is arbitrary)
           // TODO: this needs to scale the tail too
           // see #7
+          // REVIEW - Agreed that the scale is arbitrary.  Since you can use get model positions and thus determine the
+          //          length of the arrow, why not use that, and set the scale so that the arrowhead is never more than,
+          //          say, 3/4 of the total span?
           let scale = 1;
           const arrowModelWidth = Math.abs(
             model.numberLine.modelPositionToValue( endPointPosition1 ) - model.numberLine.modelPositionToValue( endPointPosition0 )

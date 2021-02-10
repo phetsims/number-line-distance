@@ -21,7 +21,7 @@ class AbstractNLDBaseModel {
 
   /**
    * This constructor initializes common values and properties for the model.
-   * Parameters require two point controllers because every screen/scene in this sim have two point controllers.
+   * Parameters require two point controllers because every screen/scene in this sim has two point controllers.
    *
    * @param {Tandem} tandem
    * @param {SpatializedNumberLine} numberLine
