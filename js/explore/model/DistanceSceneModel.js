@@ -27,7 +27,9 @@ class DistanceSceneModel extends SceneModel {
     // values empirically determined
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, -75 ), {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 250,
-      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160
+      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
+      labelsInitiallyVisible: true,
+      tickMarksInitiallyVisible: true
     } );
 
     // constants used for determining the trapezoid plane shape

@@ -23,7 +23,9 @@ class NLDGenericModel extends AbstractNLDBaseModel {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 185,
       initialDisplayedRange: NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 0 ],
-      preventOverlap: false
+      preventOverlap: false,
+      labelsInitiallyVisible: true,
+      tickMarksInitiallyVisible: true
     } );
 
     // Changes the center position of the number line depending on its orientation

@@ -25,7 +25,9 @@ class ElevationSceneModel extends SceneModel {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 275,
       initialOrientation: Orientation.VERTICAL,
-      initialDisplayedRange: new Range( -20, 20 )
+      initialDisplayedRange: new Range( -20, 20 ),
+      labelsInitiallyVisible: true,
+      tickMarksInitiallyVisible: true
     } );
 
     const elevationAreaBounds = new Bounds2(

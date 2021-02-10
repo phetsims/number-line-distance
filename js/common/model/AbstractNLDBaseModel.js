@@ -37,10 +37,10 @@ class AbstractNLDBaseModel {
     }, options );
 
     // @public {Property.<Boolean>}
-    this.distanceLabelsVisibleProperty = new BooleanProperty( false );
+    this.distanceLabelsVisibleProperty = new BooleanProperty( true );
 
     // @public {Property.<Boolean>}
-    this.distanceDescriptionVisibleProperty = new BooleanProperty( false );
+    this.distanceDescriptionVisibleProperty = new BooleanProperty( true );
 
     // @public {Property.<DistanceRepresentation>}
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
