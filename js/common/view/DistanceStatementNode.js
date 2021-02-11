@@ -1,9 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A generic distance statement as a node.
- * Can either be set to be able to control point controller values (using number pickers) or just show values (using texts).
- * Doesn't need to unlink properties because all instances of DistanceStatementNode are present for the lifetime of the sim.
+ * A generic distance statement as a scenery Node. Can either be set to be able to control point controller values
+ * (using number pickers) or just show values (using texts). Doesn't need to unlink properties because all instances of
+ * DistanceStatementNode are present for the lifetime of the sim.
  *
  * @author Saurabh Totey
  */
@@ -30,9 +30,9 @@ import NLDConstants from '../NLDConstants.js';
 
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
-const INVALID_VALUE = -101;
+const INVALID_VALUE = -101; // REVIEW: Describe where this comes from.
 const INVALID_DISTANCE_STRING = '?';
-const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 );
+const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 ); // REVIEW: Describe where these come from.
 
 class DistanceStatementNode extends Node {
 
@@ -42,6 +42,7 @@ class DistanceStatementNode extends Node {
    */
   constructor( model, options ) {
     options = merge( {
+
       // {boolean} - changes whether this statement uses number pickers or texts
       //  this affects whether this can change a point controller's value or not
       controlsValues: false
@@ -49,6 +50,8 @@ class DistanceStatementNode extends Node {
 
     super();
 
+    // REVIEW: As noted below, I'd recommend an assertion for 2 point controllers here, then not including the size in
+    //         the comments or in further assertions.
     // a list of size 2 that contains nodes that 'represent' a point controller's value
     // will either be number pickers or texts depending on options.controlsValues
     let valueRepresentations;
@@ -63,8 +66,11 @@ class DistanceStatementNode extends Node {
       const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
       pointController.positionProperty.link( position => {
         if ( pointController.isControllingNumberLinePoint()
-          && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
-          valueProperty.value = Utils.roundSymmetric( model.numberLine.modelPositionToValue( position ) );
+             && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
+
+          // REVIEW: Why not use the point value here instead of having to calculate it, e.g.
+          //         valueProperty.value = pointController.numberLinePoints[ 0 ].valueProperty.value;
+          valueProperty.value = pointController.numberLinePoints[ 0 ].valueProperty.value;
         }
         else {
           valueProperty.value = INVALID_VALUE;
@@ -73,6 +79,7 @@ class DistanceStatementNode extends Node {
       return valueProperty;
     } );
 
+    // REVIEW: Rather than this assertion, it probably makes more sense to check that there are exactly 2 point controllers.
     assert && assert(
       valueProperties.length === 2,
       'Mapping point controllers to value properties should result in only 2 value properties'
@@ -90,9 +97,11 @@ class DistanceStatementNode extends Node {
         } );
       } );
 
-      // property for number pickers; is the largest number line range always
+      // range property for number pickers; is the largest number line range always
+      // REVIEW: It's a little risky to assume that index 2 is always the biggest, would recommend using .reduce to extract the biggest range.
       const numberPickerRangeProperty = new Property( NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 2 ] );
 
+      // REVIEW: This could be done as a forEach over valueProperties to reduce code duplication (a little)
       valueRepresentations = [
         new NumberPicker( valueProperties[ 0 ], numberPickerRangeProperty, {
           color: model.pointControllers[ 0 ].color
@@ -110,6 +119,8 @@ class DistanceStatementNode extends Node {
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS )
       ];
 
+      // REVIEW: Why is the extra rectangle node needed?  Couldn't the valueRepresentations just be the textNodes
+      //         themselves in this case?
       valueRepresentations = textNodes.map( textNode => {
         const textHolder = new Rectangle( textNode.localBounds.dilatedXY( 5, 10 ) ); // empirically determined
         textHolder.addChild( textNode );
@@ -141,7 +152,7 @@ class DistanceStatementNode extends Node {
       new Rectangle( REPRESENTATION_BOUNDS )
     ];
 
-    // The nodes that will be shown instead of the value representations if the point controllers aren't on the number line
+    // These nodes that will be shown instead of the value representations if the point controllers aren't on the number line.
     const alternativeTexts = [
       new RichText( NLDConstants.X_1_STRING, MATH_TEXT_OPTIONS ),
       new RichText( NLDConstants.X_2_STRING, MATH_TEXT_OPTIONS )
@@ -159,6 +170,8 @@ class DistanceStatementNode extends Node {
 
     // Layout boxes for this node's actual content
     // Children HBoxes are for putting absolute values alongside valueRepresentations
+    // REVIEW: Can we come up with some better name for these than firstChildHBox and secondChildHBox?  Maybe something
+    //         like leftTermHBox and rightTermHBox?
     const firstChildHBox = new HBox( {
       children: [ leftAbsoluteValueMark, backgroundNodes[ 0 ] ],
       excludeInvisibleChildrenFromBounds: false
@@ -172,9 +185,13 @@ class DistanceStatementNode extends Node {
       spacing: 5
     } ) );
 
+    // REVIEW: Add a short description of what this multi-link does.
     Property.multilink(
-      valueProperties.concat( [ model.distanceRepresentationProperty, model.isPrimaryControllerSwappedProperty,
-        model.numberLine.orientationProperty ] ),
+      valueProperties.concat( [
+        model.distanceRepresentationProperty,
+        model.isPrimaryControllerSwappedProperty,
+        model.numberLine.orientationProperty
+      ] ),
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
 
         // Change the alt text based off of number line orientation
@@ -229,9 +246,7 @@ class DistanceStatementNode extends Node {
         distanceText.text = `${distance}`;
       }
     );
-
   }
-
 }
 
 numberLineDistance.register( 'DistanceStatementNode', DistanceStatementNode );
