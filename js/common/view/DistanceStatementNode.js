@@ -119,8 +119,8 @@ class DistanceStatementNode extends Node {
         new Text( `${INVALID_VALUE}`, NORMAL_TEXT_OPTIONS )
       ];
 
-      // REVIEW: Why is the extra rectangle node needed?  Couldn't the valueRepresentations just be the textNodes
-      //         themselves in this case?
+      // Each Text is added within a dilated rectangle in order to ensure that the text is always centered in its space.
+      // Whenever the text of the node changes, the node is re-centered within this rectangle.
       valueRepresentations = textNodes.map( textNode => {
         const textHolder = new Rectangle( textNode.localBounds.dilatedXY( 5, 10 ) ); // empirically determined
         textHolder.addChild( textNode );
@@ -145,8 +145,10 @@ class DistanceStatementNode extends Node {
       'DistanceStatementNode requires there to be 2 value representations.'
     );
 
-    // Background nodes to parent the value representations to ensure constant spacing regardless of children
-    // assumes that REPRESENTATION_BOUNDS is always larger than any of the possible children
+    // Background nodes that are parents to the value representations which ensure constant spacing within the node.
+    // TODO: this code assumes that REPRESENTATION_BOUNDS is always larger than any of the possible children, but
+    //  that isn't actually guaranteed: I'm not quite sure how to iterate through all possible children sizes and ensure
+    //  that REPRESENTATION_BOUNDS is larger
     const backgroundNodes = [
       new Rectangle( REPRESENTATION_BOUNDS ),
       new Rectangle( REPRESENTATION_BOUNDS )
@@ -169,19 +171,17 @@ class DistanceStatementNode extends Node {
     const rightAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 1 ] );
 
     // Layout boxes for this node's actual content
-    // Children HBoxes are for putting absolute values alongside valueRepresentations
-    // REVIEW: Can we come up with some better name for these than firstChildHBox and secondChildHBox?  Maybe something
-    //         like leftTermHBox and rightTermHBox?
-    const firstChildHBox = new HBox( {
+    // HBoxes are for putting absolute values alongside valueRepresentations
+    const leftTermHBox = new HBox( {
       children: [ leftAbsoluteValueMark, backgroundNodes[ 0 ] ],
       excludeInvisibleChildrenFromBounds: false
     } );
-    const secondChildHBox = new HBox( {
+    const rightTermHBox = new HBox( {
       children: [ backgroundNodes[ 1 ], rightAbsoluteValueMark ],
       excludeInvisibleChildrenFromBounds: false
     } );
     this.addChild( new HBox( {
-      children: [ firstChildHBox, minusSignText, secondChildHBox, equalsSignText, distanceText ],
+      children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, distanceText ],
       spacing: 5
     } ) );
 
@@ -205,16 +205,16 @@ class DistanceStatementNode extends Node {
         }
 
         // Chooses the ordering for children for the distance statement
-        let firstChild = valueRepresentations[ 1 ];
-        let secondChild = valueRepresentations[ 0 ];
-        let firstChildValue = value1;
-        let secondChildValue = value0;
-        let distance = Utils.roundSymmetric( firstChildValue - secondChildValue );
+        let leftTermNode = valueRepresentations[ 1 ];
+        let rightTermNode = valueRepresentations[ 0 ];
+        let leftTermValue = value1;
+        let rightTermValue = value0;
+        let distance = Utils.roundSymmetric( leftTermValue - rightTermValue );
         if ( isPrimaryNodeSwapped ) {
-          firstChild = valueRepresentations[ 0 ];
-          firstChildValue = value0;
-          secondChild = valueRepresentations[ 1 ];
-          secondChildValue = value1;
+          leftTermNode = valueRepresentations[ 0 ];
+          leftTermValue = value0;
+          rightTermNode = valueRepresentations[ 1 ];
+          rightTermValue = value1;
           distance = -distance;
         }
 
@@ -228,20 +228,20 @@ class DistanceStatementNode extends Node {
         }
 
         // Replaces value representations with alternatives if their value is invalid
-        if ( firstChildValue === INVALID_VALUE ) {
-          firstChild = alternativeTexts[ 1 ];
+        if ( leftTermValue === INVALID_VALUE ) {
+          leftTermNode = alternativeTexts[ 1 ];
           distance = INVALID_DISTANCE_STRING;
         }
-        if ( secondChildValue === INVALID_VALUE ) {
-          secondChild = alternativeTexts[ 0 ];
+        if ( rightTermValue === INVALID_VALUE ) {
+          rightTermNode = alternativeTexts[ 0 ];
           distance = INVALID_DISTANCE_STRING;
         }
 
         // Adds children to background nodes
-        backgroundNodes[ 0 ].children = [ firstChild ];
-        backgroundNodes[ 1 ].children = [ secondChild ];
-        firstChild.center = REPRESENTATION_BOUNDS.center;
-        secondChild.center = REPRESENTATION_BOUNDS.center;
+        backgroundNodes[ 0 ].children = [ leftTermNode ];
+        backgroundNodes[ 1 ].children = [ rightTermNode ];
+        leftTermNode.center = REPRESENTATION_BOUNDS.center;
+        rightTermNode.center = REPRESENTATION_BOUNDS.center;
 
         distanceText.text = `${distance}`;
       }

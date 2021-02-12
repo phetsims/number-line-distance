@@ -2,9 +2,8 @@
 
 // REVIEW - The header doc says that this "shades the distance between point controllers".  Isn't actually between points?
 /**
- * A node that is a number line and that also shades the distance between point controllers.
- * The space between point controllers is only shaded when both point controllers are on the number line.
- * Is used in every screen and scene of this sim. // REVIEW I'd recommend removing this line, since it might not always be true.
+ * A node that is a number line and that also shades the distance between number line points.
+ * The space between number line points is only shaded when both point controllers are on the number line.
  *
  * @author Saurabh Totey
  */
@@ -25,6 +24,7 @@ import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 
+const SHADING_COLOR = 'gray';
 const ARROW_SHAPE_OPTIONS = {
   tailWidth: 3,
   headWidth: 14,
@@ -45,8 +45,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     }, options ) );
 
     // the Path that shades the distance between point controllers
-    // REVIEW: The color should be factored out as a constant
-    const distanceShadingPath = new Path( null, { stroke: null, fill: 'gray' } );
+    const distanceShadingPath = new Path( null, { stroke: null, fill: SHADING_COLOR } );
     this.addChild( distanceShadingPath );
     distanceShadingPath.moveToBack();
 
