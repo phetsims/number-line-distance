@@ -1,5 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
+// REVIEW - In the comment below, where it says, "it is meant to be used as the bottom layer", does this mean in the
+//          scene graph, the inheritance hierarchy, or some other sense?  Please clarify.
 /**
  * A view that contains elements that are used in all scenes/screens of the sim.
  * This view has all the common controls as well as the common display elements.
@@ -38,6 +40,9 @@ import Property from '../../../../axon/js/Property.js';
 import Util from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
+// REVIEW: FYI - Style-wise, we've decided that the individual strings don't need to be imported as constants, i.e. it's
+//         cool to just import the file and reference the individual strings in place.  Update to you @SaurabhTotey
+//         whether to change this or leave it.
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
 const distanceDescriptionString = numberLineDistanceStrings.distanceDescription;
@@ -70,6 +75,8 @@ const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFon
 
 class NLDBaseView extends Node {
 
+  // REVIEW - A config object can be used to reduce the number of parameters and address the TODO item below, see
+  //          https://github.com/phetsims/phet-info/blob/master/doc/phet-software-design-patterns.md#options-and-config
   /**
    * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view:
    * they are used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped.
@@ -78,6 +85,7 @@ class NLDBaseView extends Node {
    * The last 2 parameters describe the primary and secondary point controllers when given isPrimaryNodeSwapped and the
    *  numberline's orientation.
    * TODO: this is a lot of parameters; maybe split this off somehow? Maybe put these as options so that they are labelled?
+   *
    *
    * @param {AbstractNLDBaseModel} model
    * @param {Node} pointControllerRepresentationOne
