@@ -54,7 +54,6 @@ const NLDConstants = {
   X_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xString, subscript: 2 } ),
   Y_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yString, subscript: 1 } ),
   Y_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yString, subscript: 2 } )
-
 };
 
 numberLineDistance.register( 'NLDConstants', NLDConstants );

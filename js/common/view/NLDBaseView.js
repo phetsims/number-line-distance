@@ -159,7 +159,7 @@ class NLDBaseView extends Node {
     } );
 
     // controls on the bottom left for which node is considered to be first and second
-    // all values used in nodeOrderDispaly were empirically determined
+    // all values used in nodeOrderDisplay were empirically determined
     const firstNodeText = new RichText( `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeText = new RichText( `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( {
@@ -178,6 +178,7 @@ class NLDBaseView extends Node {
     } );
     this.addChild( nodeOrderDisplay );
 
+    // REVIEW: Let's make SwapIcon a separate class defined in this file.  It'll be easier if we ever reuse it.
     // button that swaps the primary point controller and secondary point controller when pressed
     // all of the numbers used for this button were empirically determined
     const swapIcon = new Node();
@@ -257,7 +258,7 @@ class NLDBaseView extends Node {
 
     // a text description for the distance under the distance statement accordion box
     const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
-      top: distanceStatementAccordionBox.bottom + 5 // padding of 5 is empirically determined
+      top: distanceStatementAccordionBox.bottom + 5 // padding empirically determined
     } ) );
     Property.multilink(
       [

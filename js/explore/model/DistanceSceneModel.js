@@ -37,6 +37,12 @@ class DistanceSceneModel extends SceneModel {
     const numberLineMaximumXPosition =  numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x;
     const numberLineY = numberLine.centerPositionProperty.value.y;
 
+    // REVIEW: In reference to the TODO below, when I (jbphet) look at the design doc, I don't think the outer edges of
+    //         the trapezoidal shape are meant to be significant.  I think the top portion should span the size of the
+    //         number line and the bottom be somewhat wider.  Any value in the number line's range should be legit when
+    //         the point controller is between the top and bottom of the trapezoid shape.  Also, once a point is added,
+    //         the point controller should move itself vertically to the center of the trapezoid.
+
     // TODO: this needs more reworking
     //  all constants are empirically determined, but the locking behaviour feels wonky
     //  might require instead reworking isPositionInPlaneFunction
@@ -63,7 +69,6 @@ class DistanceSceneModel extends SceneModel {
     // @public (read-only)
     this.planeTrapezoidShape = planeTrapezoidShape;
   }
-
 }
 
 numberLineDistance.register( 'DistanceSceneModel', DistanceSceneModel );
