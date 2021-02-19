@@ -90,15 +90,22 @@ class ElevationSceneView extends Node {
     const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersSymbol } );
     this.addChild( numberLineNode );
 
+    // REVIEW: Since this is assuming there there are two point controllers, there should probably be an ssertion here
+    //         to check that.
+
     // point controllers
     const pointControllerNodeLayer = new Node( {
       children: [
+
+        // bird
         new ElevationPointControllerNode(
           model.pointControllerOne,
           seaLevel,
           new Image( birdInWater, { center: Vector2.ZERO, maxWidth: 65 } ),
           new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
         ),
+
+        // fish
         new ElevationPointControllerNode(
           model.pointControllerTwo,
           seaLevel,

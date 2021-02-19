@@ -74,6 +74,13 @@ class TemperatureSceneView extends Node {
       bText.fill = model.pointControllers[ 1 ].color;
     } );
 
+    // REVIEW: In response to the TODO item below, I'd say that the region and temperature mapping should be in the
+    //         model, otherwise the little triangles on the temperature-and-color sensors won't work (and they don't as
+    //         of this writing). The model could have a getColorForLocation method, and the view could sample it at,
+    //         say, 5 locations and set the color stops for those locations based on the sampled color values.  As
+    //         currently done, the color values don't match the design very well anyways.
+
+    //
     // TODO: find if there is a way to query a color from a gradient: if that's possible, move this gradient into a
     //  model so that the temperature point controllers can use this to set their color; otherwise, use a function
     //  to map temperature to color (like NLI's TemperatureToColorMapper)

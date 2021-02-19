@@ -114,7 +114,10 @@ class NLDGenericScreenView extends ScreenView {
     this.addChild( pointControllerNodeLayer );
 
     // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model, { pointsOffScaleCondition: PointsOffScaleCondition.SOME } );
+    const numberLineNode = new DistanceShadedNumberLineNode(
+      model,
+      { pointsOffScaleCondition: PointsOffScaleCondition.SOME }
+    );
     this.addChild( numberLineNode );
   }
 

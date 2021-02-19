@@ -31,6 +31,8 @@ class TemperaturePointControllerNode extends PointControllerNode {
    */
   constructor( pointController, label, options ) {
 
+    // REVIEW: The following comment doesn't seem quite right.  Isn't it the label that is composited with the
+    //         thermometer and triangle in this node?
     // create a node that contains thermometer and triangle
     const compositeThermometerNode = new Node();
 
@@ -48,6 +50,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
       return DEFAULT_TEMPERATURE_VALUE;
     } );
 
+    // REVIEW: Agreed that the temperature range shouldn't be hardcoded, maybe make it a static in the model.
     const temperatureAndColorSensorNode = new TemperatureAndColorSensorNode(
       new Range( -50, 50 ), //TODO: don't hardcode this
       valueProperty,
