@@ -175,6 +175,7 @@ class AbstractNLDBaseModel {
   getPointControllers() {
     return [ this.pointControllerOne, this.pointControllerTwo ];
   }
+
   get pointControllers() { return this.getPointControllers(); }
 
   /**

@@ -29,14 +29,15 @@ class ElevationPointControllerNode extends PointControllerNode {
     aboveSeaLevelImage.touchArea = aboveSeaLevelImage.localBounds.dilated( IMAGE_DILATION );
 
     // create a node with all the images that will be used to depict this elevatable item
-    const compositeImageNode = new Node( { children: [ belowSeaLevelImage, aboveSeaLevelImage ]} );
+    const compositeImageNode = new Node( { children: [ belowSeaLevelImage, aboveSeaLevelImage ] } );
 
     // update the visibility of the images as the position changes
     pointController.positionProperty.link( position => {
       if ( position.y > seaLevel ) {
         aboveSeaLevelImage.visible = false;
         belowSeaLevelImage.visible = true;
-      } else {
+      }
+      else {
         aboveSeaLevelImage.visible = true;
         belowSeaLevelImage.visible = false;
       }

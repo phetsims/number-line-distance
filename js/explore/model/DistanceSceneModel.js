@@ -34,7 +34,7 @@ class DistanceSceneModel extends SceneModel {
 
     // constants used for determining the trapezoid plane shape
     const numberLineMinimumXPosition = numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).x;
-    const numberLineMaximumXPosition =  numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x;
+    const numberLineMaximumXPosition = numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x;
     const numberLineY = numberLine.centerPositionProperty.value.y;
 
     // REVIEW: In reference to the TODO below, when I (jbphet) look at the design doc, I don't think the outer edges of

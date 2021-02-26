@@ -210,7 +210,7 @@ class NLDBaseView extends Node {
     this.addChild( swapPrimaryNodesButton );
 
     // listens for when the primary node should be swapped, and swaps the representations
-    model.isPrimaryControllerSwappedProperty.link(isPrimaryNodeSwapped => {
+    model.isPrimaryControllerSwappedProperty.link( isPrimaryNodeSwapped => {
       let firstNodeHBoxChildren;
       let secondNodeHBoxChildren;
       if ( isPrimaryNodeSwapped ) {
