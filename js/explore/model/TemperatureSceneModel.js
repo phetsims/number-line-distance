@@ -41,7 +41,6 @@ class TemperatureSceneModel extends SceneModel {
     const isPositionInBounds = position => temperatureAreaBounds.containsPoint( position );
 
     super(
-      tandem,
       numberLine,
       new TemperaturePointController( isPositionInBounds, {
         numberLines: [ numberLine ],
@@ -53,6 +52,7 @@ class TemperatureSceneModel extends SceneModel {
         scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
         color: '#52c23c'
       } ),
+      tandem,
       { positionInBoxOffset: new Vector2( 0, 20 ) } // empirically determined
     );
 

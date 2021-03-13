@@ -39,7 +39,6 @@ class NLDGenericModel extends AbstractNLDBaseModel {
     } );
 
     super(
-      tandem,
       numberLine,
       new PointController( {
         numberLines: [ numberLine ],
@@ -48,7 +47,8 @@ class NLDGenericModel extends AbstractNLDBaseModel {
       new PointController( {
         numberLines: [ numberLine ],
         color: 'blue'
-      } )
+      } ),
+      tandem
     );
 
     // change box bounds when number line orientation changes

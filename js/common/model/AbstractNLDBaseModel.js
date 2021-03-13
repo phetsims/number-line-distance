@@ -23,19 +23,17 @@ class AbstractNLDBaseModel {
   //         constructor rather than being passed in.  This might be due to some constraints with the relationships of
   //         point controllers and number lines, and if so, so be it.  But it would worth looking at to see if more of
   //         the work can be done here.
-  // REVIEW: Our convention thus far has been to make the tandem the last parameter prior to the options rather than the
-  //         first one.
   /**
    * This constructor initializes common values and properties for the model.
    * Parameters require two point controllers because every screen/scene in this sim has two point controllers.
    *
-   * @param {Tandem} tandem
    * @param {SpatializedNumberLine} numberLine
    * @param {PointController} pointControllerOne
    * @param {PointController} pointControllerTwo
+   * @param {Tandem} tandem
    * @param {Object} [options]
    */
-  constructor( tandem, numberLine, pointControllerOne, pointControllerTwo, options ) {
+  constructor( numberLine, pointControllerOne, pointControllerTwo, tandem, options ) {
 
     // @private
     this.options = merge( {

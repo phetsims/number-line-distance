@@ -37,7 +37,6 @@ class ElevationSceneModel extends SceneModel {
     const isPositionInBounds = position => elevationAreaBounds.containsPoint( position );
 
     super(
-      tandem,
       numberLine,
       new ExplorePointController( isPositionInBounds, {
         numberLines: [ numberLine ],
@@ -46,7 +45,8 @@ class ElevationSceneModel extends SceneModel {
       new ExplorePointController( isPositionInBounds, {
         numberLines: [ numberLine ],
         color: '#446ab7'
-      } )
+      } ),
+      tandem
     );
 
     // @public (readonly) the bounds where point controllers can be

@@ -56,14 +56,14 @@ class DistanceSceneModel extends SceneModel {
     const isPositionInPlaneFunction = position => planeTrapezoidShape.containsPoint( position );
 
     super(
-      tandem,
       numberLine,
       new ExplorePointController( isPositionInPlaneFunction, {
         numberLines: [ numberLine ]
       } ),
       new ExplorePointController( isPositionInPlaneFunction, {
         numberLines: [ numberLine ]
-      } )
+      } ),
+      tandem
     );
 
     // @public (read-only)

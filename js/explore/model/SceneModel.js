@@ -13,14 +13,14 @@ import NumberLinePoint from '../../../../number-line-common/js/common/model/Numb
 class SceneModel extends AbstractNLDBaseModel {
 
   /**
-   * @param {Tandem} tandem
    * @param {SpatializedNumberLine} numberLine
    * @param {ExplorePointController} pointControllerOne
    * @param {ExplorePointController} pointControllerTwo
+   * @param {Tandem} tandem
    * @param {Object} [options]
    */
-  constructor( tandem, numberLine, pointControllerOne, pointControllerTwo, options ) {
-    super( tandem, numberLine, pointControllerOne, pointControllerTwo, options );
+  constructor( numberLine, pointControllerOne, pointControllerTwo, tandem, options ) {
+    super( numberLine, pointControllerOne, pointControllerTwo, tandem, options );
 
     // Handles attaching and detaching number line points to the point controllers whenever they enter or leave the bounds
     this.pointControllers.forEach( pointController => {
