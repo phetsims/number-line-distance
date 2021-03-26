@@ -309,7 +309,6 @@ class NLDBaseView extends Node {
         else if ( difference < 0 ) {
           distanceDescriptionText.text = StringUtils.fillIn( directedNegativeDistanceDescriptionTemplate, fillInValues );
         }
-        // Reaching the 'else' here means that the difference was 0, so there is nothing to say
 
         distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
       }
