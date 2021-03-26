@@ -300,7 +300,7 @@ class NLDBaseView extends Node {
           difference: Math.abs( difference ),
           units: ( difference === 1 || difference === -1 ) ? singularUnits : pluralUnits
         };
-        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE && difference !== 0 ) {
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE || difference === 0 ) {
           distanceDescriptionText.text = StringUtils.fillIn( absoluteDistanceDescriptionTemplate, fillInValues );
         }
         else if ( difference > 0 ) {
