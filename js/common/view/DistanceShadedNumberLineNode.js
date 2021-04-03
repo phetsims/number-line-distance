@@ -56,9 +56,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     const distanceTextBackground = new BackgroundNode( distanceText, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( distanceTextBackground );
 
-    // many features of how this numberline work depend on the model
-    // most of the numberline's behaviour is handled in this multilink
-    // unlinking unnecessary because every instance of this numberline is present for the lifetime of the sim
+    // many features of how this number line work depend on the model
+    // most of the number line's behaviour is handled in this multilink
+    // unlinking unnecessary because every instance of this number line is present for the lifetime of the sim
     Property.multilink(
       [
         model.distanceLabelsVisibleProperty,
@@ -80,11 +80,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         distanceTextBackground.visible = distanceLabelsVisible;
         distanceShadingPath.visible = true;
 
-        // gets the endpoint positions in model-space of where the tips of the numberline are
-        // this usually extends past the min and max values allowed on the numberline because of the inset and
+        // gets the endpoint positions in model-space of where the tips of the number line are
+        // this usually extends past the min and max values allowed on the number line because of the inset and
         //  arrows on each end
-        // this is needed in case a point is off the scale of the numberline and the shading needs to go all the way
-        //  to the end of the numberline
+        // this is needed in case a point is off the scale of the number line and the shading needs to go all the way
+        //  to the end of the number line
         const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
         const insetVector = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
                             new Vector2( insetSize, 0 ) :
@@ -128,7 +128,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           // if the point controllers are closer than 1/20th of the number line's range, they are scaled
           // TODO: current scale determination is arbitrary (e.g. the 1/20th number is pulled from wanting to not scale
           //  on the -10 to 10 range, but then actually determining the new scale by dividing the proportion of the
-          //  arrow compared to the numberline's range by 0.05 is arbitrary)
+          //  arrow compared to the number line's range by 0.05 is arbitrary)
           // TODO: this needs to scale the tail too
           // see #7
           // REVIEW - Agreed that the scale is arbitrary.  Since you can use get model positions and thus determine the
@@ -147,7 +147,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
             headHeight: ARROW_SHAPE_OPTIONS.headHeight * scale
           } );
 
-          // only sets the shape to the arrow shape if the point that the arrow points to is in the numberline's range
+          // only sets the shape to the arrow shape if the point that the arrow points to is in the number line's range
           // the thinner line width of 5 was determined empirically such that switching from absolute to directed distance
           // doesn't change the width of the shading
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {

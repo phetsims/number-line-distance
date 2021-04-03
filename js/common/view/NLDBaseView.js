@@ -83,7 +83,7 @@ class NLDBaseView extends Node {
    *
    * The last 7 parameters are all used to construct a distance description.
    * The last 2 parameters describe the primary and secondary point controllers when given isPrimaryNodeSwapped and the
-   *  numberline's orientation.
+   *  number line's orientation.
    * TODO: this is a lot of parameters; maybe split this off somehow? Maybe put these as options so that they are labelled?
    *
    *

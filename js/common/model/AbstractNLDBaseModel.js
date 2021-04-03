@@ -65,7 +65,7 @@ class AbstractNLDBaseModel {
     this.pointControllerTwo = pointControllerTwo;
 
     // @public {Property.<Bounds2>} the bounds of the toolbox that point controllers return to
-    // can change with numberline orientation
+    // can change with number line orientation
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
 
     this.pointControllers.forEach( pointController => {
@@ -177,7 +177,7 @@ class AbstractNLDBaseModel {
   get pointControllers() { return this.getPointControllers(); }
 
   /**
-   * A function that returns whether both point controllers are controlling number line points that live on the numberline
+   * A function that returns whether both point controllers are controlling number line points that live on the number line
    * @public
    */
   areBothPointControllersControllingOnNumberLine() {
