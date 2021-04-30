@@ -45,7 +45,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     }, options ) );
 
     // the Path that shades the distance between point controllers
-    const distanceShadingPath = new Path( null, { stroke: null, fill: SHADING_COLOR } );
+    const distanceShadingPath = new Path( null, { stroke: SHADING_COLOR, fill: SHADING_COLOR } );
     this.addChild( distanceShadingPath );
     distanceShadingPath.moveToBack();
 
