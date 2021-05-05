@@ -1,11 +1,9 @@
 // Copyright 2020, University of Colorado Boulder
 
-// REVIEW - In the comment below, where it says, "it is meant to be used as the bottom layer", does this mean in the
-//          scene graph, the inheritance hierarchy, or some other sense?  Please clarify.
 /**
  * A view that contains elements that are used in all scenes/screens of the sim.
  * This view has all the common controls as well as the common display elements.
- * Is a 'base' view because it is meant to be used as the bottom layer for all scenes/screens.
+ * Is a 'base' view because it is meant to be used as the bottom layer in the scene graph for all scenes/screens.
  *
  * @author Saurabh Totey
  */
@@ -40,9 +38,6 @@ import Property from '../../../../axon/js/Property.js';
 import Util from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 
-// REVIEW: FYI - Style-wise, we've decided that the individual strings don't need to be imported as constants, i.e. it's
-//         cool to just import the file and reference the individual strings in place.  Update to you @SaurabhTotey
-//         whether to change this or leave it.
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
 const distanceDescriptionString = numberLineDistanceStrings.distanceDescription;
