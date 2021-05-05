@@ -70,10 +70,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
       ],
       ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, position0, position1 ) => {
 
-        // REVIEW - These should probably be inside the following 'if' clause, otherwise they get set and re-set.
-        distanceTextBackground.visible = false;
-        distanceShadingPath.visible = false;
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
+          distanceTextBackground.visible = false;
+          distanceShadingPath.visible = false;
           return;
         }
         distanceTextBackground.visible = distanceLabelsVisible;
