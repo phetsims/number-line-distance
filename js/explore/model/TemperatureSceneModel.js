@@ -62,5 +62,7 @@ class TemperatureSceneModel extends SceneModel {
 
 }
 
+TemperatureSceneModel.TEMPERATURE_RANGE = new Range( -50, 50 );
+
 numberLineDistance.register( 'TemperatureSceneModel', TemperatureSceneModel );
 export default TemperatureSceneModel;

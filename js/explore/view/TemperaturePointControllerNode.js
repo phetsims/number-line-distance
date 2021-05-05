@@ -14,8 +14,8 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import Range from '../../../../dot/js/Range.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 
 // constants
 const DEFAULT_TEMPERATURE_VALUE = 0;
@@ -48,9 +48,8 @@ class TemperaturePointControllerNode extends PointControllerNode {
       return DEFAULT_TEMPERATURE_VALUE;
     } );
 
-    // REVIEW: Agreed that the temperature range shouldn't be hardcoded, maybe make it a static in the model.
     const temperatureAndColorSensorNode = new TemperatureAndColorSensorNode(
-      new Range( -50, 50 ), //TODO: don't hardcode this
+      TemperatureSceneModel.TEMPERATURE_RANGE,
       valueProperty,
       pointController.colorProperty,
       {
