@@ -30,6 +30,7 @@ const ARROW_SHAPE_OPTIONS = {
   headHeight: 14
 };
 const DISTANCE_TEXT_PADDING = 50;
+const MAX_ARROW_HEAD_TO_ARROW_PROPORTION = 0.333;
 
 class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
@@ -123,22 +124,21 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
           // scales the arrow based on how close the point controllers are
           // if the point controllers are too close, then the arrow might be too big and be distorted
-          // if the point controllers are closer than 1/20th of the number line's range, they are scaled
-          // TODO: current scale determination is arbitrary (e.g. the 1/20th number is pulled from wanting to not scale
-          //  on the -10 to 10 range, but then actually determining the new scale by dividing the proportion of the
-          //  arrow compared to the number line's range by 0.05 is arbitrary)
-          // TODO: this needs to scale the tail too
+          // if the width of the arrow head is greater than MAX_ARROW_HEAD_TO_ARROW_PROPORTION, then the arrow head is
+          //  scaled down
+          // TODO: it seems like this needs to scale the tail too
           // see #7
-          // REVIEW - Agreed that the scale is arbitrary.  Since you can use get model positions and thus determine the
-          //          length of the arrow, why not use that, and set the scale so that the arrowhead is never more than,
-          //          say, 3/4 of the total span?
           let scale = 1;
           const arrowModelWidth = Math.abs(
             model.numberLine.modelPositionToValue( endPointPosition1 ) - model.numberLine.modelPositionToValue( endPointPosition0 )
           );
-          const proportionOfArrowToNumberLine = arrowModelWidth / ( displayedRange.max - displayedRange.min );
-          if ( proportionOfArrowToNumberLine < 0.05 ) {
-            scale = proportionOfArrowToNumberLine / 0.05;
+          const arrowHeadWidth = Math.abs(
+            model.numberLine.modelPositionToValue( endPointPosition0 )
+              - model.numberLine.modelPositionToValue( new Vector2( endPointPosition0.x - ARROW_SHAPE_OPTIONS.headHeight, 0 ) )
+          );
+          const headWidthProportionToArrowModel = arrowHeadWidth / arrowModelWidth;
+          if ( headWidthProportionToArrowModel > MAX_ARROW_HEAD_TO_ARROW_PROPORTION ) {
+            scale = MAX_ARROW_HEAD_TO_ARROW_PROPORTION / headWidthProportionToArrowModel;
           }
           const scaledArrowShapeOptions = merge( {}, ARROW_SHAPE_OPTIONS, {
             headWidth: ARROW_SHAPE_OPTIONS.headWidth * scale,
