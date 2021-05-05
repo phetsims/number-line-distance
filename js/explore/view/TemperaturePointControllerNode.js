@@ -31,9 +31,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
    */
   constructor( pointController, label, options ) {
 
-    // REVIEW: The following comment doesn't seem quite right.  Isn't it the label that is composited with the
-    //         thermometer and triangle in this node?
-    // create a node that contains thermometer and triangle
+    // create a node that composites the thermometer and triangle (TemperatureAndColorSensorNode) with the label
     const compositeThermometerNode = new Node();
 
     options = merge( {
