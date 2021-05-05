@@ -1,6 +1,5 @@
 // Copyright 2020, University of Colorado Boulder
 
-// REVIEW - The header doc says that this "shades the distance between point controllers".  Isn't actually between points?
 /**
  * A node that is a number line and that also shades the distance between number line points.
  * The space between number line points is only shaded when both point controllers are on the number line.
