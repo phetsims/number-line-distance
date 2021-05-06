@@ -16,7 +16,6 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
-import Emitter from '../../../../axon/js/Emitter.js';
 
 class AbstractNLDBaseModel {
 
@@ -65,17 +64,40 @@ class AbstractNLDBaseModel {
     this.pointControllerOne = pointControllerOne;
     this.pointControllerTwo = pointControllerTwo;
 
-    // @public (read-only) emits when a point has been added, removed, or changed value
-    this.pointValuesChangedEmitter = new Emitter();
+    // @public (read-only) {Propert.<number|null>} a property that stores the number line point values of the point controllers
+    //  in the order that the point controllers were given to this model; if a point controller doesn't have a value
+    //  then null is recorded in the stored array instead.
+    // The stored array is always of length 2
+    this.pointValuesProperty = new Property( [ null, null ] );
+    this.pointValuesProperty.link( pointValues => {
+      assert && assert( pointValues.length === 2, 'There should always be 2 point values.' );
+    } );
 
-    // Listens to the numberLine and its points to make this.pointValueChangedEmitter emit when necessary
-    this.numberLine.residentPoints.addItemAddedListener( addedNumberLinePoint => {
-      const emitOnValueChanged = () => { this.pointValuesChangedEmitter.emit(); };
-      addedNumberLinePoint.valueProperty.link( emitOnValueChanged );
-      this.numberLine.residentPoints.addItemRemovedListener( removedNumberLinePoint => {
-        if ( removedNumberLinePoint === addedNumberLinePoint ) {
-          removedNumberLinePoint.valueProperty.unlink( emitOnValueChanged );
-          emitOnValueChanged();
+    // Listens to the numberLine and its points to make update pointsValueProperty when necessary.
+    // Ideally, I would listen to the residentPoints of this.numberLine so I wouldn't duplicate code, but
+    //  it is necessary to know which point controller each number line point belongs to, and points are
+    //  seemingly added to the number line before they are associated with a point controller.
+    this.pointControllerOne.numberLinePoints.addItemAddedListener( numberLinePoint => {
+      const updatePointValuesProperty = value => {
+        this.pointValuesProperty.value = [ value, this.pointValuesProperty.value[ 1 ] ];
+      };
+      numberLinePoint.valueProperty.link( updatePointValuesProperty );
+      this.pointControllerOne.numberLinePoints.addItemRemovedListener( removedNumberLinePoint => {
+        if ( removedNumberLinePoint === numberLinePoint ) {
+          numberLinePoint.valueProperty.unlink( updatePointValuesProperty );
+          updatePointValuesProperty( null );
+        }
+      } );
+    } );
+    this.pointControllerTwo.numberLinePoints.addItemAddedListener( numberLinePoint => {
+      const updatePointValuesProperty = value => {
+        this.pointValuesProperty.value = [ this.pointValuesProperty.value[ 0 ], value ];
+      };
+      numberLinePoint.valueProperty.link( updatePointValuesProperty );
+      this.pointControllerTwo.numberLinePoints.addItemRemovedListener( removedNumberLinePoint => {
+        if ( removedNumberLinePoint === numberLinePoint ) {
+          numberLinePoint.valueProperty.unlink( updatePointValuesProperty );
+          updatePointValuesProperty( null );
         }
       } );
     } );
@@ -194,11 +216,10 @@ class AbstractNLDBaseModel {
 
   /**
    * A function that returns whether both point controllers are controlling number line points that live on the number line
-   * Assumes that a point controller only controls one point on the number line and that there are 2 point controllers
    * @public
    */
   areBothPointControllersControllingOnNumberLine() {
-    return this.numberLine.residentPoints.lengthProperty.value === 2;
+    return this.pointValuesProperty.value.filter( pointValue => pointValue !== null ).length === 2;
   }
 
   /**

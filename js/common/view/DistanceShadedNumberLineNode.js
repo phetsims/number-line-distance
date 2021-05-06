@@ -66,10 +66,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         model.distanceRepresentationProperty,
         model.isPrimaryControllerSwappedProperty,
         model.numberLine.orientationProperty,
-        model.pointControllers[ 0 ].positionProperty,
-        model.pointControllers[ 1 ].positionProperty
+        model.pointValuesProperty
       ],
-      ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, position0, position1 ) => {
+      ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, pointValues ) => {
 
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
           distanceTextBackground.visible = false;
@@ -93,8 +92,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // gets where on the number line the point controllers are
         // we need both the number line values and their model positions for clamping purposes
-        const value0 = model.numberLine.modelPositionToValue( position0 );
-        const value1 = model.numberLine.modelPositionToValue( position1 );
+        const value0 = pointValues[ 0 ];
+        const value1 = pointValues[ 1 ];
         let endPointPosition0 = model.numberLine.valueToModelPosition( value0 );
         let endPointPosition1 = model.numberLine.valueToModelPosition( value1 );
 
@@ -132,7 +131,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           const arrowModelWidth = Math.abs(
             model.numberLine.modelPositionToValue( endPointPosition1 ) - model.numberLine.modelPositionToValue( endPointPosition0 )
           );
-          const arrowHeadWidth = Math.abs(
+          const arrowHeadWidth = Math.abs( //TODO: check orientation for whether this should be x or y
             model.numberLine.modelPositionToValue( endPointPosition0 )
               - model.numberLine.modelPositionToValue( new Vector2( endPointPosition0.x - ARROW_SHAPE_OPTIONS.headHeight, 0 ) )
           );
