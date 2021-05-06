@@ -128,22 +128,22 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           // TODO: it seems like this needs to scale the tail too
           // see #7
           let scale = 1;
-          const arrowModelWidth = Math.abs(
+          const arrowValueLength = Math.abs(
             model.numberLine.modelPositionToValue( endPointPosition1 ) - model.numberLine.modelPositionToValue( endPointPosition0 )
           );
-          let arrowHeadWidth = Math.abs(
+          let arrowHeadValueLength = Math.abs(
             model.numberLine.modelPositionToValue( endPointPosition0 )
               - model.numberLine.modelPositionToValue( new Vector2( endPointPosition0.x - ARROW_SHAPE_OPTIONS.headHeight, 0 ) )
           );
           if ( orientation === Orientation.VERTICAL ) {
-            arrowHeadWidth = Math.abs(
+            arrowHeadValueLength = Math.abs(
               model.numberLine.modelPositionToValue( endPointPosition0 )
               - model.numberLine.modelPositionToValue( new Vector2( 0, endPointPosition0.y - ARROW_SHAPE_OPTIONS.headHeight ) )
             );
           }
-          const headWidthProportionToArrowModel = arrowHeadWidth / arrowModelWidth;
-          if ( headWidthProportionToArrowModel > MAX_ARROW_HEAD_TO_ARROW_PROPORTION ) {
-            scale = MAX_ARROW_HEAD_TO_ARROW_PROPORTION / headWidthProportionToArrowModel;
+          const headLengthToArrowLengthProportion = arrowHeadValueLength / arrowValueLength;
+          if ( headLengthToArrowLengthProportion > MAX_ARROW_HEAD_TO_ARROW_PROPORTION ) {
+            scale = MAX_ARROW_HEAD_TO_ARROW_PROPORTION / headLengthToArrowLengthProportion;
           }
           const scaledArrowShapeOptions = merge( {}, ARROW_SHAPE_OPTIONS, {
             headWidth: ARROW_SHAPE_OPTIONS.headWidth * scale,
