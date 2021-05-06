@@ -131,10 +131,16 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           const arrowModelWidth = Math.abs(
             model.numberLine.modelPositionToValue( endPointPosition1 ) - model.numberLine.modelPositionToValue( endPointPosition0 )
           );
-          const arrowHeadWidth = Math.abs( //TODO: check orientation for whether this should be x or y
+          let arrowHeadWidth = Math.abs(
             model.numberLine.modelPositionToValue( endPointPosition0 )
               - model.numberLine.modelPositionToValue( new Vector2( endPointPosition0.x - ARROW_SHAPE_OPTIONS.headHeight, 0 ) )
           );
+          if ( orientation === Orientation.VERTICAL ) {
+            arrowHeadWidth = Math.abs(
+              model.numberLine.modelPositionToValue( endPointPosition0 )
+              - model.numberLine.modelPositionToValue( new Vector2( 0, endPointPosition0.y - ARROW_SHAPE_OPTIONS.headHeight ) )
+            );
+          }
           const headWidthProportionToArrowModel = arrowHeadWidth / arrowModelWidth;
           if ( headWidthProportionToArrowModel > MAX_ARROW_HEAD_TO_ARROW_PROPORTION ) {
             scale = MAX_ARROW_HEAD_TO_ARROW_PROPORTION / headWidthProportionToArrowModel;
