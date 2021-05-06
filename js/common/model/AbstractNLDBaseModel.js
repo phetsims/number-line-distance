@@ -16,6 +16,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
+import Emitter from '../../../../axon/js/Emitter.js';
 
 class AbstractNLDBaseModel {
 
@@ -63,6 +64,21 @@ class AbstractNLDBaseModel {
     // distance statements, etc.)
     this.pointControllerOne = pointControllerOne;
     this.pointControllerTwo = pointControllerTwo;
+
+    // @public (read-only) emits when a point has been added, removed, or changed value
+    this.pointValuesChangedEmitter = new Emitter();
+
+    // Listens to the numberLine and its points to make this.pointValueChangedEmitter emit when necessary
+    this.numberLine.residentPoints.addItemAddedListener( addedNumberLinePoint => {
+      const emitOnValueChanged = () => { this.pointValuesChangedEmitter.emit(); };
+      addedNumberLinePoint.valueProperty.link( emitOnValueChanged );
+      this.numberLine.residentPoints.addItemRemovedListener( removedNumberLinePoint => {
+        if ( removedNumberLinePoint === addedNumberLinePoint ) {
+          removedNumberLinePoint.valueProperty.unlink( emitOnValueChanged );
+          emitOnValueChanged();
+        }
+      } );
+    } );
 
     // @public {Property.<Bounds2>} the bounds of the toolbox that point controllers return to
     // can change with number line orientation
@@ -178,16 +194,11 @@ class AbstractNLDBaseModel {
 
   /**
    * A function that returns whether both point controllers are controlling number line points that live on the number line
+   * Assumes that a point controller only controls one point on the number line and that there are 2 point controllers
    * @public
    */
   areBothPointControllersControllingOnNumberLine() {
-    return this.pointControllers.every( pointController => {
-      if ( !pointController.isControllingNumberLinePoint() ) {
-        return false;
-      }
-      const numberLinePoint = pointController.numberLinePoints.get( 0 );
-      return this.numberLine.hasPoint( numberLinePoint );
-    } );
+    return this.numberLine.residentPoints.lengthProperty.value === 2;
   }
 
   /**
