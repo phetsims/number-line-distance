@@ -64,10 +64,12 @@ class AbstractNLDBaseModel {
     this.pointControllerOne = pointControllerOne;
     this.pointControllerTwo = pointControllerTwo;
 
-    // @public (read-only) {Propert.<number|null>} a property that stores the number line point values of the point controllers
-    //  in the order that the point controllers were given to this model; if a point controller doesn't have a value
-    //  then null is recorded in the stored array instead.
-    // The stored array is always of length 2
+    // @public (read-only) {Property.<number|null>} a property that stores the number line point values of the point controllers
+    //  in the order that the point controllers were given to this model. If a point controller doesn't have a number
+    //  line point, then null is recorded in the array instead.
+    // The stored array is always of length 2:
+    //  index 0 corresponds to the value of the number line point of this.pointControllerOne and
+    //  index 1 corresponds to the value of the number line point of this.pointControllerTwo.
     this.pointValuesProperty = new Property( [ null, null ] );
     this.pointValuesProperty.link( pointValues => {
       assert && assert( pointValues.length === 2, 'There should always be 2 point values.' );

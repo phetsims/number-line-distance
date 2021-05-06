@@ -260,10 +260,9 @@ class NLDBaseView extends Node {
         model.distanceRepresentationProperty,
         model.numberLine.orientationProperty,
         model.isPrimaryControllerSwappedProperty,
-        model.pointControllers[ 0 ].positionProperty,
-        model.pointControllers[ 1 ].positionProperty
+        model.pointValuesProperty
       ],
-      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, position0, position1 ) => {
+      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, pointValues ) => {
 
         // Can't say anything about distance if both point controllers aren't on the number line
         distanceDescriptionText.text = '';
@@ -272,8 +271,8 @@ class NLDBaseView extends Node {
           return;
         }
 
-        const value0 = model.numberLine.modelPositionToValue( position0 );
-        const value1 = model.numberLine.modelPositionToValue( position1 );
+        const value0 = pointValues[ 0 ];
+        const value1 = pointValues[ 1 ];
 
         // calculates the difference with the correct sign
         // even though only the absolute value of difference is ever displayed, the sign is still used to
