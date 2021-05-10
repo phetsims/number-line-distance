@@ -37,6 +37,7 @@ import DistanceStatementNode from './DistanceStatementNode.js';
 import Property from '../../../../axon/js/Property.js';
 import Util from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import required from '../../../../phet-core/js/required.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -70,38 +71,34 @@ const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFon
 
 class NLDBaseView extends Node {
 
-  // REVIEW - A config object can be used to reduce the number of parameters and address the TODO item below, see
-  //          https://github.com/phetsims/phet-info/blob/master/doc/phet-software-design-patterns.md#options-and-config
   /**
    * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view:
    * they are used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped.
    *
-   * The last 7 parameters are all used to construct a distance description.
-   * The last 2 parameters describe the primary and secondary point controllers when given isPrimaryNodeSwapped and the
-   *  number line's orientation.
-   * TODO: this is a lot of parameters; maybe split this off somehow? Maybe put these as options so that they are labelled?
-   *
-   *
    * @param {AbstractNLDBaseModel} model
    * @param {Node} pointControllerRepresentationOne
    * @param {Node} pointControllerRepresentationTwo
-   * @param {string} absoluteDistanceDescriptionTemplate
-   * @param {string} directedPositiveDistanceDescriptionTemplate
-   * @param {string} directedNegativeDistanceDescriptionTemplate
-   * @param {string} singularUnits
-   * @param {string} pluralUnits
-   * @param {function(boolean, Orientation):string} getPrimaryPointControllerLabel
-   * @param {function(boolean, Orientation):string} getSecondaryPointControllerLabel
-   * @param {Object} [options] - are not bubbled to Node superconstructor
+   * @param {Object} config - options are not bubbled to Node superconstructor
    */
-  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo,
-               absoluteDistanceDescriptionTemplate, directedPositiveDistanceDescriptionTemplate,
-               directedNegativeDistanceDescriptionTemplate, singularUnits, pluralUnits,
-               getPrimaryPointControllerLabel, getSecondaryPointControllerLabel, options ) {
+  constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, config ) {
 
-    options = merge( {
+    config = merge( {
+      distanceDescriptionStrings: {
+
+        // {string}
+        absoluteDistanceDescriptionTemplate: required( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate ),
+        directedPositiveDistanceDescriptionTemplate: required( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate ),
+        directedNegativeDistanceDescriptionTemplate: required( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate ),
+        singularUnits: required( config.distanceDescriptionStrings.singularUnits ),
+        pluralUnits: required( config.distanceDescriptionStrings.pluralUnits ),
+
+        // {function(boolean, Orientation):string} should give a point controller label (string) when given
+        //  model.isPrimaryNodeSwapped and the orientation of the number line
+        getPrimaryPointControllerLabel: required( config.distanceDescriptionStrings.getPrimaryPointControllerLabel ),
+        getSecondaryPointControllerLabel: required( config.distanceDescriptionStrings.getSecondaryPointControllerLabel )
+      },
       distanceStatementNodeOptions: { controlsValues: false }
-    }, options );
+    }, config );
 
     super();
 
@@ -218,7 +215,7 @@ class NLDBaseView extends Node {
     // an accordion box for the distance statement
     // paddings and width were empirically determined
     const distanceStatementAccordionBox = new AccordionBox(
-      new DistanceStatementNode( model, options.distanceStatementNodeOptions ),
+      new DistanceStatementNode( model, config.distanceStatementNodeOptions ),
       merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
         titleNode: new Text( distanceStatementString, DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS ),
         expandedProperty: this.accordionBoxOpenedProperty,
@@ -263,8 +260,8 @@ class NLDBaseView extends Node {
         }
 
         // Get the strings for the point controllers
-        const primaryPointControllerLabel = getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
-        const secondaryPointControllerLabel = getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+        const primaryPointControllerLabel = config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+        const secondaryPointControllerLabel = config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
 
         // Fills in a string template for the distance text based off of the distance representation
         // and whether the distance is positive or negative
@@ -272,16 +269,16 @@ class NLDBaseView extends Node {
           primaryPointControllerLabel: primaryPointControllerLabel,
           secondaryPointControllerLabel: secondaryPointControllerLabel,
           difference: Math.abs( difference ),
-          units: ( difference === 1 || difference === -1 ) ? singularUnits : pluralUnits
+          units: ( difference === 1 || difference === -1 ) ? config.distanceDescriptionStrings.singularUnits : config.distanceDescriptionStrings.pluralUnits
         };
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE || difference === 0 ) {
-          distanceDescriptionText.text = StringUtils.fillIn( absoluteDistanceDescriptionTemplate, fillInValues );
+          distanceDescriptionText.text = StringUtils.fillIn( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate, fillInValues );
         }
         else if ( difference > 0 ) {
-          distanceDescriptionText.text = StringUtils.fillIn( directedPositiveDistanceDescriptionTemplate, fillInValues );
+          distanceDescriptionText.text = StringUtils.fillIn( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate, fillInValues );
         }
         else if ( difference < 0 ) {
-          distanceDescriptionText.text = StringUtils.fillIn( directedNegativeDistanceDescriptionTemplate, fillInValues );
+          distanceDescriptionText.text = StringUtils.fillIn( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate, fillInValues );
         }
 
         distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;

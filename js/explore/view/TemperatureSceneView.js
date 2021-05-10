@@ -57,13 +57,17 @@ class TemperatureSceneView extends Node {
       model,
       aText,
       bText,
-      temperatureSceneAbsoluteDistanceTemplateString,
-      temperatureSceneDirectedPositiveDistanceTemplateString,
-      temperatureSceneDirectedNegativeDistanceTemplateString,
-      degreeString,
-      degreesString,
-      isPrimaryNodeSwapped => isPrimaryNodeSwapped ? bString : aString,
-      isPrimaryNodeSwapped => isPrimaryNodeSwapped ? aString : bString
+      {
+        distanceDescriptionStrings: {
+          absoluteDistanceDescriptionTemplate: temperatureSceneAbsoluteDistanceTemplateString,
+          directedPositiveDistanceDescriptionTemplate: temperatureSceneDirectedPositiveDistanceTemplateString,
+          directedNegativeDistanceDescriptionTemplate: temperatureSceneDirectedNegativeDistanceTemplateString,
+          singularUnits: degreeString,
+          pluralUnits: degreesString,
+          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? bString : aString,
+          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? aString : bString
+        }
+      }
     ) );
 
     // Links the color of the point controller with the representation texts

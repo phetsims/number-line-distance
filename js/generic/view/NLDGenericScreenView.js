@@ -61,18 +61,22 @@ class NLDGenericScreenView extends ScreenView {
       model,
       firstControllerRepresentation,
       secondControllerRepresentation,
-      genericAbsoluteDistanceTemplateString,
-      genericDirectedPositiveDistanceTemplateString,
-      genericDirectedNegativeDistanceTemplateString,
-      unitString,
-      unitsString,
-      ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
-        ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_1_STRING : NLDConstants.Y_1_STRING
-      ),
-      ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
-        ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_2_STRING : NLDConstants.Y_2_STRING
-      ),
-      { distanceStatementNodeOptions: { controlsValues: true } }
+      {
+        distanceDescriptionStrings: {
+          absoluteDistanceDescriptionTemplate: genericAbsoluteDistanceTemplateString,
+          directedPositiveDistanceDescriptionTemplate: genericDirectedPositiveDistanceTemplateString,
+          directedNegativeDistanceDescriptionTemplate: genericDirectedNegativeDistanceTemplateString,
+          singularUnits: unitString,
+          pluralUnits: unitsString,
+          getPrimaryPointControllerLabel: ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
+            ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_1_STRING : NLDConstants.Y_1_STRING
+          ),
+          getSecondaryPointControllerLabel: ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
+            ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_2_STRING : NLDConstants.Y_2_STRING
+          )
+        },
+        distanceStatementNodeOptions: { controlsValues: true }
+      }
     );
     this.addChild( baseView );
 

@@ -54,13 +54,17 @@ class DistanceSceneView extends Node {
       model,
       new Node(),
       new Node(),
-      distanceSceneAbsoluteDistanceTemplateString,
-      distanceSceneDirectedPositiveDistanceTemplateString,
-      distanceSceneDirectedNegativeDistanceTemplateString,
-      meterString,
-      metersString,
-      isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personString : houseString,
-      isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
+      {
+        distanceDescriptionStrings: {
+          absoluteDistanceDescriptionTemplate: distanceSceneAbsoluteDistanceTemplateString,
+          directedPositiveDistanceDescriptionTemplate: distanceSceneDirectedPositiveDistanceTemplateString,
+          directedNegativeDistanceDescriptionTemplate: distanceSceneDirectedNegativeDistanceTemplateString,
+          singularUnits: meterString,
+          pluralUnits: metersString,
+          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personString : houseString,
+          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
+        }
+      }
     ) );
 
     // trapezoid path that represents the plane where the person and the house can lie

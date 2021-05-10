@@ -55,13 +55,17 @@ class ElevationSceneView extends Node {
         model,
         new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 30 } ),
         new Image( fishInAir, { center: Vector2.ZERO, maxWidth: 30 } ),
-        elevationSceneAbsoluteDistanceTemplateString,
-        elevationSceneDirectedPositiveDistanceTemplateString,
-        elevationSceneDirectedNegativeDistanceTemplateString,
-        meterString,
-        metersString,
-        isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
-        isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
+        {
+          distanceDescriptionStrings: {
+            absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,
+            directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateString,
+            directedNegativeDistanceDescriptionTemplate: elevationSceneDirectedNegativeDistanceTemplateString,
+            singularUnits: meterString,
+            pluralUnits: metersString,
+            getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
+            getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
+          }
+        }
       )
     );
 
