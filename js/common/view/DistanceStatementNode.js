@@ -99,15 +99,11 @@ class DistanceStatementNode extends Node {
       // REVIEW: It's a little risky to assume that index 2 is always the biggest, would recommend using .reduce to extract the biggest range.
       const numberPickerRangeProperty = new Property( NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 2 ] );
 
-      // REVIEW: This could be done as a forEach over valueProperties to reduce code duplication (a little)
-      valueRepresentations = [
-        new NumberPicker( valueProperties[ 0 ], numberPickerRangeProperty, {
-          color: model.pointControllers[ 0 ].color
-        } ),
-        new NumberPicker( valueProperties[ 1 ], numberPickerRangeProperty, {
-          color: model.pointControllers[ 1 ].color
+      valueRepresentations = model.pointControllers.map( ( pointController, i ) =>
+        new NumberPicker( valueProperties[ i ], numberPickerRangeProperty, {
+          color: pointController.color
         } )
-      ];
+      );
 
     }
     else {
