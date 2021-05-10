@@ -30,9 +30,11 @@ import NLDConstants from '../NLDConstants.js';
 
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
-const INVALID_VALUE = -101; // REVIEW: Describe where this comes from.
+// A value that is beyond the bounds of the number lines because the number pickers' properties always require a number
+const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
-const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 ); // REVIEW: Describe where these come from.
+// A bounding object that is supposed to always be larger than a potential point controller representation
+const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 );
 
 class DistanceStatementNode extends Node {
 
@@ -182,7 +184,7 @@ class DistanceStatementNode extends Node {
       spacing: 5
     } ) );
 
-    // REVIEW: Add a short description of what this multi-link does.
+    // This multilink listens for changes in any relevant properties and updates the distance statement accordingly.
     Property.multilink(
       valueProperties.concat( [
         model.distanceRepresentationProperty,
