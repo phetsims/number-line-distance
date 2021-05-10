@@ -95,9 +95,19 @@ class DistanceStatementNode extends Node {
         } );
       } );
 
-      // range property for number pickers; is the largest number line range always
-      // REVIEW: It's a little risky to assume that index 2 is always the biggest, would recommend using .reduce to extract the biggest range.
-      const numberPickerRangeProperty = new Property( NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 2 ] );
+      // range property for number pickers; picks a range that contains all generic number line ranges
+      const numberPickerRangeProperty = new Property(
+        NLDConstants.GENERIC_NUMBER_LINE_RANGES.reduce( ( largestNumberLineRange, currentNumberLineRange ) => {
+          const newLargestNumberLineRange = largestNumberLineRange.copy();
+          if ( currentNumberLineRange.min < newLargestNumberLineRange.min ) {
+            newLargestNumberLineRange.min = currentNumberLineRange.min;
+          }
+          if ( currentNumberLineRange.max > newLargestNumberLineRange.max ) {
+            newLargestNumberLineRange.max = currentNumberLineRange.max;
+          }
+          return newLargestNumberLineRange;
+        } )
+      );
 
       valueRepresentations = model.pointControllers.map( ( pointController, i ) =>
         new NumberPicker( valueProperties[ i ], numberPickerRangeProperty, {
