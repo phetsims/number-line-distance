@@ -52,8 +52,6 @@ class DistanceStatementNode extends Node {
 
     super();
 
-    // REVIEW: As noted below, I'd recommend an assertion for 2 point controllers here, then not including the size in
-    //         the comments or in further assertions.
     // a list of size 2 that contains nodes that 'represent' a point controller's value
     // will either be number pickers or texts depending on options.controlsValues
     let valueRepresentations;
@@ -78,7 +76,8 @@ class DistanceStatementNode extends Node {
       return valueProperty;
     } );
 
-    // REVIEW: Rather than this assertion, it probably makes more sense to check that there are exactly 2 point controllers.
+    // There are necessarily 2 point controllers (that is enforced by AbsractNLDBaseModel), so ensure
+    // that we have the correct number of corresponding value properties.
     assert && assert(
       valueProperties.length === 2,
       'Mapping point controllers to value properties should result in only 2 value properties'
