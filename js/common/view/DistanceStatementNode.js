@@ -64,12 +64,9 @@ class DistanceStatementNode extends Node {
     // The INVALID_VALUE hack is required because the number pickers require the value property to always have a value
     const valueProperties = model.pointControllers.map( pointController => {
       const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
-      pointController.positionProperty.link( position => {
+      pointController.positionProperty.link( () => {
         if ( pointController.isControllingNumberLinePoint()
              && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
-
-          // REVIEW: Why not use the point value here instead of having to calculate it, e.g.
-          //         valueProperty.value = pointController.numberLinePoints[ 0 ].valueProperty.value;
           valueProperty.value = pointController.numberLinePoints[ 0 ].valueProperty.value;
         }
         else {
