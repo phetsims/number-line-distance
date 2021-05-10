@@ -27,7 +27,8 @@ class ElevationSceneModel extends SceneModel {
       initialOrientation: Orientation.VERTICAL,
       initialDisplayedRange: new Range( -20, 20 ),
       labelsInitiallyVisible: true,
-      tickMarksInitiallyVisible: true
+      tickMarksInitiallyVisible: true,
+      preventOverlap: false
     } );
 
     const elevationAreaBounds = new Bounds2(

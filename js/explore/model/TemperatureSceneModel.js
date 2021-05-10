@@ -31,7 +31,8 @@ class TemperatureSceneModel extends SceneModel {
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
       initialDisplayedRange: TemperatureSceneModel.TEMPERATURE_RANGE,
       labelsInitiallyVisible: true,
-      tickMarksInitiallyVisible: true
+      tickMarksInitiallyVisible: true,
+      preventOverlap: false
     } );
 
     const temperatureAreaBounds = new Bounds2(

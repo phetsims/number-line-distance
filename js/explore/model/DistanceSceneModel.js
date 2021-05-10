@@ -29,7 +29,8 @@ class DistanceSceneModel extends SceneModel {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 250,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
       labelsInitiallyVisible: true,
-      tickMarksInitiallyVisible: true
+      tickMarksInitiallyVisible: true,
+      preventOverlap: false
     } );
 
     // constants used for determining the trapezoid plane shape
