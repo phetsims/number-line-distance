@@ -173,28 +173,8 @@ class NLDBaseView extends Node {
     } );
     this.addChild( nodeOrderDisplay );
 
-    // REVIEW: Let's make SwapIcon a separate class defined in this file.  It'll be easier if we ever reuse it.
     // button that swaps the primary point controller and secondary point controller when pressed
-    // all of the numbers used for this button were empirically determined
-    const swapIcon = new Node();
-    const ellipseAngleInset = Math.PI / 12;
-    const arrowXTranslation = 4;
-    const arrowYTranslation = 10;
-    swapIcon.addChild( new Path(
-      new Shape().ellipticalArc( 0, 0, 8, 12, 0,
-        -Math.PI / 2 + ellipseAngleInset, Math.PI / 2 - ellipseAngleInset ),
-      SWAP_ICON_PATH_OPTIONS
-    ) );
-    swapIcon.addChild( new Path(
-      new ArrowShape( 0, 0, -ARROW_SIZE, ARROW_SIZE, ARROW_SHAPE_OPTIONS )
-        .transformed( Matrix3.translation( arrowXTranslation, arrowYTranslation ) ),
-      SWAP_ICON_PATH_OPTIONS
-    ) );
-    swapIcon.addChild( new Path(
-      new ArrowShape( 0, 0, -ARROW_SIZE, -ARROW_SIZE, ARROW_SHAPE_OPTIONS )
-        .transformed( Matrix3.translation( arrowXTranslation, -arrowYTranslation ) ),
-      SWAP_ICON_PATH_OPTIONS
-    ) );
+    const swapIcon = new SwapIcon();
     const swapPrimaryNodesButton = new RectangularPushButton( {
       content: swapIcon,
       baseColor: 'white',
@@ -309,6 +289,40 @@ class NLDBaseView extends Node {
     );
     model.distanceDescriptionVisibleProperty.linkAttribute( distanceDescriptionText, 'visible' );
     this.addChild( distanceDescriptionText );
+  }
+
+}
+
+/**
+ * A node that has paths that depict a 'swap' icon
+ *  which is nearly a half-ellipse with arrows at the end.
+ * The half-ellipse is on the right with arrows on the left pointing to the left.
+ */
+class SwapIcon extends Node {
+
+  /**
+   * All numbers/values used were determined empirically.
+   */
+  constructor() {
+    super();
+    const ellipseAngleInset = Math.PI / 12;
+    const arrowXTranslation = 4;
+    const arrowYTranslation = 10;
+    this.addChild( new Path(
+      new Shape().ellipticalArc( 0, 0, 8, 12, 0,
+        -Math.PI / 2 + ellipseAngleInset, Math.PI / 2 - ellipseAngleInset ),
+      SWAP_ICON_PATH_OPTIONS
+    ) );
+    this.addChild( new Path(
+      new ArrowShape( 0, 0, -ARROW_SIZE, ARROW_SIZE, ARROW_SHAPE_OPTIONS )
+        .transformed( Matrix3.translation( arrowXTranslation, arrowYTranslation ) ),
+      SWAP_ICON_PATH_OPTIONS
+    ) );
+    this.addChild( new Path(
+      new ArrowShape( 0, 0, -ARROW_SIZE, -ARROW_SIZE, ARROW_SHAPE_OPTIONS )
+        .transformed( Matrix3.translation( arrowXTranslation, -arrowYTranslation ) ),
+      SWAP_ICON_PATH_OPTIONS
+    ) );
   }
 
 }
