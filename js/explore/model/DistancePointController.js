@@ -2,7 +2,7 @@
 
 /**
  * A point controller for the distance scene of NLD.
- * This point controller locks on to the numberline when in the trapezoid, and unlocks when outside.
+ * This point controller locks on to the numberline when in the trapezoid's bounds, and unlocks when outside.
  *
  * @author Saurabh Totey
  */
@@ -16,7 +16,7 @@ class DistancePointController extends PointController {
 
   /**
    * @param {NumberLine} numberLine
-   * @param {Shape} containingShape - the point controller will lock on to the number line if in containingShape
+   * @param {Shape} containingShape - the point controller will lock on to the number line if in the containingShape's bounds
    * @param {number} lockHeight
    */
   constructor( numberLine, containingShape, lockHeight ) {
@@ -27,14 +27,14 @@ class DistancePointController extends PointController {
     } );
 
     // @private
-    this.boundingShape = containingShape;
+    this.lockingBounds = containingShape.bounds;
   }
 
   /**
    * Performs the normal proposePosition assuming that this only has one number line and is always
    * locked to the number line when close. There is a small change that the locking behaviour
    * doesn't depend on distance from the number line but rather on whether this point controller is
-   * within this.boundingShape.
+   * within this.lockingBounds.
    *
    * @override
    * @param {Vector2} proposedPosition
@@ -48,7 +48,7 @@ class DistancePointController extends PointController {
       const proposedNumberLineValue = point.numberLine.modelPositionToValue( proposedPosition );
 
       // Determine whether to propose a new value for the point or to detach and remove the point.
-      if ( this.boundingShape.containsPoint( proposedPosition ) ) {
+      if ( this.lockingBounds.containsPoint( proposedPosition ) ) {
         point.proposeValue( proposedNumberLineValue );
       }
       else {
@@ -59,7 +59,7 @@ class DistancePointController extends PointController {
     else {
 
       // Check if a point should be created and added based on the proposed position.
-      if ( this.boundingShape.containsPoint( proposedPosition ) ) {
+      if ( this.lockingBounds.containsPoint( proposedPosition ) ) {
         const numberLine = this.numberLines[ 0 ];
         const constrainedValue = numberLine.getConstrainedValue( numberLine.modelPositionToValue( proposedPosition ) );
         const numberLinePoint = new NumberLinePoint( numberLine, {
