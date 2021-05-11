@@ -48,7 +48,7 @@ class DistancePointController extends PointController {
       const proposedNumberLineValue = point.numberLine.modelPositionToValue( proposedPosition );
 
       // Determine whether to propose a new value for the point or to detach and remove the point.
-      if ( point.numberLine.isWithinPointRemovalDistance( proposedPosition ) ) {
+      if ( this.boundingShape.containsPoint( proposedPosition ) ) {
         point.proposeValue( proposedNumberLineValue );
       }
       else {
@@ -57,22 +57,18 @@ class DistancePointController extends PointController {
       }
     }
     else {
-      // Check if a point should be created and added based on the proposed position.
-      const numberLinesInRange = this.numberLines.filter( numberLine => numberLine.isWithinPointCreationDistance( proposedPosition ) );
 
-      const constrainedValues = numberLinesInRange.map(
-        numberLine => numberLine.getConstrainedValue( numberLine.modelPositionToValue( proposedPosition ) )
-      );
-      if ( numberLinesInRange.length > 0 ) {
-        numberLinesInRange.forEach( ( numberLine, i ) => {
-          const numberLinePoint = new NumberLinePoint( numberLine, {
-            initialValue: constrainedValues[ i ],
-            initialColor: this.color,
-            controller: this
-          } );
-          numberLine.addPoint( numberLinePoint );
-          this.associateWithNumberLinePoint( numberLinePoint );
+      // Check if a point should be created and added based on the proposed position.
+      if ( this.boundingShape.containsPoint( proposedPosition ) ) {
+        const numberLine = this.numberLines[ 0 ];
+        const constrainedValue = numberLine.getConstrainedValue( numberLine.modelPositionToValue( proposedPosition ) );
+        const numberLinePoint = new NumberLinePoint( numberLine, {
+          initialValue: constrainedValue,
+          initialColor: this.color,
+          controller: this
         } );
+        numberLine.addPoint( numberLinePoint );
+        this.associateWithNumberLinePoint( numberLinePoint );
       }
       else {
 

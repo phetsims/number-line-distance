@@ -30,9 +30,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
       labelsInitiallyVisible: true,
       tickMarksInitiallyVisible: true,
-      preventOverlap: false,
-      pointCreationPerpendicularDistance: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT,
-      pointRemovalPerpendicularDistance: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT
+      preventOverlap: false
     } );
 
     // constants used for determining the trapezoid plane shape
