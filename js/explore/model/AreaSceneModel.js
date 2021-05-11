@@ -1,7 +1,8 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A model with common functionality for scene models for the explore screen.
+ * A model with common functionality for the temperature and elevation scenes where
+ * the point controller can be freely moved within an area (PointController is an AreaPointController).
  *
  * @author Saurabh Totey
  */
@@ -10,12 +11,12 @@ import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 
-class SceneModel extends AbstractNLDBaseModel {
+class AreaSceneModel extends AbstractNLDBaseModel {
 
   /**
    * @param {SpatializedNumberLine} numberLine
-   * @param {ExplorePointController} pointControllerOne
-   * @param {ExplorePointController} pointControllerTwo
+   * @param {AreaPointController} pointControllerOne
+   * @param {AreaPointController} pointControllerTwo
    * @param {Tandem} tandem
    * @param {Object} [options]
    */
@@ -45,6 +46,5 @@ class SceneModel extends AbstractNLDBaseModel {
 
 }
 
-numberLineDistance.register( 'SceneModel', SceneModel );
-
-export default SceneModel;
+numberLineDistance.register( 'AreaSceneModel', AreaSceneModel );
+export default AreaSceneModel;

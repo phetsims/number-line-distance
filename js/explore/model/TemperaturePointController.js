@@ -8,10 +8,10 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import ExplorePointController from './ExplorePointController.js';
+import AreaPointController from './AreaPointController.js';
 import PaintColorProperty from '../../../../scenery/js/util/PaintColorProperty.js';
 
-class TemperaturePointController extends ExplorePointController {
+class TemperaturePointController extends AreaPointController {
 
   /**
    * @param {function(Vector2):boolean} isPositionInBoundsFunction - see ExplorePointController for explanation

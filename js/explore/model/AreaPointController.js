@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A point controller for the explore scenes of NLD.
+ * A point controller for the temperature and elevation scenes of NLD.
  * This PointController subclass only changes proposePosition so that
  * the point controllers can freely leave their bounds if necessary.
  *
@@ -13,7 +13,7 @@ import numberLineDistance from '../../numberLineDistance.js';
 import merge from '../../../../phet-core/js/merge.js';
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
-class ExplorePointController extends PointController {
+class AreaPointController extends PointController {
 
   /**
    * @param {function(Vector2):boolean} isPositionInBoundsFunction - a function that returns whether the given position
@@ -50,5 +50,5 @@ class ExplorePointController extends PointController {
 
 }
 
-numberLineDistance.register( 'ExplorePointController', ExplorePointController );
-export default ExplorePointController;
+numberLineDistance.register( 'AreaPointController', AreaPointController );
+export default AreaPointController;

@@ -12,10 +12,10 @@ import NLDConstants from '../../common/NLDConstants.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Range from '../../../../dot/js/Range.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import ExplorePointController from './ExplorePointController.js';
-import SceneModel from './SceneModel.js';
+import AreaPointController from './AreaPointController.js';
+import AreaSceneModel from './AreaSceneModel.js';
 
-class ElevationSceneModel extends SceneModel {
+class ElevationSceneModel extends AreaSceneModel {
 
   /**
    * @param {Tandem} tandem
@@ -39,11 +39,11 @@ class ElevationSceneModel extends SceneModel {
 
     super(
       numberLine,
-      new ExplorePointController( isPositionInBounds, {
+      new AreaPointController( isPositionInBounds, {
         numberLines: [ numberLine ],
         color: 'black'
       } ),
-      new ExplorePointController( isPositionInBounds, {
+      new AreaPointController( isPositionInBounds, {
         numberLines: [ numberLine ],
         color: '#446ab7'
       } ),
