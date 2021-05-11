@@ -9,15 +9,16 @@
 import numberLineDistance from '../../numberLineDistance.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import ExplorePointController from './ExplorePointController.js';
-import SceneModel from './SceneModel.js';
+import PointController from '../../../../number-line-common/js/common/model/PointController.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import Shape from '../../../../kite/js/Shape.js';
+import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
 // constants
 const TRAPEZOID_OFFSET_FROM_NUMBERLINE = 125;
 const TRAPEZOID_HEIGHT = 50;
 
-class DistanceSceneModel extends SceneModel {
+class DistanceSceneModel extends AbstractNLDBaseModel {
 
   /**
    * @param {Tandem} tandem
@@ -30,7 +31,9 @@ class DistanceSceneModel extends SceneModel {
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 160,
       labelsInitiallyVisible: true,
       tickMarksInitiallyVisible: true,
-      preventOverlap: false
+      preventOverlap: false,
+      pointCreationPerpendicularDistance: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT,
+      pointRemovalPerpendicularDistance: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT
     } );
 
     // constants used for determining the trapezoid plane shape
@@ -38,15 +41,6 @@ class DistanceSceneModel extends SceneModel {
     const numberLineMaximumXPosition = numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x;
     const numberLineY = numberLine.centerPositionProperty.value.y;
 
-    // REVIEW: In reference to the TODO below, when I (jbphet) look at the design doc, I don't think the outer edges of
-    //         the trapezoidal shape are meant to be significant.  I think the top portion should span the size of the
-    //         number line and the bottom be somewhat wider.  Any value in the number line's range should be legit when
-    //         the point controller is between the top and bottom of the trapezoid shape.  Also, once a point is added,
-    //         the point controller should move itself vertically to the center of the trapezoid.
-
-    // TODO: this needs more reworking
-    //  all constants are empirically determined, but the locking behaviour feels wonky
-    //  might require instead reworking isPositionInPlaneFunction
     const planeTrapezoidShape = new Shape()
       .moveTo( numberLineMinimumXPosition - 50, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT )
       .lineTo( numberLineMaximumXPosition + 50, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT )
@@ -54,15 +48,17 @@ class DistanceSceneModel extends SceneModel {
       .lineTo( numberLineMinimumXPosition + 50, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE )
       .close();
 
-    const isPositionInPlaneFunction = position => planeTrapezoidShape.containsPoint( position );
-
     super(
       numberLine,
-      new ExplorePointController( isPositionInPlaneFunction, {
-        numberLines: [ numberLine ]
+      new PointController( {
+        numberLines: [ numberLine ],
+        lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
+        offsetFromHorizontalNumberLine: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2
       } ),
-      new ExplorePointController( isPositionInPlaneFunction, {
-        numberLines: [ numberLine ]
+      new PointController( {
+        numberLines: [ numberLine ],
+        lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
+        offsetFromHorizontalNumberLine: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2
       } ),
       tandem
     );
