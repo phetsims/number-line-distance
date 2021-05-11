@@ -10,20 +10,30 @@
 import numberLineDistance from '../../numberLineDistance.js';
 import AreaPointController from './AreaPointController.js';
 import PaintColorProperty from '../../../../scenery/js/util/PaintColorProperty.js';
+import Color from '../../../../scenery/js/util/Color.js';
 
 class TemperaturePointController extends AreaPointController {
 
   /**
    * @param {function(Vector2):boolean} isPositionInBoundsFunction - see ExplorePointController for explanation
+   * @param {function(number):Color} temperatureToColorMap - a function that maps a temperature value to a color
    * @param {Object} [options]
    */
-  constructor( isPositionInBoundsFunction, options ) {
+  constructor( isPositionInBoundsFunction, temperatureToColorMap, options ) {
     super( isPositionInBoundsFunction, options );
 
     // @public (read-only) PaintColorProperty is different from this.color where this.color is the point controller's
     //  color for the purposes of the other number-line classes; this colorProperty instead is just representative of
     //  the temperature of this point controller
     this.colorProperty = new PaintColorProperty( 'white' );
+    this.positionProperty.link( () => {
+      if ( this.isControllingNumberLinePoint() ) {
+        this.colorProperty.value = temperatureToColorMap( this.numberLinePoints[ 0 ].valueProperty.value );
+      }
+      else {
+        this.colorProperty.value = new Color( 255, 255, 255 );
+      }
+    } );
   }
 
 }

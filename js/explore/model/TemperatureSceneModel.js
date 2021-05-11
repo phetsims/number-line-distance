@@ -14,6 +14,7 @@ import AreaSceneModel from './AreaSceneModel.js';
 import TemperaturePointController from './TemperaturePointController.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import TemperatureToColorMapper from '../../../../number-line-integers/js/explore/model/TemperatureToColorMapper.js';
 
 // constants
 const TEMPERATURE_POINT_CONTROLLER_BOX_SCALE = 0.4;
@@ -41,24 +42,37 @@ class TemperatureSceneModel extends AreaSceneModel {
     );
     const isPositionInBounds = position => temperatureAreaBounds.containsPoint( position );
 
+    const temperatureToColorMapper = new TemperatureToColorMapper( TemperatureSceneModel.TEMPERATURE_RANGE );
+
     super(
       numberLine,
-      new TemperaturePointController( isPositionInBounds, {
-        numberLines: [ numberLine ],
-        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
-        color: '#693cc2'
-      } ),
-      new TemperaturePointController( isPositionInBounds, {
-        numberLines: [ numberLine ],
-        scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
-        color: '#52c23c'
-      } ),
+      new TemperaturePointController(
+        isPositionInBounds,
+        temperatureToColorMapper.mapTemperatureToColor.bind( temperatureToColorMapper ),
+        {
+          numberLines: [ numberLine ],
+          scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
+          color: '#693cc2'
+        }
+      ),
+      new TemperaturePointController(
+        isPositionInBounds,
+        temperatureToColorMapper.mapTemperatureToColor.bind( temperatureToColorMapper ),
+        {
+          numberLines: [ numberLine ],
+          scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
+          color: '#52c23c'
+        }
+      ),
       tandem,
       { positionInBoxOffset: new Vector2( 0, 20 ) } // empirically determined
     );
 
     // @public (readonly) the bounds where point controllers can be
     this.temperatureAreaBounds = temperatureAreaBounds;
+
+    // @public (readonly)
+    this.temperatureToColorMapper = temperatureToColorMapper;
   }
 
 }
