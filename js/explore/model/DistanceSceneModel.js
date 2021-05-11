@@ -9,10 +9,9 @@
 import numberLineDistance from '../../numberLineDistance.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import PointController from '../../../../number-line-common/js/common/model/PointController.js';
+import DistancePointController from './DistancePointController.js';
 import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import Shape from '../../../../kite/js/Shape.js';
-import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
 // constants
 const TRAPEZOID_OFFSET_FROM_NUMBERLINE = 125;
@@ -50,16 +49,8 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
 
     super(
       numberLine,
-      new PointController( {
-        numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
-        offsetFromHorizontalNumberLine: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2
-      } ),
-      new PointController( {
-        numberLines: [ numberLine ],
-        lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
-        offsetFromHorizontalNumberLine: TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2
-      } ),
+      new DistancePointController( numberLine, planeTrapezoidShape, TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 ),
+      new DistancePointController( numberLine, planeTrapezoidShape, TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 ),
       tandem
     );
 
