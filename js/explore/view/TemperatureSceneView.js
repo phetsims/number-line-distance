@@ -31,7 +31,9 @@ const degreesCelsiusString = numberLineDistanceStrings.symbol.degreesCelsius;
 const degreeString = numberLineDistanceStrings.degree;
 const degreesString = numberLineDistanceStrings.degrees;
 
+// constants
 const REPRESENTATION_FONT = new PhetFont( 20 );
+const NUMBER_OF_TEMPERATURE_GRADIENT_COLOR_STOPS = 5;
 
 class TemperatureSceneView extends Node {
 
@@ -87,9 +89,8 @@ class TemperatureSceneView extends Node {
       model.temperatureAreaBounds.maxX,
       model.temperatureAreaBounds.minY
     );
-    const numberOfStops = 5;
-    for ( let i = 0; i < numberOfStops; i++ ) {
-      const ratio = i / ( numberOfStops - 1 );
+    for ( let i = 0; i < NUMBER_OF_TEMPERATURE_GRADIENT_COLOR_STOPS; i++ ) {
+      const ratio = i / ( NUMBER_OF_TEMPERATURE_GRADIENT_COLOR_STOPS - 1 );
       const value = Utils.roundSymmetric(
         TemperatureSceneModel.TEMPERATURE_RANGE.getLength() * ratio + TemperatureSceneModel.TEMPERATURE_RANGE.min
       );
