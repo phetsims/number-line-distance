@@ -80,13 +80,14 @@ class ElevationSceneView extends Node {
         model.elevationAreaBounds.maxY
       ).addColorStop( 0, '#668CB1' ).addColorStop( 0.5, 'white' )
     } ) );
-    this.addChild( new Rectangle(
+    const waterRectangle = new Rectangle(
       model.elevationAreaBounds.minX,
       model.elevationAreaBounds.minY + model.elevationAreaBounds.height / 2,
       model.elevationAreaBounds.width,
       model.elevationAreaBounds.height / 2,
       { fill: 'rgba(166, 203, 229, 0.5)' }
-    ) );
+    );
+    this.addChild( waterRectangle );
 
     const seaLevel = model.numberLine.valueToModelPosition( 0 ).y;
 
@@ -116,6 +117,8 @@ class ElevationSceneView extends Node {
       ]
     } );
     this.addChild( pointControllerNodeLayer );
+
+    waterRectangle.moveToFront();
   }
 
 }
