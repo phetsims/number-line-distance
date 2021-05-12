@@ -56,31 +56,29 @@ class DistanceStatementNode extends Node {
     // will either be number pickers or texts depending on options.controlsValues
     let valueRepresentations;
 
-    // Creates value properties for each point controller
-    // The property corresponds to the point controller's value if it is on the number line
+    // Creates value properties for each number line point
+    // The property corresponds to the point's value if it has any
     // Otherwise, the property is INVALID_VALUE (which is still a number for the number property)
-    // The value property will update when the point controller's value changes, but the point controller's value
+    // The value property will update when the point controller's value changes, but the point's value
     //  will not update when the value property changes unless options.controlsValues is true
     // The INVALID_VALUE hack is required because the number pickers require the value property to always have a value
-    const valueProperties = model.pointControllers.map( pointController => {
-      const valueProperty = new NumberProperty( INVALID_VALUE, { reentrant: true } );
-      pointController.positionProperty.link( () => {
-        if ( pointController.isControllingNumberLinePoint()
-             && model.numberLine.hasPoint( pointController.numberLinePoints.get( 0 ) ) ) {
-          valueProperty.value = pointController.numberLinePoints[ 0 ].valueProperty.value;
-        }
-        else {
-          valueProperty.value = INVALID_VALUE;
-        }
-      } );
-      return valueProperty;
+    // The Utils.roundSymmetric is necessary because there is a very difficult-to-produce situation in which the point
+    //  controller in the temperature or elevation scene is placed right on the edge of the bounds and so the value
+    //  is just a long decimal number.
+    const valueProperties = [
+      new NumberProperty( INVALID_VALUE, { reentrant: true } ),
+      new NumberProperty( INVALID_VALUE, { reentrant: true } )
+    ];
+    model.pointValuesProperty.link( pointValues => {
+      valueProperties[ 0 ].value = pointValues[ 0 ] !== null ? Utils.roundSymmetric( pointValues[ 0 ] ) : INVALID_VALUE;
+      valueProperties[ 1 ].value = pointValues[ 1 ] !== null ? Utils.roundSymmetric( pointValues[ 1 ] ) : INVALID_VALUE;
     } );
 
     // There are necessarily 2 point controllers (that is enforced by AbsractNLDBaseModel), so ensure
     // that we have the correct number of corresponding value properties.
     assert && assert(
       valueProperties.length === 2,
-      'Mapping point controllers to value properties should result in only 2 value properties'
+      'Mapping point values to value properties should result in exactly 2 value properties'
     );
 
     if ( options.controlsValues ) {
