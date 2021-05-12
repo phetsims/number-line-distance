@@ -124,12 +124,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
           // scales the arrow based on how close the point controllers are
           // if the point controllers are too close, then the arrow might be too big and be distorted
-          // if the width of the arrow head is greater than MAX_ARROW_HEAD_TO_ARROW_PROPORTION, then the arrow head is
+          // if the width of the arrow head is greater than MAX_ARROW_HEAD_TO_ARROW_PROPORTION, then the arrow is
           //  scaled down
-          // TODO: check how scaling behaviour is supposed to work:
-          //  is the tail scaled too?
-          //  should only the headHeight be scaled and not the headWidth?
-          //  should the arrow disappear entirely when the scale is small enough?
           // see #7
           let scale = 1;
           const arrowValueLength = Math.abs(
@@ -150,7 +146,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
             scale = MAX_ARROW_HEAD_TO_ARROW_PROPORTION / headLengthToArrowLengthProportion;
           }
           const scaledArrowShapeOptions = merge( {}, ARROW_SHAPE_OPTIONS, {
-            headHeight: ARROW_SHAPE_OPTIONS.headHeight * scale
+            headHeight: ARROW_SHAPE_OPTIONS.headHeight * scale,
+            headWidth: ARROW_SHAPE_OPTIONS.headWidth * scale,
+            tailWidth: ARROW_SHAPE_OPTIONS.tailWidth * scale
           } );
 
           // only sets the shape to the arrow shape if the point that the arrow points to is in the number line's range
