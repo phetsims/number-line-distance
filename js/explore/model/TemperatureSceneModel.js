@@ -14,7 +14,7 @@ import AreaSceneModel from './AreaSceneModel.js';
 import TemperaturePointController from './TemperaturePointController.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import TemperatureToColorMapper from '../../../../number-line-integers/js/explore/model/TemperatureToColorMapper.js';
+import TemperatureToColorMapper from '../../../../number-line-common/js/explore/model/TemperatureToColorMapper.js';
 
 // constants
 const TEMPERATURE_POINT_CONTROLLER_BOX_SCALE = 0.4;
