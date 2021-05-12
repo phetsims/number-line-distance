@@ -24,13 +24,14 @@ import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.
 import Vector2 from '../../../../dot/js/Vector2.js';
 
 const SHADING_COLOR = 'gray';
+const SHADING_WIDTH = 8;
 const ARROW_SHAPE_OPTIONS = {
-  tailWidth: 3,
-  headWidth: 14,
-  headHeight: 14
+  tailWidth: SHADING_WIDTH,
+  headWidth: 20,
+  headHeight: 20
 };
 const DISTANCE_TEXT_PADDING = 50;
-const MAX_ARROW_HEAD_TO_ARROW_PROPORTION = 0.333;
+const MAX_ARROW_HEAD_TO_ARROW_PROPORTION = 0.5;
 
 class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
@@ -45,7 +46,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     }, options ) );
 
     // the Path that shades the distance between point controllers
-    const distanceShadingPath = new Path( null, { stroke: SHADING_COLOR, fill: SHADING_COLOR } );
+    const distanceShadingPath = new Path( null, { stroke: null, fill: SHADING_COLOR, lineWidth: SHADING_WIDTH } );
     this.addChild( distanceShadingPath );
     distanceShadingPath.moveToBack();
 
@@ -115,7 +116,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // makes shading path between nodes
         let shape = new Shape().moveToPoint( endPointPosition0 ).lineToPoint( endPointPosition1 );
-        let lineWidth = 8; // determined empirically
+        distanceShadingPath.stroke = SHADING_COLOR;
 
         // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
         // that is on the number line
@@ -151,20 +152,18 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           } );
 
           // only sets the shape to the arrow shape if the point that the arrow points to is in the number line's range
-          // the thinner line width of 5 was determined empirically such that switching from absolute to directed distance
-          // doesn't change the width of the shading
+          // the stroke is removed so the tail of the arrow can have the correct width
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
-            lineWidth = 5;
             shape = new ArrowShape( endPointPosition1.x, endPointPosition1.y, endPointPosition0.x, endPointPosition0.y, scaledArrowShapeOptions );
+            distanceShadingPath.stroke = null;
           }
           else if ( !isPrimaryNodeSwapped && displayedRange.min <= value1 && value1 <= displayedRange.max ) {
-            lineWidth = 5;
             shape = new ArrowShape( endPointPosition0.x, endPointPosition0.y, endPointPosition1.x, endPointPosition1.y, scaledArrowShapeOptions );
+            distanceShadingPath.stroke = null;
           }
         }
 
         distanceShadingPath.shape = shape;
-        distanceShadingPath.lineWidth = lineWidth;
 
         // calculates the difference to display
         let displayedDifference = value1 - value0;
