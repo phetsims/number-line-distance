@@ -53,11 +53,18 @@ class DistanceSceneView extends Node {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    // TODO: representation widths are not the same
+    // creates the representations for the person and the house in the area that
+    // they can be swapped; ensures they have the same width
+    const houseRepresentation = new Image( house, { scale: 0.08 } );
+    const personRepresentation = new Image( person, { scale: 0.08 } );
+    const minWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
+    houseRepresentation.maxWidth = minWidth;
+    personRepresentation.maxWidth = minWidth;
+
     this.addChild( new NLDBaseView(
       model,
-      new Image( house, { scale: 0.05 } ),
-      new Image( person, { scale: 0.1 } ),
+      houseRepresentation,
+      personRepresentation,
       {
         distanceDescriptionStrings: {
           absoluteDistanceDescriptionTemplate: distanceSceneAbsoluteDistanceTemplateString,
@@ -85,10 +92,19 @@ class DistanceSceneView extends Node {
     ) );
 
     // point controllers
+    const personPointControllerRepresentation = new Image( person, { scale: 0.1 } );
+    const housePointControllerRepresentation = new Image( house, { scale: 0.1 } );
     const pointControllerNodeLayer = new Node( {
-      children: model.pointControllers.map( pointController =>
-        new PointControllerNode( pointController, { connectorLine: false } )
-      )
+      children: [
+        new PointControllerNode( model.pointControllerOne, {
+          connectorLine: false,
+          node: new Node( { children: [ housePointControllerRepresentation ] } )
+        } ),
+        new PointControllerNode( model.pointControllerTwo, {
+          connectorLine: false,
+          node: new Node( { children: [ personPointControllerRepresentation ] } )
+        } )
+      ]
     } );
     this.addChild( pointControllerNodeLayer );
 
