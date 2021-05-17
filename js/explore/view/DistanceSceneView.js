@@ -21,6 +21,7 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import fireHydrant from '../../../images/fire-hydrant_png.js';
 import person from '../../../images/person_png.js';
 import house from '../../../images/house_png.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -55,6 +56,8 @@ class DistanceSceneView extends Node {
 
     // creates the representations for the person and the house in the area that
     // they can be swapped; ensures they have the same width
+    // TODO: scales were empirically determined so that swapping nodes doesn't change the size of anything
+    //  but find out if there is a better way to do this
     const houseRepresentation = new Image( house, { scale: 0.08 } );
     const personRepresentation = new Image( person, { scale: 0.08 } );
     const minWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
@@ -91,9 +94,11 @@ class DistanceSceneView extends Node {
       }
     ) );
 
-    // point controllers
+    // point controllers TODO: change scale and center after the point controllers leave the box
     const personPointControllerRepresentation = new Image( person, { scale: 0.1 } );
     const housePointControllerRepresentation = new Image( house, { scale: 0.1 } );
+    personPointControllerRepresentation.center = new Vector2( personPointControllerRepresentation.width / 2, 0 );
+    housePointControllerRepresentation.center = new Vector2( housePointControllerRepresentation.width / 2, 0 );
     const pointControllerNodeLayer = new Node( {
       children: [
         new PointControllerNode( model.pointControllerOne, {
