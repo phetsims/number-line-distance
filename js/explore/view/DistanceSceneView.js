@@ -18,6 +18,7 @@ import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
+import fireHydrant from '../../../images/fire-hydrant_png.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -69,6 +70,16 @@ class DistanceSceneView extends Node {
 
     // trapezoid path that represents the plane where the person and the house can lie
     this.addChild( new Path( model.planeTrapezoidShape, { fill: '#ba9b6f' } ) );
+
+    // fire hydrant that sits at the 0 location of the number line
+    this.addChild( new Image(
+      fireHydrant,
+      {
+        centerX: model.planeTrapezoidShape.bounds.center.x,
+        bottom: model.planeTrapezoidShape.bounds.center.y,
+        scale: 0.2 // empirically determined
+      }
+    ) );
 
     // point controllers
     const pointControllerNodeLayer = new Node( {
