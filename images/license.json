@@ -33,7 +33,23 @@
   },
   "fire-hydrant.png": {
     "text": [
-      "Copyright 2020 University of Colorado Boulder"
+      "Copyright 2021 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Amanda McGarry for use by PhET"
+  },
+  "house.png": {
+    "text": [
+      "Copyright 2021 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Amanda McGarry for use by PhET"
+  },
+  "person.png": {
+    "text": [
+      "Copyright 2021 University of Colorado Boulder"
     ],
     "projectURL": "http://phet.colorado.edu",
     "license": "contact phethelp@colorado.edu",

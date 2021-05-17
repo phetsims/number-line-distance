@@ -19,6 +19,8 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import fireHydrant from '../../../images/fire-hydrant_png.js';
+import person from '../../../images/person_png.js';
+import house from '../../../images/house_png.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -51,10 +53,11 @@ class DistanceSceneView extends Node {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
+    // TODO: representation widths are not the same
     this.addChild( new NLDBaseView(
       model,
-      new Node(),
-      new Node(),
+      new Image( house, { scale: 0.05 } ),
+      new Image( person, { scale: 0.1 } ),
       {
         distanceDescriptionStrings: {
           absoluteDistanceDescriptionTemplate: distanceSceneAbsoluteDistanceTemplateString,
