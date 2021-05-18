@@ -28,8 +28,9 @@ class DistancePointController extends PointController {
       scaleInBox: scaleInBox
     } );
 
-    // @private
-    this.lockingBounds = containingShape.bounds.withMinY( numberLine.centerPositionProperty.value.y );
+    // @private {Bounds2} the bounds for when the point controller will lock onto the number line
+    // offset of 75 is determined empirically
+    this.lockingBounds = containingShape.bounds.withMinY( numberLine.centerPositionProperty.value.y + 75 );
   }
 
   /**
