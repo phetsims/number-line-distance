@@ -12,7 +12,6 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import explorescene1mockup from '../../../images/explorescene1mockup_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
-import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -21,7 +20,7 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import fireHydrant from '../../../images/fire-hydrant_png.js';
 import person from '../../../images/person_png.js';
 import house from '../../../images/house_png.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
+import DistancePointControllerNode from './DistancePointControllerNode.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -98,18 +97,16 @@ class DistanceSceneView extends Node {
     // the representation scales are empirically determined
     const personPointControllerRepresentation = new Image( person, { scale: 0.3 } );
     const housePointControllerRepresentation = new Image( house, { scale: 0.3 } );
-    personPointControllerRepresentation.center = new Vector2( personPointControllerRepresentation.width / 2, 0 );
-    housePointControllerRepresentation.center = new Vector2( housePointControllerRepresentation.width / 2, 0 );
     const pointControllerNodeLayer = new Node( {
       children: [
-        new PointControllerNode( model.pointControllerOne, {
-          connectorLine: false,
-          node: new Node( { children: [ housePointControllerRepresentation ] } )
-        } ),
-        new PointControllerNode( model.pointControllerTwo, {
-          connectorLine: false,
-          node: new Node( { children: [ personPointControllerRepresentation ] } )
-        } )
+        new DistancePointControllerNode(
+          model.pointControllerOne,
+          housePointControllerRepresentation
+        ),
+        new DistancePointControllerNode(
+          model.pointControllerTwo,
+          personPointControllerRepresentation
+        )
       ]
     } );
     this.addChild( pointControllerNodeLayer );
