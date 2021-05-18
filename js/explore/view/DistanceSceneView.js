@@ -94,9 +94,10 @@ class DistanceSceneView extends Node {
       }
     ) );
 
-    // point controllers TODO: change scale and center after the point controllers leave the box
-    const personPointControllerRepresentation = new Image( person, { scale: 0.1 } );
-    const housePointControllerRepresentation = new Image( house, { scale: 0.1 } );
+    // point controllers TODO: change center after the point controllers leave the box
+    // the representation scales are empirically determined
+    const personPointControllerRepresentation = new Image( person, { scale: 0.3 } );
+    const housePointControllerRepresentation = new Image( house, { scale: 0.3 } );
     personPointControllerRepresentation.center = new Vector2( personPointControllerRepresentation.width / 2, 0 );
     housePointControllerRepresentation.center = new Vector2( housePointControllerRepresentation.width / 2, 0 );
     const pointControllerNodeLayer = new Node( {

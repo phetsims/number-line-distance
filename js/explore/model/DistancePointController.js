@@ -18,12 +18,14 @@ class DistancePointController extends PointController {
    * @param {NumberLine} numberLine
    * @param {Shape} containingShape - the point controller will lock on to the number line if in the containingShape's bounds
    * @param {number} lockHeight
+   * @param {number} scaleInBox
    */
-  constructor( numberLine, containingShape, lockHeight ) {
+  constructor( numberLine, containingShape, lockHeight, scaleInBox ) {
     super( {
       numberLines: [ numberLine ],
       lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
-      offsetFromHorizontalNumberLine: lockHeight
+      offsetFromHorizontalNumberLine: lockHeight,
+      scaleInBox: scaleInBox
     } );
 
     // @private
