@@ -93,18 +93,18 @@ class DistanceSceneView extends Node {
       }
     ) );
 
-    // point controllers the representation scales are empirically determined
-    const personPointControllerRepresentation = new Image( person, { scale: 0.2 } );
-    const housePointControllerRepresentation = new Image( house, { scale: 0.2 } );
+    // point controllers; the image scales are empirically determined
+    const personPointControllerImage = new Image( person, { scale: 0.2 } );
+    const housePointControllerImage = new Image( house, { scale: 0.2 } );
     const pointControllerNodeLayer = new Node( {
       children: [
         new DistancePointControllerNode(
           model.pointControllerOne,
-          housePointControllerRepresentation
+          housePointControllerImage
         ),
         new DistancePointControllerNode(
           model.pointControllerTwo,
-          personPointControllerRepresentation
+          personPointControllerImage
         )
       ]
     } );
