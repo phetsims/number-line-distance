@@ -15,7 +15,7 @@ import NumberLinePoint from '../../../../number-line-common/js/common/model/Numb
 class DistancePointController extends PointController {
 
   /**
-   * @param {NumberLine} numberLine
+   * @param {SpatializedNumberLine} numberLine
    * @param {Shape} containingShape - the point controller will lock on to the number line if in the containingShape's bounds
    * @param {number} lockHeight
    * @param {number} scaleInBox
@@ -29,7 +29,7 @@ class DistancePointController extends PointController {
     } );
 
     // @private
-    this.lockingBounds = containingShape.bounds;
+    this.lockingBounds = containingShape.bounds.withMinY( numberLine.centerPositionProperty.value.y );
   }
 
   /**
