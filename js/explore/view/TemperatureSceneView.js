@@ -21,6 +21,9 @@ import TemperaturePointControllerNode from './TemperaturePointControllerNode.js'
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import Utils from '../../../../dot/js/Utils.js';
+import antarctic from '../../../images/antarctic_png.js';
+import trees from '../../../images/trees_png.js';
+import desert from '../../../images/desert_png.js';
 
 const aString = numberLineDistanceStrings.symbol.a;
 const bString = numberLineDistanceStrings.symbol.b;
@@ -102,6 +105,32 @@ class TemperatureSceneView extends Node {
     this.addChild( new Rectangle( model.temperatureAreaBounds, {
       fill: rectangleGradient
     } ) );
+
+    // Adds images on top of the rectangle gradient
+    this.addChild( new Image(
+      antarctic,
+      {
+        left: model.temperatureAreaBounds.left,
+        centerY: model.temperatureAreaBounds.centerY,
+        maxHeight: model.temperatureAreaBounds.height
+      }
+    ) );
+    this.addChild( new Image(
+      trees,
+      {
+        centerX: model.temperatureAreaBounds.centerX,
+        centerY: model.temperatureAreaBounds.centerY,
+        maxHeight: model.temperatureAreaBounds.height
+      }
+    ) );
+    this.addChild( new Image(
+      desert,
+      {
+        right: model.temperatureAreaBounds.right,
+        centerY: model.temperatureAreaBounds.centerY,
+        maxHeight: model.temperatureAreaBounds.height
+      }
+    ) );
 
     // number line
     const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: degreesCelsiusString } );
