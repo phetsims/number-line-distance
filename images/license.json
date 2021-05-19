@@ -78,5 +78,13 @@
     "projectURL": "http://phet.colorado.edu",
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Amanda McGarry for use by PhET"
+  },
+  "elevation-background.png": {
+    "text": [
+      "Copyright 2021 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Amanda McGarry for use by PhET"
   }
 }

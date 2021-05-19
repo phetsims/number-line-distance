@@ -21,7 +21,7 @@ import fishInWater from '../../../../number-line-common/images/fish-water_png.js
 import fishInAir from '../../../../number-line-common/images/fish-air_png.js';
 import birdInWater from '../../../../number-line-common/images/bird-water_png.js';
 import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
-import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
+import elevationBackground from '../../../images/elevation-background_png.js';
 
 const fishString = numberLineDistanceStrings.fish;
 const birdString = numberLineDistanceStrings.bird;
@@ -70,22 +70,23 @@ class ElevationSceneView extends Node {
     );
 
     // Adds rectangles in the elevation area bounds to display background
-    // First rectangle covers entire bounds and is a gradient that represents the sky
+    // First rectangle covers entire bounds and is the background image
     // Second rectangle covers the lower half of the bounds and is a constant color that represents the water
-    this.addChild( new Rectangle( model.elevationAreaBounds, {
-      fill: new LinearGradient(
-        model.elevationAreaBounds.minX,
-        model.elevationAreaBounds.minY,
-        model.elevationAreaBounds.minX,
-        model.elevationAreaBounds.maxY
-      ).addColorStop( 0, '#668CB1' ).addColorStop( 0.5, 'white' )
-    } ) );
+    this.addChild( new Image(
+      elevationBackground,
+      {
+        x: model.elevationAreaBounds.minX,
+        y: model.elevationAreaBounds.minY,
+        maxWidth: model.elevationAreaBounds.width,
+        maxHeight: model.elevationAreaBounds.height
+      }
+    ) );
     const waterRectangle = new Rectangle(
       model.elevationAreaBounds.minX,
       model.elevationAreaBounds.minY + model.elevationAreaBounds.height / 2,
       model.elevationAreaBounds.width,
       model.elevationAreaBounds.height / 2,
-      { fill: 'rgba(166, 203, 229, 0.5)' }
+      { fill: '#97C4F2', opacity: 0.3 }
     );
     this.addChild( waterRectangle );
 
