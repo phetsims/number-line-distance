@@ -94,21 +94,17 @@ class DistanceSceneView extends Node {
     ) );
 
     // point controllers; the image scales are empirically determined
+    // point controllers are in different nodes so that the person is always on top of the house in terms of layering
     const personPointControllerImage = new Image( person, { scale: 0.2 } );
     const housePointControllerImage = new Image( house, { scale: 0.2 } );
-    const pointControllerNodeLayer = new Node( {
-      children: [
-        new DistancePointControllerNode(
-          model.pointControllerOne,
-          housePointControllerImage
-        ),
-        new DistancePointControllerNode(
-          model.pointControllerTwo,
-          personPointControllerImage
-        )
-      ]
-    } );
-    this.addChild( pointControllerNodeLayer );
+    const pointControllersLayer = new Node();
+    pointControllersLayer.addChild( new Node( {
+      children: [ new DistancePointControllerNode( model.pointControllerOne, housePointControllerImage ) ]
+    } ) );
+    pointControllersLayer.addChild( new Node( {
+      children: [ new DistancePointControllerNode( model.pointControllerTwo, personPointControllerImage ) ]
+    } ) );
+    this.addChild( pointControllersLayer );
 
     // number line
     const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersSymbol } );
