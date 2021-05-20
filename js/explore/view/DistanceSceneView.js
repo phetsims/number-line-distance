@@ -81,7 +81,7 @@ class DistanceSceneView extends Node {
     ) );
 
     // trapezoid path that represents the plane where the person and the house can lie
-    this.addChild( new Path( model.planeTrapezoidShape, { fill: '#ba9b6f' } ) );
+    this.addChild( new Path( model.planeTrapezoidShape, { fill: '#9b9b9b' } ) );
 
     // fire hydrant that sits at the 0 location of the number line
     this.addChild( new Image(
