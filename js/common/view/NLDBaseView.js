@@ -65,7 +65,7 @@ const ARROW_SHAPE_OPTIONS = {
 };
 const DISTANCE_DESCRIPTION_TEXT_OPTIONS = {
   font: new PhetFont( 16 ),
-  maxWidth: 300
+  maxWidth: 600
 };
 const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFont( 16 ) };
 
