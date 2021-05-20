@@ -111,7 +111,7 @@ class TemperatureSceneView extends Node {
       antarctic,
       {
         left: model.temperatureAreaBounds.left,
-        centerY: model.temperatureAreaBounds.centerY,
+        bottom: model.temperatureAreaBounds.bottom,
         maxHeight: model.temperatureAreaBounds.height
       }
     ) );
@@ -119,7 +119,7 @@ class TemperatureSceneView extends Node {
       trees,
       {
         centerX: model.temperatureAreaBounds.centerX,
-        centerY: model.temperatureAreaBounds.centerY,
+        bottom: model.temperatureAreaBounds.bottom,
         maxHeight: model.temperatureAreaBounds.height
       }
     ) );
@@ -127,7 +127,7 @@ class TemperatureSceneView extends Node {
       desert,
       {
         right: model.temperatureAreaBounds.right,
-        centerY: model.temperatureAreaBounds.centerY,
+        bottom: model.temperatureAreaBounds.bottom,
         maxHeight: model.temperatureAreaBounds.height
       }
     ) );
