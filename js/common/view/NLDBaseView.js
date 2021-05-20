@@ -82,7 +82,6 @@ class NLDBaseView extends Node {
    */
   constructor( model, pointControllerRepresentationOne, pointControllerRepresentationTwo, config ) {
 
-    console.log("2");
     config = merge( {
       distanceDescriptionStrings: {
 
