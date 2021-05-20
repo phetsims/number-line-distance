@@ -36,9 +36,10 @@ class TemperatureSceneModel extends AreaSceneModel {
       preventOverlap: false
     } );
 
+    // y-values determined empirically
     const temperatureAreaBounds = new Bounds2(
-      numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).x, 300,
-      numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x, 400
+      numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).x, 334,
+      numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x, 434
     );
     const isPositionInBounds = position => temperatureAreaBounds.containsPoint( position );
 
