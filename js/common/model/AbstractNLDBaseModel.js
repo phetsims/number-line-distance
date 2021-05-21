@@ -80,24 +80,28 @@ class AbstractNLDBaseModel {
         this.pointValuesProperty.value = [ value, this.pointValuesProperty.value[ 1 ] ];
       };
       numberLinePoint.valueProperty.link( updatePointValuesProperty );
-      this.pointControllerOne.numberLinePoints.addItemRemovedListener( removedNumberLinePoint => {
+      const itemRemovedListener = removedNumberLinePoint => {
         if ( removedNumberLinePoint === numberLinePoint ) {
           numberLinePoint.valueProperty.unlink( updatePointValuesProperty );
           updatePointValuesProperty( null );
+          this.pointControllerOne.numberLinePoints.removeItemRemovedListener( itemRemovedListener );
         }
-      } );
+      };
+      this.pointControllerOne.numberLinePoints.addItemRemovedListener( itemRemovedListener );
     } );
     this.pointControllerTwo.numberLinePoints.addItemAddedListener( numberLinePoint => {
       const updatePointValuesProperty = value => {
         this.pointValuesProperty.value = [ this.pointValuesProperty.value[ 0 ], value ];
       };
       numberLinePoint.valueProperty.link( updatePointValuesProperty );
-      this.pointControllerTwo.numberLinePoints.addItemRemovedListener( removedNumberLinePoint => {
+      const itemRemovedListener = removedNumberLinePoint => {
         if ( removedNumberLinePoint === numberLinePoint ) {
           numberLinePoint.valueProperty.unlink( updatePointValuesProperty );
           updatePointValuesProperty( null );
+          this.pointControllerTwo.numberLinePoints.removeItemRemovedListener( itemRemovedListener );
         }
-      } );
+      };
+      this.pointControllerTwo.numberLinePoints.addItemRemovedListener( itemRemovedListener );
     } );
 
     // @public {Property.<Bounds2>} the bounds of the toolbox that point controllers return to
