@@ -21,6 +21,7 @@ import fireHydrant from '../../../images/fire-hydrant_png.js';
 import person from '../../../images/person_png.js';
 import house from '../../../images/house_png.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -99,10 +100,22 @@ class DistanceSceneView extends Node {
     const housePointControllerImage = new Image( house, { scale: 0.2 } );
     const pointControllersLayer = new Node();
     pointControllersLayer.addChild( new Node( {
-      children: [ new DistancePointControllerNode( model.pointControllerOne, housePointControllerImage ) ]
+      children: [
+        new DistancePointControllerNode(
+          model.pointControllerOne,
+          housePointControllerImage,
+          new Vector2( 0, -housePointControllerImage.height / 2 )
+        )
+      ]
     } ) );
     pointControllersLayer.addChild( new Node( {
-      children: [ new DistancePointControllerNode( model.pointControllerTwo, personPointControllerImage ) ]
+      children: [
+        new DistancePointControllerNode(
+          model.pointControllerTwo,
+          personPointControllerImage,
+          new Vector2( 0, -personPointControllerImage.height / 2 + 20 ) // 20 empirically determined
+        )
+      ]
     } ) );
     this.addChild( pointControllersLayer );
 

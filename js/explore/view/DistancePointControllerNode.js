@@ -18,9 +18,10 @@ class DistancePointControllerNode extends PointControllerNode {
   /**
    * @param {PointController} pointController
    * @param {Image} image
+   * @param {Vector2} centerWhenLockedOn
    * @public
    */
-  constructor( pointController, image ) {
+  constructor( pointController, image, centerWhenLockedOn ) {
     image.center = Vector2.ZERO;
 
     super( pointController, {
@@ -31,9 +32,9 @@ class DistancePointControllerNode extends PointControllerNode {
     // listens for when number line points are added and removed
     // updates the image's center depending on whether this point controller has a number line point
     // when not controlling a point, the image center should be (0, 0) so the image sits nicelly within the box
-    // but otherwise when controlling a point and locked on, the center should switch to the bottom of the image
+    // but otherwise when controlling a point and locked on, the center should switch to centerWhenLockedOn
     pointController.numberLinePoints.addItemAddedListener( numberLinePoint => {
-      image.center = new Vector2( 0, -image.height / 2 );
+      image.center = centerWhenLockedOn;
       const itemRemovedListener = removedNumberLinePoint => {
         if ( removedNumberLinePoint === numberLinePoint ) {
           image.center = Vector2.ZERO;
