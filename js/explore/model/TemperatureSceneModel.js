@@ -70,6 +70,37 @@ class TemperatureSceneModel extends AreaSceneModel {
       { positionInBoxOffset: new Vector2( 0, 20 ) } // empirically determined
     );
 
+    // listen to when a point controller is no longer being dragged and push the other point controller
+    //  vertically if the dragged point controller is at the same value
+    // TODO: this code should probably be deduplicated/cleaned
+    const pushUpYLocation = temperatureAreaBounds.top + temperatureAreaBounds.height / 4;
+    const pushDownYLocation = temperatureAreaBounds.bottom - temperatureAreaBounds.height / 4;
+    const doPointControllersHaveSameValue = () => this.pointValuesProperty.value[ 0 ] !== null &&
+      this.pointValuesProperty.value[ 1 ] !== null &&
+      this.pointValuesProperty.value[ 0 ] === this.pointValuesProperty.value[ 1 ];
+    this.pointControllerOne.isDraggingProperty.link( isDragging => {
+      if ( isDragging || !this.pointControllerOne.isControllingNumberLinePoint() || !doPointControllersHaveSameValue() ) {
+        return;
+      }
+      const shouldPushDown = Math.abs( pushDownYLocation - this.pointControllerOne.positionProperty.value.y ) >
+        Math.abs( pushUpYLocation - this.pointControllerOne.positionProperty.value.y );
+      this.pointControllerTwo.positionProperty.value = new Vector2(
+        this.pointControllerTwo.positionProperty.value.x,
+        shouldPushDown ? pushDownYLocation : pushUpYLocation
+      );
+    } );
+    this.pointControllerTwo.isDraggingProperty.link( isDragging => {
+      if ( isDragging || !this.pointControllerTwo.isControllingNumberLinePoint() || !doPointControllersHaveSameValue() ) {
+        return;
+      }
+      const shouldPushDown = Math.abs( pushDownYLocation - this.pointControllerTwo.positionProperty.value.y ) >
+        Math.abs( pushUpYLocation - this.pointControllerTwo.positionProperty.value.y );
+      this.pointControllerOne.positionProperty.value = new Vector2(
+        this.pointControllerOne.positionProperty.value.x,
+        shouldPushDown ? pushDownYLocation : pushUpYLocation
+      );
+    } );
+
     // @public (readonly) the bounds where point controllers can be
     this.temperatureAreaBounds = temperatureAreaBounds;
 
