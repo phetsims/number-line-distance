@@ -70,36 +70,40 @@ class TemperatureSceneModel extends AreaSceneModel {
       { positionInBoxOffset: new Vector2( 0, 20 ) } // empirically determined
     );
 
-    // listen to when a point controller is no longer being dragged and push the other point controller
-    //  vertically if the dragged point controller is at the same value
-    // TODO: this code should probably be deduplicated/cleaned
+    // Listen to when a point controller is no longer being dragged and push the other point controller
+    // vertically if the dragged point controller is at the same value.
     const pushUpYLocation = temperatureAreaBounds.top + temperatureAreaBounds.height / 4;
     const pushDownYLocation = temperatureAreaBounds.bottom - temperatureAreaBounds.height / 4;
-    const doPointControllersHaveSameValue = () => this.pointValuesProperty.value[ 0 ] !== null &&
-      this.pointValuesProperty.value[ 1 ] !== null &&
-      this.pointValuesProperty.value[ 0 ] === this.pointValuesProperty.value[ 1 ];
-    this.pointControllerOne.isDraggingProperty.link( isDragging => {
-      if ( isDragging || !this.pointControllerOne.isControllingNumberLinePoint() || !doPointControllersHaveSameValue() ) {
-        return;
-      }
-      const shouldPushDown = Math.abs( pushDownYLocation - this.pointControllerOne.positionProperty.value.y ) >
-        Math.abs( pushUpYLocation - this.pointControllerOne.positionProperty.value.y );
-      this.pointControllerTwo.positionProperty.value = new Vector2(
-        this.pointControllerTwo.positionProperty.value.x,
-        shouldPushDown ? pushDownYLocation : pushUpYLocation
-      );
-    } );
-    this.pointControllerTwo.isDraggingProperty.link( isDragging => {
-      if ( isDragging || !this.pointControllerTwo.isControllingNumberLinePoint() || !doPointControllersHaveSameValue() ) {
-        return;
-      }
-      const shouldPushDown = Math.abs( pushDownYLocation - this.pointControllerTwo.positionProperty.value.y ) >
-        Math.abs( pushUpYLocation - this.pointControllerTwo.positionProperty.value.y );
-      this.pointControllerOne.positionProperty.value = new Vector2(
-        this.pointControllerOne.positionProperty.value.x,
-        shouldPushDown ? pushDownYLocation : pushUpYLocation
-      );
-    } );
+    const makePointControllerPushOtherSameValuePointController = ( pointController, otherPointController ) => {
+      pointController.isDraggingProperty.link( isDragging => {
+
+        // Only need to push when the point controller is no longer being dragged and both
+        // point controllers are on the number line at the same value.
+        const areBothControllersOnNumberLineWithSameValue = this.pointValuesProperty.value[ 0 ] !== null &&
+          this.pointValuesProperty.value[ 1 ] !== null &&
+          this.pointValuesProperty.value[ 0 ] === this.pointValuesProperty.value[ 1 ]
+        if ( isDragging || !areBothControllersOnNumberLineWithSameValue ) {
+          return;
+        }
+
+        // Check whether to push up or down based on which is further (push to the further location)
+        const pointControllerYPosition = pointController.positionProperty.value.y;
+        const shouldPushDown = Math.abs( pushDownYLocation - pointControllerYPosition ) >
+          Math.abs( pushUpYLocation - pointControllerYPosition );
+        const pushYPosition = shouldPushDown ? pushDownYLocation : pushUpYLocation;
+
+        // As long as the push is increasing the distance between the point controllers, push the other point controller
+        if ( Math.abs( pushYPosition - pointControllerYPosition ) >
+          Math.abs( otherPointController.positionProperty.value.y - pointControllerYPosition ) ) {
+          otherPointController.positionProperty.value = new Vector2(
+            otherPointController.positionProperty.value.x,
+            pushYPosition
+          );
+        }
+      } );
+    };
+    makePointControllerPushOtherSameValuePointController( this.pointControllerOne, this.pointControllerTwo );
+    makePointControllerPushOtherSameValuePointController( this.pointControllerTwo, this.pointControllerOne );
 
     // @public (readonly) the bounds where point controllers can be
     this.temperatureAreaBounds = temperatureAreaBounds;
