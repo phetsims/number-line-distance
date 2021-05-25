@@ -81,7 +81,7 @@ class TemperatureSceneModel extends AreaSceneModel {
         // point controllers are on the number line at the same value.
         const areBothControllersOnNumberLineWithSameValue = this.pointValuesProperty.value[ 0 ] !== null &&
           this.pointValuesProperty.value[ 1 ] !== null &&
-          this.pointValuesProperty.value[ 0 ] === this.pointValuesProperty.value[ 1 ]
+          this.pointValuesProperty.value[ 0 ] === this.pointValuesProperty.value[ 1 ];
         if ( isDragging || !areBothControllersOnNumberLineWithSameValue ) {
           return;
         }
