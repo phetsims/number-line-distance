@@ -75,7 +75,9 @@ class NLDGenericScreenView extends ScreenView {
             ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_2_STRING : NLDConstants.Y_2_STRING
           )
         },
-        distanceStatementNodeOptions: { controlsValues: true }
+        distanceStatementNodeOptions: { controlsValues: true },
+        pointNameLabelOffsetFromHorizontalNumberLine: 60,
+        pointNameLabelOffsetFromVerticalNumberLine: 75
       }
     );
     this.addChild( baseView );

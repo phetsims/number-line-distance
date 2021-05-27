@@ -38,6 +38,7 @@ import Property from '../../../../axon/js/Property.js';
 import Util from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import required from '../../../../phet-core/js/required.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -47,14 +48,8 @@ const absoluteValueString = numberLineDistanceStrings.absoluteValue;
 const directedDistanceString = numberLineDistanceStrings.directedDistance;
 const distanceStatementString = numberLineDistanceStrings.distanceStatement;
 
-const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = {
-  font: new PhetFont( 16 ),
-  maxWidth: 200
-};
-const NODE_SWAP_TEXT_OPTIONS = {
-  font: new MathSymbolFont( 30 ),
-  maxWidth: 50
-};
+const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 200 };
+const NODE_SWAP_TEXT_OPTIONS = { font: new MathSymbolFont( 30 ), maxWidth: 50 };
 const NODE_SWAP_HBOX_SPACING = 15;
 const SWAP_ICON_PATH_OPTIONS = { stroke: 'black', lineWidth: 4 };
 const ARROW_SIZE = 5;
@@ -63,11 +58,9 @@ const ARROW_SHAPE_OPTIONS = {
   headHeight: ARROW_SIZE,
   headWidth: ARROW_SIZE
 };
-const DISTANCE_DESCRIPTION_TEXT_OPTIONS = {
-  font: new PhetFont( 16 ),
-  maxWidth: 475
-};
+const DISTANCE_DESCRIPTION_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 475 };
 const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFont( 16 ) };
+const POINT_NAME_TEXT_OPTIONS = { maxWidth: 50, font: new MathSymbolFont( 20 ) };
 
 class NLDBaseView extends Node {
 
@@ -97,7 +90,9 @@ class NLDBaseView extends Node {
         getPrimaryPointControllerLabel: required( config.distanceDescriptionStrings.getPrimaryPointControllerLabel ),
         getSecondaryPointControllerLabel: required( config.distanceDescriptionStrings.getSecondaryPointControllerLabel )
       },
-      distanceStatementNodeOptions: { controlsValues: false }
+      distanceStatementNodeOptions: { controlsValues: false },
+      pointNameLabelOffsetFromHorizontalNumberLine: 30,
+      pointNameLabelOffsetFromVerticalNumberLine: 42
     }, config );
 
     super();
@@ -286,6 +281,50 @@ class NLDBaseView extends Node {
     );
     model.distanceDescriptionVisibleProperty.linkAttribute( distanceDescriptionText, 'visible' );
     this.addChild( distanceDescriptionText );
+
+    // text labels for the number line points that label them as x1, x2, y1, or y2
+    const pointNameText0 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
+    const pointNameText1 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
+    this.addChild( pointNameText0 );
+    this.addChild( pointNameText1 );
+    Property.multilink(
+      [ model.pointValuesProperty, model.numberLine.orientationProperty, model.isPrimaryControllerSwappedProperty ],
+      ( pointValues, orientation, isPrimaryNodeSwapped ) => {
+
+        // gets which strings to use based on the number line orientation and then orders them based on isPrimaryNodeSwapped
+        const labelStrings = orientation === Orientation.VERTICAL ?
+          [ NLDConstants.Y_1_STRING, NLDConstants.Y_2_STRING ] : [ NLDConstants.X_1_STRING, NLDConstants.X_2_STRING ];
+        if ( isPrimaryNodeSwapped ) {
+          const temp = labelStrings[ 0 ];
+          labelStrings[ 0 ] = labelStrings[ 1 ];
+          labelStrings[ 1 ] = temp;
+        }
+
+        // sets the texts and updates their visibilities
+        pointNameText0.text = labelStrings[ 0 ];
+        pointNameText1.text = labelStrings[ 1 ];
+        pointNameText0.visible = pointValues[ 0 ] !== null;
+        pointNameText1.visible = pointValues[ 1 ] !== null;
+
+        // puts the texts in the correct positions
+        if ( orientation === Orientation.HORIZONTAL ) {
+          pointNameText0.centerTop = model.numberLine.valueToModelPosition(
+            pointValues[ 0 ] ? pointValues[ 0 ] : 0
+          ).plus( new Vector2( 0, config.pointNameLabelOffsetFromHorizontalNumberLine ) );
+          pointNameText1.centerTop = model.numberLine.valueToModelPosition(
+            pointValues[ 1 ] ? pointValues[ 1 ] : 1
+          ).plus( new Vector2( 0, config.pointNameLabelOffsetFromHorizontalNumberLine ) );
+        }
+        else {
+          pointNameText0.leftCenter = model.numberLine.valueToModelPosition(
+            pointValues[ 0 ] ? pointValues[ 0 ] : 0
+          ).plus( new Vector2( config.pointNameLabelOffsetFromVerticalNumberLine, 0 ) );
+          pointNameText1.leftCenter = model.numberLine.valueToModelPosition(
+            pointValues[ 1 ] ? pointValues[ 1 ] : 1
+          ).plus( new Vector2( config.pointNameLabelOffsetFromVerticalNumberLine, 0 ) );
+        }
+      }
+    );
   }
 
 }
