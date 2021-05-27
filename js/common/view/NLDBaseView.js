@@ -288,7 +288,12 @@ class NLDBaseView extends Node {
     this.addChild( pointNameText0 );
     this.addChild( pointNameText1 );
     Property.multilink(
-      [ model.pointValuesProperty, model.numberLine.orientationProperty, model.isPrimaryControllerSwappedProperty ],
+      [
+        model.pointValuesProperty,
+        model.numberLine.orientationProperty,
+        model.isPrimaryControllerSwappedProperty,
+        model.numberLine.displayedRangeProperty
+      ],
       ( pointValues, orientation, isPrimaryNodeSwapped ) => {
 
         // gets which strings to use based on the number line orientation and then orders them based on isPrimaryNodeSwapped
