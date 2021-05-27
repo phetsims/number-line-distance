@@ -39,6 +39,7 @@ import Util from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import required from '../../../../phet-core/js/required.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLCheckboxGroup.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -99,18 +100,15 @@ class NLDBaseView extends Node {
 
     // checkboxes that control common model properties for what should be visible
     // all used spacings and paddings were empirically determined
-    const checkboxGroup = new VBox( {
-      children: [
+    const checkboxGroup = new NLCheckboxGroup(
+      [
         new NLCheckbox( pointLabelsString, model.numberLine.showPointLabelsProperty ),
         new NLCheckbox( distanceLabelsString, model.distanceLabelsVisibleProperty ),
         new NLCheckbox( distanceDescriptionString, model.distanceDescriptionVisibleProperty ),
         new NLCheckbox( tickMarksString, model.numberLine.showTickMarksProperty )
-      ],
-      spacing: 15,
-      align: 'left',
-      right: NLDConstants.NLD_LAYOUT_BOUNDS.maxX - 35,
-      top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 10
-    } );
+      ]
+    );
+    checkboxGroup.right = NLDConstants.NLD_LAYOUT_BOUNDS.maxX - NLCConstants.SCREEN_VIEW_X_MARGIN;
     this.addChild( checkboxGroup );
 
     // checkboxes for how distance should be represented
