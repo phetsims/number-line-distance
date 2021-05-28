@@ -284,8 +284,8 @@ class NLDBaseView extends Node {
     // text labels for the number line points that label them as x1, x2, y1, or y2
     const pointNameText0 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
     const pointNameText1 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
-    const pointNameBackground0 = new BackgroundNode( pointNameText0 );
-    const pointNameBackground1 = new BackgroundNode( pointNameText1 );
+    const pointNameBackground0 = new BackgroundNode( pointNameText0, NLCConstants.LABEL_BACKGROUND_OPTIONS );
+    const pointNameBackground1 = new BackgroundNode( pointNameText1, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( new Node( {
       children: [ pointNameBackground0, pointNameBackground1 ]
     } ) );
