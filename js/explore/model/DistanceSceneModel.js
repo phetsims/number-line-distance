@@ -14,7 +14,7 @@ import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import Shape from '../../../../kite/js/Shape.js';
 
 // constants
-const TRAPEZOID_OFFSET_FROM_NUMBERLINE = 150;
+const TRAPEZOID_OFFSET_FROM_NUMBERLINE = 180;
 const TRAPEZOID_HEIGHT = 50;
 
 class DistanceSceneModel extends AbstractNLDBaseModel {
