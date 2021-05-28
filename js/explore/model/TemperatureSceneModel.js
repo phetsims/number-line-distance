@@ -70,10 +70,9 @@ class TemperatureSceneModel extends AreaSceneModel {
       { positionInBoxOffset: new Vector2( 0, 20 ) } // empirically determined
     );
 
-    // Listen to when a point controller is no longer being dragged and push the other point controller
-    // vertically if the dragged point controller is at the same value.
-    const pushUpYLocation = temperatureAreaBounds.top + temperatureAreaBounds.height / 4;
-    const pushDownYLocation = temperatureAreaBounds.bottom - temperatureAreaBounds.height / 4;
+    // Listen to when a point controller is no longer being dragged and push the dragged point controller
+    // vertically if there is an extant point controller at the same value.
+    const pushDistance = temperatureAreaBounds.height / 8;
     const makePointControllerPushOtherSameValuePointController = ( pointController, otherPointController ) => {
       pointController.isDraggingProperty.link( isDragging => {
 
@@ -86,17 +85,19 @@ class TemperatureSceneModel extends AreaSceneModel {
           return;
         }
 
-        // Check whether to push up or down based on which is further (push to the further location)
-        const pointControllerYPosition = pointController.positionProperty.value.y;
-        const shouldPushDown = Math.abs( pushDownYLocation - pointControllerYPosition ) >
-          Math.abs( pushUpYLocation - pointControllerYPosition );
+        // Check whether to push up or down based on which side (top or bottom) has more space
+        const otherPointControllerYPosition = otherPointController.positionProperty.value.y;
+        const pushDownYLocation = otherPointControllerYPosition + pushDistance;
+        const pushUpYLocation = otherPointControllerYPosition - pushDistance;
+        const shouldPushDown = Math.abs( otherPointControllerYPosition - temperatureAreaBounds.top ) <
+          Math.abs( otherPointControllerYPosition - temperatureAreaBounds.bottom );
         const pushYPosition = shouldPushDown ? pushDownYLocation : pushUpYLocation;
 
         // As long as the push is increasing the distance between the point controllers, push the other point controller
-        if ( Math.abs( pushYPosition - pointControllerYPosition ) >
-          Math.abs( otherPointController.positionProperty.value.y - pointControllerYPosition ) ) {
-          otherPointController.positionProperty.value = new Vector2(
-            otherPointController.positionProperty.value.x,
+        if ( Math.abs( pushYPosition - otherPointControllerYPosition ) >
+          Math.abs( pointController.positionProperty.value.y - otherPointControllerYPosition ) ) {
+          pointController.positionProperty.value = new Vector2(
+            pointController.positionProperty.value.x,
             pushYPosition
           );
         }
