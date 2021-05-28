@@ -48,27 +48,6 @@ class NLDExploreScreenView extends ScreenView {
       value => ( { value: value, node: new Rectangle( 0, 0, 38, 38 ) } ) // empirically determined
     );
 
-    // create scene selector radio buttons
-    const sceneSelectorRadioButtonGroup = new RectangularRadioButtonGroup(
-      model.selectedSceneProperty,
-      sceneSelectionButtonsContent,
-      {
-        buttonContentXMargin: 5,
-        buttonContentYMargin: 5,
-        touchAreaXDilation: 3,
-        touchAreaYDilation: 3,
-        right: this.layoutBounds.maxX - 35,
-        bottom: this.layoutBounds.maxY - 107,
-        baseColor: 'white',
-        selectedLineWidth: 2,
-        deselectedLineWidth: 0.5,
-        deselectedButtonOpacity: 0.25,
-        orientation: 'horizontal',
-        spacing: 7
-      }
-    );
-    this.addChild( sceneSelectorRadioButtonGroup );
-
     const resetAllButton = new ResetAllButton( {
       listener: () => {
         this.interruptSubtreeInput(); // cancel interactions that may be in progress
@@ -79,6 +58,26 @@ class NLDExploreScreenView extends ScreenView {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     this.addChild( resetAllButton );
+
+    // create scene selector radio buttons
+    const sceneSelectorRadioButtonGroup = new RectangularRadioButtonGroup(
+      model.selectedSceneProperty,
+      sceneSelectionButtonsContent,
+      {
+        buttonContentXMargin: 5,
+        buttonContentYMargin: 5,
+        touchAreaXDilation: 3,
+        touchAreaYDilation: 3,
+        center: resetAllButton.centerTop.plus( NLDConstants.BOTTOM_BOX_BOUNDS.rightCenter ).dividedScalar( 2 ),
+        baseColor: 'white',
+        selectedLineWidth: 2,
+        deselectedLineWidth: 0.5,
+        deselectedButtonOpacity: 0.25,
+        orientation: 'horizontal',
+        spacing: 7
+      }
+    );
+    this.addChild( sceneSelectorRadioButtonGroup );
   }
 
 }
