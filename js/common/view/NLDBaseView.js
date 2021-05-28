@@ -40,6 +40,7 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import required from '../../../../phet-core/js/required.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLCheckboxGroup.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
@@ -283,8 +284,11 @@ class NLDBaseView extends Node {
     // text labels for the number line points that label them as x1, x2, y1, or y2
     const pointNameText0 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
     const pointNameText1 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
-    this.addChild( pointNameText0 );
-    this.addChild( pointNameText1 );
+    const pointNameBackground0 = new BackgroundNode( pointNameText0 );
+    const pointNameBackground1 = new BackgroundNode( pointNameText1 );
+    this.addChild( new Node( {
+      children: [ pointNameBackground0, pointNameBackground1 ]
+    } ) );
     Property.multilink(
       [
         model.pointValuesProperty,
@@ -306,28 +310,30 @@ class NLDBaseView extends Node {
         // sets the texts and updates their visibilities
         pointNameText0.text = labelStrings[ 0 ];
         pointNameText1.text = labelStrings[ 1 ];
-        pointNameText0.visible = pointValues[ 0 ] !== null;
-        pointNameText1.visible = pointValues[ 1 ] !== null;
+        pointNameBackground0.visible = pointValues[ 0 ] !== null;
+        pointNameBackground1.visible = pointValues[ 1 ] !== null;
 
         // puts the texts in the correct positions
         if ( orientation === Orientation.HORIZONTAL ) {
-          pointNameText0.centerTop = model.numberLine.valueToModelPosition(
+          pointNameBackground0.centerTop = model.numberLine.valueToModelPosition(
             pointValues[ 0 ] ? pointValues[ 0 ] : 0
           ).plus( new Vector2( 0, config.pointNameLabelOffsetFromHorizontalNumberLine ) );
-          pointNameText1.centerTop = model.numberLine.valueToModelPosition(
-            pointValues[ 1 ] ? pointValues[ 1 ] : 1
+          pointNameBackground1.centerTop = model.numberLine.valueToModelPosition(
+            pointValues[ 1 ] ? pointValues[ 1 ] : 0
           ).plus( new Vector2( 0, config.pointNameLabelOffsetFromHorizontalNumberLine ) );
         }
         else {
-          pointNameText0.leftCenter = model.numberLine.valueToModelPosition(
+          pointNameBackground0.leftCenter = model.numberLine.valueToModelPosition(
             pointValues[ 0 ] ? pointValues[ 0 ] : 0
           ).plus( new Vector2( config.pointNameLabelOffsetFromVerticalNumberLine, 0 ) );
-          pointNameText1.leftCenter = model.numberLine.valueToModelPosition(
-            pointValues[ 1 ] ? pointValues[ 1 ] : 1
+          pointNameBackground1.leftCenter = model.numberLine.valueToModelPosition(
+            pointValues[ 1 ] ? pointValues[ 1 ] : 0
           ).plus( new Vector2( config.pointNameLabelOffsetFromVerticalNumberLine, 0 ) );
         }
       }
     );
+    model.pointControllerOne.isDraggingProperty.link( () => { pointNameBackground0.moveToFront(); } );
+    model.pointControllerTwo.isDraggingProperty.link( () => { pointNameBackground1.moveToFront(); } );
   }
 
 }
