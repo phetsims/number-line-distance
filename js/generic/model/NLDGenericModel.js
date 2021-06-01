@@ -21,7 +21,7 @@ class NLDGenericModel extends AbstractNLDBaseModel {
   constructor( tandem ) {
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center, {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
-      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 185,
+      heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 215,
       initialDisplayedRange: NLDConstants.GENERIC_NUMBER_LINE_RANGES[ 0 ],
       preventOverlap: false,
       labelsInitiallyVisible: true,
@@ -34,7 +34,7 @@ class NLDGenericModel extends AbstractNLDBaseModel {
         numberLine.centerPositionProperty.value = NLDConstants.NLD_LAYOUT_BOUNDS.center;
       }
       else {
-        numberLine.centerPositionProperty.value = NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, 50 );
+        numberLine.centerPositionProperty.value = NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, 75 );
       }
     } );
 
