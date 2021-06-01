@@ -60,7 +60,7 @@ const ARROW_SHAPE_OPTIONS = {
   headHeight: ARROW_SIZE,
   headWidth: ARROW_SIZE
 };
-const DISTANCE_DESCRIPTION_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 475 };
+const DISTANCE_DESCRIPTION_TEXT_OPTIONS = { font: new PhetFont( 20 ), maxWidth: 515 };
 const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFont( 16 ) };
 const POINT_NAME_TEXT_OPTIONS = { maxWidth: 50, font: new MathSymbolFont( 20 ) };
 
