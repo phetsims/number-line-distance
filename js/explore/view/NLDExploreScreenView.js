@@ -19,8 +19,11 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Dimension2 from '../../../../dot/js/Dimension2.js';
 import house from '../../../images/house_png.js';
 import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
+
+const ICON_SIZE = new Dimension2( 38, 38 );
 
 class NLDExploreScreenView extends ScreenView {
 
@@ -49,17 +52,16 @@ class NLDExploreScreenView extends ScreenView {
     } );
 
     // map the scene selection icons to their enum values (used in the radio button group)
-    // TODO: refactor out 38 into an ICON_SIZE constant
-    const thermometerSceneIcon = new Rectangle( 0, 0, 38, 38 );
+    const thermometerSceneIcon = new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height );
     const thermometerNode = new ThermometerNode( 0, 1, new NumberProperty( 0.5 ) );
-    thermometerNode.setScaleMagnitude( 38 / thermometerNode.height );
+    thermometerNode.setScaleMagnitude( ICON_SIZE.height / thermometerNode.height );
     thermometerNode.center = thermometerSceneIcon.center;
     thermometerSceneIcon.addChild( thermometerNode );
     const sceneSelectionButtonsContent = [
       {
         value: NLDScene.DISTANCE,
-        node: new Rectangle( 0, 0, 38, 38, {
-          children: [ new Image( house, { maxWidth: 38, maxHeight: 38 } ) ]
+        node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
+          children: [ new Image( house, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       },
       {
@@ -68,8 +70,8 @@ class NLDExploreScreenView extends ScreenView {
       },
       {
         value: NLDScene.ELEVATION,
-        node: new Rectangle( 0, 0, 38, 38, {
-          children: [ new Image( birdInAir, { maxWidth: 38, maxHeight: 38 } ) ]
+        node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
+          children: [ new Image( birdInAir, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       }
     ];
