@@ -16,6 +16,11 @@ import ElevationSceneView from './ElevationSceneView.js';
 import NLDScene from '../model/NLDScene.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
+import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
+import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import house from '../../../images/house_png.js';
+import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
 
 class NLDExploreScreenView extends ScreenView {
 
@@ -44,9 +49,30 @@ class NLDExploreScreenView extends ScreenView {
     } );
 
     // map the scene selection icons to their enum values (used in the radio button group)
-    const sceneSelectionButtonsContent = NLDScene.VALUES.map(
-      value => ( { value: value, node: new Rectangle( 0, 0, 38, 38 ) } ) // empirically determined
-    );
+    // TODO: refactor out 38 into an ICON_SIZE constant
+    const thermometerSceneIcon = new Rectangle( 0, 0, 38, 38 );
+    const thermometerNode = new ThermometerNode( 0, 1, new NumberProperty( 0.5 ) );
+    thermometerNode.setScaleMagnitude( 38 / thermometerNode.height );
+    thermometerNode.center = thermometerSceneIcon.center;
+    thermometerSceneIcon.addChild( thermometerNode );
+    const sceneSelectionButtonsContent = [
+      {
+        value: NLDScene.DISTANCE,
+        node: new Rectangle( 0, 0, 38, 38, {
+          children: [ new Image( house, { maxWidth: 38, maxHeight: 38 } ) ]
+        } )
+      },
+      {
+        value: NLDScene.TEMPERATURE,
+        node: thermometerSceneIcon
+      },
+      {
+        value: NLDScene.ELEVATION,
+        node: new Rectangle( 0, 0, 38, 38, {
+          children: [ new Image( birdInAir, { maxWidth: 38, maxHeight: 38 } ) ]
+        } )
+      }
+    ];
 
     const resetAllButton = new ResetAllButton( {
       listener: () => {
