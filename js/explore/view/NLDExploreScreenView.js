@@ -80,6 +80,9 @@ class NLDExploreScreenView extends ScreenView {
       listener: () => {
         this.interruptSubtreeInput(); // cancel interactions that may be in progress
         model.reset();
+        distanceSceneView.reset();
+        temperatureSceneView.reset();
+        elevationSceneView.reset();
       },
       right: this.layoutBounds.maxX - NLDConstants.SCREEN_VIEW_X_MARGIN,
       bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,

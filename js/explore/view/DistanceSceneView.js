@@ -64,7 +64,8 @@ class DistanceSceneView extends Node {
     houseRepresentation.maxWidth = minWidth;
     personRepresentation.maxWidth = minWidth;
 
-    this.addChild( new NLDBaseView(
+    // @private
+    this.baseView = new NLDBaseView(
       model,
       houseRepresentation,
       personRepresentation,
@@ -79,7 +80,8 @@ class DistanceSceneView extends Node {
           getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
         }
       }
-    ) );
+    );
+    this.addChild( this.baseView );
 
     // trapezoid path that represents the plane where the person and the house can lie
     this.addChild( new Path( model.planeTrapezoidShape, { fill: '#9b9b9b' } ) );
@@ -138,6 +140,14 @@ class DistanceSceneView extends Node {
     this.addChild( westSymbolText );
     eastSymbolText.moveToBack();
     westSymbolText.moveToBack();
+  }
+
+  /**
+   * This function resets the entire distance scene view. Right now, all this does is open up accordion box if closed.
+   * @public
+   */
+  reset() {
+    this.baseView.accordionBoxOpenedProperty.reset();
   }
 
 }

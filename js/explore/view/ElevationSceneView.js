@@ -50,24 +50,24 @@ class ElevationSceneView extends Node {
     this.addChild( mockup );
     window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
-    this.addChild(
-      new NLDBaseView(
-        model,
-        new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 30 } ),
-        new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 30 } ),
-        {
-          distanceDescriptionStrings: {
-            absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,
-            directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateString,
-            directedNegativeDistanceDescriptionTemplate: elevationSceneDirectedNegativeDistanceTemplateString,
-            singularUnits: meterString,
-            pluralUnits: metersString,
-            getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
-            getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
-          }
+    // @private
+    this.baseView = new NLDBaseView(
+      model,
+      new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 30 } ),
+      new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 30 } ),
+      {
+        distanceDescriptionStrings: {
+          absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,
+          directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateString,
+          directedNegativeDistanceDescriptionTemplate: elevationSceneDirectedNegativeDistanceTemplateString,
+          singularUnits: meterString,
+          pluralUnits: metersString,
+          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
+          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
         }
-      )
+      }
     );
+    this.addChild( this.baseView );
 
     // Adds rectangles in the elevation area bounds to display background
     // First rectangle covers entire bounds and is the background image
@@ -120,6 +120,14 @@ class ElevationSceneView extends Node {
     this.addChild( pointControllerNodeLayer );
 
     waterRectangle.moveToFront();
+  }
+
+  /**
+   * This function resets the entire elevation scene view. Right now, all this does is open up accordion box if closed.
+   * @public
+   */
+  reset() {
+    this.baseView.accordionBoxOpenedProperty.reset();
   }
 
 }

@@ -60,7 +60,8 @@ class TemperatureSceneView extends Node {
     const aText = new Text( aString, { font: REPRESENTATION_FONT } );
     const bText = new Text( bString, { font: REPRESENTATION_FONT } );
 
-    this.addChild( new NLDBaseView(
+    // @private
+    this.baseView = new NLDBaseView(
       model,
       aText,
       bText,
@@ -75,7 +76,8 @@ class TemperatureSceneView extends Node {
           getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? aString : bString
         }
       }
-    ) );
+    );
+    this.addChild( this.baseView );
 
     // Links the color of the point controller with the representation texts
     model.pointControllers[ 0 ].positionProperty.link( () => {
@@ -146,6 +148,14 @@ class TemperatureSceneView extends Node {
       ]
     } );
     this.addChild( pointControllerNodeLayer );
+  }
+
+  /**
+   * This function resets the entire temperature scene view. Right now, all this does is open up accordion box if closed.
+   * @public
+   */
+  reset() {
+    this.baseView.accordionBoxOpenedProperty.reset();
   }
 
 }
