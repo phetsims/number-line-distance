@@ -144,22 +144,31 @@ class NLDBaseView extends Node {
       this.addChild( pointControllerBoxNode );
     } );
 
+    // adds pointControllerRepresentations to rectangles that ensure that the representations take up the same space
+    const largestWidth = Math.max( pointControllerRepresentationOne.width, pointControllerRepresentationTwo.width );
+    const largestHeight = Math.max( pointControllerRepresentationOne.height, pointControllerRepresentationTwo.height );
+    const pointControllerRepresentationBackgroundOne = new Rectangle( 0, 0, largestWidth, largestHeight );
+    const pointControllerRepresentationBackgroundTwo = new Rectangle( 0, 0, largestWidth, largestHeight );
+    pointControllerRepresentationOne.center = pointControllerRepresentationBackgroundOne.center;
+    pointControllerRepresentationTwo.center = pointControllerRepresentationBackgroundTwo.center;
+    pointControllerRepresentationBackgroundOne.addChild( pointControllerRepresentationOne );
+    pointControllerRepresentationBackgroundTwo.addChild( pointControllerRepresentationTwo );
+
     // controls on the bottom left for which node is considered to be first and second
     // all values used in nodeOrderDisplay were empirically determined
     const firstNodeText = new RichText( `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeText = new RichText( `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHBox = new HBox( {
-      children: [ firstNodeText, pointControllerRepresentationOne ],
+      children: [ firstNodeText, pointControllerRepresentationBackgroundOne ],
       spacing: NODE_SWAP_HBOX_SPACING
     } );
     const secondNodeHBox = new HBox( {
-      children: [ secondNodeText, pointControllerRepresentationTwo ],
+      children: [ secondNodeText, pointControllerRepresentationBackgroundTwo ],
       spacing: NODE_SWAP_HBOX_SPACING
     } );
     const nodeOrderDisplay = new VBox( {
       children: [ firstNodeHBox, secondNodeHBox ],
       spacing: ( 40 - firstNodeHBox.height ) / 2,
-      align: 'left',
       bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
       left: 30
     } );
@@ -181,12 +190,12 @@ class NLDBaseView extends Node {
       let firstNodeHBoxChildren;
       let secondNodeHBoxChildren;
       if ( isPrimaryNodeSwapped ) {
-        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationTwo ];
-        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationOne ];
+        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationBackgroundTwo ];
+        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationBackgroundOne ];
       }
       else {
-        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationOne ];
-        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationTwo ];
+        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationBackgroundOne ];
+        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationBackgroundTwo ];
       }
       firstNodeHBox.children = firstNodeHBoxChildren;
       secondNodeHBox.children = secondNodeHBoxChildren;
