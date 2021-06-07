@@ -158,7 +158,8 @@ class NLDBaseView extends Node {
     } );
     const nodeOrderDisplay = new VBox( {
       children: [ firstNodeHBox, secondNodeHBox ],
-      spacing: ( 40 - firstNodeText.height ) / 2,
+      spacing: ( 40 - firstNodeHBox.height ) / 2,
+      align: 'left',
       bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
       left: 30
     } );

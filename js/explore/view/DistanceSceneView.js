@@ -56,13 +56,13 @@ class DistanceSceneView extends Node {
 
     // creates the representations for the person and the house in the area that
     // they can be swapped; ensures they have the same width
-    // TODO: scales were empirically determined so that swapping nodes doesn't change the size of anything
-    //  but find out if there is a better way to do this
-    const houseRepresentation = new Image( house, { scale: 0.08 } );
+    // scales were empirically determined
+    // TODO: make the house and person horizontally centered with each other
+    const houseRepresentation = new Image( house, { scale: 0.15 } );
     const personRepresentation = new Image( person, { scale: 0.08 } );
-    const minWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
-    houseRepresentation.maxWidth = minWidth;
-    personRepresentation.maxWidth = minWidth;
+    const smallestWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
+    houseRepresentation.maxWidth = smallestWidth;
+    personRepresentation.maxWidth = smallestWidth;
 
     // @private
     this.baseView = new NLDBaseView(
