@@ -30,7 +30,7 @@ const genericDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.
 const unitString = numberLineDistanceStrings.unit;
 const unitsString = numberLineDistanceStrings.units;
 
-const CIRCLE_REPRESENTATION_RADIUS = 5;
+const CIRCLE_REPRESENTATION_RADIUS = 6;
 
 class NLDGenericScreenView extends ScreenView {
 

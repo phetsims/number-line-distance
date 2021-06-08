@@ -53,8 +53,8 @@ class ElevationSceneView extends Node {
     // @private
     this.baseView = new NLDBaseView(
       model,
-      new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 30 } ),
-      new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 30 } ),
+      new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
+      new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 35 } ),
       {
         distanceDescriptionStrings: {
           absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,

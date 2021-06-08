@@ -35,7 +35,7 @@ const degreeString = numberLineDistanceStrings.degree;
 const degreesString = numberLineDistanceStrings.degrees;
 
 // constants
-const REPRESENTATION_FONT = new PhetFont( 20 );
+const REPRESENTATION_FONT = new PhetFont( 25 );
 const NUMBER_OF_TEMPERATURE_GRADIENT_COLOR_STOPS = 5;
 
 class TemperatureSceneView extends Node {
