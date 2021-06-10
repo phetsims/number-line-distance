@@ -27,6 +27,7 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
+import HStrut from '../../../../scenery/js/nodes/HStrut.js';
 
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
@@ -183,8 +184,9 @@ class DistanceStatementNode extends Node {
       children: [ backgroundNodes[ 1 ], rightAbsoluteValueMark ],
       excludeInvisibleChildrenFromBounds: false
     } );
+    const distanceTextSpacer = new HStrut( 3 ); // empirically determined
     this.addChild( new HBox( {
-      children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, distanceText ],
+      children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, distanceTextSpacer, distanceText ],
       spacing: 5
     } ) );
 
