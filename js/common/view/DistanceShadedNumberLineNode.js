@@ -45,11 +45,12 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
       offScaleIndicatorHorizontalOffset: -120 // determined empirically
     }, options ) );
 
-    // the Path that shades the distance between point controllers
+    // Create the Path that is the shading for the distance between point controllers.
     const distanceShadingPath = new Path( null, { stroke: null, fill: SHADING_COLOR, lineWidth: SHADING_WIDTH } );
     this.addChild( distanceShadingPath );
     distanceShadingPath.moveToBack();
 
+    // Create the distance label.
     const distanceText = new Text( '', {
       maxWidth: 50, // determined empirically
       font: new PhetFont( 28 ) // determined empirically
@@ -57,9 +58,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     const distanceTextBackground = new BackgroundNode( distanceText, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( distanceTextBackground );
 
-    // many features of how this number line work depend on the model
-    // most of the number line's behaviour is handled in this multilink
-    // unlinking unnecessary because every instance of this number line is present for the lifetime of the sim
+    // Most of the number line's behaviour is handled in this multilink.
+    // Unlinking is unnecessary because every instance of this number line is present for the lifetime of the sim.
     Property.multilink(
       [
         model.distanceLabelsVisibleProperty,
@@ -79,11 +79,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         distanceTextBackground.visible = distanceLabelsVisible;
         distanceShadingPath.visible = true;
 
-        // gets the endpoint positions in model-space of where the tips of the number line are
-        // this usually extends past the min and max values allowed on the number line because of the inset and
-        //  arrows on each end
-        // this is needed in case a point is off the scale of the number line and the shading needs to go all the way
-        //  to the end of the number line
+        // Get the endpoint positions in model-space of where the tips of the number line are.
+        // This usually extends past the min and max values allowed on the number line because of the inset and
+        // arrows on each end.
+        // The endpoint positions are needed in case a point is off the scale of the number line and the shading needs
+        // to go all the way to the end of the number line.
         const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
         const insetVector = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
                             new Vector2( insetSize, 0 ) :
@@ -91,16 +91,17 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         const endPointPositionMin = model.numberLine.valueToModelPosition( displayedRange.min ).minus( insetVector );
         const endPointPositionMax = model.numberLine.valueToModelPosition( displayedRange.max ).plus( insetVector );
 
-        // gets where on the number line the point controllers are
-        // we need both the number line values and their model positions for clamping purposes
+        // Get where on the number line the point controllers are.
+        // We need both the number line values and their model positions for clamping purposes.
         const value0 = pointValues[ 0 ];
         const value1 = pointValues[ 1 ];
         let endPointPosition0 = model.numberLine.valueToModelPosition( value0 );
         let endPointPosition1 = model.numberLine.valueToModelPosition( value1 );
 
-        // clamps endPointPositions to be between endPointPositionMin and endPointPositionMax
-        // cannot use Util.clamp because, for example, value0 can be greater than displayedRange.max
-        //  while at the same time endPointPosition0 can be less than endPointPositionMax thanks to the inset
+        // Clamp endPointPositions to be between endPointPositionMin and endPointPositionMax.
+        // We cannot use Util.clamp because, for example, value0 can be greater than displayedRange.max
+        // while at the same time endPointPosition0 can be less than endPointPositionMax thanks to the inset:
+        // we are clamping when the values are out of the displayed range, but we are clamping to the end point positions.
         if ( value0 < displayedRange.min ) {
           endPointPosition0 = endPointPositionMin;
         }
@@ -114,18 +115,18 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           endPointPosition1 = endPointPositionMax;
         }
 
-        // makes shading path between nodes
+        // Make the shading shape between nodes.
         let shape = new Shape().moveToPoint( endPointPosition0 ).lineToPoint( endPointPosition1 );
         distanceShadingPath.stroke = SHADING_COLOR;
 
-        // changes shape to arrow if the distance type is directed and the arrow is pointing to a point
-        // that is on the number line
+        // Change the shading shape to an arrow if the distance type is directed and the arrow is pointing to a point
+        // that is on the number line.
         if ( distanceRepresentation === DistanceRepresentation.DIRECTED ) {
 
-          // scales the arrow based on how close the point controllers are
-          // if the point controllers are too close, then the arrow might be too big and be distorted
-          // if the width of the arrow head is greater than MAX_ARROW_HEAD_TO_ARROW_PROPORTION, then the arrow is
-          //  scaled down
+          // Scale the arrow based on how close the point controllers are.
+          // If the point controllers are too close, then the arrow might be too big and be distorted.
+          // If the width of the arrow head is greater than MAX_ARROW_HEAD_TO_ARROW_PROPORTION, then the arrow is
+          //  scaled down.
           // see #7
           let scale = 1;
           const arrowValueLength = Math.abs(
@@ -151,8 +152,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
             tailWidth: ARROW_SHAPE_OPTIONS.tailWidth * scale
           } );
 
-          // only sets the shape to the arrow shape if the point that the arrow points to is in the number line's range
-          // the stroke is removed so the tail of the arrow can have the correct width
+          // Only set the shape to the arrow shape if the point that the arrow points to is in the number line's range.
+          // The stroke is removed so the tail of the arrow can have the correct width.
           if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             shape = new ArrowShape( endPointPosition1.x, endPointPosition1.y, endPointPosition0.x, endPointPosition0.y, scaledArrowShapeOptions );
             distanceShadingPath.stroke = null;
