@@ -46,35 +46,37 @@ class AbstractNLDBaseModel {
     this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
 
     // @public {Property.<Boolean>} - whether the x_1 and x_2 or y_1 and y_2 nodes are swapped
-    // an 'isSwapped' approach was taken rather than reordering the point controllers in some array because it is
+    // An 'isSwapped' approach was taken rather than reordering the point controllers in some array because it is
     // often useful to know which point controller is which and to be able to consistently access the same point controller
+    // regardless of whether it is the primary point controller or not.
     this.isPrimaryControllerSwappedProperty = new BooleanProperty( false );
 
     // @public {SpatializedNumberLine}
     this.numberLine = numberLine;
 
-    // @public {PointController} - the point controllers in the sim; this.pointControllerOne is the 'primary' point controller
-    // unless this.isPrimaryNodeSwappedProperty in which case this.pointControllerTwo is the 'primary' point controller
-    // ordering of point controllers is necessary for all sorts of behaviours in this sim (e.g. directed distance,
-    // distance statements, etc.)
+    // @public {PointController} - the point controllers in the sim
+    // this.pointControllerOne is the 'primary' point controller unless this.isPrimaryNodeSwappedProperty in which case
+    // this.pointControllerTwo is the 'primary' point controller.
+    // The ordering of point controllers is necessary for all sorts of behaviours in this sim (e.g. directed distance,
+    // distance statements, etc.).
     this.pointControllerOne = pointControllerOne;
     this.pointControllerTwo = pointControllerTwo;
 
     // @public (read-only) {Property.<number|null>} a property that stores the number line point values of the point controllers
-    //  in the order that the point controllers were given to this model. If a point controller doesn't have a number
-    //  line point, then null is recorded in the array instead.
+    // in the order that the point controllers were given to this model. If a point controller doesn't have a number
+    // line point, then null is recorded in the array instead.
     // The stored array is always of length 2:
-    //  index 0 corresponds to the value of the number line point of this.pointControllerOne and
-    //  index 1 corresponds to the value of the number line point of this.pointControllerTwo.
+    // index 0 corresponds to the value of the number line point of this.pointControllerOne and
+    // index 1 corresponds to the value of the number line point of this.pointControllerTwo.
     this.pointValuesProperty = new Property( [ null, null ] );
     this.pointValuesProperty.link( pointValues => {
       assert && assert( pointValues.length === 2, 'There should always be 2 point values.' );
     } );
 
-    // Listens to the numberLine and its points to make update pointsValueProperty when necessary.
-    // Ideally, I would listen to the residentPoints of this.numberLine so I wouldn't duplicate code, but
-    //  it is necessary to know which point controller each number line point belongs to, and points are
-    //  seemingly added to the number line before they are associated with a point controller.
+    // Listen to the numberLine and its points to make updates to pointsValueProperty when necessary.
+    // Ideally, we would listen to the residentPoints of this.numberLine so I wouldn't duplicate code per controller, but
+    // it is necessary to know which point controller each number line point belongs to, and points are
+    // seemingly added to the number line before they are associated with a point controller.
     this.pointControllerOne.numberLinePoints.addItemAddedListener( numberLinePoint => {
       const updatePointValuesProperty = value => {
         this.pointValuesProperty.value = [ value, this.pointValuesProperty.value[ 1 ] ];
@@ -105,7 +107,7 @@ class AbstractNLDBaseModel {
     } );
 
     // @public {Property.<Bounds2>} the bounds of the toolbox that point controllers return to
-    // can change with number line orientation
+    // The box bounds change with number line orientation in the generic screen.
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
 
     this.pointControllers.forEach( pointController => {
@@ -116,7 +118,7 @@ class AbstractNLDBaseModel {
       // the active point controller box.
       pointController.isDraggingProperty.lazyLink( dragging => {
 
-        // if the point controller is released and it's not controlling a point on the number line, put it away
+        // If the point controller is released and it's not controlling a point on the number line, put it away.
         if ( !dragging && !pointController.isControllingNumberLinePoint() ) {
           this.putPointControllerInBox( pointController, true );
         }
@@ -124,18 +126,18 @@ class AbstractNLDBaseModel {
 
     } );
 
-    // manage point controllers on orientation change
+    // Manage point controllers on orientation change.
     this.numberLine.orientationProperty.lazyLink( () => {
       this.pointControllers
         .filter( pointController => pointController.isControllingNumberLinePoint() )
         .forEach( pointController => {
-          // there should only be one controlled point
+          // There should only be one controlled point.
           assert && assert( pointController.numberLinePoints.length === 1 );
           pointController.setPositionRelativeToPoint( pointController.numberLinePoints.get( 0 ) );
         } );
     } );
 
-    // if point controllers were in the box and the box bounds changed, move the points
+    // If point controllers were in the box and the box bounds changed, move the points.
     this.pointControllerBoxProperty.lazyLink( ( newBoxBounds, oldBoxBounds ) => {
       this.pointControllers.forEach( pointController => {
 
@@ -217,7 +219,7 @@ class AbstractNLDBaseModel {
   get pointControllers() { return this.getPointControllers(); }
 
   /**
-   * A function that returns whether both point controllers are controlling number line points that live on the number line
+   * Return whether both point controllers are controlling number line points that live on the number line
    * @public
    */
   areBothPointControllersControllingOnNumberLine() {
