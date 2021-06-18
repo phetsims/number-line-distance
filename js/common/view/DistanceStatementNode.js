@@ -29,11 +29,14 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import HStrut from '../../../../scenery/js/nodes/HStrut.js';
 
+// constants
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
+
 // A value that is beyond the bounds of the number lines because the number pickers' properties always require a number
 const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
+
 // A bounding object that is supposed to always be larger than a potential point controller representation
 const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 );
 
@@ -46,26 +49,26 @@ class DistanceStatementNode extends Node {
   constructor( model, options ) {
     options = merge( {
 
-      // {boolean} - changes whether this statement uses number pickers or texts
-      //  this affects whether this can change a point controller's value or not
+      // {boolean} - changes whether this statement uses number pickers or texts.
+      // This affects whether this can change a point controller's value or not.
       controlsValues: false
     }, options );
 
     super();
 
-    // a list of size 2 that contains nodes that 'represent' a point controller's value
-    // will either be number pickers or texts depending on options.controlsValues
+    // A list of size 2 that contains nodes that 'represent' a point controller's value;
+    // will either be number pickers or texts depending on options.controlsValues.
     let valueRepresentations;
 
-    // Creates value properties for each number line point
-    // The property corresponds to the point's value if it has any
-    // Otherwise, the property is INVALID_VALUE (which is still a number for the number property)
+    // Create value properties for each number line point.
+    // The property corresponds to the point's value if it has any.
+    // Otherwise, the property is INVALID_VALUE (which is still a number for the number property).
     // The value property will update when the point controller's value changes, but the point's value
-    //  will not update when the value property changes unless options.controlsValues is true
-    // The INVALID_VALUE hack is required because the number pickers require the value property to always have a value
+    // will not update when the value property changes unless options.controlsValues is true.
+    // The INVALID_VALUE hack is required because the number pickers require the value property to always have a numeric value.
     // The Utils.roundSymmetric is necessary because there is a very difficult-to-produce situation in which the point
-    //  controller in the temperature or elevation scene is placed right on the edge of the bounds and so the value
-    //  is just a long decimal number.
+    // controller in the temperature or elevation scene is placed right on the edge of the bounds and so the value
+    // is just a long decimal number.
     const valueProperties = [
       new NumberProperty( INVALID_VALUE, { reentrant: true } ),
       new NumberProperty( INVALID_VALUE, { reentrant: true } )
@@ -84,7 +87,7 @@ class DistanceStatementNode extends Node {
 
     if ( options.controlsValues ) {
 
-      // makes changing the value properties affect the point controllers' values
+      // Make changing the value properties affect the point controllers' values.
       model.pointControllers.forEach( ( pointController, i ) => {
         valueProperties[ i ].link( value => {
           if ( value !== INVALID_VALUE && pointController.isControllingNumberLinePoint()
@@ -94,7 +97,7 @@ class DistanceStatementNode extends Node {
         } );
       } );
 
-      // range property for number pickers; picks a range that contains all generic number line ranges
+      // Range property for number pickers; picks a range that contains all generic number line ranges.
       const numberPickerRangeProperty = new Property(
         NLDConstants.GENERIC_NUMBER_LINE_RANGES.reduce( ( largestNumberLineRange, currentNumberLineRange ) => {
           const newLargestNumberLineRange = largestNumberLineRange.copy();
@@ -150,9 +153,7 @@ class DistanceStatementNode extends Node {
     );
 
     // Background nodes that are parents to the value representations which ensure constant spacing within the node.
-    // TODO: this code assumes that REPRESENTATION_BOUNDS is always larger than any of the possible children, but
-    //  that isn't actually guaranteed: I'm not quite sure how to iterate through all possible children sizes and ensure
-    //  that REPRESENTATION_BOUNDS is larger
+    // This code assumes that REPRESENTATION_BOUNDS is always larger than any of the possible children.
     const backgroundNodes = [
       new Rectangle( REPRESENTATION_BOUNDS ),
       new Rectangle( REPRESENTATION_BOUNDS )
@@ -167,15 +168,15 @@ class DistanceStatementNode extends Node {
     const minusSignText = new Text( MathSymbols.MINUS, MATH_TEXT_OPTIONS );
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, MATH_TEXT_OPTIONS );
 
-    // A text that displays the distance between the two point controllers (or '?' if invalid distance)
+    // A text that displays the distance between the two point controllers (or '?' if invalid distance).
     const distanceText = new Text( INVALID_DISTANCE_STRING, NORMAL_TEXT_OPTIONS );
 
-    // Absolute value marks
+    // absolute value marks
     const leftAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 0 ] );
     const rightAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 1 ] );
 
-    // Layout boxes for this node's actual content
-    // HBoxes are for putting absolute values alongside valueRepresentations
+    // Crate layout boxes for this node's actual content.
+    // HBoxes are for putting absolute values alongside valueRepresentations.
     const leftTermHBox = new HBox( {
       children: [ leftAbsoluteValueMark, backgroundNodes[ 0 ] ],
       excludeInvisibleChildrenFromBounds: false
@@ -199,7 +200,7 @@ class DistanceStatementNode extends Node {
       ] ),
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
 
-        // Change the alt text based off of number line orientation
+        // Change the alt text based off of number line orientation.
         if ( orientation === Orientation.HORIZONTAL ) {
           alternativeTexts[ 0 ].text = NLDConstants.X_1_STRING;
           alternativeTexts[ 1 ].text = NLDConstants.X_2_STRING;
@@ -209,7 +210,7 @@ class DistanceStatementNode extends Node {
           alternativeTexts[ 1 ].text = NLDConstants.Y_2_STRING;
         }
 
-        // Chooses the ordering for children for the distance statement
+        // Choose the ordering for children for the distance statement.
         let leftTermNode = valueRepresentations[ 1 ];
         let rightTermNode = valueRepresentations[ 0 ];
         let leftTermValue = value1;
@@ -223,7 +224,7 @@ class DistanceStatementNode extends Node {
           distance = -distance;
         }
 
-        // Adds absolute value marks and makes the distance positive if the distance representation is absolute
+        // Add absolute value marks and makes the distance positive if the distance representation is absolute.
         leftAbsoluteValueMark.visible = false;
         rightAbsoluteValueMark.visible = false;
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {
@@ -232,7 +233,7 @@ class DistanceStatementNode extends Node {
           rightAbsoluteValueMark.visible = true;
         }
 
-        // Replaces value representations with alternatives if their value is invalid
+        // Replace value representations with alternatives if their value is invalid.
         if ( leftTermValue === INVALID_VALUE ) {
           leftTermNode = alternativeTexts[ 1 ];
           distance = INVALID_DISTANCE_STRING;
@@ -242,7 +243,7 @@ class DistanceStatementNode extends Node {
           distance = INVALID_DISTANCE_STRING;
         }
 
-        // Adds children to background nodes
+        // Add distance statement terms to the background nodes and ensure they are centered.
         backgroundNodes[ 0 ].children = [ leftTermNode ];
         backgroundNodes[ 1 ].children = [ rightTermNode ];
         leftTermNode.center = REPRESENTATION_BOUNDS.center;
