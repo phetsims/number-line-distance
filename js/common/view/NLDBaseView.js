@@ -67,7 +67,7 @@ const POINT_NAME_TEXT_OPTIONS = { maxWidth: 50, font: new MathSymbolFont( 20 ) }
 class NLDBaseView extends Node {
 
   /**
-   * pointControllerRepresentation params are used to represent the point controllers on the bottom left of the view:
+   * pointControllerRepresentation parameters are used to represent the point controllers on the bottom left of the view:
    * they are used to display x_1 and x_2 or y_1 and y_2 in the area that allows them to be swapped.
    *
    * @param {AbstractNLDBaseModel} model
@@ -144,7 +144,7 @@ class NLDBaseView extends Node {
       this.addChild( pointControllerBoxNode );
     } );
 
-    // adds pointControllerRepresentations to rectangles that ensure that the representations take up the same space
+    // Adds pointControllerRepresentations to rectangles that ensure that the representations take up the same space.
     const largestWidth = Math.max( pointControllerRepresentationOne.width, pointControllerRepresentationTwo.width );
     const largestHeight = Math.max( pointControllerRepresentationOne.height, pointControllerRepresentationTwo.height );
     const pointControllerRepresentationBackgroundOne = new Rectangle( 0, 0, largestWidth, largestHeight );
@@ -154,7 +154,7 @@ class NLDBaseView extends Node {
     pointControllerRepresentationBackgroundOne.addChild( pointControllerRepresentationOne );
     pointControllerRepresentationBackgroundTwo.addChild( pointControllerRepresentationTwo );
 
-    // controls on the bottom left for which node is considered to be first and second
+    // Crate controls on the bottom left for which node is considered to be first and second.
     // all values used in nodeOrderDisplay were empirically determined
     const firstNodeText = new RichText( `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeText = new RichText( `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
@@ -185,7 +185,7 @@ class NLDBaseView extends Node {
     } );
     this.addChild( swapPrimaryNodesButton );
 
-    // listens for when the primary node should be swapped, and swaps the representations
+    // Listen for when the primary node should be swapped, and swap the representations.
     model.isPrimaryControllerSwappedProperty.link( isPrimaryNodeSwapped => {
       let firstNodeHBoxChildren;
       let secondNodeHBoxChildren;
@@ -201,7 +201,7 @@ class NLDBaseView extends Node {
       secondNodeHBox.children = secondNodeHBoxChildren;
     } );
 
-    // switches the firstNodeText and secondNodeText to use either x or y based on number line orientation
+    // Switch the firstNodeText and secondNodeText to use either x or y based on number line orientation.
     model.numberLine.orientationProperty.link( orientation => {
       if ( orientation === Orientation.HORIZONTAL ) {
         firstNodeText.text = `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`;
@@ -213,7 +213,7 @@ class NLDBaseView extends Node {
       }
     } );
 
-    // @public {BooleanProperty} - controls whether the distance statement accordion box is opened or closed
+    // @public {BooleanProperty} - controls whether the distance statement accordion box is opened or closed.
     this.accordionBoxOpenedProperty = new BooleanProperty( true );
 
     // an accordion box for the distance statement
@@ -245,7 +245,7 @@ class NLDBaseView extends Node {
       ],
       ( distanceRepresentation, orientation, isPrimaryNodeSwapped, pointValues ) => {
 
-        // Can't say anything about distance if both point controllers aren't on the number line
+        // Don't say anything about distance if both point controllers aren't on the number line.
         distanceDescriptionText.text = '';
         distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
@@ -255,20 +255,20 @@ class NLDBaseView extends Node {
         const value0 = pointValues[ 0 ];
         const value1 = pointValues[ 1 ];
 
-        // calculates the difference with the correct sign
-        // even though only the absolute value of difference is ever displayed, the sign is still used to
-        //  determine which string template to use
+        // Calculate the difference with the correct sign.
+        // Even though only the absolute value of difference is ever displayed, the sign is still used to
+        // determine which string template to use.
         let difference = Util.roundSymmetric( value1 - value0 );
         if ( isPrimaryNodeSwapped ) {
           difference = -difference;
         }
 
-        // Get the strings for the point controllers
+        // Get the strings for the point controllers.
         const primaryPointControllerLabel = config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
         const secondaryPointControllerLabel = config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
 
-        // Fills in a string template for the distance text based off of the distance representation
-        // and whether the distance is positive or negative
+        // Fill in a string template for the distance text based off of the distance representation
+        // and whether the distance is positive or negative.
         const fillInValues = {
           primaryPointControllerLabel: primaryPointControllerLabel,
           secondaryPointControllerLabel: secondaryPointControllerLabel,
@@ -350,7 +350,7 @@ class NLDBaseView extends Node {
 
 /**
  * A node that has paths that depict a 'swap' icon
- *  which is nearly a half-ellipse with arrows at the end.
+ * which is nearly a half-ellipse with arrows at the end.
  * The half-ellipse is on the right with arrows on the left pointing to the left.
  */
 class SwapIcon extends Node {
