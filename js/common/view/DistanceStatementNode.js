@@ -165,8 +165,8 @@ class DistanceStatementNode extends Node {
       new RichText( NLDConstants.X_2_STRING, MATH_TEXT_OPTIONS )
     ];
 
-    const minusSignText = new Text( MathSymbols.MINUS, MATH_TEXT_OPTIONS );
-    const equalsSignText = new Text( MathSymbols.EQUAL_TO, MATH_TEXT_OPTIONS );
+    const minusSignText = new Text( MathSymbols.MINUS, NORMAL_TEXT_OPTIONS );
+    const equalsSignText = new Text( MathSymbols.EQUAL_TO, NORMAL_TEXT_OPTIONS );
 
     // A text that displays the distance between the two point controllers (or '?' if invalid distance).
     const distanceText = new Text( INVALID_DISTANCE_STRING, NORMAL_TEXT_OPTIONS );
