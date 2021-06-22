@@ -75,9 +75,7 @@ class NLDGenericScreenView extends ScreenView {
             ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_2_STRING : NLDConstants.Y_2_STRING
           )
         },
-        distanceStatementNodeOptions: { controlsValues: true },
-        pointNameLabelOffsetFromHorizontalNumberLine: 60,
-        pointNameLabelOffsetFromVerticalNumberLine: 75
+        distanceStatementNodeOptions: { controlsValues: true }
       }
     );
     this.addChild( baseView );
@@ -122,7 +120,11 @@ class NLDGenericScreenView extends ScreenView {
     // number line
     const numberLineNode = new DistanceShadedNumberLineNode(
       model,
-      { pointsOffScaleCondition: PointsOffScaleCondition.SOME }
+      {
+        pointsOffScaleCondition: PointsOffScaleCondition.SOME,
+        pointNameLabelOffsetFromHorizontalNumberLine: 60,
+        pointNameLabelOffsetFromVerticalNumberLine: 75
+      }
     );
     this.addChild( numberLineNode );
   }
