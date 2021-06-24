@@ -73,10 +73,10 @@ class TemperatureSceneModel extends AreaSceneModel {
     // Listen to when a point controller is no longer being dragged and push the dragged point controller
     // vertically if there is an extant point controller at the same value.
     const pushDistance = temperatureAreaBounds.height / 8;
-    const makePointControllerPushOtherSameValuePointController = ( pointController, otherPointController ) => {
+    const makePointControllerGetPushedIfDraggedToSameValueAsOtherPointController = ( pointController, otherPointController ) => {
       pointController.isDraggingProperty.link( isDragging => {
 
-        // Only need to push when the point controller is no longer being dragged and both
+        // Only push when the point controller is no longer being dragged and both
         // point controllers are on the number line at the same value.
         const areBothControllersOnNumberLineWithSameValue = this.pointValuesProperty.value[ 0 ] !== null &&
           this.pointValuesProperty.value[ 1 ] !== null &&
@@ -85,7 +85,7 @@ class TemperatureSceneModel extends AreaSceneModel {
           return;
         }
 
-        // Check whether to push up or down based on which side (top or bottom) has more space
+        // Check whether to push up or down based on which side (top or bottom) has more space.
         const otherPointControllerYPosition = otherPointController.positionProperty.value.y;
         const pushDownYLocation = otherPointControllerYPosition + pushDistance;
         const pushUpYLocation = otherPointControllerYPosition - pushDistance;
@@ -93,7 +93,7 @@ class TemperatureSceneModel extends AreaSceneModel {
           Math.abs( otherPointControllerYPosition - temperatureAreaBounds.bottom );
         const pushYPosition = shouldPushDown ? pushDownYLocation : pushUpYLocation;
 
-        // As long as the push is increasing the distance between the point controllers, push the other point controller
+        // As long as the push is increasing the distance between the point controllers, push the point controller.
         if ( Math.abs( pushYPosition - otherPointControllerYPosition ) >
           Math.abs( pointController.positionProperty.value.y - otherPointControllerYPosition ) ) {
           pointController.positionProperty.value = new Vector2(
@@ -103,8 +103,8 @@ class TemperatureSceneModel extends AreaSceneModel {
         }
       } );
     };
-    makePointControllerPushOtherSameValuePointController( this.pointControllerOne, this.pointControllerTwo );
-    makePointControllerPushOtherSameValuePointController( this.pointControllerTwo, this.pointControllerOne );
+    makePointControllerGetPushedIfDraggedToSameValueAsOtherPointController( this.pointControllerOne, this.pointControllerTwo );
+    makePointControllerGetPushedIfDraggedToSameValueAsOtherPointController( this.pointControllerTwo, this.pointControllerOne );
 
     // @public (readonly) the bounds where point controllers can be
     this.temperatureAreaBounds = temperatureAreaBounds;

@@ -1,8 +1,8 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
 /**
- * A point controller for the temperature and elevation scenes of NLD.
- * This PointController subclass only changes proposePosition so that
+ * A point controller for the temperature and elevation scenes of NLD;
+ * this PointController subclass only changes proposePosition so that
  * the point controllers can freely leave their bounds if necessary.
  *
  * @author Saurabh Totey

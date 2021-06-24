@@ -1,8 +1,8 @@
 // Copyright 2021, University of Colorado Boulder
 
 /**
- * A point controller for the distance scene of NLD.
- * This point controller locks on to the numberline when in the trapezoid's bounds, and unlocks when outside.
+ * A point controller for the distance scene of NLD
+ * that locks on to the numberline when in the trapezoid's bounds, and unlocks when outside.
  *
  * @author Saurabh Totey
  */
@@ -46,8 +46,6 @@ class DistancePointController extends PointController {
   proposePosition( proposedPosition ) {
     if ( this.isControllingNumberLinePoint() ) {
       const point = this.numberLinePoints[ 0 ];
-
-      // Map the proposed position to a value on the number line.
       const proposedNumberLineValue = point.numberLine.modelPositionToValue( proposedPosition );
 
       // Determine whether to propose a new value for the point or to detach and remove the point.

@@ -23,7 +23,7 @@ class AreaSceneModel extends AbstractNLDBaseModel {
   constructor( numberLine, pointControllerOne, pointControllerTwo, tandem, options ) {
     super( numberLine, pointControllerOne, pointControllerTwo, tandem, options );
 
-    // Handles attaching and detaching number line points to the point controllers whenever they enter or leave the bounds
+    // Handle attaching and detaching number line points to the point controllers whenever they enter or leave the bounds.
     this.pointControllers.forEach( pointController => {
       pointController.positionProperty.link( position => {
         if ( pointController.isPositionInBoundsFunction( position )

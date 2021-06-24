@@ -1,8 +1,8 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
 /**
- * A point controller for the temperature scene of NLD.
- * This point controller only adds a color property that mimics the color of the map beneath it.
+ * A point controller for the temperature scene of NLD;
+ * the point controller only adds a color property that mimics the color of the map beneath it.
  *
  * @author Saurabh Totey
  */
@@ -25,9 +25,9 @@ class TemperaturePointController extends AreaPointController {
   constructor( isPositionInBoundsFunction, temperatureToColorMap, options ) {
     super( isPositionInBoundsFunction, options );
 
-    // @public (read-only) PaintColorProperty is different from this.color where this.color is the point controller's
-    //  color for the purposes of the other number-line classes; this colorProperty instead is just representative of
-    //  the temperature of this point controller
+    // @public (read-only) {PaintColorProperty} is different from this.color where this.color is the point controller's
+    // color for the purposes of the other number-line classes; this colorProperty instead is just representative of
+    // the temperature of this point controller.
     this.colorProperty = new PaintColorProperty( NO_TEMPERATURE_COLOR );
     this.positionProperty.link( () => {
       if ( this.isControllingNumberLinePoint() ) {
