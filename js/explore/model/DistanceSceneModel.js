@@ -45,6 +45,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       .lineTo( numberLineMinimumXPosition, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE )
       .close();
 
+    // Create the model with the point controllers. The point controllers don't lock onto the same y-level for #23.
     super(
       numberLine,
       new DistancePointController(
@@ -56,7 +57,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       new DistancePointController(
         numberLine,
         planeTrapezoidShape,
-        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2,
+        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 + 20, // empirically determined
         0.5 // empirically determined
       ),
       tandem
