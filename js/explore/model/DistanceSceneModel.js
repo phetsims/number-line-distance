@@ -57,7 +57,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       new DistancePointController(
         numberLine,
         planeTrapezoidShape,
-        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 + 20, // empirically determined
+        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 + 15, // empirically determined
         0.5 // empirically determined
       ),
       tandem

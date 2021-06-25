@@ -57,7 +57,7 @@ class DistanceSceneView extends Node {
     // they can be swapped; ensures they have the same width
     // scales were empirically determined
     const houseRepresentation = new Image( house, { scale: 0.15 } );
-    const personRepresentation = new Image( person, { scale: 0.08 } );
+    const personRepresentation = new Image( person, { scale: 0.1 } );
     const smallestWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
     houseRepresentation.maxWidth = smallestWidth;
     personRepresentation.maxWidth = smallestWidth;
