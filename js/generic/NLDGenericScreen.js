@@ -12,6 +12,9 @@ import Property from '../../../axon/js/Property.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NLDGenericModel from './model/NLDGenericModel.js';
 import NLDGenericScreenView from './view/NLDGenericScreenView.js';
+import genericScreenIcon from '../../images/generic-screen-icon_png.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
+import Image from '../../../scenery/js/nodes/Image.js';
 
 const screenGenericString = numberLineDistanceStrings.screen.generic;
 
@@ -25,6 +28,10 @@ class NLDGenericScreen extends Screen {
     const options = {
       name: screenGenericString,
       backgroundColorProperty: new Property( 'rgb( 245, 255, 254 )' ),
+      homeScreenIcon: new ScreenIcon( new Image( genericScreenIcon ), {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
       tandem: tandem
     };
 

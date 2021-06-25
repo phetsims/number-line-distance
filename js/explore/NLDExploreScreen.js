@@ -12,6 +12,9 @@ import Property from '../../../axon/js/Property.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
 import NLDExploreScreenView from './view/NLDExploreScreenView.js';
+import exploreScreenIcon from '../../images/explore-screen-icon_png.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
+import Image from '../../../scenery/js/nodes/Image.js';
 
 const screenExploreString = numberLineDistanceStrings.screen.explore;
 
@@ -25,6 +28,10 @@ class NLDExploreScreen extends Screen {
     const options = {
       name: screenExploreString,
       backgroundColorProperty: new Property( 'rgb( 254, 247, 233 )' ),
+      homeScreenIcon: new ScreenIcon( new Image( exploreScreenIcon ), {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
       tandem: tandem
     };
 

@@ -86,5 +86,21 @@
     "projectURL": "http://phet.colorado.edu",
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Amanda McGarry for use by PhET"
+  },
+  "explore-screen-icon.png": {
+    "text": [
+      "Copyright 2021 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Amanda McGarry for use by PhET"
+  },
+  "generic-screen-icon.png": {
+    "text": [
+      "Copyright 2021 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Amanda McGarry for use by PhET"
   }
 }
