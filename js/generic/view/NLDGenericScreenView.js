@@ -10,8 +10,6 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import Image from '../../../../scenery/js/nodes/Image.js';
-import genericmockup from '../../../images/genericmockup_png.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
@@ -42,16 +40,6 @@ class NLDGenericScreenView extends ScreenView {
     super( {
       tandem: tandem
     } );
-
-    // TODO - mockup - temporary, for design and layout
-    const mockup = new Image( genericmockup, {
-      center: this.layoutBounds.center,
-      minWidth: this.layoutBounds.width,
-      maxWidth: this.layoutBounds.width,
-      opacity: window.phet.mockupOpacityProperty.value
-    } );
-    this.addChild( mockup );
-    window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
     // the point controllers are represented as circles on the bottom left corner of the screen
     const firstControllerRepresentation = new Circle( CIRCLE_REPRESENTATION_RADIUS, { fill: 'magenta' } );

@@ -9,8 +9,6 @@
 import numberLineDistance from '../../numberLineDistance.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
-import explorescene1mockup from '../../../images/explorescene1mockup_png.js';
-import NLDConstants from '../../common/NLDConstants.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
@@ -42,16 +40,6 @@ class DistanceSceneView extends Node {
    */
   constructor( model ) {
     super();
-
-    //TODO: temporary mockup
-    const mockup = new Image( explorescene1mockup, {
-      center: NLDConstants.NLD_LAYOUT_BOUNDS.center,
-      minWidth: NLDConstants.NLD_LAYOUT_BOUNDS.width,
-      maxWidth: NLDConstants.NLD_LAYOUT_BOUNDS.width,
-      opacity: window.phet.mockupOpacityProperty.value
-    } );
-    this.addChild( mockup );
-    window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
 
     // creates the representations for the person and the house in the area that
     // they can be swapped; ensures they have the same width
