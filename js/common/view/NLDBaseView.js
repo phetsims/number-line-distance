@@ -122,7 +122,8 @@ class NLDBaseView extends Node {
       ],
       {
         left: 50, // empirically determined
-        top: 25
+        top: 25,
+        spacing: 9
       }
     );
     this.addChild( distanceTypeSelector );
