@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.0.0-dev.2 Fri Jun 25 2021 17:31:03 GMT+0200 (Central European Summer Time)",
+  "comment": "# number-line-distance 1.0.0-dev.3 Mon Jun 28 2021 15:29:46 GMT+0200 (Central European Summer Time)",
   "assert": {
     "sha": "1971d73693abe3396a5056c4962feead10507e41",
     "branch": "master"
@@ -13,7 +13,7 @@
     "branch": "master"
   },
   "chipper": {
-    "sha": "91307a808be208d0420883d6c621da4634b06fb1",
+    "sha": "99e1abb571dc62d37aa07449c64d93dd3fb51f49",
     "branch": "master"
   },
   "dot": {
@@ -33,7 +33,7 @@
     "branch": "master"
   },
   "number-line-distance": {
-    "sha": "fcc745c93ee9bc1f03612743096f445a4e3e3219",
+    "sha": "ee75ea2fde8abd272ae21eaf589bce7b0f448dc1",
     "branch": "master"
   },
   "phet-core": {
@@ -41,7 +41,7 @@
     "branch": "master"
   },
   "phet-io": {
-    "sha": "3d1dbcd53960d91a26a01e882ff84c126c056178",
+    "sha": "d68898afc2794b4de97ac2cd40da0feef90e7e1a",
     "branch": "master"
   },
   "phet-io-client-guides": {
@@ -49,7 +49,7 @@
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "30e06914ef0577c7e0f793d48a54ee7b3a24827c",
+    "sha": "634ffeadb16b64930db510482c9e9a9640ed316b",
     "branch": "master"
   },
   "phetcommon": {
@@ -73,11 +73,11 @@
     "branch": "master"
   },
   "sherpa": {
-    "sha": "a4252286a39366b770cb1382db921bf019cfd3a7",
+    "sha": "b74635e2351551e81b5035013e1eb48fda493ae2",
     "branch": "master"
   },
   "studio": {
-    "sha": "e69b752fbd790ffb3335042d7bd7de5f1f786fca",
+    "sha": "218d2547cbf3e0a1e964586a1b66058fd118c9e1",
     "branch": "master"
   },
   "sun": {
