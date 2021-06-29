@@ -2,7 +2,7 @@
 
 /**
  * A point controller for the distance scene of NLD
- * that locks on to the numberline when in the trapezoid's bounds, and unlocks when outside.
+ * that locks on to the numberline when in the sidewalk's bounds, and unlocks when outside.
  *
  * @author Saurabh Totey
  */

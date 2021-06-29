@@ -31,7 +31,7 @@ const metersSymbol = numberLineDistanceStrings.symbol.meters;
 const meterString = numberLineDistanceStrings.meter;
 const metersString = numberLineDistanceStrings.meters;
 
-const CARDINALITY_INDICATOR_FONT = new PhetFont( 25 );
+const DIRECTION_INDICATOR_FONT = new PhetFont( 25 );
 
 class DistanceSceneView extends Node {
 
@@ -41,8 +41,8 @@ class DistanceSceneView extends Node {
   constructor( model ) {
     super();
 
-    // creates the representations for the person and the house in the area that
-    // they can be swapped; ensures they have the same width
+    // Create the representations for the person and the house in the area that
+    // they can be swapped. Ensure they have the same width.
     // scales were empirically determined
     const houseRepresentation = new Image( house, { scale: 0.15 } );
     const personRepresentation = new Image( person, { scale: 0.1 } );
@@ -86,8 +86,9 @@ class DistanceSceneView extends Node {
       }
     ) );
 
-    // point controllers; the image scales are empirically determined
-    // point controllers are in different nodes so that the person is always on top of the house in terms of layering
+    // point controllers
+    // they are in different nodes so that the person is always on top of the house in terms of layering
+    // the image scales are empirically determined
     const personPointControllerImage = new Image( person, { scale: 0.2 } );
     const housePointControllerImage = new Image( house, { scale: 0.2 } );
     const pointControllersLayer = new Node();
@@ -117,11 +118,11 @@ class DistanceSceneView extends Node {
     const textOffsetFromNumberLine = numberLineNode.options.displayedRangeInset + numberLineNode.options.arrowSize + 15;
     const range = model.numberLine.displayedRangeProperty.value;
     const eastSymbolText = new Text( eastString, {
-      font: CARDINALITY_INDICATOR_FONT,
+      font: DIRECTION_INDICATOR_FONT,
       center: model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 )
     } );
     const westSymbolText = new Text( westString, {
-      font: CARDINALITY_INDICATOR_FONT,
+      font: DIRECTION_INDICATOR_FONT,
       center: model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 )
     } );
     this.addChild( eastSymbolText );

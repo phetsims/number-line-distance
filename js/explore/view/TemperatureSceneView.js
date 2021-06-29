@@ -44,7 +44,7 @@ class TemperatureSceneView extends Node {
   constructor( model ) {
     super();
 
-    // Texts that represent the point controllers in the swap area at the bottom left
+    // texts that represent the point controllers in the swap area at the bottom left
     const aText = new Text( aString, { font: REPRESENTATION_FONT } );
     const bText = new Text( bString, { font: REPRESENTATION_FONT } );
 
@@ -67,7 +67,7 @@ class TemperatureSceneView extends Node {
     );
     this.addChild( this.baseView );
 
-    // Links the color of the point controller with the representation texts
+    // Link the color of the point controller with the representation texts.
     model.pointControllers[ 0 ].positionProperty.link( () => {
       aText.fill = model.pointControllers[ 0 ].color;
     } );
@@ -75,7 +75,7 @@ class TemperatureSceneView extends Node {
       bText.fill = model.pointControllers[ 1 ].color;
     } );
 
-    // Creates the gradient which shows a continuous color representation of the number line temperature values
+    // Create the gradient which shows a continuous color representation of the number line temperature values.
     let rectangleGradient = new LinearGradient(
       model.temperatureAreaBounds.minX,
       model.temperatureAreaBounds.minY,
@@ -96,7 +96,7 @@ class TemperatureSceneView extends Node {
       fill: rectangleGradient
     } ) );
 
-    // Adds images on top of the rectangle gradient
+    // Add images on top of the rectangle gradient.
     this.addChild( new Image(
       antarctic,
       {

@@ -57,9 +57,8 @@ class ElevationSceneView extends Node {
     );
     this.addChild( this.baseView );
 
-    // Adds rectangles in the elevation area bounds to display background
-    // First rectangle covers entire bounds and is the background image
-    // Second rectangle covers the lower half of the bounds and is a constant color that represents the water
+    // Add background image and water rectangle. Water rectangle is on top of everything so that point controllers
+    // appear 'submerged' in water because they are layered beneath the rectangle.
     this.addChild( new Image(
       elevationBackground,
       {
