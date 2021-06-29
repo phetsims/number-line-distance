@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.0.0-dev.3 Mon Jun 28 2021 15:29:46 GMT+0200 (Central European Summer Time)",
+  "comment": "# number-line-distance 1.0.0-dev.4 Tue Jun 29 2021 15:19:25 GMT+0200 (Central European Summer Time)",
   "assert": {
     "sha": "1971d73693abe3396a5056c4962feead10507e41",
     "branch": "master"
@@ -33,7 +33,7 @@
     "branch": "master"
   },
   "number-line-distance": {
-    "sha": "ee75ea2fde8abd272ae21eaf589bce7b0f448dc1",
+    "sha": "3e44db3ba9b4392028e0b64ed6064d9b81fadb53",
     "branch": "master"
   },
   "phet-core": {
@@ -41,7 +41,7 @@
     "branch": "master"
   },
   "phet-io": {
-    "sha": "d68898afc2794b4de97ac2cd40da0feef90e7e1a",
+    "sha": "fc8f160adbb1e2a34e4f66cf3fe6dbd46b712a86",
     "branch": "master"
   },
   "phet-io-client-guides": {
