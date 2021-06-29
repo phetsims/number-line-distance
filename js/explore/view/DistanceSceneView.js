@@ -76,12 +76,13 @@ class DistanceSceneView extends Node {
     this.addChild( sidewalkImage );
 
     // fire hydrant that sits at the 0 location of the number line
+    // offset and scale empirically determined
     this.addChild( new Image(
       fireHydrant,
       {
         centerX: model.sidewalkBounds.center.x,
         bottom: model.sidewalkBounds.center.y - 2,
-        scale: 0.15 // empirically determined
+        scale: 0.15
       }
     ) );
 
