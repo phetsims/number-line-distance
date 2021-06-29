@@ -14,11 +14,11 @@ import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumber
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import Path from '../../../../scenery/js/nodes/Path.js';
 import fireHydrant from '../../../images/fire-hydrant_png.js';
 import person from '../../../images/person_png.js';
 import house from '../../../images/house_png.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
+import sidewalk from '../../../images/sidewalk_png.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -69,16 +69,19 @@ class DistanceSceneView extends Node {
     );
     this.addChild( this.baseView );
 
-    // trapezoid path that represents the plane where the person and the house can lie
-    this.addChild( new Path( model.planeTrapezoidShape, { fill: '#9b9b9b' } ) );
+    // image that represents the plane where the person and the house lie
+    const sidewalkImage = new Image( sidewalk );
+    sidewalkImage.scale( model.sidewalkBounds.width / sidewalkImage.width, model.sidewalkBounds.height / sidewalkImage.height );
+    sidewalkImage.center = model.sidewalkBounds.center;
+    this.addChild( sidewalkImage );
 
     // fire hydrant that sits at the 0 location of the number line
     this.addChild( new Image(
       fireHydrant,
       {
-        centerX: model.planeTrapezoidShape.bounds.center.x,
-        bottom: model.planeTrapezoidShape.bounds.center.y,
-        scale: 0.2 // empirically determined
+        centerX: model.sidewalkBounds.center.x,
+        bottom: model.sidewalkBounds.center.y - 2,
+        scale: 0.15 // empirically determined
       }
     ) );
 

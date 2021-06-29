@@ -11,7 +11,7 @@ import SpatializedNumberLine from '../../../../number-line-common/js/common/mode
 import NLDConstants from '../../common/NLDConstants.js';
 import DistancePointController from './DistancePointController.js';
 import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
-import Shape from '../../../../kite/js/Shape.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
 
 // constants
 const TRAPEZOID_OFFSET_FROM_NUMBERLINE = 180;
@@ -33,38 +33,39 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       preventOverlap: false
     } );
 
-    // constants used for determining the trapezoid plane shape
+    // constants used for placing the sidewalk
+    // values empirically determined
     const numberLineMinimumXPosition = numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).x;
     const numberLineMaximumXPosition = numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x;
     const numberLineY = numberLine.centerPositionProperty.value.y;
-
-    const planeTrapezoidShape = new Shape()
-      .moveTo( numberLineMinimumXPosition - 50, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT )
-      .lineTo( numberLineMaximumXPosition + 50, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT )
-      .lineTo( numberLineMaximumXPosition, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE )
-      .lineTo( numberLineMinimumXPosition, numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE )
-      .close();
+    const sidewalkBounds = new Bounds2(
+      numberLineMinimumXPosition - 50,
+      numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE,
+      numberLineMaximumXPosition + 50,
+      numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT
+    );
+    const lockingBounds = sidewalkBounds.withMinY( numberLineY + 75 );
 
     // Create the model with the point controllers. The point controllers don't lock onto the same y-level for #23.
     super(
       numberLine,
       new DistancePointController(
         numberLine,
-        planeTrapezoidShape,
+        lockingBounds,
         TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2,
         0.3 // empirically determined
       ),
       new DistancePointController(
         numberLine,
-        planeTrapezoidShape,
+        lockingBounds,
         TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 + 15, // empirically determined
         0.5 // empirically determined
       ),
       tandem
     );
 
-    // @public (read-only)
-    this.planeTrapezoidShape = planeTrapezoidShape;
+    // @public {Bounds2} (read-only)
+    this.sidewalkBounds = sidewalkBounds;
   }
 }
 

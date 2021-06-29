@@ -16,11 +16,11 @@ class DistancePointController extends PointController {
 
   /**
    * @param {SpatializedNumberLine} numberLine
-   * @param {Shape} containingShape - the point controller will lock on to the number line if in the containingShape's bounds
+   * @param {Bounds2} lockingBounds - the point controller will lock on to the number line if in the bounds
    * @param {number} lockHeight
    * @param {number} scaleInBox
    */
-  constructor( numberLine, containingShape, lockHeight, scaleInBox ) {
+  constructor( numberLine, lockingBounds, lockHeight, scaleInBox ) {
     super( {
       numberLines: [ numberLine ],
       lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
@@ -29,8 +29,7 @@ class DistancePointController extends PointController {
     } );
 
     // @private {Bounds2} the bounds for when the point controller will lock onto the number line
-    // offset of 75 is determined empirically
-    this.lockingBounds = containingShape.bounds.withMinY( numberLine.centerPositionProperty.value.y + 75 );
+    this.lockingBounds = lockingBounds;
   }
 
   /**
