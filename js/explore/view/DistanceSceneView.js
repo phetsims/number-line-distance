@@ -89,7 +89,7 @@ class DistanceSceneView extends Node {
     // point controllers
     // they are in different nodes so that the person is always on top of the house in terms of layering
     // the image scales are empirically determined
-    const personPointControllerImage = new Image( person, { scale: 0.2 } );
+    const personPointControllerImage = new Image( person, { scale: 0.22 } );
     const housePointControllerImage = new Image( house, { scale: 0.2 } );
     const pointControllersLayer = new Node();
     pointControllersLayer.addChild( new Node( {
