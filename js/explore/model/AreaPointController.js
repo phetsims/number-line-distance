@@ -16,6 +16,7 @@ import LockToNumberLine from '../../../../number-line-common/js/common/model/Loc
 class AreaPointController extends PointController {
 
   /**
+   * TODO: replace this function with a bounds2 which is what is now always used
    * @param {function(Vector2):boolean} isPositionInBoundsFunction - a function that returns whether the given position
    *  is within some bounds of the explore scene; is used to determine when to detach point controllers and when to use
    *  the default 'proposePosition' function. Points are only attached when they are 'in bounds'.

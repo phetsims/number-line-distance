@@ -8,11 +8,11 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import PointController from '../../../../number-line-common/js/common/model/PointController.js';
+import ExplorePointController from './ExplorePointController.js';
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 
-class DistancePointController extends PointController {
+class DistancePointController extends ExplorePointController {
 
   /**
    * @param {SpatializedNumberLine} numberLine
@@ -21,7 +21,7 @@ class DistancePointController extends PointController {
    * @param {number} scaleInBox
    */
   constructor( numberLine, lockingBounds, lockHeight, scaleInBox ) {
-    super( {
+    super( 'top', lockingBounds, {
       numberLines: [ numberLine ],
       lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
       offsetFromHorizontalNumberLine: lockHeight,
