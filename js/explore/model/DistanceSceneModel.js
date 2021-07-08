@@ -44,7 +44,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       numberLineMaximumXPosition + 50,
       numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT
     );
-    const lockingBounds = sidewalkBounds.withMinY( numberLineY + 75 );
+    const lockingBounds = sidewalkBounds.withMinY( numberLineY + 125 ).withMaxY( sidewalkBounds.bottom + 10 );
 
     // Create the model with the point controllers. The point controllers don't lock onto the same y-level for #23.
     super(
