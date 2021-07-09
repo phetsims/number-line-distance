@@ -36,7 +36,7 @@ class ExplorePointController extends PointController {
       }
       else if ( dropFromDirection === 'top' && position.y < playAreaBounds.minY &&
         playAreaBounds.minX <= position.x && position.x <= playAreaBounds.maxX ) {
-        this.goToPosition( new Vector2( position.x, playAreaBounds.minY ) );
+        this.proposePosition( new Vector2( position.x, playAreaBounds.minY ) );
       }
       else if ( dropFromDirection === 'left' ) {
         //TODO:
