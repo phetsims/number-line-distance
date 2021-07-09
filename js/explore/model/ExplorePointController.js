@@ -21,30 +21,30 @@ class ExplorePointController extends PointController {
   constructor( dropFromDirection, playAreaBounds, options ) {
     super( options );
 
+    // TODO Make sure that the goToBox stuff in AbstractNLDBaseModel isn't an issue.
     // @private - Returns where this point controller should 'drop' to from the given position.
     // If the point controller is not in a place where it can drop to the play area, it just returns the
     // given position.
     // The dropping behaviour is desired for #34.
-    this.dropFrom = position => {
-      return new Vector2( position.x, position.y ); //TODO:
-    };
-  }
-
-  /**
-   * Implements the normal PointController.proposePosition, but includes the dropping behaviour.
-   *
-   * @override
-   * @param {Vector2} proposedPosition
-   * @public
-   */
-  proposePosition( proposedPosition ) {
-    const dropPosition = this.dropFrom( proposedPosition );
-    if ( dropPosition !== proposedPosition ) {
-      this.goToPosition( dropPosition, false );
-    }
-    else {
-      super.proposePosition( proposedPosition );
-    }
+    this.isDraggingProperty.link( isDragging => {
+      if ( isDragging ) {
+        return;
+      }
+      const position = this.positionProperty.value;
+      if ( dropFromDirection === 'bottom' ) {
+        //TODO:
+      }
+      else if ( dropFromDirection === 'top' && position.y < playAreaBounds.minY &&
+        playAreaBounds.minX <= position.x && position.x <= playAreaBounds.maxX ) {
+        this.goToPosition( new Vector2( position.x, playAreaBounds.minY ) );
+      }
+      else if ( dropFromDirection === 'left' ) {
+        //TODO:
+      }
+      else if ( dropFromDirection === 'right' ) {
+        //TODO:
+      }
+    } );
   }
 
 }
