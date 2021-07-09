@@ -21,7 +21,6 @@ class ExplorePointController extends PointController {
   constructor( dropFromDirection, playAreaBounds, options ) {
     super( options );
 
-    // TODO Make sure that the goToBox stuff in AbstractNLDBaseModel isn't an issue.
     // @private - Returns where this point controller should 'drop' to from the given position.
     // If the point controller is not in a place where it can drop to the play area, it just returns the
     // given position.
@@ -31,18 +30,13 @@ class ExplorePointController extends PointController {
         return;
       }
       const position = this.positionProperty.value;
-      if ( dropFromDirection === 'bottom' ) {
-        //TODO:
-      }
-      else if ( dropFromDirection === 'top' && position.y < playAreaBounds.minY &&
+      if ( dropFromDirection === 'top' && position.y < playAreaBounds.minY &&
         playAreaBounds.minX <= position.x && position.x <= playAreaBounds.maxX ) {
         this.proposePosition( new Vector2( position.x, playAreaBounds.minY ) );
       }
-      else if ( dropFromDirection === 'left' ) {
-        //TODO:
-      }
-      else if ( dropFromDirection === 'right' ) {
-        //TODO:
+      else if ( dropFromDirection === 'left' && position.x < playAreaBounds.minX &&
+        playAreaBounds.minY <= position.y && position.y <= playAreaBounds.maxY ) {
+        this.proposePosition( new Vector2( playAreaBounds.minX, position.y ) );
       }
     } );
   }

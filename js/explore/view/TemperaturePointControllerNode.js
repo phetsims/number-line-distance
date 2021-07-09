@@ -42,7 +42,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
 
     // a property that reflects the value of the point controller
     const valueProperty = new DerivedProperty( [ pointController.positionProperty ], position => {
-      if ( pointController.isControllingNumberLinePoint() && pointController.isPositionInBoundsFunction( position ) ) {
+      if ( pointController.isControllingNumberLinePoint() && pointController.playAreaBounds.containsPoint( position ) ) {
         return pointController.numberLinePoints.get( 0 ).valueProperty.value;
       }
       return DEFAULT_TEMPERATURE_VALUE;

@@ -18,12 +18,12 @@ const NO_TEMPERATURE_COLOR = new Color( 255, 255, 255 );
 class TemperaturePointController extends AreaPointController {
 
   /**
-   * @param {function(Vector2):boolean} isPositionInBoundsFunction - see ExplorePointController for explanation
+   * @param {Bounds2} playAreaBounds  - see ExplorePointController for explanation
    * @param {function(number):Color} temperatureToColorMap - a function that maps a temperature value to a color
    * @param {Object} [options]
    */
-  constructor( isPositionInBoundsFunction, temperatureToColorMap, options ) {
-    super( isPositionInBoundsFunction, options );
+  constructor( playAreaBounds, temperatureToColorMap, options ) {
+    super( 'top', playAreaBounds, options );
 
     // @public (read-only) {PaintColorProperty} is different from this.color where this.color is the point controller's
     // color for the purposes of the other number-line classes; this colorProperty instead is just representative of

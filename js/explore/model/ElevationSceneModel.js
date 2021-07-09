@@ -35,15 +35,14 @@ class ElevationSceneModel extends AreaSceneModel {
       300, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).y,
       750, numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).y
     );
-    const isPositionInBounds = position => elevationAreaBounds.containsPoint( position );
 
     super(
       numberLine,
-      new AreaPointController( isPositionInBounds, {
+      new AreaPointController( 'left', elevationAreaBounds, {
         numberLines: [ numberLine ],
         color: 'black'
       } ),
-      new AreaPointController( isPositionInBounds, {
+      new AreaPointController( 'left', elevationAreaBounds, {
         numberLines: [ numberLine ],
         color: '#446ab7'
       } ),

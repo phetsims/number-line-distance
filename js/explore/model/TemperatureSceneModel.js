@@ -41,7 +41,6 @@ class TemperatureSceneModel extends AreaSceneModel {
       numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).x, 364,
       numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x, 464
     );
-    const isPositionInBounds = position => temperatureAreaBounds.containsPoint( position );
 
     const temperatureToColorMapper = new TemperatureToColorMapper( TemperatureSceneModel.TEMPERATURE_RANGE );
     const mapTemperatureToColor = value => temperatureToColorMapper.mapTemperatureToColor( value );
@@ -49,7 +48,7 @@ class TemperatureSceneModel extends AreaSceneModel {
     super(
       numberLine,
       new TemperaturePointController(
-        isPositionInBounds,
+        temperatureAreaBounds,
         mapTemperatureToColor,
         {
           numberLines: [ numberLine ],
@@ -58,7 +57,7 @@ class TemperatureSceneModel extends AreaSceneModel {
         }
       ),
       new TemperaturePointController(
-        isPositionInBounds,
+        temperatureAreaBounds,
         mapTemperatureToColor,
         {
           numberLines: [ numberLine ],

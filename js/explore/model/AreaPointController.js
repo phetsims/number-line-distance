@@ -8,28 +8,28 @@
  * @author Saurabh Totey
  */
 
-import PointController from '../../../../number-line-common/js/common/model/PointController.js';
+import ExplorePointController from './ExplorePointController.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import merge from '../../../../phet-core/js/merge.js';
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
-class AreaPointController extends PointController {
+class AreaPointController extends ExplorePointController {
 
   /**
-   * TODO: replace this function with a bounds2 which is what is now always used
-   * @param {function(Vector2):boolean} isPositionInBoundsFunction - a function that returns whether the given position
+   * @param {string} dropFromDirection - TODO: doc
+   * @param {Bounds2} playAreaBounds - TODO: doc a function that returns whether the given position
    *  is within some bounds of the explore scene; is used to determine when to detach point controllers and when to use
    *  the default 'proposePosition' function. Points are only attached when they are 'in bounds'.
    * @param {Object} [options]
    */
-  constructor( isPositionInBoundsFunction, options ) {
+  constructor( dropFromDirection, playAreaBounds, options ) {
     options = merge( { lockToNumberLine: LockToNumberLine.NEVER }, options );
     assert && assert( options.lockToNumberLine === LockToNumberLine.NEVER, 'lockToNumberLine should only be set to NEVER if set' );
 
-    super( options );
+    super( dropFromDirection, playAreaBounds, options );
 
     // @public (read-only)
-    this.isPositionInBoundsFunction = isPositionInBoundsFunction;
+    this.playAreaBounds = playAreaBounds;
   }
 
   /**
@@ -41,7 +41,7 @@ class AreaPointController extends PointController {
    * @public
    */
   proposePosition( proposedPosition ) {
-    if ( this.isControllingNumberLinePoint() && this.isPositionInBoundsFunction( proposedPosition ) ) {
+    if ( this.isControllingNumberLinePoint() && this.playAreaBounds.containsPoint( proposedPosition ) ) {
       super.proposePosition( proposedPosition );
     }
     else {
