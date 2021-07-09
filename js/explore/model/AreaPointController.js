@@ -17,9 +17,9 @@ class AreaPointController extends ExplorePointController {
 
   /**
    * @param {string} dropFromDirection - TODO: doc
-   * @param {Bounds2} playAreaBounds - TODO: doc a function that returns whether the given position
-   *  is within some bounds of the explore scene; is used to determine when to detach point controllers and when to use
-   *  the default 'proposePosition' function. Points are only attached when they are 'in bounds'.
+   * @param {Bounds2} playAreaBounds - the bounds where the point controller is allowed to interact with the number line by
+   * having a number line point. Is used to determine when to detach point controllers and when to use
+   * the default 'proposePosition' function. Points are only attached when they are 'in bounds'.
    * @param {Object} [options]
    */
   constructor( dropFromDirection, playAreaBounds, options ) {

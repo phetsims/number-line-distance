@@ -14,6 +14,8 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 class ExplorePointController extends PointController {
 
   /**
+   * TODO: doc
+   *
    * @param {string} dropFromDirection -- TODO: make this an enum
    * @param {Bounds2} playAreaBounds
    * @param {Object} [options]
