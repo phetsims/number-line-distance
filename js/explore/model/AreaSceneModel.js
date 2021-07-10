@@ -27,7 +27,8 @@ class AreaSceneModel extends AbstractNLDBaseModel {
     this.pointControllers.forEach( pointController => {
       pointController.positionProperty.link( position => {
         if ( pointController.playAreaBounds.containsPoint( position )
-             && !pointController.isControllingNumberLinePoint() && pointController.isDraggingProperty.value ) {
+          && !pointController.isControllingNumberLinePoint() &&
+          ( pointController.isDraggingProperty.value || pointController.isDropping ) ) {
           const numberLinePoint = new NumberLinePoint( numberLine, {
             controller: pointController,
             initialValue: numberLine.modelPositionToValue( position ),
@@ -35,6 +36,7 @@ class AreaSceneModel extends AbstractNLDBaseModel {
           } );
           numberLine.addPoint( numberLinePoint );
           pointController.associateWithNumberLinePoint( numberLinePoint );
+          pointController.isDropping = false;
         }
         else if ( !pointController.playAreaBounds.containsPoint( position )
                   && pointController.isControllingNumberLinePoint() ) {
