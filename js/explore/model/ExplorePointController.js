@@ -1,7 +1,8 @@
 // Copyright 2021, University of Colorado Boulder
 
 /**
- * A point controller with 'dropping' behaviour: if a point controller is dragged to a side of the play area,
+ * A point controller for all explore scenes.
+ * Contains 'dropping' behaviour: if a point controller is dragged to a side of the play area,
  *  it 'drops' to the play area rather than returning to the box.
  *
  * @author Saurabh Totey
@@ -14,10 +15,8 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 class ExplorePointController extends PointController {
 
   /**
-   * TODO: doc
-   *
    * @param {string} dropFromDirection -- TODO: make this an enum
-   * @param {Bounds2} playAreaBounds
+   * @param {Bounds2} playAreaBounds - the bounds where the point controller is considered to interact with the number line
    * @param {Object} [options]
    */
   constructor( dropFromDirection, playAreaBounds, options ) {

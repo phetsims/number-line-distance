@@ -16,7 +16,7 @@ import LockToNumberLine from '../../../../number-line-common/js/common/model/Loc
 class AreaPointController extends ExplorePointController {
 
   /**
-   * @param {string} dropFromDirection - TODO: doc
+   * @param {string} dropFromDirection - the direction from which the point controller can 'drop' onto the play area
    * @param {Bounds2} playAreaBounds - the bounds where the point controller is allowed to interact with the number line by
    * having a number line point. Is used to determine when to detach point controllers and when to use
    * the default 'proposePosition' function. Points are only attached when they are 'in bounds'.
