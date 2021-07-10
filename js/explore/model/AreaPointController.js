@@ -12,6 +12,7 @@ import ExplorePointController from './ExplorePointController.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import merge from '../../../../phet-core/js/merge.js';
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
+import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 
 class AreaPointController extends ExplorePointController {
 
@@ -41,8 +42,23 @@ class AreaPointController extends ExplorePointController {
    * @public
    */
   proposePosition( proposedPosition ) {
-    if ( this.isControllingNumberLinePoint() && this.playAreaBounds.containsPoint( proposedPosition ) ) {
-      super.proposePosition( proposedPosition );
+    if ( this.playAreaBounds.containsPoint( proposedPosition ) ) {
+      if ( this.isControllingNumberLinePoint() ) {
+        super.proposePosition( proposedPosition );
+        return;
+      }
+      this.positionProperty.value = proposedPosition;
+      if ( !this.isControllingNumberLinePoint() ) {
+        const numberLine = this.numberLines[ 0 ];
+        const constrainedValue = numberLine.getConstrainedValue( numberLine.modelPositionToValue( proposedPosition ) );
+        const numberLinePoint = new NumberLinePoint( numberLine, {
+          initialValue: constrainedValue,
+          initialColor: this.color,
+          controller: this
+        } );
+        numberLine.addPoint( numberLinePoint );
+        this.associateWithNumberLinePoint( numberLinePoint );
+      }
     }
     else {
       this.positionProperty.value = proposedPosition;
