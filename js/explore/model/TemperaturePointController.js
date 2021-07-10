@@ -11,6 +11,7 @@ import numberLineDistance from '../../numberLineDistance.js';
 import AreaPointController from './AreaPointController.js';
 import PaintColorProperty from '../../../../scenery/js/util/PaintColorProperty.js';
 import Color from '../../../../scenery/js/util/Color.js';
+import DropFromDirection from './DropFromDirection.js';
 
 // constants
 const NO_TEMPERATURE_COLOR = new Color( 255, 255, 255 );
@@ -23,7 +24,7 @@ class TemperaturePointController extends AreaPointController {
    * @param {Object} [options]
    */
   constructor( playAreaBounds, temperatureToColorMap, options ) {
-    super( 'top', playAreaBounds, options );
+    super( DropFromDirection.TOP, playAreaBounds, options );
 
     // @public (read-only) {PaintColorProperty} is different from this.color where this.color is the point controller's
     // color for the purposes of the other number-line classes; this colorProperty instead is just representative of

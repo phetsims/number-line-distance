@@ -14,6 +14,7 @@ import Range from '../../../../dot/js/Range.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import AreaPointController from './AreaPointController.js';
 import AreaSceneModel from './AreaSceneModel.js';
+import DropFromDirection from './DropFromDirection.js';
 
 class ElevationSceneModel extends AreaSceneModel {
 
@@ -38,11 +39,11 @@ class ElevationSceneModel extends AreaSceneModel {
 
     super(
       numberLine,
-      new AreaPointController( 'left', elevationAreaBounds, {
+      new AreaPointController( DropFromDirection.LEFT, elevationAreaBounds, {
         numberLines: [ numberLine ],
         color: 'black'
       } ),
-      new AreaPointController( 'left', elevationAreaBounds, {
+      new AreaPointController( DropFromDirection.LEFT, elevationAreaBounds, {
         numberLines: [ numberLine ],
         color: '#446ab7'
       } ),

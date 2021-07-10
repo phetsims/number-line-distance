@@ -11,6 +11,7 @@ import numberLineDistance from '../../numberLineDistance.js';
 import ExplorePointController from './ExplorePointController.js';
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
+import DropFromDirection from './DropFromDirection.js';
 
 class DistancePointController extends ExplorePointController {
 
@@ -21,7 +22,7 @@ class DistancePointController extends ExplorePointController {
    * @param {number} scaleInBox
    */
   constructor( numberLine, lockingBounds, lockHeight, scaleInBox ) {
-    super( 'top', lockingBounds, {
+    super( DropFromDirection.TOP, lockingBounds, {
       numberLines: [ numberLine ],
       lockToNumberLine: LockToNumberLine.WHEN_CLOSE,
       offsetFromHorizontalNumberLine: lockHeight,
