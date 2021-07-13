@@ -84,7 +84,9 @@ class NLDGenericScreenView extends ScreenView {
     // adds orientation selectors for the number line
     const orientationSelector = new NumberLineOrientationSelector( model.numberLine.orientationProperty, {
       bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 50,
-      right: resetAllButton.left - 50
+      right: resetAllButton.left - 50,
+      touchAreaXDilation: 5,
+      touchAreaYDilation: 5
     } );
     this.addChild( orientationSelector );
 

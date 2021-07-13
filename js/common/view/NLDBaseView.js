@@ -177,6 +177,8 @@ class NLDBaseView extends Node {
       baseColor: 'white',
       left: nodeOrderDisplay.right + 20, // determined empirically
       centerY: nodeOrderDisplay.centerY,
+      touchAreaXDilation: 8,
+      touchAreaYDilation: 8,
       listener: () => { model.isPrimaryControllerSwappedProperty.value = !model.isPrimaryControllerSwappedProperty.value; }
     } );
     this.addChild( swapPrimaryNodesButton );
