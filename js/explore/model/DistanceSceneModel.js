@@ -47,18 +47,19 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
     const lockingBounds = sidewalkBounds.withMinY( numberLineY + 125 ).withMaxY( sidewalkBounds.bottom + 10 );
 
     // Create the model with the point controllers. The point controllers don't lock onto the same y-level for #23.
+    // The locking heights and offsets are empirically determined and will need to change if the images change.
     super(
       numberLine,
       new DistancePointController(
         numberLine,
         lockingBounds,
-        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2,
+        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 - 52,
         0.3 // empirically determined
       ),
       new DistancePointController(
         numberLine,
         lockingBounds,
-        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 + 15, // empirically determined
+        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 - 18,
         0.5 // empirically determined
       ),
       tandem
