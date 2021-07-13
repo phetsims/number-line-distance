@@ -28,10 +28,10 @@ class DistancePointControllerNode extends PointControllerNode {
       node: new Node( { children: [ image ] } )
     } );
 
-    // Listen for when number line points are added and removed and
-    // update the image's center depending on whether this point controller has a number line point.
-    // When not controlling a point, the image center should be (0, 0) so the image sits nicelly within the box,
-    // but otherwise when controlling a point and locked on, the center should switch to the bottom of the image.
+    // Listen for when number line points are added and removed and update the image's center depending on whether this
+    // point controller has a number line point.  When not controlling a point, the image center should be (0, 0) so the
+    // image sits nicely within the box, but otherwise when controlling a point and locked on, the center should switch
+    // to the bottom of the image.
     pointController.numberLinePoints.addItemAddedListener( numberLinePoint => {
       image.centerY = -image.height / 2;
       const itemRemovedListener = removedNumberLinePoint => {
