@@ -1,9 +1,8 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
 /**
- * A point controller for the temperature and elevation scenes of NLD;
- * this PointController subclass only changes proposePosition so that
- * the point controllers can freely leave their bounds if necessary.
+ * A point controller for the temperature and elevation scenes of NLD that changes proposePosition so that the point
+ * controllers can freely leave their bounds if necessary.
  *
  * @author Saurabh Totey
  */
@@ -16,10 +15,11 @@ import LockToNumberLine from '../../../../number-line-common/js/common/model/Loc
 class AreaPointController extends ExplorePointController {
 
   /**
-   * @param {DropFromDirection} dropFromDirection - the direction from which the point controller can 'drop' onto the play area
-   * @param {Bounds2} playAreaBounds - the bounds where the point controller is allowed to interact with the number line by
-   * having a number line point. Is used to determine when to detach point controllers and when to use
-   * the default 'proposePosition' function. Points are only attached when they are 'in bounds'.
+   * @param {DropFromDirection} dropFromDirection - the direction from which the point controller can 'drop' onto the
+   * play area
+   * @param {Bounds2} playAreaBounds - the bounds where the point controller is allowed to interact with the number line
+   * by having a number line point. Is used to determine when to detach point controllers and when to use the default
+   * proposePosition function. Points are only attached when they are 'in bounds'.
    * @param {Object} [options]
    */
   constructor( dropFromDirection, playAreaBounds, options ) {
@@ -36,8 +36,8 @@ class AreaPointController extends ExplorePointController {
   }
 
   /**
-   * Does the normal proposePosition if the proposed position is
-   * within the bounds (determined by given isPositionInBoundsFunction); otherwise just goes to the proposed position
+   * Does the normal proposePosition if the proposed position is within the bounds (determined by given
+   * isPositionInBoundsFunction); otherwise just goes to the proposed position
    *
    * @override
    * @param {Vector2} proposedPosition
@@ -49,7 +49,7 @@ class AreaPointController extends ExplorePointController {
         super.proposePosition( proposedPosition );
       }
       else {
-        this.isDropping = true;
+        this.isDropping = true; // will be unset by AreaSceneModel
         this.positionProperty.value = proposedPosition;
       }
     }

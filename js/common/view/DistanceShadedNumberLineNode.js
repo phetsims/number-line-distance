@@ -58,15 +58,15 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     this.addChild( distanceShadingPath );
     distanceShadingPath.moveToBack();
 
-    // Create the distance label.
+    // Create the distance label. maxWidth and font size determined empirically.
     const distanceText = new Text( '', {
-      maxWidth: 50, // determined empirically
-      font: new PhetFont( 28 ) // determined empirically
+      maxWidth: 50,
+      font: new PhetFont( 28 )
     } );
     const distanceTextBackground = new BackgroundNode( distanceText, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( distanceTextBackground );
 
-    // Create text labels for the number line points that label them as x1, x2, y1, or y2
+    // Create text labels for the number line points that label them as x1, x2, y1, or y2.
     const pointNameText0 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
     const pointNameText1 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
     const pointNameBackground0 = new BackgroundNode( pointNameText0, NLCConstants.LABEL_BACKGROUND_OPTIONS );
@@ -133,10 +133,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         distanceShadingPath.visible = true;
 
         // Get the endpoint positions in model-space of where the tips of the number line are.
-        // This usually extends past the min and max values allowed on the number line because of the inset and
-        // arrows on each end.
-        // The endpoint positions are needed in case a point is off the scale of the number line and the shading needs
-        // to go all the way to the end of the number line.
+        // This usually extends past the min and max values allowed on the number line because of the inset and arrows
+        // on each end. The endpoint positions are needed in case a point is off the scale of the number line and the
+        // shading needs to go all the way to the end of the number line.
         const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
         const insetVector = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
                             new Vector2( insetSize, 0 ) :
@@ -152,9 +151,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         let endPointPosition1 = model.numberLine.valueToModelPosition( value1 );
 
         // Clamp endPointPositions to be between endPointPositionMin and endPointPositionMax.
-        // We cannot use Util.clamp because, for example, value0 can be greater than displayedRange.max
-        // while at the same time endPointPosition0 can be less than endPointPositionMax thanks to the inset:
-        // we are clamping when the values are out of the displayed range, but we are clamping to the end point positions.
+        // We cannot use Util.clamp because we are clamping when the values are out of the displayed range, but we are
+        // clamping to the end point positions. For example, value0 can be greater than displayedRange.max while at the
+        // same time endPointPosition0 can be less than endPointPositionMax thanks to the inset.
         if ( value0 < displayedRange.min ) {
           endPointPosition0 = endPointPositionMin;
         }

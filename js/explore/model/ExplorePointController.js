@@ -2,8 +2,8 @@
 
 /**
  * A point controller for all explore scenes.
- * Contains 'dropping' behaviour: if a point controller is dragged to a side of the play area,
- *  it 'drops' to the play area rather than returning to the box.
+ * Contains 'dropping' behaviour: if a point controller is dragged to a side of the play area, it 'drops' to the play
+ * area rather than returning to the box.
  *
  * @author Saurabh Totey
  */
@@ -23,10 +23,8 @@ class ExplorePointController extends PointController {
   constructor( dropFromDirection, playAreaBounds, options ) {
     super( options );
 
-    // @private - Returns where this point controller should 'drop' to from the given position.
-    // If the point controller is not in a place where it can drop to the play area, it just returns the
-    // given position.
-    // The dropping behaviour is desired for #34.
+    // The dropping behaviour for #34: if the point controller is no longer being dragged but is in the relevant drop
+    // direction, then propose a new position for it into the play area.
     this.isDraggingProperty.link( isDragging => {
       if ( isDragging ) {
         return;

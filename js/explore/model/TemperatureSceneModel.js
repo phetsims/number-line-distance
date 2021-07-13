@@ -70,13 +70,13 @@ class TemperatureSceneModel extends AreaSceneModel {
     );
 
     // Listen to when a point controller is no longer being dragged and push the dragged point controller
-    // vertically if there is an extant point controller at the same value.
+    // vertically if there is an extant point controller at the same value that is close enough.
     const pushDistance = temperatureAreaBounds.height / 8;
     const makePointControllerGetPushedIfDraggedToSameValueAsOtherPointController = ( pointController, otherPointController ) => {
       pointController.isDraggingProperty.link( isDragging => {
 
-        // Only push when the point controller is no longer being dragged and both
-        // point controllers are on the number line at the same value.
+        // Only push when the point controller is no longer being dragged and both point controllers are on the number
+        // line at the same value.
         const areBothControllersOnNumberLineWithSameValue = this.pointValuesProperty.value[ 0 ] !== null &&
           this.pointValuesProperty.value[ 1 ] !== null &&
           this.pointValuesProperty.value[ 0 ] === this.pointValuesProperty.value[ 1 ];

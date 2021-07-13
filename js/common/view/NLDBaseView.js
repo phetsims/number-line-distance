@@ -78,14 +78,20 @@ class NLDBaseView extends Node {
       distanceDescriptionStrings: {
 
         // {string}
-        absoluteDistanceDescriptionTemplate: required( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate ),
-        directedPositiveDistanceDescriptionTemplate: required( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate ),
-        directedNegativeDistanceDescriptionTemplate: required( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate ),
+        absoluteDistanceDescriptionTemplate: required(
+          config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate
+        ),
+        directedPositiveDistanceDescriptionTemplate: required(
+          config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate
+        ),
+        directedNegativeDistanceDescriptionTemplate: required(
+          config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate
+        ),
         singularUnits: required( config.distanceDescriptionStrings.singularUnits ),
         pluralUnits: required( config.distanceDescriptionStrings.pluralUnits ),
 
         // {function(boolean, Orientation):string} should give a point controller label (string) when given
-        //  model.isPrimaryNodeSwapped and the orientation of the number line
+        // model.isPrimaryNodeSwapped and the orientation of the number line
         getPrimaryPointControllerLabel: required( config.distanceDescriptionStrings.getPrimaryPointControllerLabel ),
         getSecondaryPointControllerLabel: required( config.distanceDescriptionStrings.getSecondaryPointControllerLabel )
       },
@@ -141,10 +147,22 @@ class NLDBaseView extends Node {
     } );
 
     // Add pointControllerRepresentations to rectangles that ensure that the representations take up the same space.
-    const largestWidth = Math.max( pointControllerRepresentationOne.width, pointControllerRepresentationTwo.width );
-    const largestHeight = Math.max( pointControllerRepresentationOne.height, pointControllerRepresentationTwo.height );
-    const pointControllerRepresentationBackgroundOne = new Rectangle( 0, 0, largestWidth, largestHeight );
-    const pointControllerRepresentationBackgroundTwo = new Rectangle( 0, 0, largestWidth, largestHeight );
+    const largestRepresentationWidth =
+      Math.max( pointControllerRepresentationOne.width, pointControllerRepresentationTwo.width );
+    const largestRepresentationHeight =
+      Math.max( pointControllerRepresentationOne.height, pointControllerRepresentationTwo.height );
+    const pointControllerRepresentationBackgroundOne = new Rectangle(
+      0,
+      0,
+      largestRepresentationWidth,
+      largestRepresentationHeight
+    );
+    const pointControllerRepresentationBackgroundTwo = new Rectangle(
+      0,
+      0,
+      largestRepresentationWidth,
+      largestRepresentationHeight
+    );
     pointControllerRepresentationOne.center = pointControllerRepresentationBackgroundOne.center;
     pointControllerRepresentationTwo.center = pointControllerRepresentationBackgroundTwo.center;
     pointControllerRepresentationBackgroundOne.addChild( pointControllerRepresentationOne );
@@ -171,11 +189,12 @@ class NLDBaseView extends Node {
     this.addChild( nodeOrderDisplay );
 
     // button that swaps the primary point controller and secondary point controller when pressed
+    // padding and dilations deterined empirically
     const swapIcon = new SwapIcon();
     const swapPrimaryNodesButton = new RectangularPushButton( {
       content: swapIcon,
       baseColor: 'white',
-      left: nodeOrderDisplay.right + 20, // determined empirically
+      left: nodeOrderDisplay.right + 20,
       centerY: nodeOrderDisplay.centerY,
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
@@ -254,24 +273,27 @@ class NLDBaseView extends Node {
         const value1 = pointValues[ 1 ];
 
         // Calculate the difference with the correct sign.
-        // Even though only the absolute value of difference is ever displayed, the sign is still used to
-        // determine which string template to use.
+        // Even though only the absolute value of difference is ever displayed, the sign is still used to determine
+        // which string template to use.
         let difference = Util.roundSymmetric( value1 - value0 );
         if ( isPrimaryNodeSwapped ) {
           difference = -difference;
         }
 
         // Get the strings for the point controllers.
-        const primaryPointControllerLabel = config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
-        const secondaryPointControllerLabel = config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+        const primaryPointControllerLabel =
+          config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+        const secondaryPointControllerLabel =
+          config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
 
-        // Fill in a string template for the distance text based off of the distance representation
-        // and whether the distance is positive or negative.
+        // Fill in a string template for the distance text based off of the distance representation and whether the
+        // distance is positive or negative.
         const fillInValues = {
           primaryPointControllerLabel: primaryPointControllerLabel,
           secondaryPointControllerLabel: secondaryPointControllerLabel,
           difference: Math.abs( difference ),
-          units: ( difference === 1 || difference === -1 ) ? config.distanceDescriptionStrings.singularUnits : config.distanceDescriptionStrings.pluralUnits
+          units: ( difference === 1 || difference === -1 ) ?
+            config.distanceDescriptionStrings.singularUnits : config.distanceDescriptionStrings.pluralUnits
         };
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE || difference === 0 ) {
           distanceDescriptionText.text = StringUtils.fillIn( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate, fillInValues );

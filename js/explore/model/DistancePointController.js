@@ -1,8 +1,9 @@
 // Copyright 2021, University of Colorado Boulder
 
 /**
- * A point controller for the distance scene of NLD
- * that locks on to the numberline when in the sidewalk's bounds, and unlocks when outside.
+ * A point controller for the distance scene of NLD that locks on to the numberline when in the sidewalk's bounds, and
+ * unlocks when outside. Must be separate from AreaPointController because it cannot move freely within the play area,
+ * but must rather lock onto a specific height when in the play area.
  *
  * @author Saurabh Totey
  */
@@ -37,7 +38,7 @@ class DistancePointController extends ExplorePointController {
    * Performs the normal proposePosition assuming that this only has one number line and is always
    * locked to the number line when close. There is a small change that the locking behaviour
    * doesn't depend on distance from the number line but rather on whether this point controller is
-   * within this.lockingBounds.
+   * within the play area.
    *
    * @override
    * @param {Vector2} proposedPosition

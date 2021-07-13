@@ -75,8 +75,8 @@ class AbstractNLDBaseModel {
 
     // Listen to the numberLine and its points to make updates to pointsValueProperty when necessary.
     // Ideally, we would listen to the residentPoints of this.numberLine so I wouldn't duplicate code per controller, but
-    // it is necessary to know which point controller each number line point belongs to, and points are
-    // seemingly added to the number line before they are associated with a point controller.
+    // it is necessary to know which point controller each number line point belongs to, and points are seemingly added
+    // to the number line before they are associated with a point controller.
     this.pointControllerOne.numberLinePoints.addItemAddedListener( numberLinePoint => {
       const updatePointValuesProperty = value => {
         this.pointValuesProperty.value = [ value, this.pointValuesProperty.value[ 1 ] ];
@@ -106,8 +106,8 @@ class AbstractNLDBaseModel {
       this.pointControllerTwo.numberLinePoints.addItemRemovedListener( itemRemovedListener );
     } );
 
-    // @public {Property.<Bounds2>} the bounds of the toolbox that point controllers return to
-    // The box bounds change with number line orientation in the generic screen.
+    // @public {Property.<Bounds2>} the bounds of the toolbox that point controllers return to The box bounds change
+    // with number line orientation in the generic screen.
     this.pointControllerBoxProperty = new Property( NLDConstants.BOTTOM_BOX_BOUNDS, { valueType: Bounds2 } );
 
     this.pointControllers.forEach( pointController => {

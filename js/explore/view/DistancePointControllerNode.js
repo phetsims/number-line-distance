@@ -17,7 +17,7 @@ class DistancePointControllerNode extends PointControllerNode {
 
   /**
    * @param {PointController} pointController
-   * @param {Image} image
+   * @param {Image} image - is mutated
    * @public
    */
   constructor( pointController, image ) {

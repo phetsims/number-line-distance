@@ -26,6 +26,8 @@ class AreaSceneModel extends AbstractNLDBaseModel {
     // Handle attaching and detaching number line points to the point controllers whenever they enter or leave the bounds.
     this.pointControllers.forEach( pointController => {
       pointController.positionProperty.link( position => {
+
+        // If the point controller is dragged or dropped into the play area, create a number line point.
         if ( pointController.playAreaBounds.containsPoint( position )
           && !pointController.isControllingNumberLinePoint() &&
           ( pointController.isDraggingProperty.value || pointController.isDropping ) ) {

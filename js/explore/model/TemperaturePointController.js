@@ -1,8 +1,8 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
 /**
- * A point controller for the temperature scene of NLD;
- * the point controller only adds a color property that mimics the color of the map beneath it.
+ * A point controller for the temperature scene of NLD that only adds a color property that mimics the color of the map
+ * beneath it.
  *
  * @author Saurabh Totey
  */
@@ -19,7 +19,7 @@ const NO_TEMPERATURE_COLOR = new Color( 255, 255, 255 );
 class TemperaturePointController extends AreaPointController {
 
   /**
-   * @param {Bounds2} playAreaBounds  - see ExplorePointController for explanation
+   * @param {Bounds2} playAreaBounds - see ExplorePointController for explanation
    * @param {function(number):Color} temperatureToColorMap - a function that maps a temperature value to a color
    * @param {Object} [options]
    */

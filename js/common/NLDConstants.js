@@ -22,7 +22,7 @@ const BOTTOM_BOX_WIDTH = 320;
 const BOTTOM_BOX_HEIGHT = 70;
 const SIDE_BOX_WIDTH = BOTTOM_BOX_HEIGHT;
 const SIDE_BOX_HEIGHT = BOTTOM_BOX_WIDTH;
-const VARIABLE_SUBSCRIPT_TEMPLATE = '{{variable}}<sub style=\'fontStyle:normal\'>{{subscript}}</sub>';
+const VARIABLE_SUBSCRIPT_TEMPLATE = '{{variable}}<sub style=\'font-style:normal\'>{{subscript}}</sub>';
 
 const NLDConstants = {
 

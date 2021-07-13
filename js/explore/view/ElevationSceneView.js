@@ -86,16 +86,12 @@ class ElevationSceneView extends Node {
     // point controllers
     const pointControllerNodeLayer = new Node( {
       children: [
-
-        // bird
         new ElevationPointControllerNode(
           model.pointControllerOne,
           seaLevel,
           new Image( birdInWater, { center: Vector2.ZERO, maxWidth: 65 } ),
           new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
         ),
-
-        // fish
         new ElevationPointControllerNode(
           model.pointControllerTwo,
           seaLevel,

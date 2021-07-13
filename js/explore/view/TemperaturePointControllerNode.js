@@ -40,7 +40,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
       thermometerFluidHighlightColor: new Color( 0, 210, 0 )
     }, options );
 
-    // a property that reflects the value of the point controller
+    // a property that reflects the value of the point controller: is needed for the TemperatureAndColorSensorNode
     const valueProperty = new DerivedProperty( [ pointController.positionProperty ], position => {
       if ( pointController.isControllingNumberLinePoint() && pointController.playAreaBounds.containsPoint( position ) ) {
         return pointController.numberLinePoints.get( 0 ).valueProperty.value;
@@ -65,12 +65,13 @@ class TemperaturePointControllerNode extends PointControllerNode {
     );
     compositeThermometerNode.addChild( temperatureAndColorSensorNode );
 
-    // add the textual label for this thermometer, generally a single letter
+    // Add the textual label for this thermometer.
+    // offset and maxWidth multiplier empirically determined
     const thermometerLabel = new Text( label, {
       font: new PhetFont( 16 ),
       centerX: temperatureAndColorSensorNode.thermometerBounds.centerX,
-      top: temperatureAndColorSensorNode.top + 4, // offset empirically determined
-      maxWidth: temperatureAndColorSensorNode.width * 0.25 // multiplier empirically determined
+      top: temperatureAndColorSensorNode.top + 4,
+      maxWidth: temperatureAndColorSensorNode.width * 0.25
     } );
     compositeThermometerNode.addChild( thermometerLabel );
 

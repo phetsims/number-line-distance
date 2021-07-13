@@ -33,7 +33,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       preventOverlap: false
     } );
 
-    // constants used for placing the sidewalk
+    // values used for placing the sidewalk
     // values empirically determined
     const numberLineMinimumXPosition = numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.min ).x;
     const numberLineMaximumXPosition = numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x;
@@ -47,20 +47,20 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
     const lockingBounds = sidewalkBounds.withMinY( numberLineY + 125 ).withMaxY( sidewalkBounds.bottom + 10 );
 
     // Create the model with the point controllers. The point controllers don't lock onto the same y-level for #23.
-    // The locking heights and offsets are empirically determined and will need to change if the images change.
+    // The locking heights and scales are empirically determined and will need to change if the images change.
     super(
       numberLine,
       new DistancePointController(
         numberLine,
         lockingBounds,
         TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 - 52,
-        0.3 // empirically determined
+        0.3
       ),
       new DistancePointController(
         numberLine,
         lockingBounds,
         TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 - 18,
-        0.5 // empirically determined
+        0.5
       ),
       tandem
     );
