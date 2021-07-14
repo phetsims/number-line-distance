@@ -61,15 +61,13 @@ class DistanceStatementNode extends Node {
     // will either be number pickers or texts depending on options.controlsValues.
     let valueRepresentations;
 
-    // Create value properties for each number line point.
-    // The property corresponds to the point's value if it has any.
-    // Otherwise, the property is INVALID_VALUE (which is still a number for the number property).
-    // The value property will update when the point controller's value changes, but the point's value
-    // will not update when the value property changes unless options.controlsValues is true.
-    // The INVALID_VALUE hack is required because the number pickers require the value property to always have a numeric value.
-    // The Utils.roundSymmetric is necessary because there is a very difficult-to-produce situation in which the point
-    // controller in the temperature or elevation scene is placed right on the edge of the bounds and so the value
-    // is just a long decimal number.
+    // Create value properties for each number line point. The property corresponds to the point's value if it has any.
+    // Otherwise, the property is INVALID_VALUE (which is still a number for the number property). The value property
+    // will update when the point controller's value changes, but the point's value will not update when the value
+    // property changes unless options.controlsValues is true. The INVALID_VALUE hack is required because the number
+    // pickers require the value property to always have a numeric value. The Utils.roundSymmetric is necessary because
+    // there is a very difficult-to-produce situation in which the point controller in the temperature or elevation
+    // scene is placed right on the edge of the bounds and so the value is just a long decimal number.
     const valueProperties = [
       new NumberProperty( INVALID_VALUE, { reentrant: true } ),
       new NumberProperty( INVALID_VALUE, { reentrant: true } )
@@ -178,6 +176,7 @@ class DistanceStatementNode extends Node {
 
     // Crate layout boxes for this node's actual content.
     // HBoxes are for putting absolute values alongside valueRepresentations.
+    // TODO: make term HBoxes children of VBoxes that also have the x_1 and x_2 and y_1 and y_2 labels (#40)
     const leftTermHBox = new HBox( {
       children: [ leftAbsoluteValueMark, backgroundNodes[ 0 ] ],
       excludeInvisibleChildrenFromBounds: false
@@ -193,6 +192,7 @@ class DistanceStatementNode extends Node {
     } ) );
 
     // This multilink listens for changes in any relevant properties and updates the distance statement accordingly.
+    // TODO: update the x_1 and x_2 and y_1 and y_2 labels (#40)
     Property.multilink(
       valueProperties.concat( [
         model.distanceRepresentationProperty,
