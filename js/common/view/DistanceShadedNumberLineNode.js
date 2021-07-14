@@ -102,10 +102,10 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         pointNameText0.text = labelStrings[ 0 ];
         pointNameText1.text = labelStrings[ 1 ];
-        pointNameBackground0.visible = pointValues[ 0 ] !== null;
-        pointNameBackground1.visible = pointValues[ 1 ] !== null;
+        pointNameBackground0.visible = pointValues[ 0 ] !== null && displayedRange.contains( pointValues[ 0 ] );
+        pointNameBackground1.visible = pointValues[ 1 ] !== null && displayedRange.contains( pointValues[ 1 ] );
 
-        // Position the texts. TODO: handle when on the generic screen the point controller goes out of range
+        // Position the texts.
         if ( orientation === Orientation.HORIZONTAL ) {
           pointNameBackground0.centerTop = model.numberLine.valueToModelPosition(
             pointValues[ 0 ] ? pointValues[ 0 ] : 0
