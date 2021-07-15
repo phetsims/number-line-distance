@@ -29,10 +29,12 @@ import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import HStrut from '../../../../scenery/js/nodes/HStrut.js';
+import VBox from '../../../../scenery/js/nodes/VBox.js';
 
 // constants
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
+const TERM_LABEL_TEXT_OPTIONS = { font: new MathSymbolFont( 15 ), maxWidth: 25 };
 
 // A value that is beyond the bounds of the number lines because the number pickers' properties always require a number
 const INVALID_VALUE = -101;
@@ -174,9 +176,7 @@ class DistanceStatementNode extends Node {
     const leftAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 0 ] );
     const rightAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 1 ] );
 
-    // Crate layout boxes for this node's actual content.
     // HBoxes are for putting absolute values alongside valueRepresentations.
-    // TODO: make term HBoxes children of VBoxes that also have the x_1 and x_2 and y_1 and y_2 labels (#40)
     const leftTermHBox = new HBox( {
       children: [ leftAbsoluteValueMark, backgroundNodes[ 0 ] ],
       excludeInvisibleChildrenFromBounds: false
@@ -185,14 +185,46 @@ class DistanceStatementNode extends Node {
       children: [ backgroundNodes[ 1 ], rightAbsoluteValueMark ],
       excludeInvisibleChildrenFromBounds: false
     } );
+
+    // labels that go above the numerical terms when they have valid values
+    const leftTermLabel = new RichText( NLDConstants.X_1_STRING, TERM_LABEL_TEXT_OPTIONS );
+    const rightTermLabel = new RichText( NLDConstants.X_2_STRING, TERM_LABEL_TEXT_OPTIONS );
+    const leftTermLabelNode = new Rectangle( 0, 0, leftTermHBox.width, 1, { children: [ leftTermLabel ] } );
+    const rightTermLabelNode = new Rectangle( 0, 0, rightTermHBox.width, 1, { children: [ rightTermLabel ] } );
+    leftTermLabel.centerX = leftTermLabelNode.width / 2;
+    rightTermLabel.centerX = rightTermLabelNode.width / 2;
+
+    // In order to place the term labels exactly above the appropriate terms, we need to create another HBox above the
+    // HBox that houses all the distance statement terms and we need to ensure that the spacings match. The only term that
+    // changes size is the distance term because the other terms are housed in parent nodes that ensure a constant width.
+    const distanceTextHStrutStandin = new Node( { children: [ new HStrut( distanceText.width ) ] } );
+    distanceText.boundsProperty.link( () => {
+      distanceTextHStrutStandin.children = [ new HStrut( distanceText.width ) ];
+    } );
+
     const distanceTextSpacer = new HStrut( 3 ); // empirically determined
-    this.addChild( new HBox( {
-      children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, distanceTextSpacer, distanceText ],
-      spacing: 5
+    this.addChild( new VBox( {
+      align: 'left',
+      children: [
+        new HBox( {
+          children: [
+            leftTermLabelNode,
+            new HStrut( minusSignText.width ),
+            rightTermLabelNode,
+            new HStrut( equalsSignText.width ),
+            distanceTextSpacer,
+            distanceTextHStrutStandin
+          ],
+          spacing: 5
+        } ),
+        new HBox( {
+          children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, distanceTextSpacer, distanceText ],
+          spacing: 5
+        } )
+      ]
     } ) );
 
     // This multilink listens for changes in any relevant properties and updates the distance statement accordingly.
-    // TODO: update the x_1 and x_2 and y_1 and y_2 labels (#40)
     Property.multilink(
       valueProperties.concat( [
         model.distanceRepresentationProperty,
