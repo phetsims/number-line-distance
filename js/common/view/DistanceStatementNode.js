@@ -242,6 +242,8 @@ class DistanceStatementNode extends Node {
           alternativeTexts[ 0 ].text = NLDConstants.Y_1_STRING;
           alternativeTexts[ 1 ].text = NLDConstants.Y_2_STRING;
         }
+        leftTermLabel.text = alternativeTexts[ 1 ].text;
+        rightTermLabel.text = alternativeTexts[ 0 ].text;
 
         // Choose the ordering for children for the distance statement.
         let leftTermNode = valueRepresentations[ 1 ];
@@ -269,10 +271,12 @@ class DistanceStatementNode extends Node {
         // Replace value representations with alternatives if their value is invalid.
         if ( leftTermValue === INVALID_VALUE ) {
           leftTermNode = alternativeTexts[ 1 ];
+          leftTermLabel.text = '';
           distance = INVALID_DISTANCE_STRING;
         }
         if ( rightTermValue === INVALID_VALUE ) {
           rightTermNode = alternativeTexts[ 0 ];
+          rightTermLabel.text = '';
           distance = INVALID_DISTANCE_STRING;
         }
 
