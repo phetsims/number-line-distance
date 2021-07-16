@@ -251,7 +251,7 @@ class NLDBaseView extends Node {
 
     // a text description for the distance under the distance statement accordion box
     const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
-      top: distanceStatementAccordionBox.bottom + 25 // padding empirically determined
+      top: distanceStatementAccordionBox.bottom + 15 // padding empirically determined
     } ) );
     Property.multilink(
       [

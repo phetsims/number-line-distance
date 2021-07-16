@@ -204,7 +204,7 @@ class DistanceStatementNode extends Node {
 
     const distanceTextSpacer = new HStrut( 3 ); // empirically determined
     this.addChild( new VBox( {
-      align: 'left',
+      spacing: options.controlsValues ? -10 : -20, // empirically determined
       children: [
         new HBox( {
           children: [
