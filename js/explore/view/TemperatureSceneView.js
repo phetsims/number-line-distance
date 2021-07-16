@@ -33,7 +33,7 @@ const degreeString = numberLineDistanceStrings.degree;
 const degreesString = numberLineDistanceStrings.degrees;
 
 // constants
-const REPRESENTATION_FONT = new PhetFont( 25 );
+const REPRESENTATION_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 50 };
 const NUMBER_OF_TEMPERATURE_GRADIENT_COLOR_STOPS = 5;
 
 class TemperatureSceneView extends Node {
@@ -45,8 +45,8 @@ class TemperatureSceneView extends Node {
     super();
 
     // texts that represent the point controllers in the swap area at the bottom left
-    const aText = new Text( aString, { font: REPRESENTATION_FONT } );
-    const bText = new Text( bString, { font: REPRESENTATION_FONT } );
+    const aText = new Text( aString, REPRESENTATION_TEXT_OPTIONS );
+    const bText = new Text( bString, REPRESENTATION_TEXT_OPTIONS );
 
     // @private
     this.baseView = new NLDBaseView(

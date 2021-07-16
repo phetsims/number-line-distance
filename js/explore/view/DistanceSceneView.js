@@ -32,6 +32,7 @@ const meterString = numberLineDistanceStrings.meter;
 const metersString = numberLineDistanceStrings.meters;
 
 const DIRECTION_INDICATOR_FONT = new PhetFont( 25 );
+const DIRECTION_INDICATOR_MAX_WIDTH = 50;
 
 class DistanceSceneView extends Node {
 
@@ -118,11 +119,13 @@ class DistanceSceneView extends Node {
     const range = model.numberLine.displayedRangeProperty.value;
     const eastSymbolText = new Text( eastString, {
       font: DIRECTION_INDICATOR_FONT,
-      center: model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 )
+      center: model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 ),
+      maxWidth: DIRECTION_INDICATOR_MAX_WIDTH
     } );
     const westSymbolText = new Text( westString, {
       font: DIRECTION_INDICATOR_FONT,
-      center: model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 )
+      center: model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 ),
+      maxWidth: DIRECTION_INDICATOR_MAX_WIDTH
     } );
     this.addChild( eastSymbolText );
     this.addChild( westSymbolText );
