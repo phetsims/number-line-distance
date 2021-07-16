@@ -30,6 +30,7 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
 import HStrut from '../../../../scenery/js/nodes/HStrut.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
+import VStrut from '../../../../scenery/js/nodes/VStrut.js';
 
 // constants
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
@@ -172,9 +173,11 @@ class DistanceStatementNode extends Node {
     // A text that displays the distance between the two point controllers (or '?' if invalid distance).
     const distanceText = new Text( INVALID_DISTANCE_STRING, NORMAL_TEXT_OPTIONS );
 
-    // absolute value marks
-    const leftAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 0 ] );
-    const rightAbsoluteValueMark = new AbsoluteValueLine( backgroundNodes[ 1 ] );
+    // absolute value marks - are shorter than the background nodes they are supposed to wrap for #40 by an empirically
+    // determined amount.
+    const absoluteValueMarkHeightIndicator = new VStrut( backgroundNodes[ 0 ].height - 20 );
+    const leftAbsoluteValueMark = new AbsoluteValueLine( absoluteValueMarkHeightIndicator );
+    const rightAbsoluteValueMark = new AbsoluteValueLine( absoluteValueMarkHeightIndicator );
 
     // HBoxes are for putting absolute values alongside valueRepresentations.
     const leftTermHBox = new HBox( {
