@@ -3,6 +3,7 @@
 /**
  * A model with common functionality for the temperature and elevation scenes where
  * the point controller can be freely moved within an area (PointController is an AreaPointController).
+ * TODO: delete this class and move the position listener into AreaPointController
  *
  * @author Saurabh Totey
  */
@@ -33,15 +34,15 @@ class AreaSceneModel extends AbstractNLDBaseModel {
           ( pointController.isDraggingProperty.value || pointController.isDropping ) ) {
           const numberLinePoint = new NumberLinePoint( numberLine, {
             controller: pointController,
-            initialValue: numberLine.modelPositionToValue( position ),
+            initialValue: numberLine.getConstrainedValue( numberLine.modelPositionToValue( position ) ),
             initialColor: pointController.color
           } );
           numberLine.addPoint( numberLinePoint );
           pointController.associateWithNumberLinePoint( numberLinePoint );
           pointController.isDropping = false;
         }
-        else if ( !pointController.playAreaBounds.containsPoint( position )
-                  && pointController.isControllingNumberLinePoint() ) {
+        else if ( !pointController.playAreaBounds.containsPoint( position ) &&
+          pointController.isControllingNumberLinePoint() ) {
           pointController.removeClearAndDisposePoints();
         }
       } );
