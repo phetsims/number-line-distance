@@ -13,10 +13,10 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import Range from '../../../../dot/js/Range.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import AreaPointController from './AreaPointController.js';
-import AreaSceneModel from './AreaSceneModel.js';
 import DropFromDirection from './DropFromDirection.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 
-class ElevationSceneModel extends AreaSceneModel {
+class ElevationSceneModel extends AbstractNLDBaseModel {
 
   /**
    * @param {Tandem} tandem

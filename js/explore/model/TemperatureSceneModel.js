@@ -10,16 +10,16 @@ import numberLineDistance from '../../numberLineDistance.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import Range from '../../../../dot/js/Range.js';
-import AreaSceneModel from './AreaSceneModel.js';
 import TemperaturePointController from './TemperaturePointController.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import TemperatureToColorMapper from '../../../../number-line-common/js/explore/model/TemperatureToColorMapper.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 
 // constants
 const TEMPERATURE_POINT_CONTROLLER_BOX_SCALE = 0.4;
 
-class TemperatureSceneModel extends AreaSceneModel {
+class TemperatureSceneModel extends AbstractNLDBaseModel {
 
   /**
    * @param {Tandem} tandem

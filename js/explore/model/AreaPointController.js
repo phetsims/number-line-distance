@@ -11,6 +11,7 @@ import ExplorePointController from './ExplorePointController.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import merge from '../../../../phet-core/js/merge.js';
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
+import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 
 class AreaPointController extends ExplorePointController {
 
@@ -33,6 +34,28 @@ class AreaPointController extends ExplorePointController {
 
     // @public (read-only) {Bounds2}
     this.playAreaBounds = playAreaBounds;
+
+    // TODO: see if this can be done more in proposePosition like DistancePointController
+    this.positionProperty.link( position => {
+
+      // If the point controller is dragged or dropped into the play area, create a number line point.
+      if ( this.playAreaBounds.containsPoint( position )
+        && !this.isControllingNumberLinePoint() &&
+        ( this.isDraggingProperty.value || this.isDropping ) ) {
+        const numberLinePoint = new NumberLinePoint( this.numberLines[ 0 ], {
+          controller: this,
+          initialValue: this.numberLines[ 0 ].getConstrainedValue( this.numberLines[ 0 ].modelPositionToValue( position ) ),
+          initialColor: this.color
+        } );
+        this.numberLines[ 0 ].addPoint( numberLinePoint );
+        this.associateWithNumberLinePoint( numberLinePoint );
+        this.isDropping = false;
+      }
+      else if ( !this.playAreaBounds.containsPoint( position ) &&
+        this.isControllingNumberLinePoint() ) {
+        this.removeClearAndDisposePoints();
+      }
+    } );
   }
 
   /**
