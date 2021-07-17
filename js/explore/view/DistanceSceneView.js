@@ -87,9 +87,12 @@ class DistanceSceneView extends Node {
     ) );
 
     // Point controllers that are in different parent nodes so that the person is always on top of the house in terms of
-    // layering.
-    // the image scales are empirically determined
+    // layering. The mouse area dilation for the personPointControllerImage is for #38.
+    // the image scales and dilations are empirically determined
     const personPointControllerImage = new Image( person, { scale: 0.22 } );
+    personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
+      5 / personPointControllerImage.getScaleVector().x
+    );
     const housePointControllerImage = new Image( house, { scale: 0.2 } );
     const pointControllersLayer = new Node();
     pointControllersLayer.addChild( new Node( {
