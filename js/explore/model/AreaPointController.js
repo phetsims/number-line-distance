@@ -2,7 +2,7 @@
 
 /**
  * A point controller for the temperature and elevation scenes of NLD that changes proposePosition so that the point
- * controllers can freely leave their bounds if necessary.
+ * controllers can freely move and handle adding and removing points depending on whether they are in the play area.
  *
  * @author Saurabh Totey
  */
@@ -25,42 +25,20 @@ class AreaPointController extends ExplorePointController {
    */
   constructor( dropFromDirection, playAreaBounds, options ) {
     options = merge( { lockToNumberLine: LockToNumberLine.NEVER }, options );
-    assert && assert( options.lockToNumberLine === LockToNumberLine.NEVER, 'lockToNumberLine should only be set to NEVER if set' );
+    assert && assert(
+      options.lockToNumberLine === LockToNumberLine.NEVER,
+      'lockToNumberLine should only be set to NEVER if set'
+    );
 
     super( dropFromDirection, playAreaBounds, options );
 
-    // @public {boolean} a flag that denotes whether this point controller is 'dropping' for #34
-    this.isDropping = false;
-
     // @public (read-only) {Bounds2}
     this.playAreaBounds = playAreaBounds;
-
-    // TODO: see if this can be done more in proposePosition like DistancePointController
-    this.positionProperty.link( position => {
-
-      // If the point controller is dragged or dropped into the play area, create a number line point.
-      if ( this.playAreaBounds.containsPoint( position )
-        && !this.isControllingNumberLinePoint() &&
-        ( this.isDraggingProperty.value || this.isDropping ) ) {
-        const numberLinePoint = new NumberLinePoint( this.numberLines[ 0 ], {
-          controller: this,
-          initialValue: this.numberLines[ 0 ].getConstrainedValue( this.numberLines[ 0 ].modelPositionToValue( position ) ),
-          initialColor: this.color
-        } );
-        this.numberLines[ 0 ].addPoint( numberLinePoint );
-        this.associateWithNumberLinePoint( numberLinePoint );
-        this.isDropping = false;
-      }
-      else if ( !this.playAreaBounds.containsPoint( position ) &&
-        this.isControllingNumberLinePoint() ) {
-        this.removeClearAndDisposePoints();
-      }
-    } );
   }
 
   /**
-   * Does the normal proposePosition if the proposed position is within the bounds (determined by given
-   * isPositionInBoundsFunction); otherwise just goes to the proposed position
+   * Changes proposePosition so that the point controller moves freely, but adds a number line point if it is in the play
+   * area, and removes a number line point if not.
    *
    * @override
    * @param {Vector2} proposedPosition
@@ -68,15 +46,23 @@ class AreaPointController extends ExplorePointController {
    */
   proposePosition( proposedPosition ) {
     if ( this.playAreaBounds.containsPoint( proposedPosition ) ) {
-      if ( this.isControllingNumberLinePoint() ) {
-        super.proposePosition( proposedPosition );
+      if ( !this.isControllingNumberLinePoint() ) {
+        const numberLinePoint = new NumberLinePoint( this.numberLines[ 0 ], {
+          controller: this,
+          initialValue: this.numberLines[ 0 ].getConstrainedValue(
+            this.numberLines[ 0 ].modelPositionToValue( proposedPosition )
+          ),
+          initialColor: this.color
+        } );
+        this.numberLines[ 0 ].addPoint( numberLinePoint );
+        this.associateWithNumberLinePoint( numberLinePoint );
       }
-      else {
-        this.isDropping = true; // will be unset by AreaSceneModel
-        this.positionProperty.value = proposedPosition;
-      }
+      super.proposePosition( proposedPosition );
     }
     else {
+      if ( this.isControllingNumberLinePoint() ) {
+        this.removeClearAndDisposePoints();
+      }
       this.positionProperty.value = proposedPosition;
     }
   }
