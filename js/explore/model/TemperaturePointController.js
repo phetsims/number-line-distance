@@ -1,7 +1,7 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
 /**
- * A point controller for the temperature scene of NLD that only adds a color property that mimics the color of the map
+ * A point controller for the temperature scene of NLD that only adds a color Property that mimics the color of the map
  * beneath it.
  *
  * @author Saurabh Totey

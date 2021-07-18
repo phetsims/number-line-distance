@@ -65,11 +65,11 @@ class DistanceStatementNode extends Node {
     // will either be number pickers or texts depending on options.controlsValues.
     let valueRepresentations;
 
-    // Create value properties for each number line point. The property corresponds to the point's value if it has any.
-    // Otherwise, the property is INVALID_VALUE (which is still a number for the number property). The value property
-    // will update when the point controller's value changes, but the point's value will not update when the value
-    // property changes unless options.controlsValues is true. The INVALID_VALUE hack is required because the number
-    // pickers require the value property to always have a numeric value.
+    // Create valueProperties for each number line point. The Property corresponds to the point's value if it has any.
+    // Otherwise, the Property is INVALID_VALUE (which is still a number for the NumberProperty). The valueProperty
+    // will update when the point controller's value changes, but the point's value will not update when the valueProperty
+    // changes unless options.controlsValues is true. The INVALID_VALUE hack is required because the number pickers
+    // require the valueProperty to always have a numeric value.
     const valueProperties = [
       new NumberProperty( INVALID_VALUE, { reentrant: true } ),
       new NumberProperty( INVALID_VALUE, { reentrant: true } )
@@ -98,7 +98,7 @@ class DistanceStatementNode extends Node {
         } );
       } );
 
-      // Range property for number pickers; picks a range that contains all generic number line ranges.
+      // Range Property for number pickers; picks a range that contains all generic number line ranges.
       const numberPickerRangeProperty = new Property(
         NLDConstants.GENERIC_NUMBER_LINE_RANGES.reduce( ( largestNumberLineRange, currentNumberLineRange ) => {
           const newLargestNumberLineRange = largestNumberLineRange.copy();

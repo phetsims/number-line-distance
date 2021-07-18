@@ -40,7 +40,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
       thermometerFluidHighlightColor: new Color( 0, 210, 0 )
     }, options );
 
-    // a property that reflects the value of the point controller: is needed for the TemperatureAndColorSensorNode
+    // a Property that reflects the value of the point controller: is needed for the TemperatureAndColorSensorNode
     const valueProperty = new DerivedProperty( [ pointController.positionProperty ], position => {
       if ( pointController.isControllingNumberLinePoint() && pointController.playAreaBounds.containsPoint( position ) ) {
         return pointController.numberLinePoints.get( 0 ).valueProperty.value;
