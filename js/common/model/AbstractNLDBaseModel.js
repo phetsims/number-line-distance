@@ -67,7 +67,7 @@ class AbstractNLDBaseModel {
     // line point, then null is recorded in the array instead. The stored array is always of length 2:
     // index 0 corresponds to the value of the number line point of this.pointControllerOne and index 1 corresponds to
     // the value of the number line point of this.pointControllerTwo.
-    this.pointValuesProperty = new Property( [ null, null ] );
+    this.pointValuesProperty = new Property( [ null, null ], { valueType: Array } );
     this.pointValuesProperty.link( pointValues => {
       assert && assert( pointValues.length === 2, 'There should always be 2 point values.' );
     } );

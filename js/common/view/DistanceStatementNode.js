@@ -31,6 +31,7 @@ import NLDConstants from '../NLDConstants.js';
 import HStrut from '../../../../scenery/js/nodes/HStrut.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
 import VStrut from '../../../../scenery/js/nodes/VStrut.js';
+import Range from '../../../../dot/js/Range.js';
 
 // constants
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
@@ -108,7 +109,10 @@ class DistanceStatementNode extends Node {
             newLargestNumberLineRange.max = currentNumberLineRange.max;
           }
           return newLargestNumberLineRange;
-        } )
+        } ),
+        {
+          valueType: Range
+        }
       );
 
       valueRepresentations = model.pointControllers.map( ( pointController, i ) =>
