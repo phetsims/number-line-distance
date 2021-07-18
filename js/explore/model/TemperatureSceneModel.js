@@ -105,10 +105,10 @@ class TemperatureSceneModel extends AbstractNLDBaseModel {
     makePointControllerGetPushedIfDraggedToSameValueAsOtherPointController( this.pointControllerOne, this.pointControllerTwo );
     makePointControllerGetPushedIfDraggedToSameValueAsOtherPointController( this.pointControllerTwo, this.pointControllerOne );
 
-    // @public (readonly) the bounds where point controllers can be
+    // @public (read-only) {Bounds2} the bounds where point controllers can be
     this.temperatureAreaBounds = temperatureAreaBounds;
 
-    // @public (readonly)
+    // @public (read-only) {function(number):Color}
     this.temperatureToColorMapper = temperatureToColorMapper;
   }
 

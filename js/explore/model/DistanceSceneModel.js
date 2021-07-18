@@ -65,7 +65,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       tandem
     );
 
-    // @public {Bounds2} (read-only)
+    // @public (read-only) {Bounds2}
     this.sidewalkBounds = sidewalkBounds;
   }
 }

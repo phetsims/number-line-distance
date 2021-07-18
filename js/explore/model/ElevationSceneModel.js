@@ -50,7 +50,7 @@ class ElevationSceneModel extends AbstractNLDBaseModel {
       tandem
     );
 
-    // @public (readonly) the bounds where point controllers can be
+    // @public (read-only) {Bounds2} the bounds where point controllers can be
     this.elevationAreaBounds = elevationAreaBounds;
   }
 
