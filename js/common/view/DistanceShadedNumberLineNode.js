@@ -93,7 +93,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // Get which strings to use for point names based on the number line orientation.
         // The strings are ordered based on isPrimaryNodeSwapped.
-        const labelStrings = orientation === Orientation.VERTICAL ?
+        const labelStrings = ( orientation === Orientation.VERTICAL ) ?
           [ NLDConstants.Y_1_STRING, NLDConstants.Y_2_STRING ] : [ NLDConstants.X_1_STRING, NLDConstants.X_2_STRING ];
         if ( isPrimaryNodeSwapped ) {
           const temp = labelStrings[ 0 ];
@@ -138,7 +138,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         // on each end. The endpoint positions are needed in case a point is off the scale of the number line and the
         // shading needs to go all the way to the end of the number line.
         const insetSize = this.options.displayedRangeInset - this.options.arrowSize;
-        const insetVector = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
+        const insetVector = ( model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ) ?
                             new Vector2( insetSize, 0 ) :
                             new Vector2( 0, -insetSize );
         const endPointPositionMin = model.numberLine.valueToModelPosition( displayedRange.min ).minus( insetVector );

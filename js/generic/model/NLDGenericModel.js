@@ -53,7 +53,7 @@ class NLDGenericModel extends AbstractNLDBaseModel {
 
     // change box bounds when number line orientation changes
     this.numberLine.orientationProperty.link( orientation => {
-      this.pointControllerBoxProperty.value = orientation === Orientation.HORIZONTAL ?
+      this.pointControllerBoxProperty.value = ( orientation === Orientation.HORIZONTAL ) ?
                                               NLDConstants.BOTTOM_BOX_BOUNDS :
                                               NLDConstants.SIDE_BOX_BOUNDS;
     } );
