@@ -1,8 +1,8 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
 /**
- * Model for common properties/behaviours used by all scenes/screens in the sim.
- * This class is incomplete and meant to be subclassed.
+ * Model for common properties/behaviours used by all scenes/screens in the sim. This class is incomplete and meant to
+ * be subclassed. It is assumed that all instances of this class are present for the lifetime of the simulation.
  *
  * @author Saurabh Totey
  */
@@ -64,19 +64,18 @@ class AbstractNLDBaseModel {
 
     // @public (read-only) {Property.<number|null>} a property that stores the number line point values of the point controllers
     // in the order that the point controllers were given to this model. If a point controller doesn't have a number
-    // line point, then null is recorded in the array instead.
-    // The stored array is always of length 2:
-    // index 0 corresponds to the value of the number line point of this.pointControllerOne and
-    // index 1 corresponds to the value of the number line point of this.pointControllerTwo.
+    // line point, then null is recorded in the array instead. The stored array is always of length 2:
+    // index 0 corresponds to the value of the number line point of this.pointControllerOne and index 1 corresponds to
+    // the value of the number line point of this.pointControllerTwo.
     this.pointValuesProperty = new Property( [ null, null ] );
     this.pointValuesProperty.link( pointValues => {
       assert && assert( pointValues.length === 2, 'There should always be 2 point values.' );
     } );
 
-    // Listen to the numberLine and its points to make updates to pointsValueProperty when necessary.
-    // Ideally, we would listen to the residentPoints of this.numberLine so I wouldn't duplicate code per controller, but
-    // it is necessary to know which point controller each number line point belongs to, and points are seemingly added
-    // to the number line before they are associated with a point controller.
+    // Listen to the numberLine and its points to make updates to pointsValueProperty when necessary. Ideally, we would
+    // listen to the residentPoints of this.numberLine so I wouldn't duplicate code per controller, but it is necessary
+    // to know which point controller each number line point belongs to, and points can be added to the number line
+    // before they are associated with a point controller.
     this.pointControllerOne.numberLinePoints.addItemAddedListener( numberLinePoint => {
       const updatePointValuesProperty = value => {
         this.pointValuesProperty.value = [ value, this.pointValuesProperty.value[ 1 ] ];

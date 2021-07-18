@@ -36,7 +36,7 @@ class NLDExploreScreenView extends ScreenView {
       tandem: tandem
     } );
 
-    // adds scene views as children
+    // Add scene views as children.
     const distanceSceneView = new DistanceSceneView( model.distanceSceneModel );
     this.addChild( distanceSceneView );
     const temperatureSceneView = new TemperatureSceneView( model.temperatureSceneModel );
@@ -44,14 +44,14 @@ class NLDExploreScreenView extends ScreenView {
     const elevationSceneView = new ElevationSceneView( model.elevationSceneModel );
     this.addChild( elevationSceneView );
 
-    // links each specific scene view's visibility with whether it is selected in the model
+    // Link each specific scene view's visibility with whether it is selected in the model.
     model.selectedSceneProperty.link( selectedScene => {
       distanceSceneView.visible = selectedScene === NLDScene.DISTANCE;
       temperatureSceneView.visible = selectedScene === NLDScene.TEMPERATURE;
       elevationSceneView.visible = selectedScene === NLDScene.ELEVATION;
     } );
 
-    // map the scene selection icons to their enum values (used in the radio button group)
+    // Map the scene selection icons to their enum values (used in the radio button group).
     const thermometerSceneIcon = new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height );
     const thermometerNode = new ThermometerNode( 0, 1, new NumberProperty( 0.5 ) );
     thermometerNode.setScaleMagnitude( ICON_SIZE.height / thermometerNode.height );
@@ -90,7 +90,7 @@ class NLDExploreScreenView extends ScreenView {
     } );
     this.addChild( resetAllButton );
 
-    // create scene selector radio buttons
+    // Create scene selector radio buttons.
     const sceneSelectorRadioButtonGroup = new RectangularRadioButtonGroup(
       model.selectedSceneProperty,
       sceneSelectionButtonsContent,

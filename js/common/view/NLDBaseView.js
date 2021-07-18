@@ -4,6 +4,7 @@
  * A view that contains elements that are used in all scenes/screens of the sim.
  * This view has all the common controls as well as the common display elements.
  * This is a 'base' view because it is meant to be used as the bottom layer in the scene graph for all scenes/screens.
+ * Nothing needs to be disposed from this view because all instances of NLDBaseView are present for the sim's lifetime.
  *
  * @author Saurabh Totey
  */

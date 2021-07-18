@@ -1,8 +1,9 @@
 // Copyright 2020-2021, University of Colorado Boulder
 
 /**
- * A node that is a number line and that also shades the distance between number line points.
- * The space between number line points is only shaded when both point controllers are on the number line.
+ * A node that is a number line and that also shades the distance between number line points. The space between number
+ * line points is only shaded when both point controllers are on the number line. No unlinking is required because all
+ * instances of this number line are present for the lifetime of the simulation.
  *
  * @author Saurabh Totey
  */
@@ -78,7 +79,6 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     model.pointControllerTwo.isDraggingProperty.link( () => { pointNameBackground1.moveToFront(); } );
 
     // Most of the number line's behaviour is handled in this multilink.
-    // Unlinking is unnecessary because every instance of this number line is present for the lifetime of the sim.
     Property.multilink(
       [
         model.distanceLabelsVisibleProperty,

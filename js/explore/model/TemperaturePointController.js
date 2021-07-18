@@ -28,7 +28,8 @@ class TemperaturePointController extends AreaPointController {
 
     // @public (read-only) {PaintColorProperty} is different from this.color where this.color is the point controller's
     // color for the purposes of the other number-line classes; this colorProperty instead is just representative of
-    // the temperature of this point controller.
+    // the temperature of this point controller. No unlink necessary since all TemperaturePointControllers are present
+    // for the sim's lifetime.
     this.colorProperty = new PaintColorProperty( NO_TEMPERATURE_COLOR );
     this.positionProperty.link( () => {
       if ( this.isControllingNumberLinePoint() ) {

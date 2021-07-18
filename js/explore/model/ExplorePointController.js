@@ -24,7 +24,8 @@ class ExplorePointController extends PointController {
     super( options );
 
     // The dropping behaviour for #34: if the point controller is no longer being dragged but is in the relevant drop
-    // direction, then propose a new position for it into the play area.
+    // direction, then propose a new position for it into the play area. No unlink necessary because the point controllers
+    // are present for the sim's lifetime.
     this.isDraggingProperty.link( isDragging => {
       if ( isDragging ) {
         return;

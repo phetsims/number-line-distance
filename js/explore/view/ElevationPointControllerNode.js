@@ -24,14 +24,15 @@ class ElevationPointControllerNode extends PointControllerNode {
    */
   constructor( pointController, seaLevel, belowSeaLevelImage, aboveSeaLevelImage ) {
 
-    // dilates each image's touch area
+    // Dilate each image's touch area.
     belowSeaLevelImage.touchArea = belowSeaLevelImage.localBounds.dilated( IMAGE_DILATION );
     aboveSeaLevelImage.touchArea = aboveSeaLevelImage.localBounds.dilated( IMAGE_DILATION );
 
-    // create a node with all the images that will be used to depict this elevatable item
+    // Create a node with all the images that will be used to depict this elevatable item.
     const compositeImageNode = new Node( { children: [ belowSeaLevelImage, aboveSeaLevelImage ] } );
 
-    // update the visibility of the images as the position changes
+    // Update the visibility of the images as the position changes. No unlink necessary as ElevationPointControllers are
+    // always present for the sim's lifetime.
     pointController.positionProperty.link( position => {
       if ( position.y > seaLevel ) {
         aboveSeaLevelImage.visible = false;
