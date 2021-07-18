@@ -74,8 +74,9 @@ labels for the points and a label for the distance.
 
 The `NLDExploreScreenView` contains selectors to select the scene. The `NLDExploreModel` contains all the scenes' models.
 The `ExplorePointController` is a `PointController` subclass for the explore screen that adds dropping behaviour. There
-is also the `AreaPointController` and `AreaSceneModel` for the temperature and elevation scenes where point controllers
-can move freely in an area.
+is also the `AreaPointController` for the temperature and elevation scenes where point controllers
+can move freely in an area and the `DistancePointController` for the distance scene where the point controller locks on
+to a specific height.
 
 ### Distance Scene
 
