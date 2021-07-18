@@ -219,7 +219,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         distanceShadingPath.shape = shape;
 
-        // calculates the difference to display
+        // Calculates the difference to display.
         let displayedDifference = value1 - value0;
         if ( isPrimaryNodeSwapped ) {
           displayedDifference = -displayedDifference;
@@ -230,7 +230,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
 
-        // positions distance text
+        // Position distance text.
         if ( orientation === Orientation.HORIZONTAL ) {
           distanceTextBackground.bottom = endPointPosition0.y - DISTANCE_TEXT_PADDING;
           distanceTextBackground.centerX = ( endPointPosition1.x + endPointPosition0.x ) / 2;

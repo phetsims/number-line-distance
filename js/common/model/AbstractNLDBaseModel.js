@@ -140,13 +140,13 @@ class AbstractNLDBaseModel {
     this.pointControllerBoxProperty.lazyLink( ( newBoxBounds, oldBoxBounds ) => {
       this.pointControllers.forEach( pointController => {
 
-        // if the point controller is animating, stop it and put it in the box
+        // If the point controller is animating, stop it and put it in the box.
         if ( pointController.inProgressAnimationProperty.value ) {
           pointController.stopAnimation();
           this.putPointControllerInBox( pointController );
         }
 
-        // if the point controller was sitting in the previous box, move it to the new one
+        // If the point controller was sitting in the previous box, move it to the new one.
         else if ( oldBoxBounds.containsPoint( pointController.positionProperty.value ) &&
                   !pointController.isDraggingProperty.value && !pointController.isControllingNumberLinePoint() ) {
           this.putPointControllerInBox( pointController );
