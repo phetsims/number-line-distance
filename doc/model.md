@@ -16,8 +16,7 @@ In this scene, the user can place thermometers in the play area, and the differe
 
 ## The "Elevation" Scene
 
-In this scene, the user can place the bird and fish in the play area, and the difference in their vertical position is
-represented on the number line.
+In this scene, the user can place the bird and fish in the play area, and the difference in their vertical position is represented on the number line.
 
 ## The "Generic" Screen
 
