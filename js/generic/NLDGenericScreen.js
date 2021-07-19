@@ -8,7 +8,6 @@
 
 import Screen from '../../../joist/js/Screen.js';
 import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
-import Property from '../../../axon/js/Property.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NLDGenericModel from './model/NLDGenericModel.js';
 import NLDGenericScreenView from './view/NLDGenericScreenView.js';
@@ -16,6 +15,7 @@ import genericHomeIcon from '../../images/generic-home-icon_png.js';
 import genericNavbarIcon from '../../images/generic-navbar-icon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Image from '../../../scenery/js/nodes/Image.js';
+import NLDColorProfile from '../common/NLDColorProfile.js';
 
 const screenGenericString = numberLineDistanceStrings.screen.generic;
 
@@ -28,7 +28,7 @@ class NLDGenericScreen extends Screen {
   constructor( tandem ) {
     const options = {
       name: screenGenericString,
-      backgroundColorProperty: new Property( 'rgb( 245, 255, 254 )' ),
+      backgroundColorProperty: NLDColorProfile.genericScreenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( genericHomeIcon ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1

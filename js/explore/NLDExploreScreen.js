@@ -8,7 +8,6 @@
 
 import Screen from '../../../joist/js/Screen.js';
 import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
-import Property from '../../../axon/js/Property.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
 import NLDExploreScreenView from './view/NLDExploreScreenView.js';
@@ -16,6 +15,7 @@ import exploreHomeIcon from '../../images/explore-home-icon_png.js';
 import exploreNavbarIcon from '../../images/explore-navbar-icon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Image from '../../../scenery/js/nodes/Image.js';
+import NLDColorProfile from '../common/NLDColorProfile.js';
 
 const screenExploreString = numberLineDistanceStrings.screen.explore;
 
@@ -28,7 +28,7 @@ class NLDExploreScreen extends Screen {
   constructor( tandem ) {
     const options = {
       name: screenExploreString,
-      backgroundColorProperty: new Property( 'rgb( 254, 247, 233 )' ),
+      backgroundColorProperty: NLDColorProfile.exploreScreenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( exploreHomeIcon ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
