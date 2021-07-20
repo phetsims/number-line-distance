@@ -20,6 +20,7 @@ import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 // constants
 const DEFAULT_TEMPERATURE_VALUE = 0;
 const TOUCH_DILATION = 5;
+const MOUSE_DILATION = 1;
 
 class TemperaturePointControllerNode extends PointControllerNode {
 
@@ -75,8 +76,9 @@ class TemperaturePointControllerNode extends PointControllerNode {
     } );
     compositeThermometerNode.addChild( thermometerLabel );
 
-    // dilate the touch area for easier grabbing
+    // dilate the touch and mouse areas for easier grabbing
     compositeThermometerNode.touchArea = temperatureAndColorSensorNode.bounds.dilated( TOUCH_DILATION );
+    compositeThermometerNode.mouseArea = temperatureAndColorSensorNode.bounds.dilated( MOUSE_DILATION );
 
     super( pointController, options );
   }
