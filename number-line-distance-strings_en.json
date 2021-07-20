@@ -45,12 +45,12 @@
     "value": "m"
   },
   "symbol.degreesCelsius": {
-    "value": "° C"
+    "value": "\u00B0C"
   },
-  "symbol.a": {
+  "symbol.A": {
     "value": "A"
   },
-  "symbol.b": {
+  "symbol.B": {
     "value": "B"
   },
   "unit": {

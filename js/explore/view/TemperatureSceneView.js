@@ -23,8 +23,8 @@ import antarctic from '../../../images/antarctic_png.js';
 import trees from '../../../images/trees_png.js';
 import desert from '../../../images/desert_png.js';
 
-const aString = numberLineDistanceStrings.symbol.a;
-const bString = numberLineDistanceStrings.symbol.b;
+const aString = numberLineDistanceStrings.symbol.A;
+const bString = numberLineDistanceStrings.symbol.B;
 const temperatureSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings.temperatureSceneAbsoluteDistanceTemplate;
 const temperatureSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedPositiveDistanceTemplate;
 const temperatureSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedNegativeDistanceTemplate;
