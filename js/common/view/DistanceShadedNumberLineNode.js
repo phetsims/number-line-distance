@@ -89,13 +89,13 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
         model.pointValuesProperty,
         model.numberLine.centerPositionProperty // is only necessary for when listeners are shuffled
       ],
-      ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryNodeSwapped, orientation, pointValues ) => {
+      ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryControllerSwapped, orientation, pointValues ) => {
 
         // Get which strings to use for point names based on the number line orientation.
-        // The strings are ordered based on isPrimaryNodeSwapped.
+        // The strings are ordered based on isPrimaryControllerSwapped.
         const labelStrings = ( orientation === Orientation.VERTICAL ) ?
           [ NLDConstants.Y_1_STRING, NLDConstants.Y_2_STRING ] : [ NLDConstants.X_1_STRING, NLDConstants.X_2_STRING ];
-        if ( isPrimaryNodeSwapped ) {
+        if ( isPrimaryControllerSwapped ) {
           const temp = labelStrings[ 0 ];
           labelStrings[ 0 ] = labelStrings[ 1 ];
           labelStrings[ 1 ] = temp;
@@ -207,11 +207,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
           // Only set the shape to the arrow shape if the point that the arrow points to is in the number line's range.
           // The stroke is removed so the tail of the arrow can have the correct width.
-          if ( isPrimaryNodeSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
+          if ( isPrimaryControllerSwapped && displayedRange.min <= value0 && value0 <= displayedRange.max ) {
             shape = new ArrowShape( endPointPosition1.x, endPointPosition1.y, endPointPosition0.x, endPointPosition0.y, scaledArrowShapeOptions );
             distanceShadingPath.stroke = null;
           }
-          else if ( !isPrimaryNodeSwapped && displayedRange.min <= value1 && value1 <= displayedRange.max ) {
+          else if ( !isPrimaryControllerSwapped && displayedRange.min <= value1 && value1 <= displayedRange.max ) {
             shape = new ArrowShape( endPointPosition0.x, endPointPosition0.y, endPointPosition1.x, endPointPosition1.y, scaledArrowShapeOptions );
             distanceShadingPath.stroke = null;
           }
@@ -221,7 +221,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // Calculates the difference to display.
         let displayedDifference = value1 - value0;
-        if ( isPrimaryNodeSwapped ) {
+        if ( isPrimaryControllerSwapped ) {
           displayedDifference = -displayedDifference;
         }
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE ) {

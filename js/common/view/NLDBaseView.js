@@ -92,7 +92,7 @@ class NLDBaseView extends Node {
         pluralUnits: required( config.distanceDescriptionStrings.pluralUnits ),
 
         // {function(boolean, Orientation):string} should give a point controller label (string) when given
-        // model.isPrimaryNodeSwapped and the orientation of the number line
+        // model.isPrimaryControllerSwapped and the orientation of the number line
         getPrimaryPointControllerLabel: required( config.distanceDescriptionStrings.getPrimaryPointControllerLabel ),
         getSecondaryPointControllerLabel: required( config.distanceDescriptionStrings.getSecondaryPointControllerLabel )
       },
@@ -204,10 +204,10 @@ class NLDBaseView extends Node {
     this.addChild( swapPrimaryNodesButton );
 
     // Listen for when the primary node should be swapped, and swap the representations.
-    model.isPrimaryControllerSwappedProperty.link( isPrimaryNodeSwapped => {
+    model.isPrimaryControllerSwappedProperty.link( isPrimaryControllerSwapped => {
       let firstNodeHBoxChildren;
       let secondNodeHBoxChildren;
-      if ( isPrimaryNodeSwapped ) {
+      if ( isPrimaryControllerSwapped ) {
         firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationBackgroundTwo ];
         secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationBackgroundOne ];
       }
@@ -261,7 +261,7 @@ class NLDBaseView extends Node {
         model.isPrimaryControllerSwappedProperty,
         model.pointValuesProperty
       ],
-      ( distanceRepresentation, orientation, isPrimaryNodeSwapped, pointValues ) => {
+      ( distanceRepresentation, orientation, isPrimaryControllerSwapped, pointValues ) => {
 
         // Don't say anything about distance if both point controllers aren't on the number line.
         distanceDescriptionText.text = '';
@@ -277,15 +277,15 @@ class NLDBaseView extends Node {
         // Even though only the absolute value of difference is ever displayed, the sign is still used to determine
         // which string template to use.
         let difference = Util.roundSymmetric( value1 - value0 );
-        if ( isPrimaryNodeSwapped ) {
+        if ( isPrimaryControllerSwapped ) {
           difference = -difference;
         }
 
         // Get the strings for the point controllers.
         const primaryPointControllerLabel =
-          config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+          config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimaryControllerSwapped, orientation );
         const secondaryPointControllerLabel =
-          config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimaryNodeSwapped, orientation );
+          config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimaryControllerSwapped, orientation );
 
         // Fill in a string template for the distance text based off of the distance representation and whether the
         // distance is positive or negative.
