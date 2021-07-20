@@ -37,7 +37,7 @@ const ARROW_SHAPE_OPTIONS = {
 };
 const DISTANCE_TEXT_PADDING = 50;
 const MAX_ARROW_HEAD_TO_ARROW_PROPORTION = 0.5;
-const POINT_NAME_TEXT_OPTIONS = { maxWidth: 50, font: new MathSymbolFont( 20 ) };
+const POINT_NAME_TEXT_OPTIONS = { maxWidth: 38, font: new MathSymbolFont( 20 ) };
 
 class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
