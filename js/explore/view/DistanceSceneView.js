@@ -9,8 +9,6 @@
 import numberLineDistance from '../../numberLineDistance.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
-import NLDBaseView from '../../common/view/NLDBaseView.js';
-import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
@@ -19,6 +17,7 @@ import person from '../../../images/person_png.js';
 import house from '../../../images/house_png.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
 import sidewalk from '../../../images/sidewalk_png.js';
+import NLDSceneView from './NLDSceneView.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
 const westString = numberLineDistanceStrings.symbol.west;
@@ -34,13 +33,12 @@ const metersString = numberLineDistanceStrings.meters;
 const DIRECTION_INDICATOR_FONT = new PhetFont( 25 );
 const DIRECTION_INDICATOR_MAX_WIDTH = 50;
 
-class DistanceSceneView extends Node {
+class DistanceSceneView extends NLDSceneView {
 
   /**
    * @param {DistanceSceneModel} model
    */
   constructor( model ) {
-    super();
 
     // Create the representations for the person and the house in the area that they can be swapped.
     // scales were empirically determined
@@ -50,12 +48,11 @@ class DistanceSceneView extends Node {
     houseRepresentation.maxWidth = smallestWidth;
     personRepresentation.maxWidth = smallestWidth;
 
-    // @private
-    this.baseView = new NLDBaseView(
+    super(
       model,
-      houseRepresentation,
-      personRepresentation,
       {
+        pointControllerRepresentationOne: houseRepresentation,
+        pointControllerRepresentationTwo: personRepresentation,
         distanceDescriptionStrings: {
           absoluteDistanceDescriptionTemplate: distanceSceneAbsoluteDistanceTemplateString,
           directedPositiveDistanceDescriptionTemplate: distanceSceneDirectedPositiveDistanceTemplateString,
@@ -64,10 +61,10 @@ class DistanceSceneView extends Node {
           pluralUnits: metersString,
           getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personString : houseString,
           getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
-        }
+        },
+        distanceShadedNumberLineNodeOptions: { unitsString: metersSymbol }
       }
     );
-    this.addChild( this.baseView );
 
     // image that represents the plane where the person and the house lie
     const sidewalkImage = new Image( sidewalk );
@@ -113,12 +110,9 @@ class DistanceSceneView extends Node {
     } ) );
     this.addChild( pointControllersLayer );
 
-    // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersSymbol } );
-    this.addChild( numberLineNode );
-
     // symbols at edges of number line denoting east and west
-    const textOffsetFromNumberLine = numberLineNode.options.displayedRangeInset + numberLineNode.options.arrowSize + 15;
+    const textOffsetFromNumberLine =
+      this.numberLineNode.options.displayedRangeInset + this.numberLineNode.options.arrowSize + 15; // empirically determined
     const range = model.numberLine.displayedRangeProperty.value;
     const eastSymbolText = new Text( eastString, {
       font: DIRECTION_INDICATOR_FONT,
@@ -134,14 +128,6 @@ class DistanceSceneView extends Node {
     this.addChild( westSymbolText );
     eastSymbolText.moveToBack();
     westSymbolText.moveToBack();
-  }
-
-  /**
-   * This function resets the entire distance scene view. Right now, all this does is open up accordion box if closed.
-   * @public
-   */
-  reset() {
-    this.baseView.accordionBoxOpenedProperty.reset();
   }
 
 }

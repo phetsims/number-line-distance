@@ -9,9 +9,7 @@
 import numberLineDistance from '../../numberLineDistance.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
-import NLDBaseView from '../../common/view/NLDBaseView.js';
 import ElevationPointControllerNode from './ElevationPointControllerNode.js';
-import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
@@ -20,6 +18,7 @@ import fishInAir from '../../../../number-line-common/images/fish-air_png.js';
 import birdInWater from '../../../../number-line-common/images/bird-water_png.js';
 import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
 import elevationBackground from '../../../images/elevation-background_png.js';
+import NLDSceneView from './NLDSceneView.js';
 
 const fishString = numberLineDistanceStrings.fish;
 const birdString = numberLineDistanceStrings.bird;
@@ -30,20 +29,17 @@ const metersSymbol = numberLineDistanceStrings.symbol.meters;
 const meterString = numberLineDistanceStrings.meter;
 const metersString = numberLineDistanceStrings.meters;
 
-class ElevationSceneView extends Node {
+class ElevationSceneView extends NLDSceneView {
 
   /**
    * @param {ElevationSceneModel} model
    */
   constructor( model ) {
-    super();
-
-    // @private
-    this.baseView = new NLDBaseView(
+    super(
       model,
-      new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
-      new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 35 } ),
       {
+        pointControllerRepresentationOne: new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
+        pointControllerRepresentationTwo: new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 35 } ),
         distanceDescriptionStrings: {
           absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,
           directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateString,
@@ -52,10 +48,10 @@ class ElevationSceneView extends Node {
           pluralUnits: metersString,
           getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
           getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
-        }
+        },
+        distanceShadedNumberLineNodeOptions: { unitsString: metersSymbol }
       }
     );
-    this.addChild( this.baseView );
 
     // Add background image and water rectangle. Water rectangle is on top of everything so that point controllers
     // appear 'submerged' in water because they are layered beneath the rectangle.
@@ -79,10 +75,6 @@ class ElevationSceneView extends Node {
 
     const seaLevel = model.numberLine.valueToModelPosition( 0 ).y;
 
-    // number line
-    const numberLineNode = new DistanceShadedNumberLineNode( model, { unitsString: metersSymbol } );
-    this.addChild( numberLineNode );
-
     // point controllers
     const pointControllerNodeLayer = new Node( {
       children: [
@@ -103,14 +95,6 @@ class ElevationSceneView extends Node {
     this.addChild( pointControllerNodeLayer );
 
     waterRectangle.moveToFront();
-  }
-
-  /**
-   * This function resets the entire elevation scene view. Right now, all this does is open up accordion box if closed.
-   * @public
-   */
-  reset() {
-    this.baseView.accordionBoxOpenedProperty.reset();
   }
 
 }
