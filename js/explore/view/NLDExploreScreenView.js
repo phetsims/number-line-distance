@@ -13,7 +13,6 @@ import NLDConstants from '../../common/NLDConstants.js';
 import DistanceSceneView from './DistanceSceneView.js';
 import TemperatureSceneView from './TemperatureSceneView.js';
 import ElevationSceneView from './ElevationSceneView.js';
-import NLDScene from '../model/NLDScene.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
@@ -45,10 +44,9 @@ class NLDExploreScreenView extends ScreenView {
     this.addChild( elevationSceneView );
 
     // Link each specific scene view's visibility with whether it is selected in the model.
-    model.selectedSceneProperty.link( selectedScene => {
-      distanceSceneView.visible = selectedScene === NLDScene.DISTANCE;
-      temperatureSceneView.visible = selectedScene === NLDScene.TEMPERATURE;
-      elevationSceneView.visible = selectedScene === NLDScene.ELEVATION;
+    const sceneViews = [ distanceSceneView, temperatureSceneView, elevationSceneView ];
+    model.selectedSceneModelProperty.link( selectedSceneModel => {
+      sceneViews.forEach( sceneView => { sceneView.visible = sceneView.model === selectedSceneModel; } );
     } );
 
     // Map the scene selection icons to their enum values (used in the radio button group).
@@ -59,17 +57,17 @@ class NLDExploreScreenView extends ScreenView {
     thermometerSceneIcon.addChild( thermometerNode );
     const sceneSelectionButtonsContent = [
       {
-        value: NLDScene.DISTANCE,
+        value: distanceSceneView.model,
         node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
           children: [ new Image( house, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       },
       {
-        value: NLDScene.TEMPERATURE,
+        value: temperatureSceneView.model,
         node: thermometerSceneIcon
       },
       {
-        value: NLDScene.ELEVATION,
+        value: elevationSceneView.model,
         node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
           children: [ new Image( birdInAir, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
@@ -92,7 +90,7 @@ class NLDExploreScreenView extends ScreenView {
 
     // Create scene selector radio buttons.
     const sceneSelectorRadioButtonGroup = new RectangularRadioButtonGroup(
-      model.selectedSceneProperty,
+      model.selectedSceneModelProperty,
       sceneSelectionButtonsContent,
       {
         buttonContentXMargin: 5,

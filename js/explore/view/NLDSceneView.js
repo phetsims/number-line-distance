@@ -36,6 +36,9 @@ class NLDSceneView extends Node {
       distanceShadedNumberLineNodeOptions: {}
     }, config );
 
+    // @public (read-only)
+    this.model = model;
+
     // @protected {NLDBaseView}
     this.baseView = new NLDBaseView(
       model,
