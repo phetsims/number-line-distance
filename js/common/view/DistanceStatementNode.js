@@ -231,11 +231,13 @@ class DistanceStatementNode extends Node {
 
     // This multilink listens for changes in any relevant properties and updates the distance statement accordingly.
     Property.multilink(
-      valueProperties.concat( [
+      [
+        valueProperties[ 0 ],
+        valueProperties[ 1 ],
         model.distanceRepresentationProperty,
         model.isPrimaryControllerSwappedProperty,
         model.numberLine.orientationProperty
-      ] ),
+      ],
       ( value0, value1, distanceRepresentation, isPrimaryNodeSwapped, orientation ) => {
 
         // Change the alt text based off of number line orientation.
