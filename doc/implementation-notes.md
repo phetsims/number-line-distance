@@ -12,8 +12,9 @@ number line and exactly two point controllers, which allows for a lot of basic a
 base functionality is derived from number-line-common.
 
 Due to the similarity between the majority of the scenes/screens, a large amount of abstraction was able to be leveraged.
-For example, the `AbstractNLDBaseModel` class handles the majority of all models' duties. Similarly, `NLDBaseView` is the
-workhorse that handles the base layout and common elements in all scenes/screens.
+For example, the [AbstractNLDBaseModel](https://github.com/phetsims/number-line-distance/blob/master/js/common/model/AbstractNLDBaseModel.js)
+class handles the majority of all models' duties. Similarly, [NLDBaseView](https://github.com/phetsims/number-line-distance/blob/master/js/common/view/NLDBaseView.js)
+is the workhorse that handles the base layout and common elements in all scenes/screens.
 
 ## General Considerations
 
@@ -53,30 +54,34 @@ and removed. There is no need to dispose anything because everything else is pre
 
 ### Model
 
-`AbstractNLDBaseModel` is the most important model class in this simulation. It has all of the simulation's important
-Properties and hooks listeners into `PointController`s.
+[AbstractNLDBaseModel](https://github.com/phetsims/number-line-distance/blob/master/js/common/model/AbstractNLDBaseModel.js)
+is the most important model class in this simulation. It has all of the simulation's important Properties and hooks
+listeners into `PointController`s.
 
 ### View
 
-`NLDBaseView` contains all of the common view elements in a single layer. It handles the sim controls and even the
-distance statement and distance description.
+[NLDBaseView](https://github.com/phetsims/number-line-distance/blob/master/js/common/view/NLDBaseView.js) contains all
+of the common view elements in a single layer. It handles the sim controls and even the distance statement and distance
+description.
 
-`DistanceStatement` is the node that displays a subtraction statement representing the state of the point controllers on
-the number line. Either uses `NumberPicker` (so it can affect the point controllers' values) or `Text` to display point
-controller values.
+[DistanceStatementNode](https://github.com/phetsims/number-line-distance/blob/master/js/common/view/DistanceStatementNode.js)
+is the node that displays a subtraction statement representing the state of the point controllers on the number line.
+Either uses `NumberPicker` (so it can affect the point controllers' values) or `Text` to display point controller values.
 
-`DistanceShadedNumberLineNode` is a `NumberLineNode` subclass that performs all the number-line functionalities that are
-shared by all screens/scenes. It handles shading the distance between the attached `NumberLinePoint`s (if there are two)
-with a thick line (if showing absolute distance) or an arrow (if showing directed distance). It also handles displaying
-labels for the points and a label for the distance.
+[DistanceShadedNumberLineNode](https://github.com/phetsims/number-line-distance/blob/master/js/common/view/DistanceShadedNumberLineNode.js)
+is a `NumberLineNode` subclass that performs all the number-line functionalities that are shared by all screens/scenes.
+It handles shading the distance between the attached `NumberLinePoint`s (if there are two) with a thick line (if showing
+absolute distance) or an arrow (if showing directed distance). It also handles displaying labels for the points and a
+label for the distance.
 
 ## Explore Screen
 
-The `NLDExploreScreenView` contains selectors to select the scene. The `NLDExploreModel` contains all the scenes'
-models. The `ExplorePointController` is a `PointController` subclass for the Explore screen that adds dropping
-behaviour. There is also the `AreaPointController` for the Temperature and Elevation scenes where point controllers can
-move freely in an area and the `DistancePointController` for the Distance scene where the point controller locks on to a
-specific height.
+The [NLDExploreScreenView](https://github.com/phetsims/number-line-distance/blob/master/js/explore/view/NLDExploreScreenView.js)
+contains selectors to select the scene. The [NLDExploreModel](https://github.com/phetsims/number-line-distance/blob/master/js/explore/model/NLDExploreModel.js)
+contains all the scenes' models. The [ExplorePointController](https://github.com/phetsims/number-line-distance/blob/master/js/explore/model/ExplorePointController.js)
+is a `PointController` subclass for the Explore screen that adds dropping behaviour. There is also the [AreaPointController](https://github.com/phetsims/number-line-distance/blob/master/js/explore/model/AreaPointController.js)
+for the Temperature and Elevation scenes where point controllers can move freely in an area and the [DistancePointController](https://github.com/phetsims/number-line-distance/blob/master/js/explore/model/DistancePointController.js)
+for the Distance scene where the point controller locks on to a specific height.
 
 ### Distance Scene
 
@@ -88,16 +93,16 @@ determined based on whether the point controller is within the play area.
 
 ### Temperature Scene
 
-The Temperature scene's point controllers extend from `AreaPointController` to add another color Property that
-represents the color of the temperature that they are at. The point controllers' color values are always either green or
-purple, but the added color Property to `TemperaturePointController` changes with the temperature value for the
-`TemperatureAndColorSensor` in `TemperaturePointControllerNode`.
+The Temperature scene's point controllers extend from [AreaPointController](https://github.com/phetsims/number-line-distance/blob/master/js/explore/model/AreaPointController.js)
+to add another color Property that represents the color of the temperature that they are at. The point controllers' color
+values are always either green or purple, but the added color Property to [TemperaturePointController](https://github.com/phetsims/number-line-distance/blob/master/js/explore/model/TemperaturePointController.js)
+changes with the temperature value for the `TemperatureAndColorSensor` in [TemperaturePointControllerNode](https://github.com/phetsims/number-line-distance/blob/master/js/explore/view/TemperaturePointControllerNode.js).
 
 ### Elevation Scene
 
-The Elevation scene is probably the simplest scene. There is no need to subclass `AreaPointController`, and the
-`ElevationPointControllerNode`s just manage that the image displayed changes when the point controller is above or below
-zero.
+The Elevation scene is probably the simplest scene. There is no need to subclass [AreaPointController](https://github.com/phetsims/number-line-distance/blob/master/js/explore/model/AreaPointController.js),
+and the [ElevationPointControllerNode](https://github.com/phetsims/number-line-distance/blob/master/js/explore/view/ElevationPointControllerNode.js)
+just manages that the image displayed changes when the point controller is above or below zero.
 
 ## Generic Screen
 
