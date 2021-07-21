@@ -101,7 +101,7 @@ class NLDBaseView extends Node {
 
     super();
 
-    // checkboxes that control common model properties for what should be visible
+    // checkboxes that control common model Properties for what should be visible
     // all used spacings and paddings were empirically determined
     const checkboxGroup = new NLCheckboxGroup(
       [

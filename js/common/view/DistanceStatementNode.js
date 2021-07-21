@@ -3,7 +3,7 @@
 /**
  * A generic distance statement as a scenery Node. Can either be set to be able to control point controller values
  * (using number pickers) or just show values (using texts). All minus symbols use the MathSymbols.MINUS symbol (even if
- * it is a unary minus) so that all the minus symbols are consistent (see #27). Doesn't need to unlink properties because
+ * it is a unary minus) so that all the minus symbols are consistent (see #27). Doesn't need to unlink Properties because
  * all instances of DistanceStatementNode are present for the lifetime of the sim.
  *
  * @author Saurabh Totey
@@ -38,7 +38,7 @@ const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
 const NORMAL_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 55 };
 const TERM_LABEL_TEXT_OPTIONS = { font: new MathSymbolFont( 15 ), maxWidth: 25 };
 
-// A value that is beyond the bounds of the number lines because the number pickers' properties always require a number
+// A value that is beyond the bounds of the number lines because the number pickers' Properties always require a number
 const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
 
@@ -80,15 +80,15 @@ class DistanceStatementNode extends Node {
     } );
 
     // There are necessarily 2 point controllers (that is enforced by AbsractNLDBaseModel), so ensure
-    // that we have the correct number of corresponding value properties.
+    // that we have the correct number of corresponding value Properties.
     assert && assert(
       valueProperties.length === 2,
-      'Mapping point values to value properties should result in exactly 2 value properties'
+      'Mapping point values to value Properties should result in exactly 2 value Properties'
     );
 
     if ( options.controlsValues ) {
 
-      // Make changing the value properties affect the point controllers' values.
+      // Make changing the value Properties affect the point controllers' values.
       model.pointControllers.forEach( ( pointController, i ) => {
         valueProperties[ i ].link( value => {
           if ( value !== INVALID_VALUE && pointController.isControllingNumberLinePoint()
@@ -229,7 +229,7 @@ class DistanceStatementNode extends Node {
       ]
     } ) );
 
-    // This multilink listens for changes in any relevant properties and updates the distance statement accordingly.
+    // This multilink listens for changes in any relevant Properties and updates the distance statement accordingly.
     Property.multilink(
       [
         valueProperties[ 0 ],
