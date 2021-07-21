@@ -22,7 +22,7 @@ class ElevationSceneModel extends AbstractNLDBaseModel {
    * @param {Tandem} tandem
    */
   constructor( tandem ) {
-    const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( -300, 20 ), {
+    const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( -310, 20 ), {
       widthInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.width - 100,
       heightInModelSpace: NLDConstants.NLD_LAYOUT_BOUNDS.height - 275,
       initialOrientation: Orientation.VERTICAL,
