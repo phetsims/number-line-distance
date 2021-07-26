@@ -10,11 +10,12 @@ import numberLineDistance from '../../numberLineDistance.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import Range from '../../../../dot/js/Range.js';
-import TemperaturePointController from './TemperaturePointController.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import TemperatureToColorMapper from '../../../../number-line-common/js/explore/model/TemperatureToColorMapper.js';
 import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
+import AreaPointController from './AreaPointController.js';
+import DropFromDirection from './DropFromDirection.js';
 
 // constants
 const TEMPERATURE_POINT_CONTROLLER_BOX_SCALE = 0.4;
@@ -42,23 +43,20 @@ class TemperatureSceneModel extends AbstractNLDBaseModel {
       numberLine.valueToModelPosition( numberLine.displayedRangeProperty.value.max ).x, 464
     );
 
-    const temperatureToColorMapper = new TemperatureToColorMapper( TemperatureSceneModel.TEMPERATURE_RANGE );
-    const mapTemperatureToColor = value => temperatureToColorMapper.mapTemperatureToColor( value );
-
     super(
       numberLine,
-      new TemperaturePointController(
+      new AreaPointController(
+        DropFromDirection.TOP,
         temperatureAreaBounds,
-        mapTemperatureToColor,
         {
           numberLines: [ numberLine ],
           scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
           color: '#693cc2'
         }
       ),
-      new TemperaturePointController(
+      new AreaPointController(
+        DropFromDirection.TOP,
         temperatureAreaBounds,
-        mapTemperatureToColor,
         {
           numberLines: [ numberLine ],
           scaleInBox: TEMPERATURE_POINT_CONTROLLER_BOX_SCALE,
@@ -109,7 +107,7 @@ class TemperatureSceneModel extends AbstractNLDBaseModel {
     this.temperatureAreaBounds = temperatureAreaBounds;
 
     // @public (read-only) {function(number):Color}
-    this.temperatureToColorMapper = temperatureToColorMapper;
+    this.temperatureToColorMapper = new TemperatureToColorMapper( TemperatureSceneModel.TEMPERATURE_RANGE );
   }
 
 }

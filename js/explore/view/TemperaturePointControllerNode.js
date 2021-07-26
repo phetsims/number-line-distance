@@ -8,7 +8,6 @@
 
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import TemperatureAndColorSensorNode from '../../../../scenery-phet/js/TemperatureAndColorSensorNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
@@ -16,6 +15,7 @@ import PointControllerNode from '../../../../number-line-common/js/common/view/P
 import numberLineDistance from '../../numberLineDistance.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
+import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 
 // constants
 const DEFAULT_TEMPERATURE_VALUE = 0;
@@ -41,7 +41,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
       thermometerFluidHighlightColor: new Color( 0, 210, 0 )
     }, options );
 
-    // a Property that reflects the value of the point controller: is needed for the TemperatureAndColorSensorNode
+    // a Property that reflects the value of the point controller: is needed for the ThermometerNode
     const valueProperty = new DerivedProperty( [ pointController.positionProperty ], position => {
       if ( pointController.isControllingNumberLinePoint() && pointController.playAreaBounds.containsPoint( position ) ) {
         return pointController.numberLinePoints.get( 0 ).valueProperty.value;
@@ -49,36 +49,36 @@ class TemperaturePointControllerNode extends PointControllerNode {
       return DEFAULT_TEMPERATURE_VALUE;
     } );
 
-    const temperatureAndColorSensorNode = new TemperatureAndColorSensorNode(
-      TemperatureSceneModel.TEMPERATURE_RANGE,
+    const thermometerNode = new ThermometerNode(
+      TemperatureSceneModel.TEMPERATURE_RANGE.min,
+      TemperatureSceneModel.TEMPERATURE_RANGE.max,
       valueProperty,
-      pointController.colorProperty,
       {
-        thermometerNodeOptions: {
-          fluidMainColor: pointController.color,
-          fluidHighlightColor: options.thermometerFluidHighlightColor,
-          backgroundFill: 'rgba( 255, 255, 255, 0.9 )',
-          tickSpacingTemperature: 20,
-          majorTickLength: 0,
-          minorTickLength: 0
-        }
+        bulbDiameter: 30,
+        tubeWidth: 18,
+        lineWidth: 2,
+        fluidMainColor: pointController.color,
+        fluidHighlightColor: options.thermometerFluidHighlightColor,
+        backgroundFill: 'rgba( 255, 255, 255, 0.9 )',
+        majorTickLength: 0,
+        minorTickLength: 0
       }
     );
-    compositeThermometerNode.addChild( temperatureAndColorSensorNode );
+    compositeThermometerNode.addChild( thermometerNode );
 
     // Add the textual label for this thermometer.
     // offset and maxWidth multiplier empirically determined
     const thermometerLabel = new Text( label, {
       font: new PhetFont( 16 ),
-      centerX: temperatureAndColorSensorNode.thermometerBounds.centerX,
-      top: temperatureAndColorSensorNode.top + 4,
-      maxWidth: temperatureAndColorSensorNode.width * 0.25
+      centerX: thermometerNode.centerX,
+      top: thermometerNode.top + 4,
+      maxWidth: thermometerNode.width * 0.25
     } );
     compositeThermometerNode.addChild( thermometerLabel );
 
     // dilate the touch and mouse areas for easier grabbing
-    compositeThermometerNode.touchArea = temperatureAndColorSensorNode.bounds.dilated( TOUCH_DILATION );
-    compositeThermometerNode.mouseArea = temperatureAndColorSensorNode.bounds.dilated( MOUSE_DILATION );
+    compositeThermometerNode.touchArea = thermometerNode.bounds.dilated( TOUCH_DILATION );
+    compositeThermometerNode.mouseArea = thermometerNode.bounds.dilated( MOUSE_DILATION );
 
     super( pointController, options );
   }
