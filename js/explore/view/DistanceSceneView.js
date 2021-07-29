@@ -78,7 +78,7 @@ class DistanceSceneView extends NLDSceneView {
       fireHydrant,
       {
         centerX: model.sidewalkBounds.center.x,
-        bottom: model.sidewalkBounds.center.y - 2,
+        bottom: model.sidewalkBounds.center.y - 5,
         scale: 0.15
       }
     ) );
