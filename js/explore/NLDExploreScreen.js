@@ -15,7 +15,7 @@ import exploreHomeIcon from '../../images/explore-home-icon_png.js';
 import exploreNavbarIcon from '../../images/explore-navbar-icon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Image from '../../../scenery/js/nodes/Image.js';
-import NLDColorProfile from '../common/NLDColorProfile.js';
+import NLDColors from '../common/NLDColors.js';
 
 const screenExploreString = numberLineDistanceStrings.screen.explore;
 
@@ -28,7 +28,7 @@ class NLDExploreScreen extends Screen {
   constructor( tandem ) {
     const options = {
       name: screenExploreString,
-      backgroundColorProperty: NLDColorProfile.exploreScreenBackgroundColorProperty,
+      backgroundColorProperty: NLDColors.exploreScreenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( exploreHomeIcon ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1

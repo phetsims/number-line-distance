@@ -15,7 +15,7 @@ import genericHomeIcon from '../../images/generic-home-icon_png.js';
 import genericNavbarIcon from '../../images/generic-navbar-icon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Image from '../../../scenery/js/nodes/Image.js';
-import NLDColorProfile from '../common/NLDColorProfile.js';
+import NLDColors from '../common/NLDColors.js';
 
 const screenGenericString = numberLineDistanceStrings.screen.generic;
 
@@ -28,7 +28,7 @@ class NLDGenericScreen extends Screen {
   constructor( tandem ) {
     const options = {
       name: screenGenericString,
-      backgroundColorProperty: NLDColorProfile.genericScreenBackgroundColorProperty,
+      backgroundColorProperty: NLDColors.genericScreenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( genericHomeIcon ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
