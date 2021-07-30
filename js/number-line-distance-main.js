@@ -18,14 +18,10 @@ const numberLineDistanceTitleString = numberLineDistanceStrings[ 'number-line-di
 
 const simOptions = {
   credits: {
-    //TODO fill in credits, all of these fields are optional, see joist.CreditsNode
-    leadDesign: '',
-    softwareDevelopment: '',
-    team: '',
-    qualityAssurance: '',
-    graphicArts: '',
-    soundDesign: '',
-    thanks: ''
+    leadDesign: 'Amanda McGarry',
+    softwareDevelopment: 'John Blanco, Saurabh Totey',
+    team: 'Kathy Perkins',
+    qualityAssurance: 'Steele Dalton, Emily Miller, Nancy Salpepi, Kathryn Woessner'
   }
 };
 
