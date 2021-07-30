@@ -21,7 +21,7 @@ const simOptions = {
     leadDesign: 'Amanda McGarry',
     softwareDevelopment: 'John Blanco, Saurabh Totey',
     team: 'Kathy Perkins',
-    qualityAssurance: 'Steele Dalton, Emily Miller, Nancy Salpepi, Kathryn Woessner'
+    qualityAssurance: 'Steele Dalton, Emily Miller, Devon Quispe, Nancy Salpepi, Kathryn Woessner'
   }
 };
 
