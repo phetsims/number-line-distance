@@ -20,9 +20,9 @@ const simOptions = {
   credits: {
     leadDesign: 'Amanda McGarry',
     softwareDevelopment: 'John Blanco, Saurabh Totey',
-    team: 'Kathy Perkins',
+    team: 'Kathy Perkins, Ian Whitacre',
     qualityAssurance: 'Steele Dalton, Emily Miller, Devon Quispe, Nancy Salpepi, Kathryn Woessner',
-    graphicArts: 'Megan Lai'
+    graphicArts: 'Mariah Hermsmeyer, Megan Lai'
   }
 };
 
