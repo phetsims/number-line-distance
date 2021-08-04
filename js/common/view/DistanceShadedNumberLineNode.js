@@ -47,8 +47,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
    */
   constructor( model, options ) {
     options = merge( {
-      offScaleIndicatorVerticalOffset: -90, // determined empirically
-      offScaleIndicatorHorizontalOffset: -120, // determined empirically
+      offScaleIndicatorVerticalOffset: -120, // determined empirically
+      offScaleIndicatorHorizontalOffset: -150, // determined empirically
       pointNameLabelOffsetFromHorizontalNumberLine: 30,
       pointNameLabelOffsetFromVerticalNumberLine: 42
     }, options );
