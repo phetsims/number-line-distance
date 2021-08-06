@@ -35,7 +35,6 @@ const ARROW_SHAPE_OPTIONS = {
   headWidth: 20,
   headHeight: 20
 };
-const DISTANCE_TEXT_PADDING = 50;
 const MAX_ARROW_HEAD_TO_ARROW_PROPORTION = 0.5;
 const POINT_NAME_TEXT_OPTIONS = { maxWidth: 38, font: new MathSymbolFont( 20 ) };
 
@@ -47,10 +46,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
    */
   constructor( model, options ) {
     options = merge( {
-      offScaleIndicatorVerticalOffset: -120, // determined empirically
-      offScaleIndicatorHorizontalOffset: -150, // determined empirically
+      offScaleIndicatorVerticalOffset: -120,
+      offScaleIndicatorHorizontalOffset: -150,
       pointNameLabelOffsetFromHorizontalNumberLine: 30,
-      pointNameLabelOffsetFromVerticalNumberLine: 42
+      pointNameLabelOffsetFromVerticalNumberLine: 42,
+      distanceTextPadding: 50
     }, options );
     super( model.numberLine, options );
 
@@ -232,11 +232,11 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
         // Position distance text.
         if ( orientation === Orientation.HORIZONTAL ) {
-          distanceTextBackground.bottom = endPointPosition0.y - DISTANCE_TEXT_PADDING;
+          distanceTextBackground.bottom = endPointPosition0.y - options.distanceTextPadding;
           distanceTextBackground.centerX = ( endPointPosition1.x + endPointPosition0.x ) / 2;
         }
         else {
-          distanceTextBackground.right = endPointPosition0.x - DISTANCE_TEXT_PADDING;
+          distanceTextBackground.right = endPointPosition0.x - options.distanceTextPadding;
           distanceTextBackground.centerY = ( endPointPosition1.y + endPointPosition0.y ) / 2;
         }
 

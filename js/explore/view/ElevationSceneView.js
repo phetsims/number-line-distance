@@ -49,7 +49,10 @@ class ElevationSceneView extends NLDSceneView {
           getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
           getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
         },
-        distanceShadedNumberLineNodeOptions: { unitsString: metersSymbol }
+        distanceShadedNumberLineNodeOptions: {
+          unitsString: metersSymbol,
+          distanceTextPadding: 54 // determined empirically; see https://github.com/phetsims/number-line-distance/issues/67
+        }
       }
     );
 
