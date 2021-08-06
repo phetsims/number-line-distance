@@ -19,7 +19,7 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
-import house from '../../../images/house_png.js';
+import house from '../../../mipmaps/house_png.js';
 import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
 
 const ICON_SIZE = new Dimension2( 38, 38 );
