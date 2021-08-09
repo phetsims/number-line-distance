@@ -36,7 +36,7 @@ const ARROW_SHAPE_OPTIONS = {
   headHeight: 20
 };
 const MAX_ARROW_HEAD_TO_ARROW_PROPORTION = 0.5;
-const POINT_NAME_TEXT_OPTIONS = { maxWidth: 38, font: new MathSymbolFont( 20 ) };
+const POINT_NAME_TEXT_OPTIONS = { maxWidth: 38, font: new MathSymbolFont( 20 ), boundsMethod: 'accurate' };
 
 class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
@@ -48,8 +48,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     options = merge( {
       offScaleIndicatorVerticalOffset: -120,
       offScaleIndicatorHorizontalOffset: -150,
-      pointNameLabelOffsetFromHorizontalNumberLine: 30,
-      pointNameLabelOffsetFromVerticalNumberLine: 42,
+      pointNameLabelOffsetFromHorizontalNumberLine: 37,
+      pointNameLabelOffsetFromVerticalNumberLine: 45,
       distanceTextPadding: 50
     }, options );
     super( model.numberLine, options );
@@ -68,8 +68,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     this.addChild( distanceTextBackground );
 
     // Create text labels for the number line points that label them as x1, x2, y1, or y2.
-    const pointNameText0 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
-    const pointNameText1 = new RichText( '', POINT_NAME_TEXT_OPTIONS );
+    const pointNameText0 = new RichText( NLDConstants.X_1_STRING, POINT_NAME_TEXT_OPTIONS );
+    const pointNameText1 = new RichText( NLDConstants.X_2_STRING, POINT_NAME_TEXT_OPTIONS );
     const pointNameBackground0 = new BackgroundNode( pointNameText0, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     const pointNameBackground1 = new BackgroundNode( pointNameText1, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( new Node( {

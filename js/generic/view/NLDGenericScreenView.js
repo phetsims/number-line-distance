@@ -112,8 +112,8 @@ class NLDGenericScreenView extends ScreenView {
       model,
       {
         pointsOffScaleCondition: PointsOffScaleCondition.SOME,
-        pointNameLabelOffsetFromHorizontalNumberLine: 60,
-        pointNameLabelOffsetFromVerticalNumberLine: 75
+        pointNameLabelOffsetFromHorizontalNumberLine: 65,
+        pointNameLabelOffsetFromVerticalNumberLine: 70
       }
     );
     this.addChild( numberLineNode );
