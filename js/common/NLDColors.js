@@ -10,10 +10,10 @@ import ProfileColorProperty from '../../../scenery/js/util/ProfileColorProperty.
 import numberLineDistance from '../numberLineDistance.js';
 
 const NLDColors = {
-  genericScreenBackgroundColorProperty: new ProfileColorProperty( 'genericBackground', {
+  genericScreenBackgroundColorProperty: new ProfileColorProperty( numberLineDistance, 'genericBackground', {
     default: 'rgb( 245, 255, 254 )'
   } ),
-  exploreScreenBackgroundColorProperty: new ProfileColorProperty( 'exploreBackground', {
+  exploreScreenBackgroundColorProperty: new ProfileColorProperty( numberLineDistance, 'exploreBackground', {
     default: 'rgb( 254, 247, 233 )'
   } )
 };
