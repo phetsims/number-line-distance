@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.0.1-rc.1 Wed Oct 06 2021 14:22:59 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# number-line-distance 1.0.1-rc.2 Fri Oct 08 2021 16:39:23 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "f360fa1bd09a47b3c9e49cd90c8dddd136a13e0c",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "4182850fd180afc5e182b656f3e0df4a1d9c4842",
+    "sha": "0a9169149db1fc8b647852a6a47c904eed91e1b0",
     "branch": "1.0"
   },
   "phet-core": {
