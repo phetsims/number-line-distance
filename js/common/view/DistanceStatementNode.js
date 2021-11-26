@@ -12,25 +12,25 @@
 import numberLineDistance from '../../numberLineDistance.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import { Rectangle } from '../../../../scenery/js/imports.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import AbsoluteValueLine from '../../../../number-line-common/js/common/view/AbsoluteValueLine.js';
 import Property from '../../../../axon/js/Property.js';
-import RichText from '../../../../scenery/js/nodes/RichText.js';
-import HBox from '../../../../scenery/js/nodes/HBox.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
+import { RichText } from '../../../../scenery/js/imports.js';
+import { HBox } from '../../../../scenery/js/imports.js';
+import { Text } from '../../../../scenery/js/imports.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import NLDConstants from '../NLDConstants.js';
-import HStrut from '../../../../scenery/js/nodes/HStrut.js';
-import VBox from '../../../../scenery/js/nodes/VBox.js';
-import VStrut from '../../../../scenery/js/nodes/VStrut.js';
+import { HStrut } from '../../../../scenery/js/imports.js';
+import { VBox } from '../../../../scenery/js/imports.js';
+import { VStrut } from '../../../../scenery/js/imports.js';
 import Range from '../../../../dot/js/Range.js';
 
 // constants

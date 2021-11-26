@@ -7,10 +7,10 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
-import Image from '../../../../scenery/js/nodes/Image.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import { Image } from '../../../../scenery/js/imports.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
+import { Text } from '../../../../scenery/js/imports.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import fireHydrant from '../../../images/fire-hydrant_png.js';
 import person from '../../../mipmaps/person_png.js';

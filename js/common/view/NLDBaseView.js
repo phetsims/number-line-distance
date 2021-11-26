@@ -9,23 +9,23 @@
  * @author Saurabh Totey
  */
 
-import Node from '../../../../scenery/js/nodes/Node.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
-import VBox from '../../../../scenery/js/nodes/VBox.js';
+import { Text } from '../../../../scenery/js/imports.js';
+import { VBox } from '../../../../scenery/js/imports.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import NLDConstants from '../NLDConstants.js';
 import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
-import HBox from '../../../../scenery/js/nodes/HBox.js';
-import RichText from '../../../../scenery/js/nodes/RichText.js';
+import { Rectangle } from '../../../../scenery/js/imports.js';
+import { HBox } from '../../../../scenery/js/imports.js';
+import { RichText } from '../../../../scenery/js/imports.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
-import Path from '../../../../scenery/js/nodes/Path.js';
+import { Path } from '../../../../scenery/js/imports.js';
 import Shape from '../../../../kite/js/Shape.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import merge from '../../../../phet-core/js/merge.js';

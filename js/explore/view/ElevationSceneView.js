@@ -7,10 +7,10 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
-import Image from '../../../../scenery/js/nodes/Image.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import { Image } from '../../../../scenery/js/imports.js';
 import ElevationPointControllerNode from './ElevationPointControllerNode.js';
-import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import { Rectangle } from '../../../../scenery/js/imports.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import fishInWater from '../../../../number-line-common/images/fish-water_png.js';

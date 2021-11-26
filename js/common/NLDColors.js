@@ -6,7 +6,7 @@
  * @author Saurabh Totey
  */
 
-import ProfileColorProperty from '../../../scenery/js/util/ProfileColorProperty.js';
+import { ProfileColorProperty } from '../../../scenery/js/imports.js';
 import numberLineDistance from '../numberLineDistance.js';
 
 const NLDColors = {

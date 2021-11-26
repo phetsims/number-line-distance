@@ -9,7 +9,7 @@
  */
 
 import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
-import Path from '../../../../scenery/js/nodes/Path.js';
+import { Path } from '../../../../scenery/js/imports.js';
 import Property from '../../../../axon/js/Property.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Util from '../../../../dot/js/Utils.js';
@@ -19,12 +19,12 @@ import merge from '../../../../phet-core/js/merge.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
+import { Text } from '../../../../scenery/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import RichText from '../../../../scenery/js/nodes/RichText.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import { RichText } from '../../../../scenery/js/imports.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import NLDConstants from '../NLDConstants.js';
 

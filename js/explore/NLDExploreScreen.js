@@ -14,7 +14,7 @@ import NLDExploreScreenView from './view/NLDExploreScreenView.js';
 import exploreHomeIcon from '../../images/explore-home-icon_png.js';
 import exploreNavbarIcon from '../../images/explore-navbar-icon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import Image from '../../../scenery/js/nodes/Image.js';
+import { Image } from '../../../scenery/js/imports.js';
 import NLDColors from '../common/NLDColors.js';
 
 const screenExploreString = numberLineDistanceStrings.screen.explore;

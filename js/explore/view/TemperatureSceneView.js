@@ -7,14 +7,14 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
-import Image from '../../../../scenery/js/nodes/Image.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import { Image } from '../../../../scenery/js/imports.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
-import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
+import { Rectangle } from '../../../../scenery/js/imports.js';
+import { Text } from '../../../../scenery/js/imports.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import TemperaturePointControllerNode from './TemperaturePointControllerNode.js';
-import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
+import { LinearGradient } from '../../../../scenery/js/imports.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import Utils from '../../../../dot/js/Utils.js';
 import antarctic from '../../../images/antarctic_png.js';

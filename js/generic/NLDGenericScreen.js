@@ -14,7 +14,7 @@ import NLDGenericScreenView from './view/NLDGenericScreenView.js';
 import genericHomeIcon from '../../images/generic-home-icon_png.js';
 import genericNavbarIcon from '../../images/generic-navbar-icon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import Image from '../../../scenery/js/nodes/Image.js';
+import { Image } from '../../../scenery/js/imports.js';
 import NLDColors from '../common/NLDColors.js';
 
 const screenGenericString = numberLineDistanceStrings.screen.generic;

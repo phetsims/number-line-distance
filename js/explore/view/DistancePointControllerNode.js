@@ -6,7 +6,7 @@
  * @author Saurabh Totey
  */
 
-import Node from '../../../../scenery/js/nodes/Node.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import numberLineDistance from '../../numberLineDistance.js';
 

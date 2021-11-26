@@ -8,7 +8,7 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import merge from '../../../../phet-core/js/merge.js';

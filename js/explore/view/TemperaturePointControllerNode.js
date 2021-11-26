@@ -8,9 +8,9 @@
 
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
-import Color from '../../../../scenery/js/util/Color.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import { Text } from '../../../../scenery/js/imports.js';
+import { Color } from '../../../../scenery/js/imports.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
