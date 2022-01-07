@@ -8,11 +8,11 @@
  * @author Saurabh Totey
  */
 
-import Enumeration from '../../../../phet-core/js/Enumeration.js';
+import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
 import numberLineCommon from '../../numberLineDistance.js';
 
 // @public
-const DropFromDirection = Enumeration.byKeys( [ 'TOP', 'LEFT' ] );
+const DropFromDirection = EnumerationDeprecated.byKeys( [ 'TOP', 'LEFT' ] );
 
 numberLineCommon.register( 'DropFromDirection', DropFromDirection );
 export default DropFromDirection;
