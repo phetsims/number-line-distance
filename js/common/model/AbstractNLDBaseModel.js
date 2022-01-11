@@ -8,7 +8,7 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
-import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
+import EnumerationDeprecatedProperty from '../../../../axon/js/EnumerationDeprecatedProperty.js';
 import DistanceRepresentation from './DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import Property from '../../../../axon/js/Property.js';
@@ -43,7 +43,7 @@ class AbstractNLDBaseModel {
     this.distanceDescriptionVisibleProperty = new BooleanProperty( true );
 
     // @public {Property.<DistanceRepresentation>}
-    this.distanceRepresentationProperty = new EnumerationProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
+    this.distanceRepresentationProperty = new EnumerationDeprecatedProperty( DistanceRepresentation, DistanceRepresentation.ABSOLUTE );
 
     // @public {Property.<Boolean>} - whether the x_1 and x_2 or y_1 and y_2 nodes are swapped
     // An 'isSwapped' approach was taken rather than reordering the point controllers in some array because it is
