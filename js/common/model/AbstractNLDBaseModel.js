@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+// Copyright 2020-2022, University of Colorado Boulder
 
 /**
  * Model for common properties/behaviours used by all scenes/screens in the sim. This class is incomplete and meant to
