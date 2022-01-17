@@ -11,8 +11,8 @@ import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
 import NLDExploreScreenView from './view/NLDExploreScreenView.js';
-import exploreHomeIcon from '../../images/explore-home-icon_png.js';
-import exploreNavbarIcon from '../../images/explore-navbar-icon_png.js';
+import exploreHomeIcon_png from '../../images/exploreHomeIcon_png.js';
+import exploreNavbarIcon_png from '../../images/exploreNavbarIcon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import { Image } from '../../../scenery/js/imports.js';
 import NLDColors from '../common/NLDColors.js';
@@ -29,11 +29,11 @@ class NLDExploreScreen extends Screen {
     const options = {
       name: screenExploreString,
       backgroundColorProperty: NLDColors.exploreScreenBackgroundColorProperty,
-      homeScreenIcon: new ScreenIcon( new Image( exploreHomeIcon ), {
+      homeScreenIcon: new ScreenIcon( new Image( exploreHomeIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      navigationBarIcon: new ScreenIcon( new Image( exploreNavbarIcon ), {
+      navigationBarIcon: new ScreenIcon( new Image( exploreNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),

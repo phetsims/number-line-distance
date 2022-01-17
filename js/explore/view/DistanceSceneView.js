@@ -12,11 +12,11 @@ import { Image } from '../../../../scenery/js/imports.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import { Text } from '../../../../scenery/js/imports.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import fireHydrant from '../../../images/fire-hydrant_png.js';
-import person from '../../../mipmaps/person_png.js';
-import house from '../../../mipmaps/house_png.js';
+import fireHydrant_png from '../../../images/fireHydrant_png.js';
+import person_png from '../../../mipmaps/person_png.js';
+import house_png from '../../../mipmaps/house_png.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
-import sidewalk from '../../../images/sidewalk_png.js';
+import sidewalk_png from '../../../images/sidewalk_png.js';
 import NLDSceneView from './NLDSceneView.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;
@@ -42,8 +42,8 @@ class DistanceSceneView extends NLDSceneView {
 
     // Create the representations for the person and the house in the area that they can be swapped.
     // scales were empirically determined
-    const houseRepresentation = new Image( house, { scale: 0.15 } );
-    const personRepresentation = new Image( person, { scale: 0.1 } );
+    const houseRepresentation = new Image( house_png, { scale: 0.15 } );
+    const personRepresentation = new Image( person_png, { scale: 0.1 } );
     const smallestWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
     houseRepresentation.maxWidth = smallestWidth;
     personRepresentation.maxWidth = smallestWidth;
@@ -67,7 +67,7 @@ class DistanceSceneView extends NLDSceneView {
     );
 
     // image that represents the plane where the person and the house lie
-    const sidewalkImage = new Image( sidewalk );
+    const sidewalkImage = new Image( sidewalk_png );
     sidewalkImage.scale( model.sidewalkBounds.width / sidewalkImage.width, model.sidewalkBounds.height / sidewalkImage.height );
     sidewalkImage.center = model.sidewalkBounds.center;
     this.addChild( sidewalkImage );
@@ -75,7 +75,7 @@ class DistanceSceneView extends NLDSceneView {
     // fire hydrant that sits at the 0 location of the number line
     // offset and scale empirically determined
     this.addChild( new Image(
-      fireHydrant,
+      fireHydrant_png,
       {
         centerX: model.sidewalkBounds.center.x,
         bottom: model.sidewalkBounds.center.y - 5,
@@ -86,11 +86,11 @@ class DistanceSceneView extends NLDSceneView {
     // Point controllers that are in different parent nodes so that the person is always on top of the house in terms of
     // layering. The mouse area dilation for the personPointControllerImage is for #38.
     // the image scales and dilations are empirically determined
-    const personPointControllerImage = new Image( person, { scale: 0.22 } );
+    const personPointControllerImage = new Image( person_png, { scale: 0.22 } );
     personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
       5 / personPointControllerImage.getScaleVector().x
     );
-    const housePointControllerImage = new Image( house, { scale: 0.2 } );
+    const housePointControllerImage = new Image( house_png, { scale: 0.2 } );
     const pointControllersLayer = new Node();
     pointControllersLayer.addChild( new Node( {
       children: [

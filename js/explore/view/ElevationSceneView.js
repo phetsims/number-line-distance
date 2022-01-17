@@ -13,11 +13,11 @@ import ElevationPointControllerNode from './ElevationPointControllerNode.js';
 import { Rectangle } from '../../../../scenery/js/imports.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import fishInWater from '../../../../number-line-common/images/fish-water_png.js';
-import fishInAir from '../../../../number-line-common/images/fish-air_png.js';
-import birdInWater from '../../../../number-line-common/images/bird-water_png.js';
-import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
-import elevationBackground from '../../../images/elevation-background_png.js';
+import fishWater_png from '../../../../number-line-common/images/fishWater_png.js';
+import fishAir_png from '../../../../number-line-common/images/fishAir_png.js';
+import birdWater_png from '../../../../number-line-common/images/birdWater_png.js';
+import birdAir_png from '../../../../number-line-common/images/birdAir_png.js';
+import elevationBackground_png from '../../../images/elevationBackground_png.js';
 import NLDSceneView from './NLDSceneView.js';
 
 const fishString = numberLineDistanceStrings.fish;
@@ -38,8 +38,8 @@ class ElevationSceneView extends NLDSceneView {
     super(
       model,
       {
-        pointControllerRepresentationOne: new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
-        pointControllerRepresentationTwo: new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 35 } ),
+        pointControllerRepresentationOne: new Image( birdAir_png, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
+        pointControllerRepresentationTwo: new Image( fishWater_png, { center: Vector2.ZERO, maxWidth: 35 } ),
         distanceDescriptionStrings: {
           absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,
           directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateString,
@@ -59,7 +59,7 @@ class ElevationSceneView extends NLDSceneView {
     // Add background image and water rectangle. Water rectangle is on top of everything so that point controllers
     // appear 'submerged' in water because they are layered beneath the rectangle.
     this.addChild( new Image(
-      elevationBackground,
+      elevationBackground_png,
       {
         x: model.elevationAreaBounds.minX,
         y: model.elevationAreaBounds.minY,
@@ -84,14 +84,14 @@ class ElevationSceneView extends NLDSceneView {
         new ElevationPointControllerNode(
           model.pointControllerOne,
           seaLevel,
-          new Image( birdInWater, { center: Vector2.ZERO, maxWidth: 65 } ),
-          new Image( birdInAir, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
+          new Image( birdWater_png, { center: Vector2.ZERO, maxWidth: 65 } ),
+          new Image( birdAir_png, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
         ),
         new ElevationPointControllerNode(
           model.pointControllerTwo,
           seaLevel,
-          new Image( fishInWater, { center: Vector2.ZERO, maxWidth: 60 } ),
-          new Image( fishInAir, { center: Vector2.ZERO, maxWidth: 60 } )
+          new Image( fishWater_png, { center: Vector2.ZERO, maxWidth: 60 } ),
+          new Image( fishAir_png, { center: Vector2.ZERO, maxWidth: 60 } )
         )
       ]
     } );

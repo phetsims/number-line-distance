@@ -12,7 +12,7 @@ import SpatializedNumberLineNode from '../../../../number-line-common/js/common/
 import { Path } from '../../../../scenery/js/imports.js';
 import Property from '../../../../axon/js/Property.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import Util from '../../../../dot/js/Utils.js';
+import Utils from '../../../../dot/js/Utils.js';
 import Shape from '../../../../kite/js/Shape.js';
 import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import merge from '../../../../phet-core/js/merge.js';
@@ -228,7 +228,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           displayedDifference = Math.abs( displayedDifference );
         }
 
-        distanceText.text = `${Util.roundSymmetric( displayedDifference )}`;
+        distanceText.text = `${Utils.roundSymmetric( displayedDifference )}`;
 
         // Position distance text.
         if ( orientation === Orientation.HORIZONTAL ) {

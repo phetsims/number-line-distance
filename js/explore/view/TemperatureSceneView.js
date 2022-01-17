@@ -17,9 +17,9 @@ import TemperaturePointControllerNode from './TemperaturePointControllerNode.js'
 import { LinearGradient } from '../../../../scenery/js/imports.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import Utils from '../../../../dot/js/Utils.js';
-import antarctic from '../../../images/antarctic_png.js';
-import trees from '../../../images/trees_png.js';
-import desert from '../../../images/desert_png.js';
+import antarctic_png from '../../../images/antarctic_png.js';
+import trees_png from '../../../images/trees_png.js';
+import desert_png from '../../../images/desert_png.js';
 import NLDSceneView from './NLDSceneView.js';
 
 const aString = numberLineDistanceStrings.symbol.A;
@@ -92,7 +92,7 @@ class TemperatureSceneView extends NLDSceneView {
 
     // Add images on top of the rectangle gradient.
     this.addChild( new Image(
-      antarctic,
+      antarctic_png,
       {
         left: model.temperatureAreaBounds.left,
         bottom: model.temperatureAreaBounds.bottom,
@@ -100,7 +100,7 @@ class TemperatureSceneView extends NLDSceneView {
       }
     ) );
     this.addChild( new Image(
-      trees,
+      trees_png,
       {
         centerX: model.temperatureAreaBounds.centerX,
         bottom: model.temperatureAreaBounds.bottom,
@@ -108,7 +108,7 @@ class TemperatureSceneView extends NLDSceneView {
       }
     ) );
     this.addChild( new Image(
-      desert,
+      desert_png,
       {
         right: model.temperatureAreaBounds.right,
         bottom: model.temperatureAreaBounds.bottom,

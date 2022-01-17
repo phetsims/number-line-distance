@@ -11,8 +11,8 @@ import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NLDGenericModel from './model/NLDGenericModel.js';
 import NLDGenericScreenView from './view/NLDGenericScreenView.js';
-import genericHomeIcon from '../../images/generic-home-icon_png.js';
-import genericNavbarIcon from '../../images/generic-navbar-icon_png.js';
+import genericHomeIcon_png from '../../images/genericHomeIcon_png.js';
+import genericNavbarIcon_png from '../../images/genericNavbarIcon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import { Image } from '../../../scenery/js/imports.js';
 import NLDColors from '../common/NLDColors.js';
@@ -29,11 +29,11 @@ class NLDGenericScreen extends Screen {
     const options = {
       name: screenGenericString,
       backgroundColorProperty: NLDColors.genericScreenBackgroundColorProperty,
-      homeScreenIcon: new ScreenIcon( new Image( genericHomeIcon ), {
+      homeScreenIcon: new ScreenIcon( new Image( genericHomeIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
-      navigationBarIcon: new ScreenIcon( new Image( genericNavbarIcon ), {
+      navigationBarIcon: new ScreenIcon( new Image( genericNavbarIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),

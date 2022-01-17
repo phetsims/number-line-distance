@@ -9,10 +9,10 @@
  */
 
 import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
-import numberLineCommon from '../../numberLineDistance.js';
+import numberLineDistance from '../../numberLineDistance.js';
 
 // @public
 const DropFromDirection = EnumerationDeprecated.byKeys( [ 'TOP', 'LEFT' ] );
 
-numberLineCommon.register( 'DropFromDirection', DropFromDirection );
+numberLineDistance.register( 'DropFromDirection', DropFromDirection );
 export default DropFromDirection;

@@ -19,8 +19,8 @@ import { Image } from '../../../../scenery/js/imports.js';
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
-import house from '../../../mipmaps/house_png.js';
-import birdInAir from '../../../../number-line-common/images/bird-air_png.js';
+import house_png from '../../../mipmaps/house_png.js';
+import birdAir_png from '../../../../number-line-common/images/birdAir_png.js';
 
 const ICON_SIZE = new Dimension2( 38, 38 );
 
@@ -59,7 +59,7 @@ class NLDExploreScreenView extends ScreenView {
       {
         value: distanceSceneView.model,
         node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
-          children: [ new Image( house, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
+          children: [ new Image( house_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       },
       {
@@ -69,7 +69,7 @@ class NLDExploreScreenView extends ScreenView {
       {
         value: elevationSceneView.model,
         node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
-          children: [ new Image( birdInAir, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
+          children: [ new Image( birdAir_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       }
     ];

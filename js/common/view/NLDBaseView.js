@@ -36,7 +36,7 @@ import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
 import Property from '../../../../axon/js/Property.js';
-import Util from '../../../../dot/js/Utils.js';
+import Utils from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import required from '../../../../phet-core/js/required.js';
 import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLCheckboxGroup.js';
@@ -276,7 +276,7 @@ class NLDBaseView extends Node {
         // Calculate the difference with the correct sign.
         // Even though only the absolute value of difference is ever displayed, the sign is still used to determine
         // which string template to use.
-        let difference = Util.roundSymmetric( value1 - value0 );
+        let difference = Utils.roundSymmetric( value1 - value0 );
         if ( isPrimaryControllerSwapped ) {
           difference = -difference;
         }

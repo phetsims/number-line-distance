@@ -1,5 +1,5 @@
 {
-  "fire-hydrant.png": {
+  "fireHydrant.png": {
     "text": [
       "Copyright 2021 University of Colorado Boulder"
     ],
@@ -31,7 +31,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Megan Lai for use by PhET"
   },
-  "elevation-background.png": {
+  "elevationBackground.png": {
     "text": [
       "Copyright 2021 University of Colorado Boulder"
     ],
@@ -39,7 +39,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Amanda McGarry for use by PhET"
   },
-  "explore-home-icon.png": {
+  "exploreHomeIcon.png": {
     "text": [
       "Copyright 2021 University of Colorado Boulder"
     ],
@@ -47,7 +47,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Amanda McGarry for use by PhET"
   },
-  "generic-home-icon.png": {
+  "genericHomeIcon.png": {
     "text": [
       "Copyright 2021 University of Colorado Boulder"
     ],
@@ -55,7 +55,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Amanda McGarry for use by PhET"
   },
-  "explore-navbar-icon.png": {
+  "exploreNavbarIcon.png": {
     "text": [
       "Copyright 2021 University of Colorado Boulder"
     ],
@@ -63,7 +63,7 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Amanda McGarry for use by PhET"
   },
-  "generic-navbar-icon.png": {
+  "genericNavbarIcon.png": {
     "text": [
       "Copyright 2021 University of Colorado Boulder"
     ],
