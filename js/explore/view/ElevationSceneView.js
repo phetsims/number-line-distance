@@ -13,10 +13,10 @@ import ElevationPointControllerNode from './ElevationPointControllerNode.js';
 import { Rectangle } from '../../../../scenery/js/imports.js';
 import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import fishWater_png from '../../../../number-line-common/images/fishWater_png.js';
-import fishAir_png from '../../../../number-line-common/images/fishAir_png.js';
-import birdWater_png from '../../../../number-line-common/images/birdWater_png.js';
-import birdAir_png from '../../../../number-line-common/images/birdAir_png.js';
+import fishInWater_png from '../../../../number-line-common/images/fishInWater_png.js';
+import fishInAir_png from '../../../../number-line-common/images/fishInAir_png.js';
+import birdInWater_png from '../../../../number-line-common/images/birdInWater_png.js';
+import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.js';
 import elevationBackground_png from '../../../images/elevationBackground_png.js';
 import NLDSceneView from './NLDSceneView.js';
 
@@ -38,8 +38,8 @@ class ElevationSceneView extends NLDSceneView {
     super(
       model,
       {
-        pointControllerRepresentationOne: new Image( birdAir_png, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
-        pointControllerRepresentationTwo: new Image( fishWater_png, { center: Vector2.ZERO, maxWidth: 35 } ),
+        pointControllerRepresentationOne: new Image( birdInAir_png, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
+        pointControllerRepresentationTwo: new Image( fishInWater_png, { center: Vector2.ZERO, maxWidth: 35 } ),
         distanceDescriptionStrings: {
           absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,
           directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateString,
@@ -84,14 +84,14 @@ class ElevationSceneView extends NLDSceneView {
         new ElevationPointControllerNode(
           model.pointControllerOne,
           seaLevel,
-          new Image( birdWater_png, { center: Vector2.ZERO, maxWidth: 65 } ),
-          new Image( birdAir_png, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
+          new Image( birdInWater_png, { center: Vector2.ZERO, maxWidth: 65 } ),
+          new Image( birdInAir_png, { center: new Vector2( 0, -10 ), maxWidth: 60 } )
         ),
         new ElevationPointControllerNode(
           model.pointControllerTwo,
           seaLevel,
-          new Image( fishWater_png, { center: Vector2.ZERO, maxWidth: 60 } ),
-          new Image( fishAir_png, { center: Vector2.ZERO, maxWidth: 60 } )
+          new Image( fishInWater_png, { center: Vector2.ZERO, maxWidth: 60 } ),
+          new Image( fishInAir_png, { center: Vector2.ZERO, maxWidth: 60 } )
         )
       ]
     } );

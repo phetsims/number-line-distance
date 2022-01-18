@@ -20,7 +20,7 @@ import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import house_png from '../../../mipmaps/house_png.js';
-import birdAir_png from '../../../../number-line-common/images/birdAir_png.js';
+import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.js';
 
 const ICON_SIZE = new Dimension2( 38, 38 );
 
@@ -69,7 +69,7 @@ class NLDExploreScreenView extends ScreenView {
       {
         value: elevationSceneView.model,
         node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
-          children: [ new Image( birdAir_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
+          children: [ new Image( birdInAir_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       }
     ];
