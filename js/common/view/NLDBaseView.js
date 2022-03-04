@@ -26,7 +26,7 @@ import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
 import { Path } from '../../../../scenery/js/imports.js';
-import Shape from '../../../../kite/js/Shape.js';
+import { Shape } from '../../../../kite/js/imports.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import merge from '../../../../phet-core/js/merge.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';

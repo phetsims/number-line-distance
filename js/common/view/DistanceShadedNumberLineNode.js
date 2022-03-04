@@ -13,7 +13,7 @@ import { Path } from '../../../../scenery/js/imports.js';
 import Property from '../../../../axon/js/Property.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Utils from '../../../../dot/js/Utils.js';
-import Shape from '../../../../kite/js/Shape.js';
+import { Shape } from '../../../../kite/js/imports.js';
 import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import merge from '../../../../phet-core/js/merge.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
