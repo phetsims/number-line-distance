@@ -215,6 +215,9 @@ class NLDBaseView extends Node {
         firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationBackgroundOne ];
         secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationBackgroundTwo ];
       }
+      // Don't have the nodes handled by layout of multiple containers at once
+      firstNodeHBoxChildren.forEach( node => node.detach() );
+      secondNodeHBoxChildren.forEach( node => node.detach() );
       firstNodeHBox.children = firstNodeHBoxChildren;
       secondNodeHBox.children = secondNodeHBoxChildren;
     } );

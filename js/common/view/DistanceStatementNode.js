@@ -217,13 +217,13 @@ class DistanceStatementNode extends Node {
             new HStrut( minusSignText.width ),
             rightTermLabelNode,
             new HStrut( equalsSignText.width ),
-            distanceTextSpacer,
+            new Node( { children: [ distanceTextSpacer ] } ),
             distanceTextHStrutStandin
           ],
           spacing: 5
         } ),
         new HBox( {
-          children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, distanceTextSpacer, distanceText ],
+          children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, new Node( { children: [ distanceTextSpacer ] } ), distanceText ],
           spacing: 5
         } )
       ]
