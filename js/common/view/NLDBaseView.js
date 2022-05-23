@@ -35,7 +35,7 @@ import Matrix3 from '../../../../dot/js/Matrix3.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Utils from '../../../../dot/js/Utils.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import required from '../../../../phet-core/js/required.js';
@@ -257,7 +257,7 @@ class NLDBaseView extends Node {
     const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
       top: distanceStatementAccordionBox.bottom + 15 // padding empirically determined
     } ) );
-    Property.multilink(
+    Multilink.multilink(
       [
         model.distanceRepresentationProperty,
         model.numberLine.orientationProperty,

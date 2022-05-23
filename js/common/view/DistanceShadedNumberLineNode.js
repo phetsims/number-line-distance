@@ -10,7 +10,7 @@
 
 import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
 import { Path } from '../../../../scenery/js/imports.js';
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
@@ -79,7 +79,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     model.pointControllerTwo.isDraggingProperty.link( () => { pointNameBackground1.moveToFront(); } );
 
     // Most of the number line's behaviour is handled in this multilink.
-    Property.multilink(
+    Multilink.multilink(
       [
         model.distanceLabelsVisibleProperty,
         model.numberLine.displayedRangeProperty,

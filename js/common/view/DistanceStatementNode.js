@@ -18,6 +18,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import AbsoluteValueLine from '../../../../number-line-common/js/common/view/AbsoluteValueLine.js';
 import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import { RichText } from '../../../../scenery/js/imports.js';
 import { HBox } from '../../../../scenery/js/imports.js';
 import { Text } from '../../../../scenery/js/imports.js';
@@ -138,7 +139,7 @@ class DistanceStatementNode extends Node {
       } );
 
       valueProperties.forEach( ( valueProperty, i ) => {
-        Property.multilink(
+        Multilink.multilink(
           [ valueProperty, model.isPrimaryControllerSwappedProperty ],
           ( value, isPrimaryNodeSwapped ) => {
             const isSecondDisplayedValue = i === 1 && isPrimaryNodeSwapped || i === 0 && !isPrimaryNodeSwapped;
@@ -230,7 +231,7 @@ class DistanceStatementNode extends Node {
     } ) );
 
     // This multilink listens for changes in any relevant Properties and updates the distance statement accordingly.
-    Property.multilink(
+    Multilink.multilink(
       [
         valueProperties[ 0 ],
         valueProperties[ 1 ],
