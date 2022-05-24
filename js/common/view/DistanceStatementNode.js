@@ -9,30 +9,23 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import merge from '../../../../phet-core/js/merge.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
-import AbsoluteValueLine from '../../../../number-line-common/js/common/view/AbsoluteValueLine.js';
-import Property from '../../../../axon/js/Property.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import { RichText } from '../../../../scenery/js/imports.js';
-import { HBox } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
+import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import NLDConstants from '../NLDConstants.js';
-import { HStrut } from '../../../../scenery/js/imports.js';
-import { VBox } from '../../../../scenery/js/imports.js';
-import { VStrut } from '../../../../scenery/js/imports.js';
 import Range from '../../../../dot/js/Range.js';
+import Utils from '../../../../dot/js/Utils.js';
+import AbsoluteValueLine from '../../../../number-line-common/js/common/view/AbsoluteValueLine.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
+import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import { HBox, HStrut, LayoutBox, Node, Rectangle, RichText, Text, VStrut } from '../../../../scenery/js/imports.js';
+import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import NLDConstants from '../NLDConstants.js';
 
 // constants
 const MATH_TEXT_OPTIONS = { font: new MathSymbolFont( 25 ), maxWidth: 40 };
@@ -209,7 +202,8 @@ class DistanceStatementNode extends Node {
     } );
 
     const distanceTextSpacer = new HStrut( 3 ); // empirically determined
-    this.addChild( new VBox( {
+    this.addChild( new LayoutBox( {
+      orientation: 'vertical',
       spacing: options.controlsValues ? -10 : -20, // empirically determined
       children: [
         new HBox( {
