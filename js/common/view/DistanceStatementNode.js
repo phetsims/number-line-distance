@@ -3,8 +3,8 @@
 /**
  * A generic distance statement as a scenery Node. Can either be set to be able to control point controller values
  * (using number pickers) or just show values (using texts). All minus symbols use the MathSymbols.MINUS symbol (even if
- * it is a unary minus) so that all the minus symbols are consistent (see #27). Doesn't need to unlink Properties because
- * all instances of DistanceStatementNode are present for the lifetime of the sim.
+ * it is a unary minus) so that all the minus symbols are consistent (see #27). Doesn't need to unlink Properties
+ * because all instances of DistanceStatementNode are present for the lifetime of the sim.
  *
  * @author Saurabh Totey
  */
