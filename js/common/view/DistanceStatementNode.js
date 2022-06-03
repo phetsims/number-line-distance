@@ -204,7 +204,12 @@ class DistanceStatementNode extends Node {
     const distanceTextSpacer = new HStrut( 3 ); // empirically determined
     this.addChild( new LayoutBox( {
       orientation: 'vertical',
-      spacing: options.controlsValues ? -10 : -20, // empirically determined
+
+      // TODO: This used to use negative values, see https://github.com/phetsims/number-line-distance/issues/73, but
+      //       those are no longer supported (and it probably shouldn't have been done that way in the first place).
+      //       The spacing has been changed to zero, but that make the box bigger than we want, so it is only a
+      //       temporary solution.
+      spacing: 0,
       children: [
         new HBox( {
           children: [
