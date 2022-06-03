@@ -22,7 +22,7 @@ import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { HBox, HStrut, LayoutBox, Node, Rectangle, RichText, Text, VStrut } from '../../../../scenery/js/imports.js';
+import { FlowBox, HBox, HStrut, Node, Rectangle, RichText, Text, VStrut } from '../../../../scenery/js/imports.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NLDConstants from '../NLDConstants.js';
@@ -202,13 +202,13 @@ class DistanceStatementNode extends Node {
     } );
 
     const distanceTextSpacer = new HStrut( 3 ); // empirically determined
-    this.addChild( new LayoutBox( {
+    this.addChild( new FlowBox( {
       orientation: 'vertical',
 
-      // TODO: This used to use negative values, see https://github.com/phetsims/number-line-distance/issues/73, but
-      //       those are no longer supported (and it probably shouldn't have been done that way in the first place).
-      //       The spacing has been changed to zero, but that make the box bigger than we want, so it is only a
-      //       temporary solution.
+      // TODO: This used to use negative values for the spacing, see
+      //       https://github.com/phetsims/number-line-distance/issues/73, but those are no longer supported (and it
+      //       probably shouldn't have been done that way in the first place). The spacing has been changed to zero, but
+      //       that make the box bigger than we want, so it is only a temporary solution.
       spacing: 0,
       children: [
         new HBox( {
