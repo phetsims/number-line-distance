@@ -37,7 +37,7 @@ const INVALID_VALUE = -101;
 const INVALID_DISTANCE_STRING = '?';
 
 // A bounding object that is supposed to always be larger than a potential point controller representation
-const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 65 );
+const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 55 );
 
 class DistanceStatementNode extends Node {
 
@@ -171,7 +171,7 @@ class DistanceStatementNode extends Node {
 
     // absolute value marks - are shorter than the background nodes they are supposed to wrap for #40 by an empirically
     // determined amount.
-    const absoluteValueMarkHeightIndicator = new VStrut( backgroundNodes[ 0 ].height - 20 );
+    const absoluteValueMarkHeightIndicator = new VStrut( backgroundNodes[ 0 ].height - 10 );
     const leftAbsoluteValueMark = new AbsoluteValueLine( absoluteValueMarkHeightIndicator );
     const rightAbsoluteValueMark = new AbsoluteValueLine( absoluteValueMarkHeightIndicator );
 
@@ -204,12 +204,8 @@ class DistanceStatementNode extends Node {
     const distanceTextSpacer = new HStrut( 3 ); // empirically determined
     this.addChild( new FlowBox( {
       orientation: 'vertical',
-
-      // TODO: This used to use negative values for the spacing, see
-      //       https://github.com/phetsims/number-line-distance/issues/73, but those are no longer supported (and it
-      //       probably shouldn't have been done that way in the first place). The spacing has been changed to zero, but
-      //       that make the box bigger than we want, so it is only a temporary solution.
-      spacing: 0,
+      spacing: options.controlsValues ? 8 : 0,
+      resize: false,
       children: [
         new HBox( {
           children: [
