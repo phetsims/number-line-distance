@@ -204,7 +204,7 @@ class DistanceStatementNode extends Node {
     const distanceTextSpacer = new HStrut( 3 ); // empirically determined
     this.addChild( new FlowBox( {
       orientation: 'vertical',
-      spacing: options.controlsValues ? 8 : 0,
+      spacing: options.controlsValues ? 8 : 0, // empirically determined
       resize: false,
       children: [
         new HBox( {
