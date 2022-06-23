@@ -105,10 +105,10 @@ class NLDBaseView extends Node {
     // all used spacings and paddings were empirically determined
     const checkboxGroup = new NLCheckboxGroup(
       [
-        new NLCheckbox( pointLabelsString, model.numberLine.showPointLabelsProperty ),
-        new NLCheckbox( distanceLabelsString, model.distanceLabelsVisibleProperty ),
-        new NLCheckbox( distanceDescriptionString, model.distanceDescriptionVisibleProperty ),
-        new NLCheckbox( tickMarksString, model.numberLine.showTickMarksProperty )
+        new NLCheckbox( model.numberLine.showPointLabelsProperty, pointLabelsString ),
+        new NLCheckbox( model.distanceLabelsVisibleProperty, distanceLabelsString ),
+        new NLCheckbox( model.distanceDescriptionVisibleProperty, distanceDescriptionString ),
+        new NLCheckbox( model.numberLine.showTickMarksProperty, tickMarksString )
       ]
     );
     checkboxGroup.right = NLDConstants.NLD_LAYOUT_BOUNDS.maxX - NLCConstants.SCREEN_VIEW_X_MARGIN;
