@@ -49,21 +49,16 @@ class TemperaturePointControllerNode extends PointControllerNode {
       return DEFAULT_TEMPERATURE_VALUE;
     } );
 
-    const thermometerNode = new ThermometerNode(
-      TemperatureSceneModel.TEMPERATURE_RANGE.min,
-      TemperatureSceneModel.TEMPERATURE_RANGE.max,
-      valueProperty,
-      {
-        bulbDiameter: 30,
-        tubeWidth: 18,
-        lineWidth: 2,
-        fluidMainColor: pointController.color,
-        fluidHighlightColor: options.thermometerFluidHighlightColor,
-        backgroundFill: 'rgba( 255, 255, 255, 0.9 )',
-        majorTickLength: 0,
-        minorTickLength: 0
-      }
-    );
+    const thermometerNode = new ThermometerNode( valueProperty, TemperatureSceneModel.TEMPERATURE_RANGE.min, TemperatureSceneModel.TEMPERATURE_RANGE.max, {
+      bulbDiameter: 30,
+      tubeWidth: 18,
+      lineWidth: 2,
+      fluidMainColor: pointController.color,
+      fluidHighlightColor: options.thermometerFluidHighlightColor,
+      backgroundFill: 'rgba( 255, 255, 255, 0.9 )',
+      majorTickLength: 0,
+      minorTickLength: 0
+    } );
     compositeThermometerNode.addChild( thermometerNode );
 
     // Add the textual label for this thermometer.

@@ -51,7 +51,7 @@ class NLDExploreScreenView extends ScreenView {
 
     // Map the scene selection icons to their enum values (used in the radio button group).
     const thermometerSceneIcon = new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height );
-    const thermometerNode = new ThermometerNode( 0, 1, new NumberProperty( 0.5 ) );
+    const thermometerNode = new ThermometerNode( new NumberProperty( 0.5 ), 0, 1 );
     thermometerNode.setScaleMagnitude( ICON_SIZE.height / thermometerNode.height );
     thermometerNode.center = thermometerSceneIcon.center;
     thermometerSceneIcon.addChild( thermometerNode );
