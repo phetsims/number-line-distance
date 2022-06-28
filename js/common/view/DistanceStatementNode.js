@@ -20,7 +20,7 @@ import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
-import NumberPicker from '../../../../scenery-phet/js/NumberPicker.js';
+import NumberPicker from '../../../../sun/js/NumberPicker.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { FlowBox, HBox, HStrut, Node, Rectangle, RichText, Text, VStrut } from '../../../../scenery/js/imports.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
