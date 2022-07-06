@@ -93,17 +93,19 @@ class NLDExploreScreenView extends ScreenView {
       model.selectedSceneModelProperty,
       sceneSelectionButtonsContent,
       {
-        buttonContentXMargin: 5,
-        buttonContentYMargin: 5,
+        orientation: 'horizontal',
+        spacing: 7,
         touchAreaXDilation: 3,
         touchAreaYDilation: 3,
-        center: resetAllButton.centerTop.plus( NLDConstants.BOTTOM_BOX_BOUNDS.rightCenter ).dividedScalar( 2 ),
-        baseColor: 'white',
-        selectedLineWidth: 2,
-        deselectedLineWidth: 0.5,
-        deselectedButtonOpacity: 0.25,
-        orientation: 'horizontal',
-        spacing: 7
+        radioButtonOptions: {
+          xMargin: 5,
+          yMargin: 5,
+          baseColor: 'white',
+          selectedLineWidth: 2,
+          deselectedLineWidth: 0.5,
+          deselectedButtonOpacity: 0.25
+        },
+        center: resetAllButton.centerTop.plus( NLDConstants.BOTTOM_BOX_BOUNDS.rightCenter ).dividedScalar( 2 )
       }
     );
     this.addChild( sceneSelectorRadioButtonGroup );
