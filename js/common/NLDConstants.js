@@ -7,11 +7,11 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../numberLineDistance.js';
-import ScreenView from '../../../joist/js/ScreenView.js';
-import Range from '../../../dot/js/Range.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
+import Range from '../../../dot/js/Range.js';
+import ScreenView from '../../../joist/js/ScreenView.js';
 import StringUtils from '../../../phetcommon/js/util/StringUtils.js';
+import numberLineDistance from '../numberLineDistance.js';
 import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
 
 const xString = numberLineDistanceStrings.symbol.x;

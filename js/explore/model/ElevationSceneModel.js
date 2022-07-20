@@ -6,15 +6,15 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
-import NLDConstants from '../../common/NLDConstants.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
-import Range from '../../../../dot/js/Range.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Range from '../../../../dot/js/Range.js';
+import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
+import NLDConstants from '../../common/NLDConstants.js';
+import numberLineDistance from '../../numberLineDistance.js';
 import AreaPointController from './AreaPointController.js';
 import DropFromDirection from './DropFromDirection.js';
-import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 
 class ElevationSceneModel extends AbstractNLDBaseModel {
 

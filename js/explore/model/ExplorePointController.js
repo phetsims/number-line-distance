@@ -8,9 +8,9 @@
  * @author Saurabh Totey
  */
 
+import Vector2 from '../../../../dot/js/Vector2.js';
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import DropFromDirection from './DropFromDirection.js';
 
 class ExplorePointController extends PointController {

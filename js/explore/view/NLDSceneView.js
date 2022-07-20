@@ -7,12 +7,12 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import NLDBaseView from '../../common/view/NLDBaseView.js';
-import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import merge from '../../../../phet-core/js/merge.js';
 import required from '../../../../phet-core/js/required.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
+import NLDBaseView from '../../common/view/NLDBaseView.js';
+import numberLineDistance from '../../numberLineDistance.js';
 
 class NLDSceneView extends Node {
 

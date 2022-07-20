@@ -9,13 +9,13 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import EnumerationDeprecatedProperty from '../../../../axon/js/EnumerationDeprecatedProperty.js';
-import DistanceRepresentation from './DistanceRepresentation.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
-import NLDConstants from '../NLDConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import NLDConstants from '../NLDConstants.js';
+import DistanceRepresentation from './DistanceRepresentation.js';
 
 class AbstractNLDBaseModel {
 

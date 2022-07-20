@@ -6,21 +6,20 @@
  * @author Saurabh Totey
  */
 
-import ScreenView from '../../../../joist/js/ScreenView.js';
-import numberLineDistance from '../../numberLineDistance.js';
-import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import NLDConstants from '../../common/NLDConstants.js';
-import DistanceSceneView from './DistanceSceneView.js';
-import TemperatureSceneView from './TemperatureSceneView.js';
-import ElevationSceneView from './ElevationSceneView.js';
-import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { Image } from '../../../../scenery/js/imports.js';
-import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
-import house_png from '../../../mipmaps/house_png.js';
+import ScreenView from '../../../../joist/js/ScreenView.js';
 import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
+import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
+import { Image, Rectangle } from '../../../../scenery/js/imports.js';
+import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
+import house_png from '../../../mipmaps/house_png.js';
+import NLDConstants from '../../common/NLDConstants.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import DistanceSceneView from './DistanceSceneView.js';
+import ElevationSceneView from './ElevationSceneView.js';
+import TemperatureSceneView from './TemperatureSceneView.js';
 
 const ICON_SIZE = new Dimension2( 38, 38 );
 

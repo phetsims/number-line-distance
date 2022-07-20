@@ -7,15 +7,15 @@
  */
 
 import Screen from '../../../joist/js/Screen.js';
-import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
-import numberLineDistance from '../numberLineDistance.js';
-import NLDGenericModel from './model/NLDGenericModel.js';
-import NLDGenericScreenView from './view/NLDGenericScreenView.js';
-import genericHomeIcon_png from '../../images/genericHomeIcon_png.js';
-import genericNavbarIcon_png from '../../images/genericNavbarIcon_png.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import { Image } from '../../../scenery/js/imports.js';
+import genericHomeIcon_png from '../../images/genericHomeIcon_png.js';
+import genericNavbarIcon_png from '../../images/genericNavbarIcon_png.js';
 import NLDColors from '../common/NLDColors.js';
+import numberLineDistance from '../numberLineDistance.js';
+import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
+import NLDGenericModel from './model/NLDGenericModel.js';
+import NLDGenericScreenView from './view/NLDGenericScreenView.js';
 
 const screenGenericString = numberLineDistanceStrings.screen.generic;
 

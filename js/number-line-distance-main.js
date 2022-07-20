@@ -10,9 +10,9 @@
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import numberLineDistanceStrings from './numberLineDistanceStrings.js';
 import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';
+import numberLineDistanceStrings from './numberLineDistanceStrings.js';
 
 const numberLineDistanceTitleString = numberLineDistanceStrings[ 'number-line-distance' ].title;
 

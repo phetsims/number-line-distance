@@ -8,24 +8,21 @@
  * @author Saurabh Totey
  */
 
-import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
-import { Path } from '../../../../scenery/js/imports.js';
 import Multilink from '../../../../axon/js/Multilink.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
 import Utils from '../../../../dot/js/Utils.js';
-import { Shape } from '../../../../kite/js/imports.js';
-import DistanceRepresentation from '../model/DistanceRepresentation.js';
-import merge from '../../../../phet-core/js/merge.js';
-import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
-import numberLineDistance from '../../numberLineDistance.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
-import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import { RichText } from '../../../../scenery/js/imports.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import { Shape } from '../../../../kite/js/imports.js';
+import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
+import SpatializedNumberLineNode from '../../../../number-line-common/js/common/view/SpatializedNumberLineNode.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
+import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import { Node, Path, RichText, Text } from '../../../../scenery/js/imports.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import NLDConstants from '../NLDConstants.js';
 
 const SHADING_COLOR = 'gray';

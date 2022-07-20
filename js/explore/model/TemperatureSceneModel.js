@@ -6,14 +6,14 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
-import NLDConstants from '../../common/NLDConstants.js';
-import Range from '../../../../dot/js/Range.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import TemperatureToColorMapper from '../../../../number-line-common/js/explore/model/TemperatureToColorMapper.js';
 import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
+import NLDConstants from '../../common/NLDConstants.js';
+import numberLineDistance from '../../numberLineDistance.js';
 import AreaPointController from './AreaPointController.js';
 import DropFromDirection from './DropFromDirection.js';
 

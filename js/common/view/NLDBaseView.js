@@ -9,37 +9,31 @@
  * @author Saurabh Totey
  */
 
-import { Node } from '../../../../scenery/js/imports.js';
-import numberLineDistance from '../../numberLineDistance.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import { VBox } from '../../../../scenery/js/imports.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Multilink from '../../../../axon/js/Multilink.js';
+import Matrix3 from '../../../../dot/js/Matrix3.js';
+import Utils from '../../../../dot/js/Utils.js';
+import { Shape } from '../../../../kite/js/imports.js';
+import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
+import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
+import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLCheckboxGroup.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import required from '../../../../phet-core/js/required.js';
+import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
+import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import { HBox, Node, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import AccordionBox from '../../../../sun/js/AccordionBox.js';
+import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import NLDConstants from '../NLDConstants.js';
-import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { HBox } from '../../../../scenery/js/imports.js';
-import { RichText } from '../../../../scenery/js/imports.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
-import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
-import { Path } from '../../../../scenery/js/imports.js';
-import { Shape } from '../../../../kite/js/imports.js';
-import AccordionBox from '../../../../sun/js/AccordionBox.js';
-import merge from '../../../../phet-core/js/merge.js';
-import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
-import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
-import Matrix3 from '../../../../dot/js/Matrix3.js';
-import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
-import Multilink from '../../../../axon/js/Multilink.js';
-import Utils from '../../../../dot/js/Utils.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import required from '../../../../phet-core/js/required.js';
-import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLCheckboxGroup.js';
 
 const pointLabelsString = numberLineDistanceStrings.pointLabels;
 const distanceLabelsString = numberLineDistanceStrings.distanceLabels;

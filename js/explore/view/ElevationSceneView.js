@@ -6,18 +6,16 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Image } from '../../../../scenery/js/imports.js';
-import ElevationPointControllerNode from './ElevationPointControllerNode.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import fishInWater_png from '../../../../number-line-common/images/fishInWater_png.js';
-import fishInAir_png from '../../../../number-line-common/images/fishInAir_png.js';
-import birdInWater_png from '../../../../number-line-common/images/birdInWater_png.js';
 import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.js';
+import birdInWater_png from '../../../../number-line-common/images/birdInWater_png.js';
+import fishInAir_png from '../../../../number-line-common/images/fishInAir_png.js';
+import fishInWater_png from '../../../../number-line-common/images/fishInWater_png.js';
+import { Image, Node, Rectangle } from '../../../../scenery/js/imports.js';
 import elevationBackground_png from '../../../images/elevationBackground_png.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import ElevationPointControllerNode from './ElevationPointControllerNode.js';
 import NLDSceneView from './NLDSceneView.js';
 
 const fishString = numberLineDistanceStrings.fish;

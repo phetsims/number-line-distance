@@ -6,12 +6,12 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
-import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
-import NLDConstants from '../../common/NLDConstants.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
+import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
+import NLDConstants from '../../common/NLDConstants.js';
+import numberLineDistance from '../../numberLineDistance.js';
 
 class NLDGenericModel extends AbstractNLDBaseModel {
 

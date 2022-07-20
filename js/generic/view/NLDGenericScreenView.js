@@ -7,20 +7,19 @@
  */
 
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import numberLineDistance from '../../numberLineDistance.js';
-import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import NLDConstants from '../../common/NLDConstants.js';
-import NLDBaseView from '../../common/view/NLDBaseView.js';
-import { Node } from '../../../../scenery/js/imports.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
-import { Circle } from '../../../../scenery/js/imports.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import PointsOffScaleCondition from '../../../../number-line-common/js/common/view/PointsOffScaleCondition.js';
+import Orientation from '../../../../phet-core/js/Orientation.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import { Circle, Node } from '../../../../scenery/js/imports.js';
+import NLDConstants from '../../common/NLDConstants.js';
+import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
+import NLDBaseView from '../../common/view/NLDBaseView.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
 
 const genericAbsoluteDistanceTemplateString = numberLineDistanceStrings.genericAbsoluteDistanceTemplate;
 const genericDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.genericDirectedPositiveDistanceTemplate;

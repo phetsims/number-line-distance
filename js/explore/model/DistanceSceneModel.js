@@ -6,12 +6,12 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
-import NLDConstants from '../../common/NLDConstants.js';
-import DistancePointController from './DistancePointController.js';
-import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
+import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
+import NLDConstants from '../../common/NLDConstants.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import DistancePointController from './DistancePointController.js';
 
 // constants
 const TRAPEZOID_OFFSET_FROM_NUMBERLINE = 180;

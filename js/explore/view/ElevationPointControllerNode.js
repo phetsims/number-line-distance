@@ -6,9 +6,9 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import { Node } from '../../../../scenery/js/imports.js';
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import numberLineDistance from '../../numberLineDistance.js';
 
 // constants
 const IMAGE_DILATION = 20;

@@ -6,21 +6,17 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Image } from '../../../../scenery/js/imports.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import TemperaturePointControllerNode from './TemperaturePointControllerNode.js';
-import { LinearGradient } from '../../../../scenery/js/imports.js';
-import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import Utils from '../../../../dot/js/Utils.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import { Image, LinearGradient, Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import antarctic_png from '../../../images/antarctic_png.js';
-import trees_png from '../../../images/trees_png.js';
 import desert_png from '../../../images/desert_png.js';
+import trees_png from '../../../images/trees_png.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import NLDSceneView from './NLDSceneView.js';
+import TemperaturePointControllerNode from './TemperaturePointControllerNode.js';
 
 const aString = numberLineDistanceStrings.symbol.A;
 const bString = numberLineDistanceStrings.symbol.B;

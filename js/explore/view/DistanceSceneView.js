@@ -6,17 +6,15 @@
  * @author Saurabh Totey
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Image } from '../../../../scenery/js/imports.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
-import { Text } from '../../../../scenery/js/imports.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import { Image, Node, Text } from '../../../../scenery/js/imports.js';
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
-import person_png from '../../../mipmaps/person_png.js';
-import house_png from '../../../mipmaps/house_png.js';
-import DistancePointControllerNode from './DistancePointControllerNode.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
+import house_png from '../../../mipmaps/house_png.js';
+import person_png from '../../../mipmaps/person_png.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import DistancePointControllerNode from './DistancePointControllerNode.js';
 import NLDSceneView from './NLDSceneView.js';
 
 const eastString = numberLineDistanceStrings.symbol.east;

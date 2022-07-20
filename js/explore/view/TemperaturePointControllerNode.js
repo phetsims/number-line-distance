@@ -6,16 +6,14 @@
  * @author Saurabh Totey
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
-import { Color } from '../../../../scenery/js/imports.js';
-import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
-import numberLineDistance from '../../numberLineDistance.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
+import { Color, Node, Text } from '../../../../scenery/js/imports.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 
 // constants
 const DEFAULT_TEMPERATURE_VALUE = 0;
