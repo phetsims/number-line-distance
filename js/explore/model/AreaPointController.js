@@ -1,4 +1,4 @@
-// Copyright 2020-2021, University of Colorado Boulder
+// Copyright 2020-2022, University of Colorado Boulder
 
 /**
  * A point controller for the temperature and elevation scenes of NLD that changes proposePosition so that the point
