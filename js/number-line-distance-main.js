@@ -14,7 +14,7 @@ import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';
 import numberLineDistanceStrings from './numberLineDistanceStrings.js';
 
-const numberLineDistanceTitleString = numberLineDistanceStrings[ 'number-line-distance' ].title;
+const numberLineDistanceTitleStringProperty = numberLineDistanceStrings[ 'number-line-distance' ].titleStringProperty;
 
 const simOptions = {
   credits: {
@@ -33,6 +33,6 @@ simLauncher.launch( () => {
     new NLDExploreScreen( Tandem.ROOT.createTandem( 'exploreScreen' ) ),
     new NLDGenericScreen( Tandem.ROOT.createTandem( 'genericScreen' ) )
   ];
-  const sim = new Sim( numberLineDistanceTitleString, screens, simOptions );
+  const sim = new Sim( numberLineDistanceTitleStringProperty, screens, simOptions );
   sim.start();
 } );
