@@ -19,13 +19,13 @@ import NLDConstants from '../../common/NLDConstants.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 
-const genericAbsoluteDistanceTemplateString = numberLineDistanceStrings.genericAbsoluteDistanceTemplate;
-const genericDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.genericDirectedPositiveDistanceTemplate;
-const genericDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.genericDirectedNegativeDistanceTemplate;
-const unitString = numberLineDistanceStrings.unit;
-const unitsString = numberLineDistanceStrings.units;
+const genericAbsoluteDistanceTemplateString = NumberLineDistanceStrings.genericAbsoluteDistanceTemplate;
+const genericDirectedPositiveDistanceTemplateString = NumberLineDistanceStrings.genericDirectedPositiveDistanceTemplate;
+const genericDirectedNegativeDistanceTemplateString = NumberLineDistanceStrings.genericDirectedNegativeDistanceTemplate;
+const unitString = NumberLineDistanceStrings.unit;
+const unitsString = NumberLineDistanceStrings.units;
 
 const CIRCLE_REPRESENTATION_RADIUS = 6;
 

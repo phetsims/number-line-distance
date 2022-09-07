@@ -13,11 +13,11 @@ import genericHomeIcon_png from '../../images/genericHomeIcon_png.js';
 import genericNavbarIcon_png from '../../images/genericNavbarIcon_png.js';
 import NLDColors from '../common/NLDColors.js';
 import numberLineDistance from '../numberLineDistance.js';
-import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDGenericModel from './model/NLDGenericModel.js';
 import NLDGenericScreenView from './view/NLDGenericScreenView.js';
 
-const screenGenericString = numberLineDistanceStrings.screen.generic;
+const screenGenericString = NumberLineDistanceStrings.screen.generic;
 
 class NLDGenericScreen extends Screen {
 

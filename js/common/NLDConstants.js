@@ -12,10 +12,10 @@ import Range from '../../../dot/js/Range.js';
 import ScreenView from '../../../joist/js/ScreenView.js';
 import StringUtils from '../../../phetcommon/js/util/StringUtils.js';
 import numberLineDistance from '../numberLineDistance.js';
-import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 
-const xString = numberLineDistanceStrings.symbol.x;
-const yString = numberLineDistanceStrings.symbol.y;
+const xString = NumberLineDistanceStrings.symbol.x;
+const yString = NumberLineDistanceStrings.symbol.y;
 
 const BOX_INSET = 30;
 const BOTTOM_BOX_WIDTH = 320;

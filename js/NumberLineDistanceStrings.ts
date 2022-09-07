@@ -97,8 +97,8 @@ type StringsType = {
   'elevationSceneDirectedNegativeDistanceTemplateStringProperty': TReadOnlyProperty<string>;
 };
 
-const numberLineDistanceStrings = getStringModule( 'NUMBER_LINE_DISTANCE' ) as StringsType;
+const NumberLineDistanceStrings = getStringModule( 'NUMBER_LINE_DISTANCE' ) as StringsType;
 
-numberLineDistance.register( 'numberLineDistanceStrings', numberLineDistanceStrings );
+numberLineDistance.register( 'NumberLineDistanceStrings', NumberLineDistanceStrings );
 
-export default numberLineDistanceStrings;
+export default NumberLineDistanceStrings;

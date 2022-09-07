@@ -13,11 +13,11 @@ import exploreHomeIcon_png from '../../images/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../images/exploreNavbarIcon_png.js';
 import NLDColors from '../common/NLDColors.js';
 import numberLineDistance from '../numberLineDistance.js';
-import numberLineDistanceStrings from '../numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
 import NLDExploreScreenView from './view/NLDExploreScreenView.js';
 
-const screenExploreString = numberLineDistanceStrings.screen.explore;
+const screenExploreString = NumberLineDistanceStrings.screen.explore;
 
 class NLDExploreScreen extends Screen {
 

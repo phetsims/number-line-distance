@@ -12,9 +12,9 @@ import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';
-import numberLineDistanceStrings from './numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from './NumberLineDistanceStrings.js';
 
-const numberLineDistanceTitleStringProperty = numberLineDistanceStrings[ 'number-line-distance' ].titleStringProperty;
+const numberLineDistanceTitleStringProperty = NumberLineDistanceStrings[ 'number-line-distance' ].titleStringProperty;
 
 const simOptions = {
   credits: {

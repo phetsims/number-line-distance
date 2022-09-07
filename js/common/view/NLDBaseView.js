@@ -31,17 +31,17 @@ import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushBut
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import NLDConstants from '../NLDConstants.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
 
-const pointLabelsString = numberLineDistanceStrings.pointLabels;
-const distanceLabelsString = numberLineDistanceStrings.distanceLabels;
-const distanceDescriptionString = numberLineDistanceStrings.distanceDescription;
-const tickMarksString = numberLineDistanceStrings.tickMarks;
-const absoluteValueString = numberLineDistanceStrings.absoluteValue;
-const directedDistanceString = numberLineDistanceStrings.directedDistance;
-const distanceStatementString = numberLineDistanceStrings.distanceStatement;
+const pointLabelsString = NumberLineDistanceStrings.pointLabels;
+const distanceLabelsString = NumberLineDistanceStrings.distanceLabels;
+const distanceDescriptionString = NumberLineDistanceStrings.distanceDescription;
+const tickMarksString = NumberLineDistanceStrings.tickMarks;
+const absoluteValueString = NumberLineDistanceStrings.absoluteValue;
+const directedDistanceString = NumberLineDistanceStrings.directedDistance;
+const distanceStatementString = NumberLineDistanceStrings.distanceStatement;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 200 };
 const NODE_SWAP_TEXT_OPTIONS = { font: new MathSymbolFont( 30 ), maxWidth: 50 };

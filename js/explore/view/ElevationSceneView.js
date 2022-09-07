@@ -14,18 +14,18 @@ import fishInWater_png from '../../../../number-line-common/images/fishInWater_p
 import { Image, Node, Rectangle } from '../../../../scenery/js/imports.js';
 import elevationBackground_png from '../../../images/elevationBackground_png.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import ElevationPointControllerNode from './ElevationPointControllerNode.js';
 import NLDSceneView from './NLDSceneView.js';
 
-const fishString = numberLineDistanceStrings.fish;
-const birdString = numberLineDistanceStrings.bird;
-const elevationSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings.elevationSceneAbsoluteDistanceTemplate;
-const elevationSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.elevationSceneDirectedPositiveDistanceTemplate;
-const elevationSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.elevationSceneDirectedNegativeDistanceTemplate;
-const metersSymbol = numberLineDistanceStrings.symbol.meters;
-const meterString = numberLineDistanceStrings.meter;
-const metersString = numberLineDistanceStrings.meters;
+const fishString = NumberLineDistanceStrings.fish;
+const birdString = NumberLineDistanceStrings.bird;
+const elevationSceneAbsoluteDistanceTemplateString = NumberLineDistanceStrings.elevationSceneAbsoluteDistanceTemplate;
+const elevationSceneDirectedPositiveDistanceTemplateString = NumberLineDistanceStrings.elevationSceneDirectedPositiveDistanceTemplate;
+const elevationSceneDirectedNegativeDistanceTemplateString = NumberLineDistanceStrings.elevationSceneDirectedNegativeDistanceTemplate;
+const metersSymbol = NumberLineDistanceStrings.symbol.meters;
+const meterString = NumberLineDistanceStrings.meter;
+const metersString = NumberLineDistanceStrings.meters;
 
 class ElevationSceneView extends NLDSceneView {
 

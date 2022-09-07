@@ -13,19 +13,19 @@ import antarctic_png from '../../../images/antarctic_png.js';
 import desert_png from '../../../images/desert_png.js';
 import trees_png from '../../../images/trees_png.js';
 import numberLineDistance from '../../numberLineDistance.js';
-import numberLineDistanceStrings from '../../numberLineDistanceStrings.js';
+import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import NLDSceneView from './NLDSceneView.js';
 import TemperaturePointControllerNode from './TemperaturePointControllerNode.js';
 
-const aString = numberLineDistanceStrings.symbol.A;
-const bString = numberLineDistanceStrings.symbol.B;
-const temperatureSceneAbsoluteDistanceTemplateString = numberLineDistanceStrings.temperatureSceneAbsoluteDistanceTemplate;
-const temperatureSceneDirectedPositiveDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedPositiveDistanceTemplate;
-const temperatureSceneDirectedNegativeDistanceTemplateString = numberLineDistanceStrings.temperatureSceneDirectedNegativeDistanceTemplate;
-const degreesCelsiusString = numberLineDistanceStrings.symbol.degreesCelsius;
-const degreeString = numberLineDistanceStrings.degree;
-const degreesString = numberLineDistanceStrings.degrees;
+const aString = NumberLineDistanceStrings.symbol.A;
+const bString = NumberLineDistanceStrings.symbol.B;
+const temperatureSceneAbsoluteDistanceTemplateString = NumberLineDistanceStrings.temperatureSceneAbsoluteDistanceTemplate;
+const temperatureSceneDirectedPositiveDistanceTemplateString = NumberLineDistanceStrings.temperatureSceneDirectedPositiveDistanceTemplate;
+const temperatureSceneDirectedNegativeDistanceTemplateString = NumberLineDistanceStrings.temperatureSceneDirectedNegativeDistanceTemplate;
+const degreesCelsiusString = NumberLineDistanceStrings.symbol.degreesCelsius;
+const degreeString = NumberLineDistanceStrings.degree;
+const degreesString = NumberLineDistanceStrings.degrees;
 
 // constants
 const REPRESENTATION_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 50 };
