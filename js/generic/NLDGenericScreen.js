@@ -17,8 +17,6 @@ import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDGenericModel from './model/NLDGenericModel.js';
 import NLDGenericScreenView from './view/NLDGenericScreenView.js';
 
-const screenGenericString = NumberLineDistanceStrings.screen.generic;
-
 class NLDGenericScreen extends Screen {
 
   /**
@@ -27,7 +25,7 @@ class NLDGenericScreen extends Screen {
    */
   constructor( tandem ) {
     const options = {
-      name: screenGenericString,
+      name: NumberLineDistanceStrings.screen.genericStringProperty,
       backgroundColorProperty: NLDColors.genericScreenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( genericHomeIcon_png ), {
         maxIconWidthProportion: 1,

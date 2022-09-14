@@ -17,8 +17,6 @@ import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
 import NLDExploreScreenView from './view/NLDExploreScreenView.js';
 
-const screenExploreString = NumberLineDistanceStrings.screen.explore;
-
 class NLDExploreScreen extends Screen {
 
   /**
@@ -27,7 +25,7 @@ class NLDExploreScreen extends Screen {
    */
   constructor( tandem ) {
     const options = {
-      name: screenExploreString,
+      name: NumberLineDistanceStrings.screen.exploreStringProperty,
       backgroundColorProperty: NLDColors.exploreScreenBackgroundColorProperty,
       homeScreenIcon: new ScreenIcon( new Image( exploreHomeIcon_png ), {
         maxIconWidthProportion: 1,
