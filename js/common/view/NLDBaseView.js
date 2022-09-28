@@ -114,11 +114,11 @@ class NLDBaseView extends Node {
       [
         {
           value: DistanceRepresentation.ABSOLUTE,
-          node: new Text( absoluteValueString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
+          createNode: tandem => new Text( absoluteValueString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
         },
         {
           value: DistanceRepresentation.DIRECTED,
-          node: new Text( directedDistanceString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
+          createNode: tandem => new Text( directedDistanceString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
         }
       ],
       {
