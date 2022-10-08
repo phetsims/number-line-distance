@@ -57,17 +57,17 @@ class NLDExploreScreenView extends ScreenView {
     const sceneSelectionButtonsContent = [
       {
         value: distanceSceneView.model,
-        node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
+        createNode: tandem => new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
           children: [ new Image( house_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       },
       {
         value: temperatureSceneView.model,
-        node: thermometerSceneIcon
+        createNode: tandem => thermometerSceneIcon
       },
       {
         value: elevationSceneView.model,
-        node: new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
+        createNode: tandem => new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
           children: [ new Image( birdInAir_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
         } )
       }
