@@ -98,8 +98,8 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           labelStrings[ 1 ] = temp;
         }
 
-        pointNameText0.text = labelStrings[ 0 ];
-        pointNameText1.text = labelStrings[ 1 ];
+        pointNameText0.string = labelStrings[ 0 ];
+        pointNameText1.string = labelStrings[ 1 ];
         pointNameBackground0.visible = pointValues[ 0 ] !== null && displayedRange.contains( pointValues[ 0 ] );
         pointNameBackground1.visible = pointValues[ 1 ] !== null && displayedRange.contains( pointValues[ 1 ] );
 

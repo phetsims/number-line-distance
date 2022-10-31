@@ -238,15 +238,15 @@ class DistanceStatementNode extends Node {
 
         // Change the alt text based off of number line orientation.
         if ( orientation === Orientation.HORIZONTAL ) {
-          alternativeTexts[ 0 ].text = NLDConstants.X_1_STRING;
-          alternativeTexts[ 1 ].text = NLDConstants.X_2_STRING;
+          alternativeTexts[ 0 ].string = NLDConstants.X_1_STRING;
+          alternativeTexts[ 1 ].string = NLDConstants.X_2_STRING;
         }
         else {
-          alternativeTexts[ 0 ].text = NLDConstants.Y_1_STRING;
-          alternativeTexts[ 1 ].text = NLDConstants.Y_2_STRING;
+          alternativeTexts[ 0 ].string = NLDConstants.Y_1_STRING;
+          alternativeTexts[ 1 ].string = NLDConstants.Y_2_STRING;
         }
-        leftTermLabel.text = alternativeTexts[ 1 ].text;
-        rightTermLabel.text = alternativeTexts[ 0 ].text;
+        leftTermLabel.string = alternativeTexts[ 1 ].string;
+        rightTermLabel.string = alternativeTexts[ 0 ].string;
 
         // Choose the ordering for children for the distance statement.
         let leftTermNode = valueRepresentations[ 1 ];
@@ -274,12 +274,12 @@ class DistanceStatementNode extends Node {
         // Replace value representations with alternatives if their value is invalid.
         if ( leftTermValue === INVALID_VALUE ) {
           leftTermNode = alternativeTexts[ 1 ];
-          leftTermLabel.text = '';
+          leftTermLabel.string = '';
           distance = INVALID_DISTANCE_STRING;
         }
         if ( rightTermValue === INVALID_VALUE ) {
           rightTermNode = alternativeTexts[ 0 ];
-          rightTermLabel.text = '';
+          rightTermLabel.string = '';
           distance = INVALID_DISTANCE_STRING;
         }
 

@@ -219,12 +219,12 @@ class NLDBaseView extends Node {
     // Switch the firstNodeText and secondNodeText to use either x or y based on number line orientation.
     model.numberLine.orientationProperty.link( orientation => {
       if ( orientation === Orientation.HORIZONTAL ) {
-        firstNodeText.text = `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`;
-        secondNodeText.text = `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`;
+        firstNodeText.string = `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`;
+        secondNodeText.string = `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`;
       }
       else {
-        firstNodeText.text = `${NLDConstants.Y_1_STRING} ${MathSymbols.EQUAL_TO}`;
-        secondNodeText.text = `${NLDConstants.Y_2_STRING} ${MathSymbols.EQUAL_TO}`;
+        firstNodeText.string = `${NLDConstants.Y_1_STRING} ${MathSymbols.EQUAL_TO}`;
+        secondNodeText.string = `${NLDConstants.Y_2_STRING} ${MathSymbols.EQUAL_TO}`;
       }
     } );
 
@@ -261,7 +261,7 @@ class NLDBaseView extends Node {
       ( distanceRepresentation, orientation, isPrimaryControllerSwapped, pointValues ) => {
 
         // Don't say anything about distance if both point controllers aren't on the number line.
-        distanceDescriptionText.text = '';
+        distanceDescriptionText.string = '';
         distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
           return;
@@ -294,13 +294,13 @@ class NLDBaseView extends Node {
             config.distanceDescriptionStrings.singularUnits : config.distanceDescriptionStrings.pluralUnits
         };
         if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE || difference === 0 ) {
-          distanceDescriptionText.text = StringUtils.fillIn( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate, fillInValues );
+          distanceDescriptionText.string = StringUtils.fillIn( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate, fillInValues );
         }
         else if ( difference > 0 ) {
-          distanceDescriptionText.text = StringUtils.fillIn( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate, fillInValues );
+          distanceDescriptionText.string = StringUtils.fillIn( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate, fillInValues );
         }
         else if ( difference < 0 ) {
-          distanceDescriptionText.text = StringUtils.fillIn( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate, fillInValues );
+          distanceDescriptionText.string = StringUtils.fillIn( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate, fillInValues );
         }
 
         distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
