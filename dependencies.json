@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.0.8-rc.1 Thu Feb 02 2023 13:49:15 GMT-0700 (Mountain Standard Time)",
+  "comment": "# number-line-distance 1.0.8 Thu Feb 02 2023 13:50:13 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "f360fa1bd09a47b3c9e49cd90c8dddd136a13e0c",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "91adfedfe829254070bdd71e8abe84206512166d",
+    "sha": "fc1433a7b4232416d7f5b6624a69734790a56864",
     "branch": "1.0"
   },
   "phet-core": {
