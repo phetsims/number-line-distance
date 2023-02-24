@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "fc1433a7b4232416d7f5b6624a69734790a56864",
+    "sha": "9f4df8e113ca48ac7985b2e1528b5ecf6b2f677a",
     "branch": "1.0"
   },
   "phet-core": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "53072c4a1f19291076008306c61e7a8ecad018da",
+    "sha": "5c7726b902677f916f17dbf9105b617ecf6a1fc4",
     "branch": "HEAD"
   },
   "phetmarks": {
