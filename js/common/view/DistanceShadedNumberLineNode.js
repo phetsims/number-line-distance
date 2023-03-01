@@ -225,7 +225,7 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           displayedDifference = Math.abs( displayedDifference );
         }
 
-        distanceText.text = `${Utils.roundSymmetric( displayedDifference )}`;
+        distanceText.string = `${Utils.roundSymmetric( displayedDifference )}`;
 
         // Position distance text.
         if ( orientation === Orientation.HORIZONTAL ) {

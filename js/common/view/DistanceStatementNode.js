@@ -136,8 +136,8 @@ class DistanceStatementNode extends Node {
           [ valueProperty, model.isPrimaryControllerSwappedProperty ],
           ( value, isPrimaryNodeSwapped ) => {
             const isSecondDisplayedValue = i === 1 && isPrimaryNodeSwapped || i === 0 && !isPrimaryNodeSwapped;
-            textNodes[ i ].text = ( value < 0 && isSecondDisplayedValue ) ? `(${value})` : `${value}`;
-            textNodes[ i ].text = textNodes[ i ].text.replace( '-', MathSymbols.MINUS );
+            textNodes[ i ].string = ( value < 0 && isSecondDisplayedValue ) ? `(${value})` : `${value}`;
+            textNodes[ i ].string = textNodes[ i ].string.replace( '-', MathSymbols.MINUS );
             textNodes[ i ].center = valueRepresentations[ i ].rectBounds.center;
           }
         );
@@ -289,7 +289,7 @@ class DistanceStatementNode extends Node {
         leftTermNode.center = REPRESENTATION_BOUNDS.center;
         rightTermNode.center = REPRESENTATION_BOUNDS.center;
 
-        distanceText.text = `${distance}`.replace( '-', MathSymbols.MINUS );
+        distanceText.string = `${distance}`.replace( '-', MathSymbols.MINUS );
       }
     );
   }
