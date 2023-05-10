@@ -19,6 +19,10 @@
     "supportedBrands": [
       "phet",
       "adapted-from-phet"
+    ],
+    "screenNameKeys": [
+      "NUMBER_LINE_DISTANCE/screen.explore",
+      "NUMBER_LINE_DISTANCE/screen.generic"
     ]
   },
   "eslintConfig": {
