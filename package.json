@@ -21,7 +21,11 @@
       "adapted-from-phet"
     ],
     "supportsOutputJS": true,
-    "published": true
+    "published": true,
+    "screenNameKeys": [
+      "NUMBER_LINE_DISTANCE/screen.explore",
+      "NUMBER_LINE_DISTANCE/screen.generic"
+    ]
   },
   "eslintConfig": {
     "extends": "../chipper/eslint/sim_eslintrc.js"
