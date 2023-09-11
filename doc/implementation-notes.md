@@ -12,8 +12,7 @@ number line and exactly two point controllers, which allows for a lot of basic a
 base functionality is derived from number-line-common.
 
 Due to the similarity between the majority of the scenes/screens, a large amount of abstraction was able to be
-leveraged.
-For example,
+leveraged. For example,
 the [AbstractNLDBaseModel](https://github.com/phetsims/number-line-distance/blob/main/js/common/model/AbstractNLDBaseModel.js)
 class handles the majority of all models' duties.
 Similarly, [NLDBaseView](https://github.com/phetsims/number-line-distance/blob/main/js/common/view/NLDBaseView.js)
@@ -30,8 +29,7 @@ transforms.
 
 Because number-line-distance is mostly static, very few elements are ever added or removed over the lifetime of the
 simulation. As such, memory, for the most part, is not a concern. One must be careful with `NumberLinePoint`s being
-added
-and removed. There is no need to dispose anything because everything else is present over the sim's lifetime.
+added and removed. There is no need to dispose anything because everything else is present over the sim's lifetime.
 
 ## Terminology
 
@@ -64,8 +62,8 @@ listeners into `PointController`s.
 
 ### View
 
-[NLDBaseView](https://github.com/phetsims/number-line-distance/blob/main/js/common/view/NLDBaseView.js) contains all
-of the common view elements in a single layer. It handles the sim controls and even the distance statement and distance
+[NLDBaseView](https://github.com/phetsims/number-line-distance/blob/main/js/common/view/NLDBaseView.js) contains all of
+the common view elements in a single layer. It handles the sim controls and even the distance statement and distance
 description.
 
 [DistanceStatementNode](https://github.com/phetsims/number-line-distance/blob/main/js/common/view/DistanceStatementNode.js)
@@ -105,8 +103,7 @@ determined based on whether the point controller is within the play area.
 The Temperature scene's point controllers extend
 from [AreaPointController](https://github.com/phetsims/number-line-distance/blob/main/js/explore/model/AreaPointController.js)
 to add another color Property that represents the color of the temperature that they are at. The point controllers'
-color
-values are always either green or purple, but the added color Property
+color values are always either green or purple, but the added color Property
 to [TemperaturePointController](https://github.com/phetsims/number-line-distance/blob/main/js/explore/model/TemperaturePointController.js)
 changes with the temperature value for the `TemperatureAndColorSensor`
 in [TemperaturePointControllerNode](https://github.com/phetsims/number-line-distance/blob/main/js/explore/view/TemperaturePointControllerNode.js).
