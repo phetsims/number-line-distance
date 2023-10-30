@@ -95,6 +95,10 @@ type StringsType = {
   'elevationSceneDirectedPositiveDistanceTemplateStringProperty': LocalizedStringProperty;
   'elevationSceneDirectedNegativeDistanceTemplate': string;
   'elevationSceneDirectedNegativeDistanceTemplateStringProperty': LocalizedStringProperty;
+  'characterSet': {
+    'unitedStatesOfAmerica': string;
+    'unitedStatesOfAmericaStringProperty': LocalizedStringProperty;
+  }
 };
 
 const NumberLineDistanceStrings = getStringModule( 'NUMBER_LINE_DISTANCE' ) as StringsType;

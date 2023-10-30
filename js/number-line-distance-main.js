@@ -7,16 +7,25 @@
  * @author Saurabh Totey
  */
 
+import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
+import ExplorerImages from './common/view/ExplorerImages.js';
 import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';
 import NumberLineDistanceStrings from './NumberLineDistanceStrings.js';
 
 const numberLineDistanceTitleStringProperty = NumberLineDistanceStrings[ 'number-line-distance' ].titleStringProperty;
 
+const preferencesModel = new PreferencesModel( {
+  localizationOptions: {
+    characterSets: ExplorerImages.EXPLORER_CHARACTER_SETS
+  }
+} );
+
 const simOptions = {
+  preferencesModel: preferencesModel,
   credits: {
     leadDesign: 'Amanda McGarry',
     softwareDevelopment: 'John Blanco, Saurabh Totey',

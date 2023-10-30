@@ -118,5 +118,8 @@
   },
   "elevationSceneDirectedNegativeDistanceTemplate": {
     "value": "The {{secondaryPointControllerLabel}} is {{difference}} {{units}} below the {{primaryPointControllerLabel}}."
+  },
+  "characterSet.unitedStatesOfAmerica": {
+    "value": "United States of America"
   }
 }

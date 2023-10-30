@@ -11,7 +11,7 @@ import { Image, Node, Text } from '../../../../scenery/js/imports.js';
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
 import house_png from '../../../mipmaps/house_png.js';
-import person_png from '../../../mipmaps/person_png.js';
+import ExplorerCharacterSetUSA from '../../common/view/ExplorerCharacterSetUSA.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
@@ -41,7 +41,7 @@ class DistanceSceneView extends NLDSceneView {
     // Create the representations for the person and the house in the area that they can be swapped.
     // scales were empirically determined
     const houseRepresentation = new Image( house_png, { scale: 0.15 } );
-    const personRepresentation = new Image( person_png, { scale: 0.1 } );
+    const personRepresentation = new Image( ExplorerCharacterSetUSA.standing, { scale: 0.1 } );
     const smallestWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
     houseRepresentation.maxWidth = smallestWidth;
     personRepresentation.maxWidth = smallestWidth;
@@ -84,7 +84,7 @@ class DistanceSceneView extends NLDSceneView {
     // Point controllers that are in different parent nodes so that the person is always on top of the house in terms of
     // layering. The mouse area dilation for the personPointControllerImage is for #38.
     // the image scales and dilations are empirically determined
-    const personPointControllerImage = new Image( person_png, { scale: 0.22 } );
+    const personPointControllerImage = new Image( ExplorerCharacterSetUSA.standing, { scale: 0.22 } );
     personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
       5 / personPointControllerImage.getScaleVector().x
     );
