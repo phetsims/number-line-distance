@@ -10,9 +10,10 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import Matrix3 from '../../../../dot/js/Matrix3.js';
-import Utils from '../../../../dot/js/Utils.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
@@ -20,12 +21,11 @@ import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLChe
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import required from '../../../../phet-core/js/required.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { HBox, Node, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import { HBox, ManualConstraint, Node, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
@@ -247,67 +247,110 @@ class NLDBaseView extends Node {
     );
     this.addChild( distanceStatementAccordionBox );
 
+    // The labels and the unit properties change depending on context. These properties ensure that the pattern string labels are updated
+    // appropriately in the map as needed.
+    const primaryPointControllerLabelProperty = new DerivedProperty( [ model.isPrimaryControllerSwappedProperty, model.numberLine.orientationProperty ],
+      ( isPrimarySwapped, orientation ) => {
+        return config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimarySwapped, orientation );
+      } );
+    const secondaryPointControllerLabelProperty = new DerivedProperty( [ model.isPrimaryControllerSwappedProperty, model.numberLine.orientationProperty ],
+      ( isPrimarySwapped, orientation ) => {
+        return config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimarySwapped, orientation );
+      } );
+    const unitsProperty = new DerivedProperty( [ model.distanceProperty ], distance => {
+      return ( distance === 1 || distance === -1 ) ?
+             config.distanceDescriptionStrings.singularUnits : config.distanceDescriptionStrings.pluralUnits;
+    } );
+    const patternStringValues = {
+      primaryPointControllerLabel: primaryPointControllerLabelProperty,
+      secondaryPointControllerLabel: secondaryPointControllerLabelProperty,
+      difference: model.distanceProperty,
+      units: unitsProperty
+    };
+
+    // Update pattern string labels and values based off of the distance representation and whether the
+    // distance is positive or negative.
+    const distanceDescriptionMaps = {
+      primaryPointControllerLabel: labelProperty => labelProperty.value,
+      secondaryPointControllerLabel: labelProperty => labelProperty.value,
+      units: unitsProperty => unitsProperty.value,
+      difference: distance => Math.abs( distance )
+    };
+
+    const absoluteDistanceDescriptionPatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate,
+      patternStringValues, {
+        maps: distanceDescriptionMaps
+      } );
+    const absoluteDistanceDescriptionVisibleProperty = new BooleanProperty( false );
+
+    const directedPositiveDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate,
+      patternStringValues, {
+        maps: distanceDescriptionMaps
+      } );
+    const directedPositiveDistanceVisibleProperty = new BooleanProperty( false );
+
+    const directedNegativeDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate,
+      patternStringValues, {
+        maps: distanceDescriptionMaps
+      } );
+    const directedNegativeDistanceVisibleProperty = new BooleanProperty( false );
+
+
     // a text description for the distance under the distance statement accordion box
-    const distanceDescriptionText = new RichText( '', merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
-      top: distanceStatementAccordionBox.bottom + 15 // padding empirically determined
-    } ) );
+    const distanceDescriptionTextVisibleProperty = new DerivedProperty( [ model.distanceDescriptionVisibleProperty, model.pointValuesProperty ],
+      distanceDescriptionVisible => {
+        return distanceDescriptionVisible && model.areBothPointControllersControllingOnNumberLine();
+      } );
+    const distanceDescriptionTextWrapper = new Node( {
+      visibleProperty: distanceDescriptionTextVisibleProperty,
+      children: [ new RichText( absoluteDistanceDescriptionPatternStringProperty, merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
+        visibleProperty: absoluteDistanceDescriptionVisibleProperty
+      } ) ),
+        new RichText( directedPositiveDistancePatternStringProperty, merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
+          visibleProperty: directedPositiveDistanceVisibleProperty
+        } ) ),
+        new RichText( directedNegativeDistancePatternStringProperty, merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
+          visibleProperty: directedNegativeDistanceVisibleProperty
+        } ) ) ]
+    } );
+
+
     Multilink.multilink(
       [
         model.distanceRepresentationProperty,
-        model.numberLine.orientationProperty,
-        model.isPrimaryControllerSwappedProperty,
-        model.pointValuesProperty
+        model.distanceProperty
       ],
-      ( distanceRepresentation, orientation, isPrimaryControllerSwapped, pointValues ) => {
+      ( distanceRepresentation, distance ) => {
 
         // Don't say anything about distance if both point controllers aren't on the number line.
-        distanceDescriptionText.string = '';
-        distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
         if ( !model.areBothPointControllersControllingOnNumberLine() ) {
           return;
         }
 
-        const value0 = pointValues[ 0 ];
-        const value1 = pointValues[ 1 ];
-
-        // Calculate the difference with the correct sign.
-        // Even though only the absolute value of difference is ever displayed, the sign is still used to determine
-        // which string template to use.
-        let difference = Utils.roundSymmetric( value1 - value0 );
-        if ( isPrimaryControllerSwapped ) {
-          difference = -difference;
+        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE || distance === 0 ) {
+          absoluteDistanceDescriptionVisibleProperty.value = true;
+          directedPositiveDistanceVisibleProperty.value = false;
+          directedNegativeDistanceVisibleProperty.value = false;
         }
-
-        // Get the strings for the point controllers.
-        const primaryPointControllerLabel =
-          config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimaryControllerSwapped, orientation );
-        const secondaryPointControllerLabel =
-          config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimaryControllerSwapped, orientation );
-
-        // Fill in a string template for the distance text based off of the distance representation and whether the
-        // distance is positive or negative.
-        const fillInValues = {
-          primaryPointControllerLabel: primaryPointControllerLabel,
-          secondaryPointControllerLabel: secondaryPointControllerLabel,
-          difference: Math.abs( difference ),
-          units: ( difference === 1 || difference === -1 ) ?
-            config.distanceDescriptionStrings.singularUnits : config.distanceDescriptionStrings.pluralUnits
-        };
-        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE || difference === 0 ) {
-          distanceDescriptionText.string = StringUtils.fillIn( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate, fillInValues );
+        else if ( distance > 0 ) {
+          absoluteDistanceDescriptionVisibleProperty.value = false;
+          directedPositiveDistanceVisibleProperty.value = true;
+          directedNegativeDistanceVisibleProperty.value = false;
         }
-        else if ( difference > 0 ) {
-          distanceDescriptionText.string = StringUtils.fillIn( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate, fillInValues );
+        else if ( distance < 0 ) {
+          absoluteDistanceDescriptionVisibleProperty.value = false;
+          directedPositiveDistanceVisibleProperty.value = false;
+          directedNegativeDistanceVisibleProperty.value = true;
         }
-        else if ( difference < 0 ) {
-          distanceDescriptionText.string = StringUtils.fillIn( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate, fillInValues );
-        }
-
-        distanceDescriptionText.centerX = distanceStatementAccordionBox.centerX;
       }
     );
-    model.distanceDescriptionVisibleProperty.linkAttribute( distanceDescriptionText, 'visible' );
-    this.addChild( distanceDescriptionText );
+
+    this.addChild( distanceDescriptionTextWrapper );
+
+    ManualConstraint.create( this, [ distanceDescriptionTextWrapper, distanceStatementAccordionBox ], ( wrapperProxy, accordionProxy ) => {
+      wrapperProxy.centerX = accordionProxy.centerX;
+      wrapperProxy.top = accordionProxy.bottom + 15; // padding empirically determined
+    } );
   }
 
 }

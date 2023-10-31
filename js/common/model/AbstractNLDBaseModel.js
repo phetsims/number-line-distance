@@ -8,9 +8,11 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import EnumerationDeprecatedProperty from '../../../../axon/js/EnumerationDeprecatedProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
 import numberLineDistance from '../../numberLineDistance.js';
@@ -73,6 +75,23 @@ class AbstractNLDBaseModel {
         Array.isArray( array ) && array.length === 2 && _.every( array,
           element => element === null || typeof element === 'number'
         )
+    } );
+
+    // @public (readonly) {DerivedProperty<number | null>}
+    // The distance property calculates the difference between the point values when both point controllers are on the
+    // number line, otherwise it returns null.
+    this.distanceProperty = new DerivedProperty( [ this.pointValuesProperty, this.isPrimaryControllerSwappedProperty ], ( pointValues, isPrimaryControllerSwapped ) => {
+      const value0 = pointValues[ 0 ];
+      const value1 = pointValues[ 1 ];
+      let distance = this.areBothPointControllersControllingOnNumberLine() ? Utils.roundSymmetric( value1 - value0 ) : null;
+
+      // Calculate the difference with the correct sign.
+      // Even though only the absolute value of difference is ever displayed, the sign is still used to determine
+      // which string template to use.
+      if ( isPrimaryControllerSwapped ) {
+        distance = -distance;
+      }
+      return distance;
     } );
 
     // Listen to the numberLine and its points to make updates to pointsValueProperty when necessary. Ideally, we would
