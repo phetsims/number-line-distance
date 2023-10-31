@@ -18,14 +18,14 @@ import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import ElevationPointControllerNode from './ElevationPointControllerNode.js';
 import NLDSceneView from './NLDSceneView.js';
 
-const fishString = NumberLineDistanceStrings.fish;
-const birdString = NumberLineDistanceStrings.bird;
-const elevationSceneAbsoluteDistanceTemplateString = NumberLineDistanceStrings.elevationSceneAbsoluteDistanceTemplate;
-const elevationSceneDirectedPositiveDistanceTemplateString = NumberLineDistanceStrings.elevationSceneDirectedPositiveDistanceTemplate;
-const elevationSceneDirectedNegativeDistanceTemplateString = NumberLineDistanceStrings.elevationSceneDirectedNegativeDistanceTemplate;
-const metersSymbol = NumberLineDistanceStrings.symbol.meters;
-const meterString = NumberLineDistanceStrings.meter;
-const metersString = NumberLineDistanceStrings.meters;
+const fishStringProperty = NumberLineDistanceStrings.fishStringProperty;
+const birdStringProperty = NumberLineDistanceStrings.birdStringProperty;
+const elevationSceneAbsoluteDistanceTemplateStringProperty = NumberLineDistanceStrings.elevationSceneAbsoluteDistanceTemplateStringProperty;
+const elevationSceneDirectedPositiveDistanceTemplateStringProperty = NumberLineDistanceStrings.elevationSceneDirectedPositiveDistanceTemplateStringProperty;
+const elevationSceneDirectedNegativeDistanceTemplateStringProperty = NumberLineDistanceStrings.elevationSceneDirectedNegativeDistanceTemplateStringProperty;
+const metersSymbolStringProperty = NumberLineDistanceStrings.symbol.metersStringProperty;
+const meterStringProperty = NumberLineDistanceStrings.meterStringProperty;
+const metersStringProperty = NumberLineDistanceStrings.metersStringProperty;
 
 class ElevationSceneView extends NLDSceneView {
 
@@ -39,16 +39,16 @@ class ElevationSceneView extends NLDSceneView {
         pointControllerRepresentationOne: new Image( birdInAir_png, { center: new Vector2( 0, -10 ), maxWidth: 35 } ),
         pointControllerRepresentationTwo: new Image( fishInWater_png, { center: Vector2.ZERO, maxWidth: 35 } ),
         distanceDescriptionStrings: {
-          absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateString,
-          directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateString,
-          directedNegativeDistanceDescriptionTemplate: elevationSceneDirectedNegativeDistanceTemplateString,
-          singularUnits: meterString,
-          pluralUnits: metersString,
-          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishString : birdString,
-          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdString : fishString
+          absoluteDistanceDescriptionTemplate: elevationSceneAbsoluteDistanceTemplateStringProperty,
+          directedPositiveDistanceDescriptionTemplate: elevationSceneDirectedPositiveDistanceTemplateStringProperty,
+          directedNegativeDistanceDescriptionTemplate: elevationSceneDirectedNegativeDistanceTemplateStringProperty,
+          singularUnits: meterStringProperty,
+          pluralUnits: metersStringProperty,
+          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishStringProperty : birdStringProperty,
+          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdStringProperty : fishStringProperty
         },
         distanceShadedNumberLineNodeOptions: {
-          unitsString: metersSymbol,
+          unitsString: metersSymbolStringProperty,
           distanceTextPadding: 54 // determined empirically; see https://github.com/phetsims/number-line-distance/issues/67
         }
       }

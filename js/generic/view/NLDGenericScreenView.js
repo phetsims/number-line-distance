@@ -21,11 +21,11 @@ import NLDBaseView from '../../common/view/NLDBaseView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 
-const genericAbsoluteDistanceTemplateString = NumberLineDistanceStrings.genericAbsoluteDistanceTemplate;
-const genericDirectedPositiveDistanceTemplateString = NumberLineDistanceStrings.genericDirectedPositiveDistanceTemplate;
-const genericDirectedNegativeDistanceTemplateString = NumberLineDistanceStrings.genericDirectedNegativeDistanceTemplate;
-const unitString = NumberLineDistanceStrings.unit;
-const unitsString = NumberLineDistanceStrings.units;
+const genericAbsoluteDistanceTemplateStringProperty = NumberLineDistanceStrings.genericAbsoluteDistanceTemplateStringProperty;
+const genericDirectedPositiveDistanceTemplateStringProperty = NumberLineDistanceStrings.genericDirectedPositiveDistanceTemplateStringProperty;
+const genericDirectedNegativeDistanceTemplateStringProperty = NumberLineDistanceStrings.genericDirectedNegativeDistanceTemplateStringProperty;
+const unitStringProperty = NumberLineDistanceStrings.unitStringProperty;
+const unitsStringProperty = NumberLineDistanceStrings.unitsStringProperty;
 
 const CIRCLE_REPRESENTATION_RADIUS = 6;
 
@@ -50,11 +50,11 @@ class NLDGenericScreenView extends ScreenView {
       secondControllerRepresentation,
       {
         distanceDescriptionStrings: {
-          absoluteDistanceDescriptionTemplate: genericAbsoluteDistanceTemplateString,
-          directedPositiveDistanceDescriptionTemplate: genericDirectedPositiveDistanceTemplateString,
-          directedNegativeDistanceDescriptionTemplate: genericDirectedNegativeDistanceTemplateString,
-          singularUnits: unitString,
-          pluralUnits: unitsString,
+          absoluteDistanceDescriptionTemplate: genericAbsoluteDistanceTemplateStringProperty,
+          directedPositiveDistanceDescriptionTemplate: genericDirectedPositiveDistanceTemplateStringProperty,
+          directedNegativeDistanceDescriptionTemplate: genericDirectedNegativeDistanceTemplateStringProperty,
+          singularUnits: unitStringProperty,
+          pluralUnits: unitsStringProperty,
           getPrimaryPointControllerLabel: ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
             ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_1_STRING : NLDConstants.Y_1_STRING
           ),

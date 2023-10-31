@@ -14,8 +14,8 @@ import StringUtils from '../../../phetcommon/js/util/StringUtils.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 
-const xString = NumberLineDistanceStrings.symbol.x;
-const yString = NumberLineDistanceStrings.symbol.y;
+const xStringProperty = NumberLineDistanceStrings.symbol.xStringProperty;
+const yStringProperty = NumberLineDistanceStrings.symbol.yStringProperty;
 
 const BOX_INSET = 30;
 const BOTTOM_BOX_WIDTH = 320;
@@ -50,10 +50,10 @@ const NLDConstants = {
     ScreenView.DEFAULT_LAYOUT_BOUNDS.centerY + SIDE_BOX_HEIGHT / 2
   ),
 
-  X_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xString, subscript: 1 } ),
-  X_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xString, subscript: 2 } ),
-  Y_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yString, subscript: 1 } ),
-  Y_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yString, subscript: 2 } )
+  X_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xStringProperty, subscript: 1 } ),
+  X_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xStringProperty, subscript: 2 } ),
+  Y_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yStringProperty, subscript: 1 } ),
+  Y_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yStringProperty, subscript: 2 } )
 };
 
 numberLineDistance.register( 'NLDConstants', NLDConstants );

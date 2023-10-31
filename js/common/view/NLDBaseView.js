@@ -35,13 +35,13 @@ import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import NLDConstants from '../NLDConstants.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
 
-const pointLabelsString = NumberLineDistanceStrings.pointLabels;
-const distanceLabelsString = NumberLineDistanceStrings.distanceLabels;
-const distanceDescriptionString = NumberLineDistanceStrings.distanceDescription;
-const tickMarksString = NumberLineDistanceStrings.tickMarks;
-const absoluteValueString = NumberLineDistanceStrings.absoluteValue;
-const directedDistanceString = NumberLineDistanceStrings.directedDistance;
-const distanceStatementString = NumberLineDistanceStrings.distanceStatement;
+const pointLabelsStringProperty = NumberLineDistanceStrings.pointLabelsStringProperty;
+const distanceLabelsStringProperty = NumberLineDistanceStrings.distanceLabelsStringProperty;
+const distanceDescriptionStringProperty = NumberLineDistanceStrings.distanceDescriptionStringProperty;
+const tickMarksStringProperty = NumberLineDistanceStrings.tickMarksStringProperty;
+const absoluteValueStringProperty = NumberLineDistanceStrings.absoluteValueStringProperty;
+const directedDistanceStringProperty = NumberLineDistanceStrings.directedDistanceStringProperty;
+const distanceStatementStringProperty = NumberLineDistanceStrings.distanceStatementStringProperty;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 200 };
 const NODE_SWAP_TEXT_OPTIONS = { font: new MathSymbolFont( 30 ), maxWidth: 50 };
@@ -99,10 +99,10 @@ class NLDBaseView extends Node {
     // all used spacings and paddings were empirically determined
     const checkboxGroup = new NLCheckboxGroup(
       [
-        new NLCheckbox( model.numberLine.showPointLabelsProperty, pointLabelsString ),
-        new NLCheckbox( model.distanceLabelsVisibleProperty, distanceLabelsString ),
-        new NLCheckbox( model.distanceDescriptionVisibleProperty, distanceDescriptionString ),
-        new NLCheckbox( model.numberLine.showTickMarksProperty, tickMarksString )
+        new NLCheckbox( model.numberLine.showPointLabelsProperty, pointLabelsStringProperty ),
+        new NLCheckbox( model.distanceLabelsVisibleProperty, distanceLabelsStringProperty ),
+        new NLCheckbox( model.distanceDescriptionVisibleProperty, distanceDescriptionStringProperty ),
+        new NLCheckbox( model.numberLine.showTickMarksProperty, tickMarksStringProperty )
       ]
     );
     checkboxGroup.right = NLDConstants.NLD_LAYOUT_BOUNDS.maxX - NLCConstants.SCREEN_VIEW_X_MARGIN;
@@ -114,11 +114,11 @@ class NLDBaseView extends Node {
       [
         {
           value: DistanceRepresentation.ABSOLUTE,
-          createNode: () => new Text( absoluteValueString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
+          createNode: () => new Text( absoluteValueStringProperty, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
         },
         {
           value: DistanceRepresentation.DIRECTED,
-          createNode: () => new Text( directedDistanceString, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
+          createNode: () => new Text( directedDistanceStringProperty, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
         }
       ],
       {
@@ -236,7 +236,7 @@ class NLDBaseView extends Node {
     const distanceStatementAccordionBox = new AccordionBox(
       new DistanceStatementNode( model, config.distanceStatementNodeOptions ),
       merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
-        titleNode: new Text( distanceStatementString, DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS ),
+        titleNode: new Text( distanceStatementStringProperty, DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS ),
         expandedProperty: this.accordionBoxOpenedProperty,
         top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
         centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,

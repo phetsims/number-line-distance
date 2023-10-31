@@ -17,16 +17,16 @@ import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
 import NLDSceneView from './NLDSceneView.js';
 
-const eastString = NumberLineDistanceStrings.symbol.east;
-const westString = NumberLineDistanceStrings.symbol.west;
-const houseString = NumberLineDistanceStrings.house;
-const personString = NumberLineDistanceStrings.person;
-const distanceSceneAbsoluteDistanceTemplateString = NumberLineDistanceStrings.distanceSceneAbsoluteDistanceTemplate;
-const distanceSceneDirectedPositiveDistanceTemplateString = NumberLineDistanceStrings.distanceSceneDirectedPositiveDistanceTemplate;
-const distanceSceneDirectedNegativeDistanceTemplateString = NumberLineDistanceStrings.distanceSceneDirectedNegativeDistanceTemplate;
-const metersSymbol = NumberLineDistanceStrings.symbol.meters;
-const meterString = NumberLineDistanceStrings.meter;
-const metersString = NumberLineDistanceStrings.meters;
+const eastStringProperty = NumberLineDistanceStrings.symbol.eastStringProperty;
+const westStringProperty = NumberLineDistanceStrings.symbol.westStringProperty;
+const houseStringProperty = NumberLineDistanceStrings.houseStringProperty;
+const personStringProperty = NumberLineDistanceStrings.personStringProperty;
+const distanceSceneAbsoluteDistanceTemplateStringProperty = NumberLineDistanceStrings.distanceSceneAbsoluteDistanceTemplateStringProperty;
+const distanceSceneDirectedPositiveDistanceTemplateStringProperty = NumberLineDistanceStrings.distanceSceneDirectedPositiveDistanceTemplateStringProperty;
+const distanceSceneDirectedNegativeDistanceTemplateStringProperty = NumberLineDistanceStrings.distanceSceneDirectedNegativeDistanceTemplateStringProperty;
+const metersSymbolStringProperty = NumberLineDistanceStrings.symbol.metersStringProperty;
+const meterStringProperty = NumberLineDistanceStrings.meterStringProperty;
+const metersStringProperty = NumberLineDistanceStrings.metersStringProperty;
 
 const DIRECTION_INDICATOR_FONT = new PhetFont( 25 );
 const DIRECTION_INDICATOR_MAX_WIDTH = 50;
@@ -52,15 +52,15 @@ class DistanceSceneView extends NLDSceneView {
         pointControllerRepresentationOne: houseRepresentation,
         pointControllerRepresentationTwo: personRepresentation,
         distanceDescriptionStrings: {
-          absoluteDistanceDescriptionTemplate: distanceSceneAbsoluteDistanceTemplateString,
-          directedPositiveDistanceDescriptionTemplate: distanceSceneDirectedPositiveDistanceTemplateString,
-          directedNegativeDistanceDescriptionTemplate: distanceSceneDirectedNegativeDistanceTemplateString,
-          singularUnits: meterString,
-          pluralUnits: metersString,
-          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personString : houseString,
-          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseString : personString
+          absoluteDistanceDescriptionTemplate: distanceSceneAbsoluteDistanceTemplateStringProperty,
+          directedPositiveDistanceDescriptionTemplate: distanceSceneDirectedPositiveDistanceTemplateStringProperty,
+          directedNegativeDistanceDescriptionTemplate: distanceSceneDirectedNegativeDistanceTemplateStringProperty,
+          singularUnits: meterStringProperty,
+          pluralUnits: metersStringProperty,
+          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personStringProperty : houseStringProperty,
+          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseStringProperty : personStringProperty
         },
-        distanceShadedNumberLineNodeOptions: { unitsString: metersSymbol }
+        distanceShadedNumberLineNodeOptions: { unitsString: metersSymbolStringProperty }
       }
     );
 
@@ -112,12 +112,12 @@ class DistanceSceneView extends NLDSceneView {
     const textOffsetFromNumberLine =
       this.numberLineNode.options.displayedRangeInset + this.numberLineNode.options.arrowSize + 15; // empirically determined
     const range = model.numberLine.displayedRangeProperty.value;
-    const eastSymbolText = new Text( eastString, {
+    const eastSymbolText = new Text( eastStringProperty, {
       font: DIRECTION_INDICATOR_FONT,
       center: model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 ),
       maxWidth: DIRECTION_INDICATOR_MAX_WIDTH
     } );
-    const westSymbolText = new Text( westString, {
+    const westSymbolText = new Text( westStringProperty, {
       font: DIRECTION_INDICATOR_FONT,
       center: model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 ),
       maxWidth: DIRECTION_INDICATOR_MAX_WIDTH

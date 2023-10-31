@@ -18,14 +18,14 @@ import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import NLDSceneView from './NLDSceneView.js';
 import TemperaturePointControllerNode from './TemperaturePointControllerNode.js';
 
-const aString = NumberLineDistanceStrings.symbol.A;
-const bString = NumberLineDistanceStrings.symbol.B;
-const temperatureSceneAbsoluteDistanceTemplateString = NumberLineDistanceStrings.temperatureSceneAbsoluteDistanceTemplate;
-const temperatureSceneDirectedPositiveDistanceTemplateString = NumberLineDistanceStrings.temperatureSceneDirectedPositiveDistanceTemplate;
-const temperatureSceneDirectedNegativeDistanceTemplateString = NumberLineDistanceStrings.temperatureSceneDirectedNegativeDistanceTemplate;
-const degreesCelsiusString = NumberLineDistanceStrings.symbol.degreesCelsius;
-const degreeString = NumberLineDistanceStrings.degree;
-const degreesString = NumberLineDistanceStrings.degrees;
+const aStringProperty = NumberLineDistanceStrings.symbol.AStringProperty;
+const bStringProperty = NumberLineDistanceStrings.symbol.BStringProperty;
+const temperatureSceneAbsoluteDistanceTemplateStringProperty = NumberLineDistanceStrings.temperatureSceneAbsoluteDistanceTemplateStringProperty;
+const temperatureSceneDirectedPositiveDistanceTemplateStringProperty = NumberLineDistanceStrings.temperatureSceneDirectedPositiveDistanceTemplateStringProperty;
+const temperatureSceneDirectedNegativeDistanceTemplateStringProperty = NumberLineDistanceStrings.temperatureSceneDirectedNegativeDistanceTemplateStringProperty;
+const degreesCelsiusStringProperty = NumberLineDistanceStrings.symbol.degreesCelsiusStringProperty;
+const degreeStringProperty = NumberLineDistanceStrings.degreeStringProperty;
+const degreesStringProperty = NumberLineDistanceStrings.degreesStringProperty;
 
 // constants
 const REPRESENTATION_TEXT_OPTIONS = { font: new PhetFont( 25 ), maxWidth: 50 };
@@ -39,8 +39,8 @@ class TemperatureSceneView extends NLDSceneView {
   constructor( model ) {
 
     // texts that represent the point controllers in the swap area at the bottom left
-    const aText = new Text( aString, REPRESENTATION_TEXT_OPTIONS );
-    const bText = new Text( bString, REPRESENTATION_TEXT_OPTIONS );
+    const aText = new Text( aStringProperty, REPRESENTATION_TEXT_OPTIONS );
+    const bText = new Text( bStringProperty, REPRESENTATION_TEXT_OPTIONS );
 
     // Match the color of the point controller with the representation texts.
     aText.fill = model.pointControllers[ 0 ].color;
@@ -53,15 +53,15 @@ class TemperatureSceneView extends NLDSceneView {
         pointControllerRepresentationOne: aText,
         pointControllerRepresentationTwo: bText,
         distanceDescriptionStrings: {
-          absoluteDistanceDescriptionTemplate: temperatureSceneAbsoluteDistanceTemplateString,
-          directedPositiveDistanceDescriptionTemplate: temperatureSceneDirectedPositiveDistanceTemplateString,
-          directedNegativeDistanceDescriptionTemplate: temperatureSceneDirectedNegativeDistanceTemplateString,
-          singularUnits: degreeString,
-          pluralUnits: degreesString,
-          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? bString : aString,
-          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? aString : bString
+          absoluteDistanceDescriptionTemplate: temperatureSceneAbsoluteDistanceTemplateStringProperty,
+          directedPositiveDistanceDescriptionTemplate: temperatureSceneDirectedPositiveDistanceTemplateStringProperty,
+          directedNegativeDistanceDescriptionTemplate: temperatureSceneDirectedNegativeDistanceTemplateStringProperty,
+          singularUnits: degreeStringProperty,
+          pluralUnits: degreesStringProperty,
+          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? bStringProperty : aStringProperty,
+          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? aStringProperty : bStringProperty
         },
-        distanceShadedNumberLineNodeOptions: { unitsString: degreesCelsiusString }
+        distanceShadedNumberLineNodeOptions: { unitsString: degreesCelsiusStringProperty }
       }
     );
 
@@ -115,10 +115,10 @@ class TemperatureSceneView extends NLDSceneView {
     // point controllers
     const pointControllerNodeLayer = new Node( {
       children: [
-        new TemperaturePointControllerNode( model.pointControllerOne, aString, {
+        new TemperaturePointControllerNode( model.pointControllerOne, aStringProperty, {
           thermometerFluidHighlightColor: '#ad3dc3'
         } ),
-        new TemperaturePointControllerNode( model.pointControllerTwo, bString )
+        new TemperaturePointControllerNode( model.pointControllerTwo, bStringProperty )
       ]
     } );
     this.addChild( pointControllerNodeLayer );
