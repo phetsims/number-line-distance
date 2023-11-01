@@ -11,6 +11,7 @@ import exploreHomeIcon_png from '../../../images/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/exploreNavbarIcon_png.js';
 import person_png from '../../../mipmaps/person_png.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
+import { USA_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 import { Image } from '../../../../scenery/js/imports.js';
 
@@ -20,7 +21,8 @@ const ExplorerCharacterSetUSA = new ExplorerCharacterSet(
   new Image( person_png ),
   person_png,
   exploreHomeIcon_png,
-  exploreNavbarIcon_png
+  exploreNavbarIcon_png,
+  USA_QUERY_VALUE
 );
 
 export default ExplorerCharacterSetUSA;

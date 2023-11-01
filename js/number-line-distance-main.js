@@ -11,6 +11,7 @@ import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
+import NLDQueryParameters from './common/NLDQueryParameters.js';
 import ExplorerImages from './common/view/ExplorerImages.js';
 import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';
@@ -20,7 +21,8 @@ const numberLineDistanceTitleStringProperty = NumberLineDistanceStrings[ 'number
 
 const preferencesModel = new PreferencesModel( {
   localizationOptions: {
-    characterSets: ExplorerImages.EXPLORER_CHARACTER_SETS
+    characterSets: ExplorerImages.EXPLORER_CHARACTER_SETS,
+    queryParameterValue: NLDQueryParameters.regionAndCulture
   }
 } );
 

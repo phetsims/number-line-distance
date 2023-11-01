@@ -18,12 +18,13 @@ export default class ExplorerCharacterSet extends RegionAndCulturePortrayal {
    * @param standing { HTMLImageElement }
    * @param screenHomeIcon { HTMLImageElement }
    * @param screenNavIcon { HTMLImageElement }
+   * @param queryParameterValue { string }
    */
   constructor( label, headshotIcon,
-               standing, screenHomeIcon, screenNavIcon ) {
+               standing, screenHomeIcon, screenNavIcon,
+               queryParameterValue ) {
 
-    // TODO: Add query parameter for selecting character set. See https://github.com/phetsims/number-line-distance/issues/74.
-    super( headshotIcon, label, {} );
+    super( headshotIcon, label, queryParameterValue, {} );
 
     this.standing = standing;
     this.screenHomeIcon = screenHomeIcon;
