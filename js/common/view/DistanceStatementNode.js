@@ -9,6 +9,7 @@
  * @author Saurabh Totey
  */
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
@@ -42,7 +43,7 @@ const REPRESENTATION_BOUNDS = new Bounds2( 0, 0, 65, 55 );
 class DistanceStatementNode extends Node {
 
   /**
-   * @param {AbstractNLDBaseModel} model,
+   * @param {AbstractNLDBaseModel} [model],
    * @param {Object} [options] - do not get bubbled up to Node
    */
   constructor( model, options ) {
@@ -157,11 +158,20 @@ class DistanceStatementNode extends Node {
       new Rectangle( REPRESENTATION_BOUNDS )
     ];
 
+    const horizontalTextVisibleProperty = new BooleanProperty( false );
+    const verticalTextVisibleProperty = new BooleanProperty( false );
+
     // These nodes that will be shown instead of the value representations if the point controllers aren't on the number line.
-    const alternativeTexts = [
-      new RichText( NLDConstants.X_1_STRING, MATH_TEXT_OPTIONS ),
-      new RichText( NLDConstants.X_2_STRING, MATH_TEXT_OPTIONS )
-    ];
+    const alternativeTexts = {
+        horizontal: [
+            new RichText( NLDConstants.X_1_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) ),
+            new RichText( NLDConstants.X_2_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) )
+        ],
+        vertical: [
+            new RichText( NLDConstants.Y_1_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) ),
+            new RichText( NLDConstants.Y_2_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) )
+        ]
+    };
 
     const minusSignText = new Text( MathSymbols.MINUS, NORMAL_TEXT_OPTIONS );
     const equalsSignText = new Text( MathSymbols.EQUAL_TO, NORMAL_TEXT_OPTIONS );
@@ -186,12 +196,22 @@ class DistanceStatementNode extends Node {
     } );
 
     // labels that go above the numerical terms when they have valid values
-    const leftTermLabel = new RichText( NLDConstants.X_1_STRING, TERM_LABEL_TEXT_OPTIONS );
-    const rightTermLabel = new RichText( NLDConstants.X_2_STRING, TERM_LABEL_TEXT_OPTIONS );
-    const leftTermLabelNode = new Rectangle( 0, 0, leftTermHBox.width, 1, { children: [ leftTermLabel ] } );
-    const rightTermLabelNode = new Rectangle( 0, 0, rightTermHBox.width, 1, { children: [ rightTermLabel ] } );
-    leftTermLabel.centerX = leftTermLabelNode.width / 2;
-    rightTermLabel.centerX = rightTermLabelNode.width / 2;
+    const leftTermHorizontalLabel = new RichText( NLDConstants.X_1_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) );
+    const leftTermVerticalLabel = new RichText( NLDConstants.Y_1_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) );
+    const rightTermHorizontalLabel = new RichText( NLDConstants.X_2_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) );
+    const rightTermVerticalLabel = new RichText( NLDConstants.X_2_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) );
+
+    const leftTermLabelNode = new Rectangle( 0, 0, leftTermHBox.width, 1, {
+      sizable: true,
+      justify: 'center',
+      children: [ leftTermHorizontalLabel, leftTermVerticalLabel ]
+    } );
+
+    const rightTermLabelNode = new Rectangle( 0, 0, rightTermHBox.width, 1, {
+      sizable: true,
+      justify: 'center',
+      children: [ rightTermHorizontalLabel, rightTermVerticalLabel ]
+    } );
 
     // In order to place the term labels exactly above the appropriate terms, we need to create another HBox above the
     // HBox that houses all the distance statement terms and we need to ensure that the spacings match. The only term that
@@ -238,15 +258,13 @@ class DistanceStatementNode extends Node {
 
         // Change the alt text based off of number line orientation.
         if ( orientation === Orientation.HORIZONTAL ) {
-          alternativeTexts[ 0 ].string = NLDConstants.X_1_STRING;
-          alternativeTexts[ 1 ].string = NLDConstants.X_2_STRING;
+            horizontalTextVisibleProperty.value = true;
+            verticalTextVisibleProperty.value = false;
         }
         else {
-          alternativeTexts[ 0 ].string = NLDConstants.Y_1_STRING;
-          alternativeTexts[ 1 ].string = NLDConstants.Y_2_STRING;
+            horizontalTextVisibleProperty.value = false;
+            verticalTextVisibleProperty.value = true;
         }
-        leftTermLabel.string = alternativeTexts[ 1 ].string;
-        rightTermLabel.string = alternativeTexts[ 0 ].string;
 
         // Choose the ordering for children for the distance statement.
         let leftTermNode = valueRepresentations[ 1 ];
@@ -273,13 +291,11 @@ class DistanceStatementNode extends Node {
 
         // Replace value representations with alternatives if their value is invalid.
         if ( leftTermValue === INVALID_VALUE ) {
-          leftTermNode = alternativeTexts[ 1 ];
-          leftTermLabel.string = '';
+          leftTermNode = alternativeTexts.horizontal[ 1 ];
           distance = INVALID_DISTANCE_STRING;
         }
         if ( rightTermValue === INVALID_VALUE ) {
-          rightTermNode = alternativeTexts[ 0 ];
-          rightTermLabel.string = '';
+          rightTermNode = alternativeTexts.horizontal[ 0 ];
           distance = INVALID_DISTANCE_STRING;
         }
 

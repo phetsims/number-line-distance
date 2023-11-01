@@ -7,10 +7,10 @@
  * @author Saurabh Totey
  */
 
+import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Range from '../../../dot/js/Range.js';
 import ScreenView from '../../../joist/js/ScreenView.js';
-import StringUtils from '../../../phetcommon/js/util/StringUtils.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 
@@ -22,7 +22,7 @@ const BOTTOM_BOX_WIDTH = 320;
 const BOTTOM_BOX_HEIGHT = 70;
 const SIDE_BOX_WIDTH = BOTTOM_BOX_HEIGHT;
 const SIDE_BOX_HEIGHT = BOTTOM_BOX_WIDTH;
-const VARIABLE_SUBSCRIPT_TEMPLATE = '{{variable}}<sub style=\'font-style:normal\'>{{subscript}}</sub>';
+const VARIABLE_SUBSCRIPT_PATTERN = NumberLineDistanceStrings.variableSubscriptPatternStringProperty;
 
 const NLDConstants = {
 
@@ -50,10 +50,10 @@ const NLDConstants = {
     ScreenView.DEFAULT_LAYOUT_BOUNDS.centerY + SIDE_BOX_HEIGHT / 2
   ),
 
-  X_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xStringProperty, subscript: 1 } ),
-  X_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: xStringProperty, subscript: 2 } ),
-  Y_1_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yStringProperty, subscript: 1 } ),
-  Y_2_STRING: StringUtils.fillIn( VARIABLE_SUBSCRIPT_TEMPLATE, { variable: yStringProperty, subscript: 2 } )
+  X_1_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: xStringProperty, subscript: 1 } ),
+  X_2_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: xStringProperty, subscript: 2 } ),
+  Y_1_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: yStringProperty, subscript: 1 } ),
+  Y_2_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: yStringProperty, subscript: 2 } )
 };
 
 numberLineDistance.register( 'NLDConstants', NLDConstants );

@@ -165,23 +165,35 @@ class NLDBaseView extends Node {
 
     // Create controls on the bottom left for which node is considered to be first and second.
     // all values used in nodeOrderDisplay were empirically determined
-    const firstNodeText = new RichText( `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
-    const secondNodeText = new RichText( `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`, NODE_SWAP_TEXT_OPTIONS );
+    const horizontalVisibleProperty = new BooleanProperty( false );
+    const verticalVisibleProperty = new BooleanProperty( false );
+
+    const firstNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
+    const firstNodeHorizontalText = new RichText( NLDConstants.X_1_STRING,
+        merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+    const firstNodeVerticalText = new RichText( NLDConstants.Y_1_STRING,
+        merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+    const firstNodeTextHBox = new HBox( { children: [ firstNodeHorizontalText, firstNodeVerticalText, firstNodeEqualToText ] } );
+
+    const secondNodeHorizontalText = new RichText( NLDConstants.X_2_STRING,
+        merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+    const secondNodeVerticalText = new RichText( NLDConstants.Y_2_STRING,
+        merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+    const secondNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
+    const secondNodeTextHBox = new HBox( { children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ] } );
+
     const firstNodeHBox = new HBox( {
-      children: [ firstNodeText, pointControllerRepresentationBackgroundOne ],
+      children: [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ],
       spacing: NODE_SWAP_HBOX_SPACING
     } );
     const secondNodeHBox = new HBox( {
-      children: [ secondNodeText, pointControllerRepresentationBackgroundTwo ],
+      children: [ secondNodeTextHBox, pointControllerRepresentationBackgroundTwo ],
       spacing: NODE_SWAP_HBOX_SPACING
     } );
     const nodeOrderDisplay = new VBox( {
       children: [ firstNodeHBox, secondNodeHBox ],
-      spacing: ( 40 - firstNodeHBox.height ) / 2,
-      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
-      left: 30
+      spacing: ( 40 - firstNodeHBox.height ) / 2
     } );
-    this.addChild( nodeOrderDisplay );
 
     // button that swaps the primary point controller and secondary point controller when pressed
     // padding and dilations deterined empirically
@@ -189,25 +201,30 @@ class NLDBaseView extends Node {
     const swapPrimaryNodesButton = new RectangularPushButton( {
       content: swapIcon,
       baseColor: 'white',
-      left: nodeOrderDisplay.right + 20,
-      centerY: nodeOrderDisplay.centerY,
       touchAreaXDilation: 8,
       touchAreaYDilation: 8,
       listener: () => { model.isPrimaryControllerSwappedProperty.value = !model.isPrimaryControllerSwappedProperty.value; }
     } );
-    this.addChild( swapPrimaryNodesButton );
+
+    const pointControllerLegend = new HBox( {
+      children: [ nodeOrderDisplay, swapPrimaryNodesButton ],
+      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
+      left: 30,
+      spacing: 20
+    } );
+    this.addChild( pointControllerLegend );
 
     // Listen for when the primary node should be swapped, and swap the representations.
     model.isPrimaryControllerSwappedProperty.link( isPrimaryControllerSwapped => {
       let firstNodeHBoxChildren;
       let secondNodeHBoxChildren;
       if ( isPrimaryControllerSwapped ) {
-        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationBackgroundTwo ];
-        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationBackgroundOne ];
+        firstNodeHBoxChildren = [ firstNodeTextHBox, pointControllerRepresentationBackgroundTwo ];
+        secondNodeHBoxChildren = [ secondNodeTextHBox, pointControllerRepresentationBackgroundOne ];
       }
       else {
-        firstNodeHBoxChildren = [ firstNodeText, pointControllerRepresentationBackgroundOne ];
-        secondNodeHBoxChildren = [ secondNodeText, pointControllerRepresentationBackgroundTwo ];
+        firstNodeHBoxChildren = [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ];
+        secondNodeHBoxChildren = [ secondNodeTextHBox, pointControllerRepresentationBackgroundTwo ];
       }
       // Don't have the nodes handled by layout of multiple containers at once
       firstNodeHBoxChildren.forEach( node => node.detach() );
@@ -219,12 +236,12 @@ class NLDBaseView extends Node {
     // Switch the firstNodeText and secondNodeText to use either x or y based on number line orientation.
     model.numberLine.orientationProperty.link( orientation => {
       if ( orientation === Orientation.HORIZONTAL ) {
-        firstNodeText.string = `${NLDConstants.X_1_STRING} ${MathSymbols.EQUAL_TO}`;
-        secondNodeText.string = `${NLDConstants.X_2_STRING} ${MathSymbols.EQUAL_TO}`;
+        horizontalVisibleProperty.value = true;
+        verticalVisibleProperty.value = false;
       }
       else {
-        firstNodeText.string = `${NLDConstants.Y_1_STRING} ${MathSymbols.EQUAL_TO}`;
-        secondNodeText.string = `${NLDConstants.Y_2_STRING} ${MathSymbols.EQUAL_TO}`;
+        horizontalVisibleProperty.value = false;
+        verticalVisibleProperty.value = true;
       }
     } );
 

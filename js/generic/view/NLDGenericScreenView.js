@@ -13,17 +13,29 @@ import PointControllerNode from '../../../../number-line-common/js/common/view/P
 import PointsOffScaleCondition from '../../../../number-line-common/js/common/view/PointsOffScaleCondition.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import { Circle, Node } from '../../../../scenery/js/imports.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 
 const genericAbsoluteDistanceTemplateStringProperty = NumberLineDistanceStrings.genericAbsoluteDistanceTemplateStringProperty;
 const genericDirectedPositiveDistanceTemplateStringProperty = NumberLineDistanceStrings.genericDirectedPositiveDistanceTemplateStringProperty;
 const genericDirectedNegativeDistanceTemplateStringProperty = NumberLineDistanceStrings.genericDirectedNegativeDistanceTemplateStringProperty;
+const horizontalPrimaryPointControllerPatternStringProperty = new PatternStringProperty( NumberLineDistanceStrings.mathSymbolPatternStringProperty, {
+  symbol: NLDConstants.X_1_STRING
+} );
+const verticalPrimaryPointControllerPatternStringProperty = new PatternStringProperty( NumberLineDistanceStrings.mathSymbolPatternStringProperty, {
+  symbol: NLDConstants.Y_1_STRING
+} );
+const horizontalSecondaryPointControllerPatternStringProperty = new PatternStringProperty( NumberLineDistanceStrings.mathSymbolPatternStringProperty, {
+  symbol: NLDConstants.X_2_STRING
+} );
+const verticalSecondaryPointControllerPatternStringProperty = new PatternStringProperty( NumberLineDistanceStrings.mathSymbolPatternStringProperty, {
+  symbol: NLDConstants.Y_2_STRING
+} );
 const unitStringProperty = NumberLineDistanceStrings.unitStringProperty;
 const unitsStringProperty = NumberLineDistanceStrings.unitsStringProperty;
 
@@ -55,12 +67,10 @@ class NLDGenericScreenView extends ScreenView {
           directedNegativeDistanceDescriptionTemplate: genericDirectedNegativeDistanceTemplateStringProperty,
           singularUnits: unitStringProperty,
           pluralUnits: unitsStringProperty,
-          getPrimaryPointControllerLabel: ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
-            ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_1_STRING : NLDConstants.Y_1_STRING
-          ),
-          getSecondaryPointControllerLabel: ( _, orientation ) => MathSymbolFont.getRichTextMarkup(
-            ( orientation === Orientation.HORIZONTAL ) ? NLDConstants.X_2_STRING : NLDConstants.Y_2_STRING
-          )
+          getPrimaryPointControllerLabel: ( _, orientation ) =>
+              ( orientation === Orientation.HORIZONTAL ) ? horizontalPrimaryPointControllerPatternStringProperty : verticalPrimaryPointControllerPatternStringProperty,
+          getSecondaryPointControllerLabel: ( _, orientation ) =>
+              ( orientation === Orientation.HORIZONTAL ) ? horizontalSecondaryPointControllerPatternStringProperty : verticalSecondaryPointControllerPatternStringProperty
         },
         distanceStatementNodeOptions: { controlsValues: true }
       }

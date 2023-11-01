@@ -24,6 +24,8 @@ import { Node, Path, RichText, Text } from '../../../../scenery/js/imports.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import NLDConstants from '../NLDConstants.js';
+import ToggleNode from '../../../../sun/js/ToggleNode.js';
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 const SHADING_COLOR = 'gray';
 const SHADING_WIDTH = 8;
@@ -64,11 +66,35 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
     const distanceTextBackground = new BackgroundNode( distanceText, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( distanceTextBackground );
 
+    const horizontalVisibleProperty = new BooleanProperty( false );
+    const verticalVisibleProperty = new BooleanProperty( false );
+
     // Create text labels for the number line points that label them as x1, x2, y1, or y2.
-    const pointNameText0 = new RichText( NLDConstants.X_1_STRING, POINT_NAME_TEXT_OPTIONS );
-    const pointNameText1 = new RichText( NLDConstants.X_2_STRING, POINT_NAME_TEXT_OPTIONS );
-    const pointNameBackground0 = new BackgroundNode( pointNameText0, NLCConstants.LABEL_BACKGROUND_OPTIONS );
-    const pointNameBackground1 = new BackgroundNode( pointNameText1, NLCConstants.LABEL_BACKGROUND_OPTIONS );
+    const pointNameHorizontalText0 = new RichText( NLDConstants.X_1_STRING, merge( { visibleProperty: horizontalVisibleProperty }, POINT_NAME_TEXT_OPTIONS ) );
+    const pointNameVerticalText0 = new RichText( NLDConstants.Y_1_STRING, merge( { visibleProperty: verticalVisibleProperty }, POINT_NAME_TEXT_OPTIONS ) );
+    const pointNameHorizontalText1 = new RichText( NLDConstants.X_2_STRING, merge( { visibleProperty: horizontalVisibleProperty }, POINT_NAME_TEXT_OPTIONS ) );
+    const pointNameVerticalText1 = new RichText( NLDConstants.Y_2_STRING, merge( { visibleProperty: verticalVisibleProperty }, POINT_NAME_TEXT_OPTIONS ) );
+
+    // Get which strings to use for point names based on the number line orientation.
+    // The strings are ordered based on isPrimaryControllerSwapped.
+    const pointName0ToggleNode = new ToggleNode( model.isPrimaryControllerSwappedProperty, [ {
+      value: false,
+      createNode: () => new Node( { children: [ pointNameVerticalText0, pointNameHorizontalText0 ] } )
+    }, {
+      value: true,
+      createNode: () => new Node( { children: [ pointNameVerticalText1, pointNameHorizontalText1 ] } )
+    } ] );
+
+    const pointName1ToggleNode = new ToggleNode( model.isPrimaryControllerSwappedProperty, [ {
+      value: true,
+      createNode: () => new Node( { children: [ pointNameVerticalText0, pointNameHorizontalText0 ] } )
+    }, {
+      value: false,
+      createNode: () => new Node( { children: [ pointNameVerticalText1, pointNameHorizontalText1 ] } )
+    } ] );
+
+    const pointNameBackground0 = new BackgroundNode( pointName0ToggleNode, NLCConstants.LABEL_BACKGROUND_OPTIONS );
+    const pointNameBackground1 = new BackgroundNode( pointName1ToggleNode, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( new Node( {
       children: [ pointNameBackground0, pointNameBackground1 ]
     } ) );
@@ -88,18 +114,6 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
       ],
       ( distanceLabelsVisible, displayedRange, distanceRepresentation, isPrimaryControllerSwapped, orientation, pointValues ) => {
 
-        // Get which strings to use for point names based on the number line orientation.
-        // The strings are ordered based on isPrimaryControllerSwapped.
-        const labelStrings = ( orientation === Orientation.VERTICAL ) ?
-          [ NLDConstants.Y_1_STRING, NLDConstants.Y_2_STRING ] : [ NLDConstants.X_1_STRING, NLDConstants.X_2_STRING ];
-        if ( isPrimaryControllerSwapped ) {
-          const temp = labelStrings[ 0 ];
-          labelStrings[ 0 ] = labelStrings[ 1 ];
-          labelStrings[ 1 ] = temp;
-        }
-
-        pointNameText0.string = labelStrings[ 0 ];
-        pointNameText1.string = labelStrings[ 1 ];
         pointNameBackground0.visible = pointValues[ 0 ] !== null && displayedRange.contains( pointValues[ 0 ] );
         pointNameBackground1.visible = pointValues[ 1 ] !== null && displayedRange.contains( pointValues[ 1 ] );
 
@@ -111,6 +125,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           pointNameBackground1.centerTop = model.numberLine.valueToModelPosition(
             pointValues[ 1 ] ? pointValues[ 1 ] : 0
           ).plus( new Vector2( 0, options.pointNameLabelOffsetFromHorizontalNumberLine ) );
+
+          horizontalVisibleProperty.value = true;
+          verticalVisibleProperty.value = false;
         }
         else {
           pointNameBackground0.leftCenter = model.numberLine.valueToModelPosition(
@@ -119,6 +136,9 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
           pointNameBackground1.leftCenter = model.numberLine.valueToModelPosition(
             pointValues[ 1 ] ? pointValues[ 1 ] : 0
           ).plus( new Vector2( options.pointNameLabelOffsetFromVerticalNumberLine, 0 ) );
+
+          horizontalVisibleProperty.value = false;
+          verticalVisibleProperty.value = true;
         }
 
         // Stop here if both points aren't the number line: we cannot put any shading or distance label.

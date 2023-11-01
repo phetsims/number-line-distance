@@ -95,6 +95,10 @@ type StringsType = {
   'elevationSceneDirectedPositiveDistanceTemplateStringProperty': LocalizedStringProperty;
   'elevationSceneDirectedNegativeDistanceTemplate': string;
   'elevationSceneDirectedNegativeDistanceTemplateStringProperty': LocalizedStringProperty;
+  'variableSubscriptPattern': string;
+  'variableSubscriptPatternStringProperty': LocalizedStringProperty;
+  'mathSymbolPattern': string;
+  'mathSymbolPatternStringProperty': LocalizedStringProperty;
   'characterSet': {
     'unitedStatesOfAmerica': string;
     'unitedStatesOfAmericaStringProperty': LocalizedStringProperty;
