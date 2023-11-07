@@ -105,7 +105,10 @@ class NLDBaseView extends Node {
         new NLCheckbox( model.numberLine.showTickMarksProperty, tickMarksStringProperty )
       ]
     );
-    checkboxGroup.right = NLDConstants.NLD_LAYOUT_BOUNDS.maxX - NLCConstants.SCREEN_VIEW_X_MARGIN;
+
+    ManualConstraint.create( this, [ checkboxGroup ], groupProxy => {
+      groupProxy.right = NLDConstants.NLD_LAYOUT_BOUNDS.maxX - NLCConstants.SCREEN_VIEW_X_MARGIN;
+    } );
     this.addChild( checkboxGroup );
 
     // checkboxes for how distance should be represented
