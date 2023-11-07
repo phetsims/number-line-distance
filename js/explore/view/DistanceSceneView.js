@@ -7,7 +7,7 @@
  */
 
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Image, Node, Text } from '../../../../scenery/js/imports.js';
+import { Image, ManualConstraint, Node, Text } from '../../../../scenery/js/imports.js';
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
 import house_png from '../../../mipmaps/house_png.js';
@@ -110,17 +110,20 @@ class DistanceSceneView extends NLDSceneView {
 
     // symbols at edges of number line denoting east and west
     const textOffsetFromNumberLine =
-      this.numberLineNode.options.displayedRangeInset + this.numberLineNode.options.arrowSize + 15; // empirically determined
+      this.numberLineNode.options.displayedRangeInset + this.numberLineNode.options.arrowSize + 4; // empirically determined
     const range = model.numberLine.displayedRangeProperty.value;
     const eastSymbolText = new Text( eastStringProperty, {
       font: DIRECTION_INDICATOR_FONT,
-      center: model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 ),
       maxWidth: DIRECTION_INDICATOR_MAX_WIDTH
     } );
     const westSymbolText = new Text( westStringProperty, {
       font: DIRECTION_INDICATOR_FONT,
-      center: model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 ),
       maxWidth: DIRECTION_INDICATOR_MAX_WIDTH
+    } );
+
+    ManualConstraint.create( this, [ eastSymbolText, westSymbolText, this.numberLineNode ], ( eastProxy, westProxy, numberLineProxy ) => {
+      eastProxy.leftCenter = model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 );
+      westProxy.rightCenter = model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 );
     } );
     this.addChild( eastSymbolText );
     this.addChild( westSymbolText );
