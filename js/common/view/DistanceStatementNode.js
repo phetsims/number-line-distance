@@ -10,6 +10,7 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
@@ -22,7 +23,7 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { FlowBox, HBox, HStrut, Node, Rectangle, RichText, Text, VStrut } from '../../../../scenery/js/imports.js';
+import { FlowBox, GridBox, HBox, HStrut, Node, Rectangle, RichText, Text, VStrut } from '../../../../scenery/js/imports.js';
 import NumberPicker from '../../../../sun/js/NumberPicker.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';
@@ -173,11 +174,11 @@ class DistanceStatementNode extends Node {
         ]
     };
 
-    const minusSignText = new Text( MathSymbols.MINUS, NORMAL_TEXT_OPTIONS );
-    const equalsSignText = new Text( MathSymbols.EQUAL_TO, NORMAL_TEXT_OPTIONS );
+    const minusSignText = new Text( MathSymbols.MINUS, merge( { layoutOptions: { xMargin: 5 } }, NORMAL_TEXT_OPTIONS ) );
+    const equalsSignText = new Text( MathSymbols.EQUAL_TO, merge( { layoutOptions: { xMargin: 5 } }, NORMAL_TEXT_OPTIONS ) );
 
     // A text that displays the distance between the two point controllers (or '?' if invalid distance).
-    const distanceText = new Text( INVALID_DISTANCE_STRING, NORMAL_TEXT_OPTIONS );
+    const distanceText = new Text( INVALID_DISTANCE_STRING, merge( { layoutOptions: { xMargin: 7 } }, NORMAL_TEXT_OPTIONS ) );
 
     // absolute value marks - are shorter than the background nodes they are supposed to wrap for #40 by an empirically
     // determined amount.
@@ -196,21 +197,25 @@ class DistanceStatementNode extends Node {
     } );
 
     // labels that go above the numerical terms when they have valid values
-    const leftTermHorizontalLabel = new RichText( NLDConstants.X_1_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) );
-    const leftTermVerticalLabel = new RichText( NLDConstants.Y_1_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) );
-    const rightTermHorizontalLabel = new RichText( NLDConstants.X_2_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) );
-    const rightTermVerticalLabel = new RichText( NLDConstants.X_2_STRING, merge( TERM_LABEL_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) );
+    const leftTermHorizontalLabel = new RichText( NLDConstants.X_2_STRING, merge( { visibleProperty: horizontalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
+    const leftTermVerticalLabel = new RichText( NLDConstants.Y_2_STRING, merge( { visibleProperty: verticalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
+    const rightTermHorizontalLabel = new RichText( NLDConstants.X_1_STRING, merge( { visibleProperty: horizontalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
+    const rightTermVerticalLabel = new RichText( NLDConstants.Y_1_STRING, merge( { visibleProperty: verticalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
 
-    const leftTermLabelNode = new Rectangle( 0, 0, leftTermHBox.width, 1, {
-      sizable: true,
-      justify: 'center',
-      children: [ leftTermHorizontalLabel, leftTermVerticalLabel ]
+    const leftTermLabelNode = new FlowBox( {
+      children: [ leftTermHorizontalLabel, leftTermVerticalLabel ],
+      visibleProperty: new DerivedProperty( [ model.pointValuesProperty ], pointValues => {
+        return pointValues[ 1 ] !== null;
+      } ),
+      excludeInvisibleChildrenFromBounds: false
     } );
 
-    const rightTermLabelNode = new Rectangle( 0, 0, rightTermHBox.width, 1, {
-      sizable: true,
-      justify: 'center',
-      children: [ rightTermHorizontalLabel, rightTermVerticalLabel ]
+    const rightTermLabelNode = new FlowBox( {
+      children: [ rightTermHorizontalLabel, rightTermVerticalLabel ],
+      visibleProperty: new DerivedProperty( [ model.pointValuesProperty ], pointValues => {
+        return pointValues[ 0 ] !== null;
+      } ),
+      excludeInvisibleChildrenFromBounds: false
     } );
 
     // In order to place the term labels exactly above the appropriate terms, we need to create another HBox above the
@@ -221,28 +226,13 @@ class DistanceStatementNode extends Node {
       distanceTextHStrutStandin.children = [ new HStrut( distanceText.width ) ];
     } );
 
-    const distanceTextSpacer = new HStrut( 3 ); // empirically determined
-    this.addChild( new FlowBox( {
-      orientation: 'vertical',
-      spacing: options.controlsValues ? 8 : 0, // empirically determined
+    this.addChild( new GridBox( {
+      spacing: 0,
       resize: false,
-      children: [
-        new HBox( {
-          children: [
-            leftTermLabelNode,
-            new HStrut( minusSignText.width ),
-            rightTermLabelNode,
-            new HStrut( equalsSignText.width ),
-            new Node( { children: [ distanceTextSpacer ] } ),
-            distanceTextHStrutStandin
-          ],
-          spacing: 5
-        } ),
-        new HBox( {
-          children: [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, new Node( { children: [ distanceTextSpacer ] } ), distanceText ],
-          spacing: 5
-        } )
-      ]
+      rows: [ [ leftTermLabelNode, new Node(), rightTermLabelNode ],
+        [ leftTermHBox, minusSignText, rightTermHBox, equalsSignText, distanceText ]
+      ],
+      excludeInvisibleChildrenFromBounds: false
     } ) );
 
     // This multilink listens for changes in any relevant Properties and updates the distance statement accordingly.
