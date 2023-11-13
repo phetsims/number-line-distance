@@ -102,6 +102,14 @@ type StringsType = {
   'characterSet': {
     'unitedStatesOfAmerica': string;
     'unitedStatesOfAmericaStringProperty': LocalizedStringProperty;
+    'africa': string;
+    'africaStringProperty': LocalizedStringProperty;
+    'africaModest': string;
+    'africaModestStringProperty': LocalizedStringProperty;
+    'asia': string;
+    'asiaStringProperty': LocalizedStringProperty;
+    'latinAmerica': string;
+    'latinAmericaStringProperty': LocalizedStringProperty;
   }
 };
 

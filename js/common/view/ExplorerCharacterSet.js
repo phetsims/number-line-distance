@@ -21,7 +21,7 @@ export default class ExplorerCharacterSet extends RegionAndCulturePortrayal {
    * @param queryParameterValue { string }
    */
   constructor( label, headshotIcon,
-               standing, screenHomeIcon, screenNavIcon,
+               standing, offset, screenHomeIcon, screenNavIcon,
                queryParameterValue ) {
 
     super( headshotIcon, label, queryParameterValue, {} );
@@ -29,6 +29,7 @@ export default class ExplorerCharacterSet extends RegionAndCulturePortrayal {
     this.standing = standing;
     this.screenHomeIcon = screenHomeIcon;
     this.screenNavIcon = screenNavIcon;
+    this.offset = offset;
   }
 }
 

@@ -6,12 +6,14 @@
  * @author Saurabh Totey
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Image, ManualConstraint, Node, Text } from '../../../../scenery/js/imports.js';
+import { AlignGroup, Image, ManualConstraint, Node, Text } from '../../../../scenery/js/imports.js';
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
 import house_png from '../../../mipmaps/house_png.js';
 import ExplorerCharacterSetUSA from '../../common/view/ExplorerCharacterSetUSA.js';
+import ExplorerImages from '../../common/view/ExplorerImages.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
@@ -38,11 +40,33 @@ class DistanceSceneView extends NLDSceneView {
    */
   constructor( model ) {
 
+    /**
+     *
+     * @param {number} scale
+     * @param {AlignGroup} alignGroup
+     * @returns {AlignBox[]}
+     */
+    const createPersonImages = ( scale, alignGroup ) => ExplorerImages.EXPLORER_CHARACTER_SETS.map( set => {
+      return alignGroup.createBox( new Image( set.standing, {
+        scale: scale,
+        visibleProperty: new DerivedProperty( [ model.preferencesModel.localizationModel.regionAndCulturePortrayalProperty ], portrayal => {
+          return portrayal === set;
+        } )
+      } ), {
+        yAlign: 'bottom'
+      } );
+    } );
+
     // Create the representations for the person and the house in the area that they can be swapped.
     // scales were empirically determined
+    const legendAlignGroup = new AlignGroup();
+    const personRepresentationScale = 0.1;
     const houseRepresentation = new Image( house_png, { scale: 0.15 } );
-    const personRepresentation = new Image( ExplorerCharacterSetUSA.standing, { scale: 0.1 } );
-    const smallestWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
+    const personRepresentation = new Node( { children: createPersonImages( personRepresentationScale, legendAlignGroup ) } );
+
+    // All the personRepresentation images have the same width.
+    const smallestWidth = Math.min( houseRepresentation.getImageWidth(),
+      new Image( ExplorerCharacterSetUSA.standing, { scale: personRepresentationScale } ).getImageWidth() );
     houseRepresentation.maxWidth = smallestWidth;
     personRepresentation.maxWidth = smallestWidth;
 
@@ -84,11 +108,13 @@ class DistanceSceneView extends NLDSceneView {
     // Point controllers that are in different parent nodes so that the person is always on top of the house in terms of
     // layering. The mouse area dilation for the personPointControllerImage is for #38.
     // the image scales and dilations are empirically determined
-    const personPointControllerImage = new Image( ExplorerCharacterSetUSA.standing, { scale: 0.22 } );
+    const controllerAlignGroup = new AlignGroup();
+    const personPointControllerImage = new Node( { children: createPersonImages( 0.22, controllerAlignGroup ) } );
     personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
       5 / personPointControllerImage.getScaleVector().x
     );
     const housePointControllerImage = new Image( house_png, { scale: 0.2 } );
+
     const pointControllersLayer = new Node();
     pointControllersLayer.addChild( new Node( {
       children: [

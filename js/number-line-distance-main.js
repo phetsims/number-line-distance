@@ -41,7 +41,7 @@ const simOptions = {
 // until the images are fully loaded, see https://github.com/phetsims/coulombs-law/issues/70
 simLauncher.launch( () => {
   const screens = [
-    new NLDExploreScreen( Tandem.ROOT.createTandem( 'exploreScreen' ) ),
+    new NLDExploreScreen( preferencesModel, Tandem.ROOT.createTandem( 'exploreScreen' ) ),
     new NLDGenericScreen( Tandem.ROOT.createTandem( 'genericScreen' ) )
   ];
   const sim = new Sim( numberLineDistanceTitleStringProperty, screens, simOptions );

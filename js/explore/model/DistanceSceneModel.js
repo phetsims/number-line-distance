@@ -14,15 +14,16 @@ import numberLineDistance from '../../numberLineDistance.js';
 import DistancePointController from './DistancePointController.js';
 
 // constants
-const TRAPEZOID_OFFSET_FROM_NUMBERLINE = 180;
-const TRAPEZOID_HEIGHT = 50;
+const SIDEWALK_OFFSET_FROM_NUMBERLINE = 180;
+const SIDEWALK_HEIGHT = 50;
 
 class DistanceSceneModel extends AbstractNLDBaseModel {
 
   /**
+   * @param {preferencesModel} preferencesModel
    * @param {Tandem} tandem
    */
-  constructor( tandem ) {
+  constructor( preferencesModel, tandem ) {
 
     // values empirically determined
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, -75 ), {
@@ -40,9 +41,9 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
     const numberLineY = numberLine.centerPositionProperty.value.y;
     const sidewalkBounds = new Bounds2(
       numberLineMinimumXPosition - 50,
-      numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE,
+      numberLineY + SIDEWALK_OFFSET_FROM_NUMBERLINE,
       numberLineMaximumXPosition + 50,
-      numberLineY + TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT
+      numberLineY + SIDEWALK_OFFSET_FROM_NUMBERLINE + SIDEWALK_HEIGHT
     );
     const lockingBounds = sidewalkBounds.withMinY( numberLineY + 125 ).withMaxY( sidewalkBounds.bottom + 10 );
 
@@ -53,13 +54,13 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       new DistancePointController(
         numberLine,
         lockingBounds,
-        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 - 52,
+        SIDEWALK_OFFSET_FROM_NUMBERLINE + SIDEWALK_HEIGHT / 2 - 52,
         0.3
       ),
       new DistancePointController(
         numberLine,
         lockingBounds,
-        TRAPEZOID_OFFSET_FROM_NUMBERLINE + TRAPEZOID_HEIGHT / 2 - 18,
+        SIDEWALK_OFFSET_FROM_NUMBERLINE + SIDEWALK_HEIGHT / 2 - 27,
         0.5
       ),
       tandem
@@ -67,6 +68,12 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
 
     // @public (read-only) {Bounds2}
     this.sidewalkBounds = sidewalkBounds;
+
+    /**
+     * @public (read-only)
+     * @type {preferencesModel}
+     */
+    this.preferencesModel = preferencesModel;
   }
 }
 

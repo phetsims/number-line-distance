@@ -53,7 +53,13 @@ const NLDConstants = {
   X_1_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: xStringProperty, subscript: 1 } ),
   X_2_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: xStringProperty, subscript: 2 } ),
   Y_1_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: yStringProperty, subscript: 1 } ),
-  Y_2_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: yStringProperty, subscript: 2 } )
+  Y_2_STRING: new PatternStringProperty( VARIABLE_SUBSCRIPT_PATTERN, { variable: yStringProperty, subscript: 2 } ),
+
+  HEADSHOT_OPTIONS: {
+    headshotDimension: 105,
+    scale: 0.3,
+    xClipAreaStart: 18
+  }
 };
 
 numberLineDistance.register( 'NLDConstants', NLDConstants );

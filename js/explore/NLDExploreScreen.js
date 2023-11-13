@@ -19,10 +19,11 @@ import NLDExploreScreenView from './view/NLDExploreScreenView.js';
 class NLDExploreScreen extends Screen {
 
   /**
+   * @param { PreferencesModel } preferencesModel
    * @param {Tandem} tandem
    * @public
    */
-  constructor( tandem ) {
+  constructor( preferencesModel, tandem ) {
     const options = {
       name: NumberLineDistanceStrings.screen.exploreStringProperty,
       backgroundColorProperty: NLDColors.exploreScreenBackgroundColorProperty,
@@ -38,7 +39,7 @@ class NLDExploreScreen extends Screen {
     };
 
     super(
-      () => new NLDExploreModel( tandem.createTandem( 'model' ) ),
+      () => new NLDExploreModel( preferencesModel, tandem.createTandem( 'model' ) ),
       model => new NLDExploreScreenView( model, tandem.createTandem( 'view' ) ),
       options
     );

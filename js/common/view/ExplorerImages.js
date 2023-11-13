@@ -8,12 +8,19 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
+import ExplorerCharacterSetAfrica from './ExplorerCharacterSetAfrica.js';
+import ExplorerCharacterSetAfricaModest from './ExplorerCharacterSetAfricaModest.js';
+import ExplorerCharacterSetAsia from './ExplorerCharacterSetAsia.js';
+import ExplorerCharacterSetLatinAmerica from './ExplorerCharacterSetLatinAmerica.js';
 import ExplorerCharacterSetUSA from './ExplorerCharacterSetUSA.js';
-
 
 const ExplorerImages = {
   EXPLORER_CHARACTER_SETS: [
-    ExplorerCharacterSetUSA
+    ExplorerCharacterSetUSA,
+    ExplorerCharacterSetAfrica,
+    ExplorerCharacterSetAfricaModest,
+    ExplorerCharacterSetAsia,
+    ExplorerCharacterSetLatinAmerica
   ]
 };
 

@@ -1,10 +1,10 @@
 {
-  "house.png": {
+  "person.png": {
     "text": [
       "Copyright 2021 University of Colorado Boulder"
     ],
     "projectURL": "https://phet.colorado.edu/",
     "license": "contact phethelp@colorado.edu",
-    "notes": "created by Megan Lai for use by PhET"
+    "notes": "created by Mariah Hermsmeyer for use by PhET"
   }
 }
