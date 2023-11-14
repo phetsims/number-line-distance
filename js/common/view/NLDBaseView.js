@@ -182,15 +182,15 @@ class NLDBaseView extends Node {
 
     const firstNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
     const firstNodeHorizontalText = new RichText( NLDConstants.X_1_STRING,
-        merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+      merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const firstNodeVerticalText = new RichText( NLDConstants.Y_1_STRING,
-        merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+      merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const firstNodeTextHBox = new HBox( { children: [ firstNodeHorizontalText, firstNodeVerticalText, firstNodeEqualToText ] } );
 
     const secondNodeHorizontalText = new RichText( NLDConstants.X_2_STRING,
-        merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+      merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const secondNodeVerticalText = new RichText( NLDConstants.Y_2_STRING,
-        merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
+      merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const secondNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
     const secondNodeTextHBox = new HBox( { children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ] } );
 
@@ -308,19 +308,22 @@ class NLDBaseView extends Node {
 
     const absoluteDistanceDescriptionPatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate,
       patternStringValues, {
-        maps: distanceDescriptionMaps
+        maps: distanceDescriptionMaps,
+        accessNonDependencies: true
       } );
     const absoluteDistanceDescriptionVisibleProperty = new BooleanProperty( false );
 
     const directedPositiveDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate,
       patternStringValues, {
-        maps: distanceDescriptionMaps
+        maps: distanceDescriptionMaps,
+        accessNonDependencies: true
       } );
     const directedPositiveDistanceVisibleProperty = new BooleanProperty( false );
 
     const directedNegativeDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate,
       patternStringValues, {
-        maps: distanceDescriptionMaps
+        maps: distanceDescriptionMaps,
+        accessNonDependencies: true
       } );
     const directedNegativeDistanceVisibleProperty = new BooleanProperty( false );
 
