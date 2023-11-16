@@ -8,8 +8,8 @@
  */
 
 import RegionAndCultureHeadshotIcon from '../../../../joist/js/preferences/RegionAndCultureHeadshotIcon.js';
-import exploreHomeIcon_png from '../../../images/exploreHomeIcon_png.js';
-import exploreNavbarIcon_png from '../../../images/exploreNavbarIcon_png.js';
+import exploreHomeIcon_png from '../../../images/latin-america/exploreHomeIcon_png.js';
+import exploreNavbarIcon_png from '../../../images/latin-america/exploreNavbarIcon_png.js';
 import person_png from '../../../mipmaps/latin-america/person_png.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import NLDConstants from '../NLDConstants.js';
