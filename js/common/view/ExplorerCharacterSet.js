@@ -14,17 +14,17 @@ export default class ExplorerCharacterSet extends RegionAndCulturePortrayal {
   /**
    *
    * @param label { LocalizedStringProperty }
-   * @param headshotIcon { Image }
    * @param standing { HTMLImageElement }
+   * @param offset { number }
    * @param screenHomeIcon { HTMLImageElement }
    * @param screenNavIcon { HTMLImageElement }
    * @param queryParameterValue { string }
    */
-  constructor( label, headshotIcon,
+  constructor( label,
                standing, offset, screenHomeIcon, screenNavIcon,
                queryParameterValue ) {
 
-    super( headshotIcon, label, queryParameterValue, {} );
+    super( label, queryParameterValue, {} );
 
     this.standing = standing;
     this.screenHomeIcon = screenHomeIcon;
