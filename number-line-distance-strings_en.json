@@ -139,5 +139,8 @@
   },
   "characterSet.latinAmerica": {
     "value": "Latin America"
+  },
+  "characterSet.multicultural": {
+    "value": "Multicultural"
   }
 }

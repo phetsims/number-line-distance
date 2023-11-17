@@ -12,15 +12,17 @@ import ExplorerCharacterSetAfrica from './ExplorerCharacterSetAfrica.js';
 import ExplorerCharacterSetAfricaModest from './ExplorerCharacterSetAfricaModest.js';
 import ExplorerCharacterSetAsia from './ExplorerCharacterSetAsia.js';
 import ExplorerCharacterSetLatinAmerica from './ExplorerCharacterSetLatinAmerica.js';
+import ExplorerCharacterSetMulti from './ExplorerCharacterSetMulti.js';
 import ExplorerCharacterSetUSA from './ExplorerCharacterSetUSA.js';
 
 const ExplorerImages = {
   EXPLORER_CHARACTER_SETS: [
-    ExplorerCharacterSetUSA,
+    ExplorerCharacterSetMulti,
     ExplorerCharacterSetAfrica,
     ExplorerCharacterSetAfricaModest,
     ExplorerCharacterSetAsia,
-    ExplorerCharacterSetLatinAmerica
+    ExplorerCharacterSetLatinAmerica,
+    ExplorerCharacterSetUSA
   ]
 };
 

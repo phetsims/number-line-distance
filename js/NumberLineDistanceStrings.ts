@@ -110,6 +110,8 @@ type StringsType = {
     'asiaStringProperty': LocalizedStringProperty;
     'latinAmerica': string;
     'latinAmericaStringProperty': LocalizedStringProperty;
+    'multicultural': string;
+    'multiculturalStringProperty': LocalizedStringProperty;
   }
 };
 
