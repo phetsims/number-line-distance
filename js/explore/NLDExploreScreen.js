@@ -7,10 +7,9 @@
  */
 
 import Screen from '../../../joist/js/Screen.js';
-import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import { Image } from '../../../scenery/js/imports.js';
+import ExploreScreenIcon from '../../../number-line-common/js/explore/view/ExploreScreenIcon.js';
 import NLDColors from '../common/NLDColors.js';
-import ExplorerCharacterSetUSA from '../common/view/ExplorerCharacterSetUSA.js';
+import ExplorerImages from '../common/view/ExplorerImages.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
@@ -27,14 +26,8 @@ class NLDExploreScreen extends Screen {
     const options = {
       name: NumberLineDistanceStrings.screen.exploreStringProperty,
       backgroundColorProperty: NLDColors.exploreScreenBackgroundColorProperty,
-      homeScreenIcon: new ScreenIcon( new Image( ExplorerCharacterSetUSA.screenHomeIcon ), {
-        maxIconWidthProportion: 1,
-        maxIconHeightProportion: 1
-      } ),
-      navigationBarIcon: new ScreenIcon( new Image( ExplorerCharacterSetUSA.screenNavIcon ), {
-        maxIconWidthProportion: 1,
-        maxIconHeightProportion: 1
-      } ),
+      homeScreenIcon: new ExploreScreenIcon( ExplorerImages.EXPLORER_CHARACTER_SETS, preferencesModel.localizationModel.regionAndCulturePortrayalProperty, 'home' ),
+      navigationBarIcon: new ExploreScreenIcon( ExplorerImages.EXPLORER_CHARACTER_SETS, preferencesModel.localizationModel.regionAndCulturePortrayalProperty, 'nav' ),
       tandem: tandem
     };
 
