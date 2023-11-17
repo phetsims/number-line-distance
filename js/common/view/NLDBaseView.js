@@ -46,6 +46,7 @@ const distanceStatementStringProperty = NumberLineDistanceStrings.distanceStatem
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 200 };
 const NODE_SWAP_TEXT_OPTIONS = { font: new MathSymbolFont( 30 ), maxWidth: 50 };
 const NODE_SWAP_HBOX_SPACING = 15;
+const NODE_TEXT_SPACING = 8;
 const SWAP_ICON_PATH_OPTIONS = { stroke: 'black', lineWidth: 4 };
 const ARROW_SIZE = 5;
 const ARROW_SHAPE_OPTIONS = {
@@ -185,14 +186,14 @@ class NLDBaseView extends Node {
       merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const firstNodeVerticalText = new RichText( NLDConstants.Y_1_STRING,
       merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
-    const firstNodeTextHBox = new HBox( { children: [ firstNodeHorizontalText, firstNodeVerticalText, firstNodeEqualToText ] } );
+    const firstNodeTextHBox = new HBox( { children: [ firstNodeHorizontalText, firstNodeVerticalText, firstNodeEqualToText ], spacing: NODE_TEXT_SPACING } );
 
     const secondNodeHorizontalText = new RichText( NLDConstants.X_2_STRING,
       merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const secondNodeVerticalText = new RichText( NLDConstants.Y_2_STRING,
       merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const secondNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
-    const secondNodeTextHBox = new HBox( { children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ] } );
+    const secondNodeTextHBox = new HBox( { children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ], spacing: NODE_TEXT_SPACING } );
 
     const firstNodeHBox = new HBox( {
       children: [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ],
