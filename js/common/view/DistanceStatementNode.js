@@ -159,8 +159,9 @@ class DistanceStatementNode extends Node {
       new Rectangle( REPRESENTATION_BOUNDS )
     ];
 
-    const horizontalTextVisibleProperty = new BooleanProperty( false );
-    const verticalTextVisibleProperty = new BooleanProperty( false );
+    // The text needs to be visible at startup to properly instantiate the Gridbox layout.
+    const horizontalTextVisibleProperty = new BooleanProperty( model.numberLine.orientationProperty.value === Orientation.HORIZONTAL );
+    const verticalTextVisibleProperty = new BooleanProperty( model.numberLine.orientationProperty.value === Orientation.VERTICAL );
 
     // These nodes that will be shown instead of the value representations if the point controllers aren't on the number line.
     const alternativeTexts = {
@@ -206,16 +207,14 @@ class DistanceStatementNode extends Node {
       children: [ leftTermHorizontalLabel, leftTermVerticalLabel ],
       visibleProperty: new DerivedProperty( [ model.pointValuesProperty ], pointValues => {
         return pointValues[ 1 ] !== null;
-      } ),
-      excludeInvisibleChildrenFromBounds: false
+      } )
     } );
 
     const rightTermLabelNode = new FlowBox( {
       children: [ rightTermHorizontalLabel, rightTermVerticalLabel ],
       visibleProperty: new DerivedProperty( [ model.pointValuesProperty ], pointValues => {
         return pointValues[ 0 ] !== null;
-      } ),
-      excludeInvisibleChildrenFromBounds: false
+      } )
     } );
 
     // In order to place the term labels exactly above the appropriate terms, we need to create another HBox above the
