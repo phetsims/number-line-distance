@@ -12,7 +12,6 @@ import { AlignGroup, Image, ManualConstraint, Node, Text } from '../../../../sce
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
 import house_png from '../../../mipmaps/house_png.js';
-import NLDQueryParameters from '../../common/NLDQueryParameters.js';
 import ExplorerCharacterSetUSA from '../../common/view/ExplorerCharacterSetUSA.js';
 import ExplorerImages from '../../common/view/ExplorerImages.js';
 import numberLineDistance from '../../numberLineDistance.js';
@@ -61,10 +60,8 @@ class DistanceSceneView extends NLDSceneView {
     // Create the representations for the person and the house in the area that they can be swapped.
     // scales were empirically determined
     const legendAlignGroup = new AlignGroup();
-
-    // TODO: this is an experiment to eliminate fuzziness, see: https://github.com/phetsims/number-line-distance/issues/72
-    const personRepresentationScale = NLDQueryParameters.personImage === 'person' ? 0.1 : 0.05;
-    const houseRepresentation = new Image( house_png, { scale: 0.08 } );
+    const personRepresentationScale = 0.1;
+    const houseRepresentation = new Image( house_png, { scale: 0.15 } );
     const personRepresentation = new Node( { children: createPersonImages( personRepresentationScale, legendAlignGroup ) } );
 
     // All the personRepresentation images have the same width.
@@ -111,10 +108,8 @@ class DistanceSceneView extends NLDSceneView {
     // Point controllers that are in different parent nodes so that the person is always on top of the house in terms of
     // layering. The mouse area dilation for the personPointControllerImage is for #38.
     // the image scales and dilations are empirically determined
-      // TODO: this is an experiment to eliminate fuzziness, see: https://github.com/phetsims/number-line-distance/issues/72
-    const controllerScale = NLDQueryParameters.personImage === 'person' ? 0.22 : 0.10;
     const controllerAlignGroup = new AlignGroup();
-    const personPointControllerImage = new Node( { children: createPersonImages( controllerScale, controllerAlignGroup ) } );
+    const personPointControllerImage = new Node( { children: createPersonImages( 0.22, controllerAlignGroup ) } );
     personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
       5 / personPointControllerImage.getScaleVector().x
     );

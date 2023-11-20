@@ -29,13 +29,6 @@ const NumberLineDistanceQueryParameters = QueryStringMachine.getAll( {
     type: 'string',
     validValues: [ 'directedDistance', 'displacement' ],
     defaultValue: 'directedDistance'
-  },
-
-// TODO: this is an experiment to eliminate fuzziness, see: https://github.com/phetsims/number-line-distance/issues/72
-  personImage: {
-    type: 'string',
-    validValues: [ 'person', 'personHighRes', 'personLarge' ],
-    defaultValue: 'person'
   }
 } );
 

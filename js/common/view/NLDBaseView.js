@@ -250,8 +250,7 @@ class NLDBaseView extends Node {
     this.addChild( pointControllerLegend );
 
     // Listen for when the primary node should be swapped, and swap the representations.
-    // TODO: Return to link after https://github.com/phetsims/number-line-distance/issues/72
-    model.isPrimaryControllerSwappedProperty.lazyLink( isPrimaryControllerSwapped => {
+    model.isPrimaryControllerSwappedProperty.link( isPrimaryControllerSwapped => {
       let firstNodeHBoxChildren;
       let secondNodeHBoxChildren;
       if ( isPrimaryControllerSwapped ) {
