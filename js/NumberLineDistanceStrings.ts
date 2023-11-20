@@ -112,7 +112,11 @@ type StringsType = {
     'latinAmericaStringProperty': LocalizedStringProperty;
     'multicultural': string;
     'multiculturalStringProperty': LocalizedStringProperty;
-  }
+  };
+  'displacement': string;
+  'displacementStringProperty': LocalizedStringProperty;
+  'terminology': string;
+  'terminologyStringProperty': LocalizedStringProperty;
 };
 
 const NumberLineDistanceStrings = getStringModule( 'NUMBER_LINE_DISTANCE' ) as StringsType;

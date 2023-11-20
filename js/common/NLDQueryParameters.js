@@ -25,6 +25,12 @@ const NumberLineDistanceQueryParameters = QueryStringMachine.getAll( {
     defaultValue: MULTICULTURAL_QUERY_VALUE
   },
 
+  terminology: {
+    type: 'string',
+    validValues: [ 'directedDistance', 'displacement' ],
+    defaultValue: 'directedDistance'
+  },
+
 // TODO: this is an experiment to eliminate fuzziness, see: https://github.com/phetsims/number-line-distance/issues/72
   personImage: {
     type: 'string',

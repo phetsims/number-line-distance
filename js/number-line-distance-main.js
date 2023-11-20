@@ -13,6 +13,7 @@ import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import NLDQueryParameters from './common/NLDQueryParameters.js';
 import ExplorerImages from './common/view/ExplorerImages.js';
+import SimulationPreferencesContentNode from './common/view/SimulationPreferencesContentNode.js';
 import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';
 import NumberLineDistanceStrings from './NumberLineDistanceStrings.js';
@@ -20,6 +21,13 @@ import NumberLineDistanceStrings from './NumberLineDistanceStrings.js';
 const numberLineDistanceTitleStringProperty = NumberLineDistanceStrings[ 'number-line-distance' ].titleStringProperty;
 
 const preferencesModel = new PreferencesModel( {
+  simulationOptions: {
+    customPreferences: [
+      {
+        createContent: () => new SimulationPreferencesContentNode()
+      }
+    ]
+  },
   localizationOptions: {
     characterSets: ExplorerImages.EXPLORER_CHARACTER_SETS,
     queryParameterValue: NLDQueryParameters.regionAndCulture

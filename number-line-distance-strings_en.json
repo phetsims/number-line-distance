@@ -142,5 +142,11 @@
   },
   "characterSet.multicultural": {
     "value": "Multicultural"
+  },
+  "displacement": {
+    "value": "Displacement"
+  },
+  "terminology": {
+    "value": "Terminology"
   }
 }

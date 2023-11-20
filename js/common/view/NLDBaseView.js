@@ -32,6 +32,7 @@ import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioBu
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
+import NLDPreferences from '../model/NLDPreferences.js';
 import NLDConstants from '../NLDConstants.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
 
@@ -41,6 +42,7 @@ const distanceDescriptionStringProperty = NumberLineDistanceStrings.distanceDesc
 const tickMarksStringProperty = NumberLineDistanceStrings.tickMarksStringProperty;
 const absoluteValueStringProperty = NumberLineDistanceStrings.absoluteValueStringProperty;
 const directedDistanceStringProperty = NumberLineDistanceStrings.directedDistanceStringProperty;
+const displacementStringProperty = NumberLineDistanceStrings.displacementStringProperty;
 const distanceStatementStringProperty = NumberLineDistanceStrings.distanceStatementStringProperty;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 200 };
@@ -112,6 +114,23 @@ class NLDBaseView extends Node {
     } );
     this.addChild( checkboxGroup );
 
+    const createDirectedDistanceNode = () => new Node( {
+      children: [
+        new Text( directedDistanceStringProperty, merge( {
+            visibleProperty:
+              new DerivedProperty( [ NLDPreferences.terminologyProperty ],
+                terminology => terminology === 'directedDistance' )
+          },
+          DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS ) ),
+        new Text( displacementStringProperty, merge( {
+            visibleProperty:
+              new DerivedProperty( [ NLDPreferences.terminologyProperty ],
+                terminology => terminology === 'displacement' )
+          },
+          DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS ) )
+      ]
+    } );
+
     // checkboxes for how distance should be represented
     const distanceTypeSelector = new VerticalAquaRadioButtonGroup(
       model.distanceRepresentationProperty,
@@ -122,7 +141,7 @@ class NLDBaseView extends Node {
         },
         {
           value: DistanceRepresentation.DIRECTED,
-          createNode: () => new Text( directedDistanceStringProperty, DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS )
+          createNode: () => createDirectedDistanceNode()
         }
       ],
       {
@@ -193,7 +212,10 @@ class NLDBaseView extends Node {
     const secondNodeVerticalText = new RichText( NLDConstants.Y_2_STRING,
       merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
     const secondNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
-    const secondNodeTextHBox = new HBox( { children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ], spacing: NODE_TEXT_SPACING } );
+    const secondNodeTextHBox = new HBox( {
+      children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ],
+      spacing: NODE_TEXT_SPACING
+    } );
 
     const firstNodeHBox = new HBox( {
       children: [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ],
