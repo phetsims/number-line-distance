@@ -9,7 +9,7 @@
 
 import exploreHomeIcon_png from '../../../images/latin-america/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/latin-america/exploreNavbarIcon_png.js';
-import person_png from '../../../mipmaps/latin-america/person_png.js';
+import person_png from '../../../images/latin-america/person_png.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import { LATIN_AMERICA_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';

@@ -9,7 +9,7 @@
 
 import exploreHomeIcon_png from '../../../images/africa-modest/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/africa-modest/exploreNavbarIcon_png.js';
-import person_png from '../../../mipmaps/africa-modest/person_png.js';
+import person_png from '../../../images/africa-modest/person_png.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import { AFRICA_MODEST_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';

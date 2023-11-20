@@ -14,7 +14,7 @@ import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.j
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 import { Image, Rectangle } from '../../../../scenery/js/imports.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
-import house_png from '../../../mipmaps/house_png.js';
+import house_png from '../../../images/house_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import DistanceSceneView from './DistanceSceneView.js';
