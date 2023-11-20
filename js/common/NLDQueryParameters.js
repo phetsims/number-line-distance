@@ -23,6 +23,13 @@ const NumberLineDistanceQueryParameters = QueryStringMachine.getAll( {
     type: 'string',
     validValues: [ MULTICULTURAL_QUERY_VALUE, USA_QUERY_VALUE, AFRICA_QUERY_VALUE, AFRICA_MODEST_QUERY_VALUE, ASIA_QUERY_VALUE, LATIN_AMERICA_QUERY_VALUE ],
     defaultValue: MULTICULTURAL_QUERY_VALUE
+  },
+
+// TODO: this is an experiment to eliminate fuzziness, see: https://github.com/phetsims/number-line-distance/issues/72
+  personImage: {
+    type: 'string',
+    validValues: [ 'person', 'personHighRes', 'personLarge' ],
+    defaultValue: 'person'
   }
 } );
 
