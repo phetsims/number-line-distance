@@ -112,7 +112,7 @@ class DistanceSceneView extends NLDSceneView {
     // layering. The mouse area dilation for the personPointControllerImage is for #38.
     // the image scales and dilations are empirically determined
       // TODO: this is an experiment to eliminate fuzziness, see: https://github.com/phetsims/number-line-distance/issues/72
-    const controllerScale = NLDQueryParameters.personImage === 'person' ? 0.22 : 0.10;
+    const controllerScale = NLDQueryParameters.personImage === 'person' ? 0.22 : 0.09;
     const controllerAlignGroup = new AlignGroup();
     const personPointControllerImage = new Node( { children: createPersonImages( controllerScale, controllerAlignGroup ) } );
     personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
