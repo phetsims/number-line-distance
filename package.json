@@ -25,7 +25,18 @@
     "screenNameKeys": [
       "NUMBER_LINE_DISTANCE/screen.explore",
       "NUMBER_LINE_DISTANCE/screen.generic"
-    ]
+    ],
+    "simFeatures": {
+      "supportedRegionsAndCultures": [
+        "multi",
+        "africa",
+        "africaModest",
+        "asia",
+        "latinAmerica",
+        "usa"
+      ],
+      "supportsDynamicLocale": true
+    }
   },
   "eslintConfig": {
     "extends": "../chipper/eslint/sim_eslintrc.js"

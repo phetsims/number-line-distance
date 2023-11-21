@@ -29,8 +29,7 @@ const preferencesModel = new PreferencesModel( {
     ]
   },
   localizationOptions: {
-    characterSets: ExplorerImages.EXPLORER_CHARACTER_SETS,
-    queryParameterValue: NLDQueryParameters.regionAndCulture
+    characterSets: ExplorerImages.EXPLORER_CHARACTER_SETS
   }
 } );
 
