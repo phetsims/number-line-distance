@@ -13,6 +13,7 @@ import ExplorerCharacterSetAfricaModest from './ExplorerCharacterSetAfricaModest
 import ExplorerCharacterSetAsia from './ExplorerCharacterSetAsia.js';
 import ExplorerCharacterSetLatinAmerica from './ExplorerCharacterSetLatinAmerica.js';
 import ExplorerCharacterSetMulti from './ExplorerCharacterSetMulti.js';
+import ExplorerCharacterSetOceania from './ExplorerCharacterSetOceania.js';
 import ExplorerCharacterSetUSA from './ExplorerCharacterSetUSA.js';
 
 const ExplorerImages = {
@@ -22,6 +23,7 @@ const ExplorerImages = {
     ExplorerCharacterSetAfricaModest,
     ExplorerCharacterSetAsia,
     ExplorerCharacterSetLatinAmerica,
+    ExplorerCharacterSetOceania,
     ExplorerCharacterSetUSA
   ]
 };
