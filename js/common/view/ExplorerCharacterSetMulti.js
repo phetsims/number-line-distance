@@ -8,7 +8,7 @@
  */
 
 import dotRandom from '../../../../dot/js/dotRandom.js';
-import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
+import JoistStrings from '../../../../joist/js/JoistStrings.js';
 import { MULTICULTURAL_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 import ExplorerCharacterSetAfrica from './ExplorerCharacterSetAfrica.js';
@@ -18,20 +18,20 @@ import ExplorerCharacterSetLatinAmerica from './ExplorerCharacterSetLatinAmerica
 import ExplorerCharacterSetUSA from './ExplorerCharacterSetUSA.js';
 
 const RANDOM_CHARACTER_SET = dotRandom.sample( [
-    ExplorerCharacterSetAfrica,
-    ExplorerCharacterSetAfricaModest,
-    ExplorerCharacterSetAsia,
-    ExplorerCharacterSetLatinAmerica,
-    ExplorerCharacterSetUSA
+  ExplorerCharacterSetAfrica,
+  ExplorerCharacterSetAfricaModest,
+  ExplorerCharacterSetAsia,
+  ExplorerCharacterSetLatinAmerica,
+  ExplorerCharacterSetUSA
 ] );
 
 const ExplorerCharacterSetMulti = new ExplorerCharacterSet(
-    NumberLineDistanceStrings.characterSet.multiculturalStringProperty,
-    RANDOM_CHARACTER_SET.standing,
-    RANDOM_CHARACTER_SET.offset,
-    RANDOM_CHARACTER_SET.screenHomeIcon,
-    RANDOM_CHARACTER_SET.screenNavIcon,
-    MULTICULTURAL_QUERY_VALUE
+  JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.multiculturalStringProperty,
+  RANDOM_CHARACTER_SET.standing,
+  RANDOM_CHARACTER_SET.offset,
+  RANDOM_CHARACTER_SET.screenHomeIcon,
+  RANDOM_CHARACTER_SET.screenNavIcon,
+  MULTICULTURAL_QUERY_VALUE
 );
 
 export default ExplorerCharacterSetMulti;

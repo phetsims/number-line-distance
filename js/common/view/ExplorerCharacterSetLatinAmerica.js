@@ -7,21 +7,21 @@
  *
  */
 
+import JoistStrings from '../../../../joist/js/JoistStrings.js';
 import exploreHomeIcon_png from '../../../images/latin-america/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/latin-america/exploreNavbarIcon_png.js';
 import person_png from '../../../images/latin-america/person_png.js';
-import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import { LATIN_AMERICA_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 
 
 const ExplorerCharacterSetLatinAmerica = new ExplorerCharacterSet(
-    NumberLineDistanceStrings.characterSet.latinAmericaStringProperty,
-    person_png,
-    35,
-    exploreHomeIcon_png,
-    exploreNavbarIcon_png,
-    LATIN_AMERICA_QUERY_VALUE
+  JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.latinAmericaStringProperty,
+  person_png,
+  35,
+  exploreHomeIcon_png,
+  exploreNavbarIcon_png,
+  LATIN_AMERICA_QUERY_VALUE
 );
 
 export default ExplorerCharacterSetLatinAmerica;

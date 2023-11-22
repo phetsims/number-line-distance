@@ -57,14 +57,6 @@ type StringsType = {
   'elevationSceneDirectedNegativeDistanceTemplateStringProperty': LocalizedStringProperty;
   'variableSubscriptPatternStringProperty': LocalizedStringProperty;
   'mathSymbolPatternStringProperty': LocalizedStringProperty;
-  'characterSet': {
-    'unitedStatesOfAmericaStringProperty': LocalizedStringProperty;
-    'africaStringProperty': LocalizedStringProperty;
-    'africaModestStringProperty': LocalizedStringProperty;
-    'asiaStringProperty': LocalizedStringProperty;
-    'latinAmericaStringProperty': LocalizedStringProperty;
-    'multiculturalStringProperty': LocalizedStringProperty;
-  };
   'displacementStringProperty': LocalizedStringProperty;
   'terminologyStringProperty': LocalizedStringProperty;
 };
