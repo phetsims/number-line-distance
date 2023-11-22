@@ -9,10 +9,10 @@
 
 
 import JoistStrings from '../../../../joist/js/JoistStrings.js';
+import { AFRICA_REGION_AND_CULTURE_ID } from '../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import exploreHomeIcon_png from '../../../images/africa/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/africa/exploreNavbarIcon_png.js';
 import person_png from '../../../images/africa/person_png.js';
-import { AFRICA_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 
 
@@ -22,7 +22,7 @@ const ExplorerCharacterSetAfrica = new ExplorerCharacterSet(
   30,
   exploreHomeIcon_png,
   exploreNavbarIcon_png,
-  AFRICA_QUERY_VALUE
+  AFRICA_REGION_AND_CULTURE_ID
 );
 
 export default ExplorerCharacterSetAfrica;

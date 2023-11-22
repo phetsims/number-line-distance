@@ -8,10 +8,10 @@
  */
 
 import JoistStrings from '../../../../joist/js/JoistStrings.js';
+import { ASIA_REGION_AND_CULTURE_ID } from '../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import exploreHomeIcon_png from '../../../images/asia/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/asia/exploreNavbarIcon_png.js';
 import person_png from '../../../images/asia/person_png.js';
-import { ASIA_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 
 
@@ -21,7 +21,7 @@ const ExplorerCharacterSetAsia = new ExplorerCharacterSet(
   30,
   exploreHomeIcon_png,
   exploreNavbarIcon_png,
-  ASIA_QUERY_VALUE
+  ASIA_REGION_AND_CULTURE_ID
 );
 
 export default ExplorerCharacterSetAsia;

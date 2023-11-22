@@ -8,10 +8,10 @@
  */
 
 import JoistStrings from '../../../../joist/js/JoistStrings.js';
+import { LATIN_AMERICA_REGION_AND_CULTURE_ID } from '../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import exploreHomeIcon_png from '../../../images/latin-america/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/latin-america/exploreNavbarIcon_png.js';
 import person_png from '../../../images/latin-america/person_png.js';
-import { LATIN_AMERICA_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 
 
@@ -21,7 +21,7 @@ const ExplorerCharacterSetLatinAmerica = new ExplorerCharacterSet(
   35,
   exploreHomeIcon_png,
   exploreNavbarIcon_png,
-  LATIN_AMERICA_QUERY_VALUE
+  LATIN_AMERICA_REGION_AND_CULTURE_ID
 );
 
 export default ExplorerCharacterSetLatinAmerica;

@@ -8,10 +8,10 @@
  */
 
 import JoistStrings from '../../../../joist/js/JoistStrings.js';
+import { AFRICA_MODEST_REGION_AND_CULTURE_ID } from '../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import exploreHomeIcon_png from '../../../images/africa-modest/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../images/africa-modest/exploreNavbarIcon_png.js';
 import person_png from '../../../images/africa-modest/person_png.js';
-import { AFRICA_MODEST_QUERY_VALUE } from '../NLDQueryParameters.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 
 
@@ -21,7 +21,7 @@ const ExplorerCharacterSetAfricaModest = new ExplorerCharacterSet(
   25,
   exploreHomeIcon_png,
   exploreNavbarIcon_png,
-  AFRICA_MODEST_QUERY_VALUE
+  AFRICA_MODEST_REGION_AND_CULTURE_ID
 );
 
 export default ExplorerCharacterSetAfricaModest;
