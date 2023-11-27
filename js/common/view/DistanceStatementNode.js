@@ -280,11 +280,13 @@ class DistanceStatementNode extends Node {
 
         // Replace value representations with alternatives if their value is invalid.
         if ( leftTermValue === INVALID_VALUE ) {
-          leftTermNode = alternativeTexts.horizontal[ 1 ];
+          leftTermNode = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
+                         alternativeTexts.horizontal[ 1 ] : alternativeTexts.vertical[ 1 ];
           distance = INVALID_DISTANCE_STRING;
         }
         if ( rightTermValue === INVALID_VALUE ) {
-          rightTermNode = alternativeTexts.horizontal[ 0 ];
+          rightTermNode = model.numberLine.orientationProperty.value === Orientation.HORIZONTAL ?
+                          alternativeTexts.horizontal[ 0 ] : alternativeTexts.vertical[ 0 ];
           distance = INVALID_DISTANCE_STRING;
         }
 
