@@ -356,7 +356,8 @@ class NLDBaseView extends Node {
         } ) ),
         new RichText( directedNegativeDistancePatternStringProperty, merge( DISTANCE_DESCRIPTION_TEXT_OPTIONS, {
           visibleProperty: directedNegativeDistanceVisibleProperty
-        } ) ) ]
+        } ) ) ],
+      excludeInvisibleChildrenFromBounds: true
     } );
 
 
@@ -372,21 +373,9 @@ class NLDBaseView extends Node {
           return;
         }
 
-        if ( distanceRepresentation === DistanceRepresentation.ABSOLUTE || distance === 0 ) {
-          absoluteDistanceDescriptionVisibleProperty.value = true;
-          directedPositiveDistanceVisibleProperty.value = false;
-          directedNegativeDistanceVisibleProperty.value = false;
-        }
-        else if ( distance > 0 ) {
-          absoluteDistanceDescriptionVisibleProperty.value = false;
-          directedPositiveDistanceVisibleProperty.value = true;
-          directedNegativeDistanceVisibleProperty.value = false;
-        }
-        else if ( distance < 0 ) {
-          absoluteDistanceDescriptionVisibleProperty.value = false;
-          directedPositiveDistanceVisibleProperty.value = false;
-          directedNegativeDistanceVisibleProperty.value = true;
-        }
+        absoluteDistanceDescriptionVisibleProperty.value = distanceRepresentation === DistanceRepresentation.ABSOLUTE || distance === 0;
+        directedPositiveDistanceVisibleProperty.value = distanceRepresentation === DistanceRepresentation.DIRECTED && distance > 0;
+        directedNegativeDistanceVisibleProperty.value = distanceRepresentation === DistanceRepresentation.DIRECTED && distance < 0;
       }
     );
 
