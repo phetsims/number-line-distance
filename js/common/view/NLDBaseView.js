@@ -25,7 +25,7 @@ import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { FlowBox, HBox, ManualConstraint, Node, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import { HBox, ManualConstraint, Node, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
@@ -152,25 +152,15 @@ class NLDBaseView extends Node {
     );
     this.addChild( distanceTypeSelector );
 
-    // box for point controllers
-    const pointControllerBoxRectangle = new Rectangle( model.pointControllerBoxProperty.value, {
-      fill: 'white',
-      stroke: 'black',
-      cornerRadius: 6
-    } );
-
-    this.addChild( pointControllerBoxRectangle );
-
     let pointControllerBoxNode = null;
-
     model.pointControllerBoxProperty.link( pointControllerBox => {
-      pointControllerBoxNode && pointControllerBoxRectangle.removeChild( pointControllerBoxNode );
-      pointControllerBoxNode = new FlowBox( {
+      pointControllerBoxNode && this.removeChild( pointControllerBoxNode );
+      pointControllerBoxNode = new Rectangle( pointControllerBox, {
         fill: 'white',
         stroke: 'black',
         cornerRadius: 6
       } );
-      pointControllerBoxRectangle.addChild( pointControllerBoxNode );
+      this.addChild( pointControllerBoxNode );
     } );
 
     // Add pointControllerRepresentations to rectangles that ensure that the representations take up the same space.
