@@ -19,7 +19,5 @@ const NLDPreferences = {
   terminologyProperty: new Property( NLDQueryParameters.terminology )
 };
 
-console.log( NLDPreferences.terminologyProperty.value );
-
 export default NLDPreferences;
 numberLineDistance.register( 'NLDPreferences', NLDPreferences );

@@ -165,14 +165,14 @@ class DistanceStatementNode extends Node {
 
     // These nodes that will be shown instead of the value representations if the point controllers aren't on the number line.
     const alternativeTexts = {
-        horizontal: [
-            new RichText( NLDConstants.X_1_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) ),
-            new RichText( NLDConstants.X_2_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) )
-        ],
-        vertical: [
-            new RichText( NLDConstants.Y_1_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) ),
-            new RichText( NLDConstants.Y_2_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) )
-        ]
+      horizontal: [
+        new RichText( NLDConstants.X_1_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) ),
+        new RichText( NLDConstants.X_2_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: horizontalTextVisibleProperty } ) )
+      ],
+      vertical: [
+        new RichText( NLDConstants.Y_1_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) ),
+        new RichText( NLDConstants.Y_2_STRING, merge( MATH_TEXT_OPTIONS, { visibleProperty: verticalTextVisibleProperty } ) )
+      ]
     };
 
     const minusSignText = new Text( MathSymbols.MINUS, merge( { layoutOptions: { xMargin: 5 } }, NORMAL_TEXT_OPTIONS ) );
@@ -198,23 +198,33 @@ class DistanceStatementNode extends Node {
     } );
 
     // labels that go above the numerical terms when they have valid values
-    const leftTermHorizontalLabel = new RichText( NLDConstants.X_2_STRING, merge( { visibleProperty: horizontalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
-    const leftTermVerticalLabel = new RichText( NLDConstants.Y_2_STRING, merge( { visibleProperty: verticalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
-    const rightTermHorizontalLabel = new RichText( NLDConstants.X_1_STRING, merge( { visibleProperty: horizontalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
-    const rightTermVerticalLabel = new RichText( NLDConstants.Y_1_STRING, merge( { visibleProperty: verticalTextVisibleProperty }, TERM_LABEL_TEXT_OPTIONS ) );
+    const leftTermHorizontalLabel = new RichText( NLDConstants.X_2_STRING, merge( {
+      visibleProperty: horizontalTextVisibleProperty
+    }, TERM_LABEL_TEXT_OPTIONS ) );
+    const leftTermVerticalLabel = new RichText( NLDConstants.Y_2_STRING, merge( {
+      visibleProperty: verticalTextVisibleProperty
+    }, TERM_LABEL_TEXT_OPTIONS ) );
+    const rightTermHorizontalLabel = new RichText( NLDConstants.X_1_STRING, merge( {
+      visibleProperty: horizontalTextVisibleProperty
+    }, TERM_LABEL_TEXT_OPTIONS ) );
+    const rightTermVerticalLabel = new RichText( NLDConstants.Y_1_STRING, merge( {
+      visibleProperty: verticalTextVisibleProperty
+    }, TERM_LABEL_TEXT_OPTIONS ) );
 
     const leftTermLabelNode = new FlowBox( {
       children: [ leftTermHorizontalLabel, leftTermVerticalLabel ],
-      visibleProperty: new DerivedProperty( [ model.pointValuesProperty ], pointValues => {
-        return pointValues[ 1 ] !== null;
-      } )
+      visibleProperty: new DerivedProperty( [ model.pointValuesProperty, model.isPrimaryControllerSwappedProperty ],
+        ( pointValues, swapped ) => {
+          return swapped ? pointValues[ 0 ] !== null : pointValues[ 1 ] !== null;
+        } )
     } );
 
     const rightTermLabelNode = new FlowBox( {
       children: [ rightTermHorizontalLabel, rightTermVerticalLabel ],
-      visibleProperty: new DerivedProperty( [ model.pointValuesProperty ], pointValues => {
-        return pointValues[ 0 ] !== null;
-      } )
+      visibleProperty: new DerivedProperty( [ model.pointValuesProperty, model.isPrimaryControllerSwappedProperty ],
+        ( pointValues, swapped ) => {
+          return swapped ? pointValues[ 1 ] !== null : pointValues[ 0 ] !== null;
+        } )
     } );
 
     // In order to place the term labels exactly above the appropriate terms, we need to create another HBox above the
@@ -247,12 +257,12 @@ class DistanceStatementNode extends Node {
 
         // Change the alt text based off of number line orientation.
         if ( orientation === Orientation.HORIZONTAL ) {
-            horizontalTextVisibleProperty.value = true;
-            verticalTextVisibleProperty.value = false;
+          horizontalTextVisibleProperty.value = true;
+          verticalTextVisibleProperty.value = false;
         }
         else {
-            horizontalTextVisibleProperty.value = false;
-            verticalTextVisibleProperty.value = true;
+          horizontalTextVisibleProperty.value = false;
+          verticalTextVisibleProperty.value = true;
         }
 
         // Choose the ordering for children for the distance statement.
