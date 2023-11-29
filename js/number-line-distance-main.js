@@ -11,7 +11,7 @@ import PreferencesModel from '../../joist/js/preferences/PreferencesModel.js';
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import ExplorerImages from './common/view/ExplorerImages.js';
+import ExplorerImages from './explore/view/ExplorerImages.js';
 import SimulationPreferencesContentNode from './common/view/SimulationPreferencesContentNode.js';
 import NLDExploreScreen from './explore/NLDExploreScreen.js';
 import NLDGenericScreen from './generic/NLDGenericScreen.js';

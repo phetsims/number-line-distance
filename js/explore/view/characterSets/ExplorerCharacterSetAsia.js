@@ -7,11 +7,11 @@
  *
  */
 
-import JoistStrings from '../../../../joist/js/JoistStrings.js';
-import { ASIA_REGION_AND_CULTURE_ID } from '../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import exploreHomeIcon_png from '../../../images/asia/exploreHomeIcon_png.js';
-import exploreNavbarIcon_png from '../../../images/asia/exploreNavbarIcon_png.js';
-import person_png from '../../../images/asia/person_png.js';
+import JoistStrings from '../../../../../joist/js/JoistStrings.ts';
+import { ASIA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.ts';
+import exploreHomeIcon_png from '../../../../images/asia/exploreHomeIcon_png.ts';
+import exploreNavbarIcon_png from '../../../../images/asia/exploreNavbarIcon_png.ts';
+import person_png from '../../../../images/asia/person_png.ts';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 
 
