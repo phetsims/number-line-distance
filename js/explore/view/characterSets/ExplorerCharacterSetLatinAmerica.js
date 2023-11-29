@@ -7,11 +7,11 @@
  *
  */
 
-import JoistStrings from '../../../../../joist/js/JoistStrings.ts';
-import { LATIN_AMERICA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.ts';
-import exploreHomeIcon_png from '../../../../images/latin-america/exploreHomeIcon_png.ts';
-import exploreNavbarIcon_png from '../../../../images/latin-america/exploreNavbarIcon_png.ts';
-import person_png from '../../../../images/latin-america/person_png.ts';
+import JoistStrings from '../../../../../joist/js/JoistStrings.js';
+import { LATIN_AMERICA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
+import exploreHomeIcon_png from '../../../../images/latin-america/exploreHomeIcon_png.js';
+import exploreNavbarIcon_png from '../../../../images/latin-america/exploreNavbarIcon_png.js';
+import person_png from '../../../../images/latin-america/person_png.js';
 import ExplorerCharacterSet from './ExplorerCharacterSet.js';
 
 

@@ -7,7 +7,7 @@
  *
  */
 
-import RegionAndCulturePortrayal from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.ts';
+import RegionAndCulturePortrayal from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import numberLineDistance from '../../../numberLineDistance.js';
 
 export default class ExplorerCharacterSet extends RegionAndCulturePortrayal {
