@@ -10,7 +10,7 @@ import PreferencesControl from '../../../../joist/js/preferences/PreferencesCont
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import PreferencesPanelContentNode from '../../../../joist/js/preferences/PreferencesPanelContentNode.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { RichText, Text } from '../../../../scenery/js/imports.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
@@ -35,7 +35,9 @@ export default class SimulationPreferencesContentNode extends PreferencesPanelCo
           }
         ] ),
       labelNode: new Text( NumberLineDistanceStrings.terminologyStringProperty, PreferencesDialogConstants.CONTROL_LABEL_OPTIONS ),
-      labelSpacing: 50
+      labelSpacing: 30,
+      descriptionNode: new RichText( NumberLineDistanceStrings.terminologyControlDescriptionStringProperty, PreferencesDialogConstants.CONTROL_DESCRIPTION_OPTIONS ),
+      ySpacing: 5
     } );
     super(
       {

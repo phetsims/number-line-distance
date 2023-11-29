@@ -59,6 +59,7 @@ type StringsType = {
   'mathSymbolPatternStringProperty': LocalizedStringProperty;
   'displacementStringProperty': LocalizedStringProperty;
   'terminologyStringProperty': LocalizedStringProperty;
+  'terminologyControlDescriptionStringProperty': LocalizedStringProperty;
 };
 
 const NumberLineDistanceStrings = getStringModule( 'NUMBER_LINE_DISTANCE' ) as StringsType;
