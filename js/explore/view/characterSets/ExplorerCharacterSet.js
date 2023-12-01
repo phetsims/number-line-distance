@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * The ExplorerCharacterSet defines what is needed for each character set in Number Line Distance.
+ * The ExplorerPortrayal defines what is needed for each character set in Number Line Distance.
  *
  * @author Luisa Vargas
  *
