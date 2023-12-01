@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.1.0-rc.1 Thu Nov 30 2023 17:31:15 GMT-0700 (Mountain Standard Time)",
+  "comment": "# number-line-distance 1.1.0-rc.2 Thu Nov 30 2023 17:35:36 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "94831413cd4dd4dc27c2a1aebbcafd3987934a99",
     "branch": "HEAD"
@@ -30,10 +30,10 @@
   },
   "number-line-common": {
     "sha": "246a8903f042311132e9bce687c00ad65c2c5c06",
-    "branch": "number-line-distance-1.1"
+    "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "3197bdb5cfc5e70291374e93771f8f7ce924d0ed",
+    "sha": "018653bc138162794c6298aa7948ab0c0a972a20",
     "branch": "1.1"
   },
   "perennial-alias": {
