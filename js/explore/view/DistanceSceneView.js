@@ -12,7 +12,7 @@ import { AlignGroup, Image, ManualConstraint, Node, Text } from '../../../../sce
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import house_png from '../../../images/house_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
-import ExplorerPortrayalUSA from './characterSets/ExplorerPortrayalUSA.js';
+import ExplorerPortrayalUSA from './portrayals/ExplorerPortrayalUSA.js';
 import ExplorerImages from './ExplorerImages.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';

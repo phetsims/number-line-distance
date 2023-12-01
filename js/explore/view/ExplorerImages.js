@@ -8,13 +8,13 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import ExplorerPortrayalAfrica from './characterSets/ExplorerPortrayalAfrica.js';
-import ExplorerPortrayalAfricaModest from './characterSets/ExplorerPortrayalAfricaModest.js';
-import ExplorerPortrayalAsia from './characterSets/ExplorerPortrayalAsia.js';
-import ExplorerPortrayalLatinAmerica from './characterSets/ExplorerPortrayalLatinAmerica.js';
-import ExplorerPortrayalMulticultural from './characterSets/ExplorerPortrayalMulticultural.js';
-import ExplorerPortrayalOceania from './characterSets/ExplorerPortrayalOceania.js';
-import ExplorerPortrayalUSA from './characterSets/ExplorerPortrayalUSA.js';
+import ExplorerPortrayalAfrica from './portrayals/ExplorerPortrayalAfrica.js';
+import ExplorerPortrayalAfricaModest from './portrayals/ExplorerPortrayalAfricaModest.js';
+import ExplorerPortrayalAsia from './portrayals/ExplorerPortrayalAsia.js';
+import ExplorerPortrayalLatinAmerica from './portrayals/ExplorerPortrayalLatinAmerica.js';
+import ExplorerPortrayalMulticultural from './portrayals/ExplorerPortrayalMulticultural.js';
+import ExplorerPortrayalOceania from './portrayals/ExplorerPortrayalOceania.js';
+import ExplorerPortrayalUSA from './portrayals/ExplorerPortrayalUSA.js';
 
 const ExplorerImages = {
   EXPLORER_CHARACTER_SETS: [
