@@ -12,10 +12,10 @@ import { LATIN_AMERICA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/pre
 import exploreHomeIcon_png from '../../../../images/latin-america/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../../images/latin-america/exploreNavbarIcon_png.js';
 import person_png from '../../../../images/latin-america/person_png.js';
-import ExplorerCharacterSet from './ExplorerCharacterSet.js';
+import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
-const ExplorerCharacterSetLatinAmerica = new ExplorerCharacterSet(
+const ExplorerPortrayalLatinAmerica = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.latinAmericaStringProperty,
   person_png,
   35,
@@ -24,4 +24,4 @@ const ExplorerCharacterSetLatinAmerica = new ExplorerCharacterSet(
   LATIN_AMERICA_REGION_AND_CULTURE_ID
 );
 
-export default ExplorerCharacterSetLatinAmerica;
+export default ExplorerPortrayalLatinAmerica;

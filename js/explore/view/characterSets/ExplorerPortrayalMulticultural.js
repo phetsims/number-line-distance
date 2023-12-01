@@ -10,22 +10,22 @@
 import dotRandom from '../../../../../dot/js/dotRandom.js';
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { MULTICULTURAL_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import ExplorerCharacterSet from './ExplorerCharacterSet.js';
-import ExplorerCharacterSetAfrica from './ExplorerCharacterSetAfrica.js';
-import ExplorerCharacterSetAfricaModest from './ExplorerCharacterSetAfricaModest.js';
-import ExplorerCharacterSetAsia from './ExplorerCharacterSetAsia.js';
-import ExplorerCharacterSetLatinAmerica from './ExplorerCharacterSetLatinAmerica.js';
-import ExplorerCharacterSetUSA from './ExplorerCharacterSetUSA.js';
+import ExplorerPortrayal from './ExplorerPortrayal.js';
+import ExplorerPortrayalAfrica from './ExplorerPortrayalAfrica.js';
+import ExplorerPortrayalAfricaModest from './ExplorerPortrayalAfricaModest.js';
+import ExplorerPortrayalAsia from './ExplorerPortrayalAsia.js';
+import ExplorerPortrayalLatinAmerica from './ExplorerPortrayalLatinAmerica.js';
+import ExplorerPortrayalUSA from './ExplorerPortrayalUSA.js';
 
 const RANDOM_CHARACTER_SET = dotRandom.sample( [
-  ExplorerCharacterSetAfrica,
-  ExplorerCharacterSetAfricaModest,
-  ExplorerCharacterSetAsia,
-  ExplorerCharacterSetLatinAmerica,
-  ExplorerCharacterSetUSA
+  ExplorerPortrayalAfrica,
+  ExplorerPortrayalAfricaModest,
+  ExplorerPortrayalAsia,
+  ExplorerPortrayalLatinAmerica,
+  ExplorerPortrayalUSA
 ] );
 
-const ExplorerCharacterSetMulti = new ExplorerCharacterSet(
+const ExplorerPortrayalMulticultural = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.multiculturalStringProperty,
   RANDOM_CHARACTER_SET.standing,
   RANDOM_CHARACTER_SET.offset,
@@ -34,4 +34,4 @@ const ExplorerCharacterSetMulti = new ExplorerCharacterSet(
   MULTICULTURAL_REGION_AND_CULTURE_ID
 );
 
-export default ExplorerCharacterSetMulti;
+export default ExplorerPortrayalMulticultural;

@@ -13,10 +13,10 @@ import { AFRICA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preference
 import exploreHomeIcon_png from '../../../../images/africa/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../../images/africa/exploreNavbarIcon_png.js';
 import person_png from '../../../../images/africa/person_png.js';
-import ExplorerCharacterSet from './ExplorerCharacterSet.js';
+import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
-const ExplorerCharacterSetAfrica = new ExplorerCharacterSet(
+const ExplorerPortrayalAfrica = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaStringProperty,
   person_png,
   30,
@@ -25,4 +25,4 @@ const ExplorerCharacterSetAfrica = new ExplorerCharacterSet(
   AFRICA_REGION_AND_CULTURE_ID
 );
 
-export default ExplorerCharacterSetAfrica;
+export default ExplorerPortrayalAfrica;

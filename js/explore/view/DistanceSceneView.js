@@ -12,7 +12,7 @@ import { AlignGroup, Image, ManualConstraint, Node, Text } from '../../../../sce
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import house_png from '../../../images/house_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
-import ExplorerCharacterSetUSA from './characterSets/ExplorerCharacterSetUSA.js';
+import ExplorerPortrayalUSA from './characterSets/ExplorerPortrayalUSA.js';
 import ExplorerImages from './ExplorerImages.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
@@ -66,7 +66,7 @@ class DistanceSceneView extends NLDSceneView {
 
     // All the personRepresentation images have the same width.
     const smallestWidth = Math.min( houseRepresentation.getImageWidth(),
-      new Image( ExplorerCharacterSetUSA.standing, { scale: personRepresentationScale } ).getImageWidth() );
+      new Image( ExplorerPortrayalUSA.standing, { scale: personRepresentationScale } ).getImageWidth() );
     houseRepresentation.maxWidth = smallestWidth;
     personRepresentation.maxWidth = smallestWidth;
 

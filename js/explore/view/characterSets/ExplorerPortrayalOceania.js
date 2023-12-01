@@ -13,10 +13,10 @@ import { OCEANIA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferenc
 import exploreHomeIcon_png from '../../../../images/oceania/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../../images/oceania/exploreNavbarIcon_png.js';
 import person_png from '../../../../images/oceania/person_png.js';
-import ExplorerCharacterSet from './ExplorerCharacterSet.js';
+import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
-const ExplorerCharacterSetOceania = new ExplorerCharacterSet(
+const ExplorerPortrayalOceania = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.oceaniaStringProperty,
   person_png,
   30,
@@ -25,4 +25,4 @@ const ExplorerCharacterSetOceania = new ExplorerCharacterSet(
   OCEANIA_REGION_AND_CULTURE_ID
 );
 
-export default ExplorerCharacterSetOceania;
+export default ExplorerPortrayalOceania;

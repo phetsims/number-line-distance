@@ -12,10 +12,10 @@ import { ASIA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/
 import exploreHomeIcon_png from '../../../../images/asia/exploreHomeIcon_png.js';
 import exploreNavbarIcon_png from '../../../../images/asia/exploreNavbarIcon_png.js';
 import person_png from '../../../../images/asia/person_png.js';
-import ExplorerCharacterSet from './ExplorerCharacterSet.js';
+import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
-const ExplorerCharacterSetAsia = new ExplorerCharacterSet(
+const ExplorerPortrayalAsia = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.asiaStringProperty,
   person_png,
   30,
@@ -24,4 +24,4 @@ const ExplorerCharacterSetAsia = new ExplorerCharacterSet(
   ASIA_REGION_AND_CULTURE_ID
 );
 
-export default ExplorerCharacterSetAsia;
+export default ExplorerPortrayalAsia;

@@ -10,7 +10,7 @@
 import RegionAndCulturePortrayal from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import numberLineDistance from '../../../numberLineDistance.js';
 
-export default class ExplorerCharacterSet extends RegionAndCulturePortrayal {
+export default class ExplorerPortrayal extends RegionAndCulturePortrayal {
   /**
    *
    * @param label { LocalizedStringProperty }
@@ -33,4 +33,4 @@ export default class ExplorerCharacterSet extends RegionAndCulturePortrayal {
   }
 }
 
-numberLineDistance.register( 'ExplorerCharacterSet', ExplorerCharacterSet );
+numberLineDistance.register( 'ExplorerPortrayal', ExplorerPortrayal );
