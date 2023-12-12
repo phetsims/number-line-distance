@@ -6,6 +6,7 @@
  * @author Saurabh Totey
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
@@ -67,10 +68,16 @@ class NLDGenericScreenView extends ScreenView {
           directedNegativeDistanceDescriptionTemplate: genericDirectedNegativeDistanceTemplateStringProperty,
           singularUnits: unitStringProperty,
           pluralUnits: unitsStringProperty,
-          getPrimaryPointControllerLabel: ( _, orientation ) =>
-              ( orientation === Orientation.HORIZONTAL ) ? horizontalPrimaryPointControllerPatternStringProperty : verticalPrimaryPointControllerPatternStringProperty,
-          getSecondaryPointControllerLabel: ( _, orientation ) =>
-              ( orientation === Orientation.HORIZONTAL ) ? horizontalSecondaryPointControllerPatternStringProperty : verticalSecondaryPointControllerPatternStringProperty
+          primaryPointControllerLabelStringProperty: new DerivedProperty( [ model.numberLine.orientationProperty,
+              horizontalPrimaryPointControllerPatternStringProperty, verticalPrimaryPointControllerPatternStringProperty ],
+            ( orientation, horizontalPrimaryPoint, verticalPrimaryPoint ) => {
+              return ( orientation === Orientation.HORIZONTAL ) ? horizontalPrimaryPoint : verticalPrimaryPoint;
+            } ),
+          secondaryPointControllerLabelStringProperty: new DerivedProperty( [ model.numberLine.orientationProperty,
+              horizontalSecondaryPointControllerPatternStringProperty, verticalSecondaryPointControllerPatternStringProperty ],
+            ( orientation, horizontalSecondaryPoint, verticalSecondaryPoint ) => {
+              return ( orientation === Orientation.HORIZONTAL ) ? horizontalSecondaryPoint : verticalSecondaryPoint;
+            } )
         },
         distanceStatementNodeOptions: { controlsValues: true }
       }
