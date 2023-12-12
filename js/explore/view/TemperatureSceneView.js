@@ -6,6 +6,7 @@
  * @author Saurabh Totey
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Image, LinearGradient, Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
@@ -58,8 +59,16 @@ class TemperatureSceneView extends NLDSceneView {
           directedNegativeDistanceDescriptionTemplate: temperatureSceneDirectedNegativeDistanceTemplateStringProperty,
           singularUnits: degreeStringProperty,
           pluralUnits: degreesStringProperty,
-          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? bStringProperty : aStringProperty,
-          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? aStringProperty : bStringProperty
+          primaryPointControllerLabelStringProperty: new DerivedProperty( [ model.isPrimaryControllerSwappedProperty,
+              bStringProperty, aStringProperty ],
+            ( isPrimarySwapped, bString, aString ) => {
+              return isPrimarySwapped ? bString : aString;
+            } ),
+          secondaryPointControllerLabelStringProperty: new DerivedProperty( [ model.isPrimaryControllerSwappedProperty,
+              bStringProperty, aStringProperty ],
+            ( isPrimarySwapped, bString, aString ) => {
+              return isPrimarySwapped ? aString : bString;
+            } )
         },
         distanceShadedNumberLineNodeOptions: { unitsString: degreesCelsiusStringProperty }
       }

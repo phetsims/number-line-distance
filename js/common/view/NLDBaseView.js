@@ -88,10 +88,10 @@ class NLDBaseView extends Node {
         singularUnits: required( config.distanceDescriptionStrings.singularUnits ),
         pluralUnits: required( config.distanceDescriptionStrings.pluralUnits ),
 
-        // {function(boolean, Orientation):string} should give a point controller label (string) when given
-        // model.isPrimaryControllerSwapped and the orientation of the number line
-        getPrimaryPointControllerLabel: required( config.distanceDescriptionStrings.getPrimaryPointControllerLabel ),
-        getSecondaryPointControllerLabel: required( config.distanceDescriptionStrings.getSecondaryPointControllerLabel )
+        // Usages determine what the label should be. Make sure to take into consideration the model.isSwappedProperty and
+        // model.numberLine.orientationProperty
+        primaryPointControllerLabelStringProperty: required( config.distanceDescriptionStrings.primaryPointControllerLabelStringProperty ),
+        secondaryPointControllerLabelStringProperty: required( config.distanceDescriptionStrings.secondaryPointControllerLabelStringProperty )
       },
       distanceStatementNodeOptions: { controlsValues: false }
     }, config );
@@ -289,33 +289,24 @@ class NLDBaseView extends Node {
     );
     this.addChild( distanceStatementAccordionBox );
 
+    // DISTANCE DESCRIPTION
     // The labels and the unit properties change depending on context. These properties ensure that the pattern string labels are updated
     // appropriately in the map as needed.
-    const primaryPointControllerLabelProperty = new DerivedProperty( [ model.isPrimaryControllerSwappedProperty, model.numberLine.orientationProperty ],
-      ( isPrimarySwapped, orientation ) => {
-        return config.distanceDescriptionStrings.getPrimaryPointControllerLabel( isPrimarySwapped, orientation );
-      } );
-    const secondaryPointControllerLabelProperty = new DerivedProperty( [ model.isPrimaryControllerSwappedProperty, model.numberLine.orientationProperty ],
-      ( isPrimarySwapped, orientation ) => {
-        return config.distanceDescriptionStrings.getSecondaryPointControllerLabel( isPrimarySwapped, orientation );
-      } );
-    const unitsProperty = new DerivedProperty( [ model.distanceProperty ], distance => {
+    const unitsStringProperty = new DerivedProperty( [ config.distanceDescriptionStrings.singularUnits, config.distanceDescriptionStrings.pluralUnits, model.distanceProperty ],
+      ( singularUnits, pluralUnits, distance ) => {
       return ( distance === 1 || distance === -1 ) ?
-             config.distanceDescriptionStrings.singularUnits : config.distanceDescriptionStrings.pluralUnits;
+             singularUnits : pluralUnits;
     } );
     const patternStringValues = {
-      primaryPointControllerLabel: primaryPointControllerLabelProperty,
-      secondaryPointControllerLabel: secondaryPointControllerLabelProperty,
+      primaryPointControllerLabel: config.distanceDescriptionStrings.primaryPointControllerLabelStringProperty,
+      secondaryPointControllerLabel: config.distanceDescriptionStrings.secondaryPointControllerLabelStringProperty,
       difference: model.distanceProperty,
-      units: unitsProperty
+      units: unitsStringProperty
     };
 
     // Update pattern string labels and values based off of the distance representation and whether the
     // distance is positive or negative.
     const distanceDescriptionMaps = {
-      primaryPointControllerLabel: labelProperty => labelProperty.value,
-      secondaryPointControllerLabel: labelProperty => labelProperty.value,
-      units: unitsProperty => unitsProperty.value,
       difference: distance => Math.abs( distance )
     };
 

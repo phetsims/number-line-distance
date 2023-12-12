@@ -6,6 +6,7 @@
  * @author Saurabh Totey
  */
 
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.js';
 import birdInWater_png from '../../../../number-line-common/images/birdInWater_png.js';
@@ -44,8 +45,16 @@ class ElevationSceneView extends NLDSceneView {
           directedNegativeDistanceDescriptionTemplate: elevationSceneDirectedNegativeDistanceTemplateStringProperty,
           singularUnits: meterStringProperty,
           pluralUnits: metersStringProperty,
-          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? fishStringProperty : birdStringProperty,
-          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? birdStringProperty : fishStringProperty
+          primaryPointControllerLabelStringProperty: new DerivedProperty( [ model.isPrimaryControllerSwappedProperty,
+              fishStringProperty, birdStringProperty ],
+            ( isPrimarySwapped, fishString, birdString ) => {
+              return isPrimarySwapped ? fishString : birdString;
+            } ),
+          secondaryPointControllerLabelStringProperty: new DerivedProperty( [ model.isPrimaryControllerSwappedProperty,
+              fishStringProperty, birdStringProperty ],
+            ( isPrimarySwapped, fishString, birdString ) => {
+              return isPrimarySwapped ? birdString : fishString;
+            } )
         },
         distanceShadedNumberLineNodeOptions: {
           unitsString: metersSymbolStringProperty,

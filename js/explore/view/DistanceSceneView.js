@@ -81,8 +81,16 @@ class DistanceSceneView extends NLDSceneView {
           directedNegativeDistanceDescriptionTemplate: distanceSceneDirectedNegativeDistanceTemplateStringProperty,
           singularUnits: meterStringProperty,
           pluralUnits: metersStringProperty,
-          getPrimaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? personStringProperty : houseStringProperty,
-          getSecondaryPointControllerLabel: isPrimaryNodeSwapped => isPrimaryNodeSwapped ? houseStringProperty : personStringProperty
+          primaryPointControllerLabelStringProperty: new DerivedProperty( [ model.isPrimaryControllerSwappedProperty,
+              personStringProperty, houseStringProperty ],
+            ( isPrimarySwapped, personString, houseString ) => {
+              return isPrimarySwapped ? personString : houseString;
+            } ),
+          secondaryPointControllerLabelStringProperty: new DerivedProperty( [ model.isPrimaryControllerSwappedProperty,
+              personStringProperty, houseStringProperty ],
+            ( isPrimarySwapped, personString, houseString ) => {
+              return isPrimarySwapped ? houseString : personString;
+            } )
         },
         distanceShadedNumberLineNodeOptions: { unitsString: metersSymbolStringProperty }
       }
