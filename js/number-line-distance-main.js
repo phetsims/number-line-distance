@@ -36,9 +36,9 @@ const simOptions = {
   preferencesModel: preferencesModel,
   credits: {
     leadDesign: 'Amanda McGarry',
-    softwareDevelopment: 'John Blanco, Saurabh Totey',
+    softwareDevelopment: 'John Blanco, Marla Schulz, Saurabh Totey',
     team: 'Kathy Perkins, Ian Whitacre',
-    qualityAssurance: 'Steele Dalton, Emily Miller, Devon Quispe, Nancy Salpepi, Kathryn Woessner',
+    qualityAssurance: 'Steele Dalton, Jaron Droder, Clifford Hardin, Emily Miller, Devon Quispe, Nancy Salpepi, Kathryn Woessner',
     graphicArts: 'Mariah Hermsmeyer, Megan Lai'
   }
 };
