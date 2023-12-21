@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.1.0-rc.4 Wed Dec 20 2023 15:15:25 GMT-0800 (Pacific Standard Time)",
+  "comment": "# number-line-distance 1.1.0-rc.5 Thu Dec 21 2023 10:10:15 GMT-0800 (Pacific Standard Time)",
   "assert": {
     "sha": "94831413cd4dd4dc27c2a1aebbcafd3987934a99",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "22458304602b26459394583baa0dc6a01e75b95c",
+    "sha": "f1fc3434f3ed0ea56e9dea47fba6dd2daec8ae91",
     "branch": "1.1"
   },
   "perennial-alias": {
