@@ -313,21 +313,21 @@ class NLDBaseView extends Node {
     const absoluteDistanceDescriptionPatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate,
       patternStringValues, {
         maps: distanceDescriptionMaps,
-        accessNonDependencies: true
+        strictAxonDependencies: false
       } );
     const absoluteDistanceDescriptionVisibleProperty = new BooleanProperty( false );
 
     const directedPositiveDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate,
       patternStringValues, {
         maps: distanceDescriptionMaps,
-        accessNonDependencies: true
+        strictAxonDependencies: false
       } );
     const directedPositiveDistanceVisibleProperty = new BooleanProperty( false );
 
     const directedNegativeDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate,
       patternStringValues, {
         maps: distanceDescriptionMaps,
-        accessNonDependencies: true
+        strictAxonDependencies: false
       } );
     const directedNegativeDistanceVisibleProperty = new BooleanProperty( false );
 

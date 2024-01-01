@@ -46,7 +46,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
       }
       return DEFAULT_TEMPERATURE_VALUE;
     }, {
-      accessNonDependencies: true
+      strictAxonDependencies: false
     } );
 
     const thermometerNode = new ThermometerNode( valueProperty, TemperatureSceneModel.TEMPERATURE_RANGE.min, TemperatureSceneModel.TEMPERATURE_RANGE.max, {
