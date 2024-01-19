@@ -46,7 +46,7 @@ class TemperaturePointControllerNode extends PointControllerNode {
       }
       return DEFAULT_TEMPERATURE_VALUE;
     }, {
-      strictAxonDependencies: false
+      strictAxonDependencies: false // https://github.com/phetsims/number-line-distance/issues/88
     } );
 
     const thermometerNode = new ThermometerNode( valueProperty, TemperatureSceneModel.TEMPERATURE_RANGE.min, TemperatureSceneModel.TEMPERATURE_RANGE.max, {
