@@ -313,21 +313,21 @@ class NLDBaseView extends Node {
     const absoluteDistanceDescriptionPatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.absoluteDistanceDescriptionTemplate,
       patternStringValues, {
         maps: distanceDescriptionMaps,
-        strictAxonDependencies: false
+        strictAxonDependencies: false //TODO https://github.com/phetsims/number-line-distance/issues/88
       } );
     const absoluteDistanceDescriptionVisibleProperty = new BooleanProperty( false );
 
     const directedPositiveDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedPositiveDistanceDescriptionTemplate,
       patternStringValues, {
         maps: distanceDescriptionMaps,
-        strictAxonDependencies: false
+        strictAxonDependencies: false //TODO https://github.com/phetsims/number-line-distance/issues/88
       } );
     const directedPositiveDistanceVisibleProperty = new BooleanProperty( false );
 
     const directedNegativeDistancePatternStringProperty = new PatternStringProperty( config.distanceDescriptionStrings.directedNegativeDistanceDescriptionTemplate,
       patternStringValues, {
         maps: distanceDescriptionMaps,
-        strictAxonDependencies: false
+        strictAxonDependencies: false //TODO https://github.com/phetsims/number-line-distance/issues/88
       } );
     const directedNegativeDistanceVisibleProperty = new BooleanProperty( false );
 
