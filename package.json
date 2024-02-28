@@ -36,6 +36,7 @@
         "oceania",
         "usa"
       ],
+      "defaultRegionAndCulture": "multi",
       "supportsDynamicLocale": true
     }
   },
