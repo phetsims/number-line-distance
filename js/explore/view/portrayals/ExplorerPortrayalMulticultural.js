@@ -9,7 +9,7 @@
 
 import dotRandom from '../../../../../dot/js/dotRandom.js';
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
-import { MULTICULTURAL_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
+import { RANDOM_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 import ExplorerPortrayalAfrica from './ExplorerPortrayalAfrica.js';
 import ExplorerPortrayalAfricaModest from './ExplorerPortrayalAfricaModest.js';
@@ -31,7 +31,7 @@ const ExplorerPortrayalMulticultural = new ExplorerPortrayal(
   RANDOM_CHARACTER_SET.offset,
   RANDOM_CHARACTER_SET.screenHomeIcon,
   RANDOM_CHARACTER_SET.screenNavIcon,
-  MULTICULTURAL_REGION_AND_CULTURE_ID
+  RANDOM_REGION_AND_CULTURE_ID
 );
 
 export default ExplorerPortrayalMulticultural;
