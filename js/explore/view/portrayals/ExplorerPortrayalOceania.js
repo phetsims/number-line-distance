@@ -10,18 +10,18 @@
 
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { OCEANIA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import exploreHomeIcon_png from '../../../../images/oceania/exploreHomeIcon_png.js';
-import exploreNavbarIcon_png from '../../../../images/oceania/exploreNavbarIcon_png.js';
-import person_png from '../../../../images/oceania/person_png.js';
+import oceaniaExploreHomeIcon_png from '../../../../images/localized/oceaniaExploreHomeIcon_png.js';
+import oceaniaExploreNavbarIcon_png from '../../../../images/localized/oceaniaExploreNavbarIcon_png.js';
+import oceaniaPerson_png from '../../../../images/localized/oceaniaPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
 const ExplorerPortrayalOceania = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.oceaniaStringProperty,
-  person_png,
+  oceaniaPerson_png,
   30,
-  exploreHomeIcon_png,
-  exploreNavbarIcon_png,
+  oceaniaExploreHomeIcon_png,
+  oceaniaExploreNavbarIcon_png,
   OCEANIA_REGION_AND_CULTURE_ID
 );
 

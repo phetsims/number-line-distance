@@ -9,18 +9,18 @@
 
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { ASIA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import exploreHomeIcon_png from '../../../../images/asia/exploreHomeIcon_png.js';
-import exploreNavbarIcon_png from '../../../../images/asia/exploreNavbarIcon_png.js';
-import person_png from '../../../../images/asia/person_png.js';
+import asiaExploreHomeIcon_png from '../../../../images/localized/asiaExploreHomeIcon_png.js';
+import asiaExploreNavbarIcon_png from '../../../../images/localized/asiaExploreNavbarIcon_png.js';
+import asiaPerson_png from '../../../../images/localized/asiaPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
 const ExplorerPortrayalAsia = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.asiaStringProperty,
-  person_png,
+  asiaPerson_png,
   30,
-  exploreHomeIcon_png,
-  exploreNavbarIcon_png,
+  asiaExploreHomeIcon_png,
+  asiaExploreNavbarIcon_png,
   ASIA_REGION_AND_CULTURE_ID
 );
 

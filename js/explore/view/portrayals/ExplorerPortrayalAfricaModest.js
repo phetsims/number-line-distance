@@ -9,18 +9,18 @@
 
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { AFRICA_MODEST_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import exploreHomeIcon_png from '../../../../images/africa-modest/exploreHomeIcon_png.js';
-import exploreNavbarIcon_png from '../../../../images/africa-modest/exploreNavbarIcon_png.js';
-import person_png from '../../../../images/africa-modest/person_png.js';
+import africaModestExploreHomeIcon_png from '../../../../images/localized/africaModestExploreHomeIcon_png.js';
+import africaModestExploreNavbarIcon_png from '../../../../images/localized/africaModestExploreNavbarIcon_png.js';
+import africaModestPerson_png from '../../../../images/localized/africaModestPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
 const ExplorerPortrayalAfricaModest = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaModestStringProperty,
-  person_png,
+  africaModestPerson_png,
   25,
-  exploreHomeIcon_png,
-  exploreNavbarIcon_png,
+  africaModestExploreHomeIcon_png,
+  africaModestExploreNavbarIcon_png,
   AFRICA_MODEST_REGION_AND_CULTURE_ID
 );
 

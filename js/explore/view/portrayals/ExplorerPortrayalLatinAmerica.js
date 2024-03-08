@@ -9,18 +9,18 @@
 
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { LATIN_AMERICA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import exploreHomeIcon_png from '../../../../images/latin-america/exploreHomeIcon_png.js';
-import exploreNavbarIcon_png from '../../../../images/latin-america/exploreNavbarIcon_png.js';
-import person_png from '../../../../images/latin-america/person_png.js';
+import latinAmericaExploreHomeIcon_png from '../../../../images/localized/latinAmericaExploreHomeIcon_png.js';
+import latinAmericaExploreNavbarIcon_png from '../../../../images/localized/latinAmericaExploreNavbarIcon_png.js';
+import latinAmericaPerson_png from '../../../../images/localized/latinAmericaPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
 const ExplorerPortrayalLatinAmerica = new ExplorerPortrayal(
   JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.latinAmericaStringProperty,
-  person_png,
+  latinAmericaPerson_png,
   35,
-  exploreHomeIcon_png,
-  exploreNavbarIcon_png,
+  latinAmericaExploreHomeIcon_png,
+  latinAmericaExploreNavbarIcon_png,
   LATIN_AMERICA_REGION_AND_CULTURE_ID
 );
 
