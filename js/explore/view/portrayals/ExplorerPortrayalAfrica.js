@@ -10,9 +10,9 @@
 
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { AFRICA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import africaExploreHomeIcon_png from '../../../../images/localized/africaExploreHomeIcon_png.js';
-import africaExploreNavbarIcon_png from '../../../../images/localized/africaExploreNavbarIcon_png.js';
-import africaPerson_png from '../../../../images/localized/africaPerson_png.js';
+import africaExploreHomeIcon_png from '../../../../images/africa/africaExploreHomeIcon_png.js';
+import africaExploreNavbarIcon_png from '../../../../images/africa/africaExploreNavbarIcon_png.js';
+import africaPerson_png from '../../../../images/africa/africaPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 

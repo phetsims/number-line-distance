@@ -9,9 +9,9 @@
 
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { AFRICA_MODEST_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import africaModestExploreHomeIcon_png from '../../../../images/localized/africaModestExploreHomeIcon_png.js';
-import africaModestExploreNavbarIcon_png from '../../../../images/localized/africaModestExploreNavbarIcon_png.js';
-import africaModestPerson_png from '../../../../images/localized/africaModestPerson_png.js';
+import africaModestExploreHomeIcon_png from '../../../../images/africaModest/africaModestExploreHomeIcon_png.js';
+import africaModestExploreNavbarIcon_png from '../../../../images/africaModest/africaModestExploreNavbarIcon_png.js';
+import africaModestPerson_png from '../../../../images/africaModest/africaModestPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 

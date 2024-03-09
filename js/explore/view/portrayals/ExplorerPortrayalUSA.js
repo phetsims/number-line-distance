@@ -9,9 +9,9 @@
 
 import JoistStrings from '../../../../../joist/js/JoistStrings.js';
 import { USA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
-import usaExploreHomeIcon_png from '../../../../images/localized/usaExploreHomeIcon_png.js';
-import usaExploreNavbarIcon_png from '../../../../images/localized/usaExploreNavbarIcon_png.js';
-import usaPerson_png from '../../../../images/localized/usaPerson_png.js';
+import usaExploreHomeIcon_png from '../../../../images/usa/usaExploreHomeIcon_png.js';
+import usaExploreNavbarIcon_png from '../../../../images/usa/usaExploreNavbarIcon_png.js';
+import usaPerson_png from '../../../../images/usa/usaPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
 
