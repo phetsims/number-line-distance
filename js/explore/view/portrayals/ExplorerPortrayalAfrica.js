@@ -7,22 +7,17 @@
  *
  */
 
-
-import JoistStrings from '../../../../../joist/js/JoistStrings.js';
-import { AFRICA_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import africaExploreHomeIcon_png from '../../../../images/africa/africaExploreHomeIcon_png.js';
 import africaExploreNavbarIcon_png from '../../../../images/africa/africaExploreNavbarIcon_png.js';
 import africaPerson_png from '../../../../images/africa/africaPerson_png.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 
-
 const ExplorerPortrayalAfrica = new ExplorerPortrayal(
-  JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.africaStringProperty,
+  'africa',
   africaPerson_png,
   30,
   africaExploreHomeIcon_png,
-  africaExploreNavbarIcon_png,
-  AFRICA_REGION_AND_CULTURE_ID
+  africaExploreNavbarIcon_png
 );
 
 export default ExplorerPortrayalAfrica;

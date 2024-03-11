@@ -11,20 +11,17 @@ import RegionAndCulturePortrayal from '../../../../../joist/js/preferences/Regio
 import numberLineDistance from '../../../numberLineDistance.js';
 
 export default class ExplorerPortrayal extends RegionAndCulturePortrayal {
+  
   /**
-   *
-   * @param label { LocalizedStringProperty }
+   * @param {RegionAndCulture} regionAndCulture
    * @param standing { HTMLImageElement }
    * @param offset { number }
    * @param screenHomeIcon { HTMLImageElement }
    * @param screenNavIcon { HTMLImageElement }
-   * @param queryParameterValue { string }
    */
-  constructor( label,
-               standing, offset, screenHomeIcon, screenNavIcon,
-               queryParameterValue ) {
+  constructor( regionAndCulture, standing, offset, screenHomeIcon, screenNavIcon ) {
 
-    super( label, queryParameterValue, {} );
+    super( regionAndCulture, {} );
 
     this.standing = standing;
     this.screenHomeIcon = screenHomeIcon;

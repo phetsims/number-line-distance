@@ -8,8 +8,6 @@
  */
 
 import dotRandom from '../../../../../dot/js/dotRandom.js';
-import JoistStrings from '../../../../../joist/js/JoistStrings.js';
-import { RANDOM_REGION_AND_CULTURE_ID } from '../../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import ExplorerPortrayal from './ExplorerPortrayal.js';
 import ExplorerPortrayalAfrica from './ExplorerPortrayalAfrica.js';
 import ExplorerPortrayalAfricaModest from './ExplorerPortrayalAfricaModest.js';
@@ -26,12 +24,11 @@ const RANDOM_CHARACTER_SET = dotRandom.sample( [
 ] );
 
 const ExplorerPortrayalRandom = new ExplorerPortrayal(
-  JoistStrings.preferences.tabs.localization.regionAndCulture.portrayalSets.randomStringProperty,
+  'random',
   RANDOM_CHARACTER_SET.standing,
   RANDOM_CHARACTER_SET.offset,
   RANDOM_CHARACTER_SET.screenHomeIcon,
-  RANDOM_CHARACTER_SET.screenNavIcon,
-  RANDOM_REGION_AND_CULTURE_ID
+  RANDOM_CHARACTER_SET.screenNavIcon
 );
 
 export default ExplorerPortrayalRandom;
