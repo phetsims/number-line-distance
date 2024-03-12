@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2024, University of Colorado Boulder
 
 /**
  * The ExplorerPortrayal defines what is needed for each portrayal in Number Line Distance.
