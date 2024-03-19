@@ -26,7 +26,7 @@ class NLDExploreScreen extends Screen {
     const options = {
       name: NumberLineDistanceStrings.screen.exploreStringProperty,
       backgroundColorProperty: NLDColors.exploreScreenBackgroundColorProperty,
-      homeScreenIcon: new ScreenIcon( new Image( NumberLineDistanceImages.exploreHomeIconImageProperty ), {
+      homeScreenIcon: new ScreenIcon( new Image( NumberLineDistanceImages.exploreHomeScreenIconImageProperty ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),
