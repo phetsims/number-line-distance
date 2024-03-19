@@ -20,10 +20,9 @@ const SIDEWALK_HEIGHT = 50;
 class DistanceSceneModel extends AbstractNLDBaseModel {
 
   /**
-   * @param {preferencesModel} preferencesModel
    * @param {Tandem} tandem
    */
-  constructor( preferencesModel, tandem ) {
+  constructor( tandem ) {
 
     // values empirically determined
     const numberLine = new SpatializedNumberLine( NLDConstants.NLD_LAYOUT_BOUNDS.center.plusXY( 0, -75 ), {
@@ -68,12 +67,6 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
 
     // @public (read-only) {Bounds2}
     this.sidewalkBounds = sidewalkBounds;
-
-    /**
-     * @public (read-only)
-     * @type {preferencesModel}
-     */
-    this.preferencesModel = preferencesModel;
   }
 }
 

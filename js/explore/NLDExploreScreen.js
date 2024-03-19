@@ -7,9 +7,10 @@
  */
 
 import Screen from '../../../joist/js/Screen.js';
-import ExploreScreenIcon from '../../../number-line-common/js/explore/view/ExploreScreenIcon.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import NLDColors from '../common/NLDColors.js';
-import ExplorerImages from './view/ExplorerImages.js';
+import NumberLineDistanceImages from '../NumberLineDistanceImages.js';
+import { Image } from '../../../scenery/js/imports.js';
 import numberLineDistance from '../numberLineDistance.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
@@ -18,21 +19,26 @@ import NLDExploreScreenView from './view/NLDExploreScreenView.js';
 class NLDExploreScreen extends Screen {
 
   /**
-   * @param { PreferencesModel } preferencesModel
    * @param {Tandem} tandem
    * @public
    */
-  constructor( preferencesModel, tandem ) {
+  constructor( tandem ) {
     const options = {
       name: NumberLineDistanceStrings.screen.exploreStringProperty,
       backgroundColorProperty: NLDColors.exploreScreenBackgroundColorProperty,
-      homeScreenIcon: new ExploreScreenIcon( ExplorerImages.EXPLORER_CHARACTER_SETS, preferencesModel.localizationModel.regionAndCulturePortrayalProperty, 'home' ),
-      navigationBarIcon: new ExploreScreenIcon( ExplorerImages.EXPLORER_CHARACTER_SETS, preferencesModel.localizationModel.regionAndCulturePortrayalProperty, 'nav' ),
+      homeScreenIcon: new ScreenIcon( new Image( NumberLineDistanceImages.exploreHomeIconImageProperty ), {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
+      navigationBarIcon: new ScreenIcon( new Image( NumberLineDistanceImages.exploreNavbarIconImageProperty ), {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
       tandem: tandem
     };
 
     super(
-      () => new NLDExploreModel( preferencesModel, tandem.createTandem( 'model' ) ),
+      () => new NLDExploreModel( tandem.createTandem( 'model' ) ),
       model => new NLDExploreScreenView( model, tandem.createTandem( 'view' ) ),
       options
     );

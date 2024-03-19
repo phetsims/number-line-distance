@@ -15,13 +15,12 @@ import TemperatureSceneModel from './TemperatureSceneModel.js';
 class NLDExploreModel {
 
   /**
-   * @param {PreferencesModel} preferencesModel
    * @param {Tandem} tandem
    */
-  constructor( preferencesModel, tandem ) {
+  constructor( tandem ) {
 
     // @public the instance for the model of the 'Distance' scene
-    this.distanceSceneModel = new DistanceSceneModel( preferencesModel, tandem );
+    this.distanceSceneModel = new DistanceSceneModel( tandem );
 
     // @public the instance for the model of the 'Temperature' scene
     this.temperatureSceneModel = new TemperatureSceneModel( tandem );
