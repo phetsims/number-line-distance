@@ -8,7 +8,7 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { AlignGroup, Image, ManualConstraint, Node, Text } from '../../../../scenery/js/imports.js';
+import { Image, ManualConstraint, Node, Text } from '../../../../scenery/js/imports.js';
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import house_png from '../../../images/house_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
@@ -39,32 +39,12 @@ class DistanceSceneView extends NLDSceneView {
    */
   constructor( model ) {
 
-    /**
-     *
-     * @param {number} scale
-     * @param {AlignGroup} alignGroup
-     * @returns {AlignBox}
-     */
-    const createPersonImage = ( scale, alignGroup ) => {
-      return alignGroup.createBox(
-        new Image( NumberLineDistanceImages.personImageProperty, { scale: scale } ), {
-          yAlign: 'bottom',
-          preferredHeight: 40 // empirically determined based on tallest personImage
-        }
-      );
-    };
-
-    // Create the representations for the person and the house in the area that they can be swapped.
-    // scales were empirically determined
-    const legendAlignGroup = new AlignGroup();
-    const personRepresentationScale = 0.1;
+    // Create the representations for the person and the house. Scales were empirically determined.
     const houseRepresentation = new Image( house_png, { scale: 0.15 } );
-    const personRepresentation = new Node();
-    personRepresentation.addChild( createPersonImage( personRepresentationScale, legendAlignGroup ) );
+    const personRepresentation = new Image( NumberLineDistanceImages.personImageProperty, { scale: 0.1 } );
 
     // All the personRepresentation images have the same width.
-    const smallestWidth = Math.min( houseRepresentation.getImageWidth(),
-      new Image( NumberLineDistanceImages.personImageProperty, { scale: personRepresentationScale } ).getImageWidth() );
+    const smallestWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
     houseRepresentation.maxWidth = smallestWidth;
     personRepresentation.maxWidth = smallestWidth;
 
