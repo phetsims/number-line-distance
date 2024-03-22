@@ -7,6 +7,7 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import NumberLineOrientationSelector from '../../../../number-line-common/js/common/view/NumberLineOrientationSelector.js';
 import NumberLineRangeSelector from '../../../../number-line-common/js/common/view/NumberLineRangeSelector.js';
@@ -20,7 +21,6 @@ import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumber
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 
 const genericAbsoluteDistanceTemplateStringProperty = NumberLineDistanceStrings.genericAbsoluteDistanceTemplateStringProperty;
 const genericDirectedPositiveDistanceTemplateStringProperty = NumberLineDistanceStrings.genericDirectedPositiveDistanceTemplateStringProperty;

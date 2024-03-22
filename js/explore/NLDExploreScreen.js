@@ -8,10 +8,10 @@
 
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import NLDColors from '../common/NLDColors.js';
-import NumberLineDistanceImages from '../NumberLineDistanceImages.js';
 import { Image } from '../../../scenery/js/imports.js';
+import NLDColors from '../common/NLDColors.js';
 import numberLineDistance from '../numberLineDistance.js';
+import NumberLineDistanceImages from '../NumberLineDistanceImages.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
 import NLDExploreScreenView from './view/NLDExploreScreenView.js';

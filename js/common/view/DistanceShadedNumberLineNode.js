@@ -8,6 +8,7 @@
  * @author Saurabh Totey
  */
 
+import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
@@ -21,11 +22,10 @@ import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, Path, RichText, Text } from '../../../../scenery/js/imports.js';
+import ToggleNode from '../../../../sun/js/ToggleNode.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import NLDConstants from '../NLDConstants.js';
-import ToggleNode from '../../../../sun/js/ToggleNode.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 const SHADING_COLOR = 'gray';
 const SHADING_WIDTH = 8;
