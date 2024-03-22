@@ -114,8 +114,7 @@ class DistanceSceneView extends NLDSceneView {
     // Point controllers that are in different parent nodes so that the person is always on top of the house in terms of
     // layering. The mouse area dilation for the personPointControllerImage is for #38.
     // the image scales and dilations are empirically determined
-    const controllerAlignGroup = new AlignGroup();
-    const personPointControllerImage = createPersonImage( 0.22, controllerAlignGroup );
+    const personPointControllerImage = new Image( NumberLineDistanceImages.personImageProperty, { scale: 0.22 } );
     personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
       5 / personPointControllerImage.getScaleVector().x
     );
