@@ -1,4 +1,4 @@
-// Copyright 2021-2022, University of Colorado Boulder
+// Copyright 2021-2024, University of Colorado Boulder
 
 /**
  * A point controller for the distance scene of NLD that locks on to the numberline when in the sidewalk's bounds, and
