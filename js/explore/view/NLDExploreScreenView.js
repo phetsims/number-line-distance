@@ -36,11 +36,8 @@ class NLDExploreScreenView extends ScreenView {
 
     // Add scene views as children.
     const distanceSceneView = new DistanceSceneView( model.distanceSceneModel );
-    this.addChild( distanceSceneView );
     const temperatureSceneView = new TemperatureSceneView( model.temperatureSceneModel );
-    this.addChild( temperatureSceneView );
     const elevationSceneView = new ElevationSceneView( model.elevationSceneModel );
-    this.addChild( elevationSceneView );
 
     // Link each specific scene view's visibility with whether it is selected in the model.
     const sceneViews = [ distanceSceneView, temperatureSceneView, elevationSceneView ];
@@ -60,7 +57,6 @@ class NLDExploreScreenView extends ScreenView {
       bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
-    this.addChild( resetAllButton );
 
     // Map the scene selection icons to their enum values (used in the radio button group).
     const sceneRadioButtonGroupItems = [
@@ -102,7 +98,12 @@ class NLDExploreScreenView extends ScreenView {
         center: resetAllButton.centerTop.plus( NLDConstants.BOTTOM_BOX_BOUNDS.rightCenter ).dividedScalar( 2 )
       }
     );
+
     this.addChild( sceneRadioButtonGroup );
+    this.addChild( resetAllButton );
+    this.addChild( distanceSceneView );
+    this.addChild( temperatureSceneView );
+    this.addChild( elevationSceneView );
   }
 
 }
