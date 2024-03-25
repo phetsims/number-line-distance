@@ -132,7 +132,7 @@ class NLDBaseView extends Node {
     } );
 
     // Radio buttons for how distance should be represented
-    const distanceTypeSelector = new VerticalAquaRadioButtonGroup(
+    const distanceRepresentationRadioButtonGroup = new VerticalAquaRadioButtonGroup(
       model.distanceRepresentationProperty,
       [
         {
@@ -150,7 +150,7 @@ class NLDBaseView extends Node {
         spacing: 9
       }
     );
-    this.addChild( distanceTypeSelector );
+    this.addChild( distanceRepresentationRadioButtonGroup );
 
     let pointControllerBoxNode = null;
     model.pointControllerBoxProperty.link( pointControllerBox => {
