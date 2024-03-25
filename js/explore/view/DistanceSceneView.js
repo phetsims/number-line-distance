@@ -69,22 +69,18 @@ class DistanceSceneView extends NLDSceneView {
       }
     );
 
-    // image that represents the plane where the person and the house lie
+    // Sidewalk is the plane where the person stands.
     const sidewalkImage = new Image( sidewalk_png );
     sidewalkImage.scale( model.sidewalkBounds.width / sidewalkImage.width, model.sidewalkBounds.height / sidewalkImage.height );
     sidewalkImage.center = model.sidewalkBounds.center;
     this.addChild( sidewalkImage );
 
-    // fire hydrant that sits at the 0 location of the number line
-    // offset and scale empirically determined
-    this.addChild( new Image(
-      fireHydrant_png,
-      {
-        centerX: model.sidewalkBounds.center.x,
-        bottom: model.sidewalkBounds.center.y - 5,
-        scale: 0.15
-      }
-    ) );
+    // Fire hydrant sits at the 0 location of the number line.
+    this.addChild( new Image( fireHydrant_png, {
+      centerX: model.sidewalkBounds.center.x,
+      bottom: model.sidewalkBounds.center.y - 5,
+      scale: 0.15
+    } ) );
 
     const housePointControllerImage = new Image( house_png, { scale: 0.2 } );
     const personPointControllerImage = new Image( NumberLineDistanceImages.personImageProperty, { scale: 0.22 } );
@@ -127,7 +123,6 @@ class DistanceSceneView extends NLDSceneView {
     eastSymbolText.moveToBack();
     westSymbolText.moveToBack();
   }
-
 }
 
 numberLineDistance.register( 'DistanceSceneView', DistanceSceneView );
