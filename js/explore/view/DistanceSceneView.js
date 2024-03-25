@@ -91,38 +91,27 @@ class DistanceSceneView extends NLDSceneView {
       }
     ) );
 
-    // Point controllers that are in different parent nodes so that the person is always on top of the house in terms of
-    // layering. The mouse area dilation for the personPointControllerImage is for #38.
-    // the image scales and dilations are empirically determined
-    const personPointControllerImage = new Image( NumberLineDistanceImages.personImageProperty, { scale: 0.22 } );
-    personPointControllerImage.mouseArea = personPointControllerImage.localBounds.dilated(
-      5 / personPointControllerImage.getScaleVector().x
-    );
     const housePointControllerImage = new Image( house_png, { scale: 0.2 } );
+    const personPointControllerImage = new Image( NumberLineDistanceImages.personImageProperty, { scale: 0.22 } );
 
-    const pointControllersLayer = new Node();
-    pointControllersLayer.addChild( new Node( {
+    // Mouse area dilation for #38, empirically determined.
+    personPointControllerImage.localBoundsProperty.link( localBounds => {
+      personPointControllerImage.mouseArea = localBounds.dilated( 5 / personPointControllerImage.getScaleVector().x );
+    } );
+
+    const distancePointControllerNode1 = new DistancePointControllerNode( model.pointControllerOne, housePointControllerImage );
+    const distancePointControllerNode2 = new DistancePointControllerNode( model.pointControllerTwo, personPointControllerImage );
+
+    // Point controllers have different parent Nodes so that the person is always in front of the house.
+    const pointControllersLayer = new Node( {
       children: [
-        new DistancePointControllerNode(
-          model.pointControllerOne,
-          housePointControllerImage
-        )
+        new Node( { children: [ distancePointControllerNode1 ] } ),
+        new Node( { children: [ distancePointControllerNode2 ] } )
       ]
-    } ) );
-    pointControllersLayer.addChild( new Node( {
-      children: [
-        new DistancePointControllerNode(
-          model.pointControllerTwo,
-          personPointControllerImage
-        )
-      ]
-    } ) );
+    } );
     this.addChild( pointControllersLayer );
 
-    // symbols at edges of number line denoting east and west
-    const textOffsetFromNumberLine =
-      this.numberLineNode.options.displayedRangeInset + this.numberLineNode.options.arrowSize + 4; // empirically determined
-    const range = model.numberLine.displayedRangeProperty.value;
+    // Symbols at edges of number line, denoting east ('E') and west ('W')
     const eastSymbolText = new Text( eastStringProperty, {
       font: DIRECTION_INDICATOR_FONT,
       maxWidth: DIRECTION_INDICATOR_MAX_WIDTH
@@ -132,6 +121,8 @@ class DistanceSceneView extends NLDSceneView {
       maxWidth: DIRECTION_INDICATOR_MAX_WIDTH
     } );
 
+    const range = model.numberLine.displayedRangeProperty.value;
+    const textOffsetFromNumberLine = this.numberLineNode.options.displayedRangeInset + this.numberLineNode.options.arrowSize + 4; // empirically determined
     ManualConstraint.create( this, [ eastSymbolText, westSymbolText, this.numberLineNode ], ( eastProxy, westProxy, numberLineProxy ) => {
       eastProxy.leftCenter = model.numberLine.valueToModelPosition( range.max ).plusXY( textOffsetFromNumberLine, 0 );
       westProxy.rightCenter = model.numberLine.valueToModelPosition( range.min ).plusXY( -textOffsetFromNumberLine, 0 );
