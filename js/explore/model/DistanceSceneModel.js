@@ -59,7 +59,7 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
       new DistancePointController(
         numberLine,
         lockingBounds,
-        SIDEWALK_OFFSET_FROM_NUMBERLINE + SIDEWALK_HEIGHT / 2 - 27,
+        SIDEWALK_OFFSET_FROM_NUMBERLINE + SIDEWALK_HEIGHT / 2 - 25,
         0.5
       ),
       tandem
