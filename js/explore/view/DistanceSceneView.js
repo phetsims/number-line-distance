@@ -40,13 +40,8 @@ class DistanceSceneView extends NLDSceneView {
   constructor( model ) {
 
     // Create the representations for the person and the house. Scales were empirically determined.
-    const houseRepresentation = new Image( house_png, { scale: 0.15 } );
+    const houseRepresentation = new Image( house_png, { scale: 0.05 } );
     const personRepresentation = new Image( NumberLineDistanceImages.personImageProperty, { scale: 0.1 } );
-
-    // All the personRepresentation images have the same width.
-    const smallestWidth = Math.min( houseRepresentation.getImageWidth(), personRepresentation.getImageWidth() );
-    houseRepresentation.maxWidth = smallestWidth;
-    personRepresentation.maxWidth = smallestWidth;
 
     super(
       model,
