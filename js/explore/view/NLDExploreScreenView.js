@@ -65,17 +65,17 @@ class NLDExploreScreenView extends ScreenView {
     // Map the scene selection icons to their enum values (used in the radio button group).
     const sceneRadioButtonGroupItems = [
       {
-        value: distanceSceneView.model,
+        value: model.distanceSceneModel,
         createNode: () => new Image( house_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } )
       },
       {
-        value: temperatureSceneView.model,
+        value: model.temperatureSceneModel,
         createNode: () => new ThermometerNode( new NumberProperty( 0.5 ), 0, 1, {
           scale: 0.25
         } )
       },
       {
-        value: elevationSceneView.model,
+        value: model.elevationSceneModel,
         createNode: () => new Image( birdInAir_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } )
       }
     ];
