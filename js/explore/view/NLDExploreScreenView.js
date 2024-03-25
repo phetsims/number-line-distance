@@ -48,13 +48,27 @@ class NLDExploreScreenView extends ScreenView {
       sceneViews.forEach( sceneView => { sceneView.visible = sceneView.model === selectedSceneModel; } );
     } );
 
+    const resetAllButton = new ResetAllButton( {
+      listener: () => {
+        this.interruptSubtreeInput(); // cancel interactions that may be in progress
+        model.reset();
+        distanceSceneView.reset();
+        temperatureSceneView.reset();
+        elevationSceneView.reset();
+      },
+      right: this.layoutBounds.maxX - NLDConstants.SCREEN_VIEW_X_MARGIN,
+      bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
+      tandem: tandem.createTandem( 'resetAllButton' )
+    } );
+    this.addChild( resetAllButton );
+
     // Map the scene selection icons to their enum values (used in the radio button group).
     const thermometerSceneIcon = new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height );
     const thermometerNode = new ThermometerNode( new NumberProperty( 0.5 ), 0, 1 );
     thermometerNode.setScaleMagnitude( ICON_SIZE.height / thermometerNode.height );
     thermometerNode.center = thermometerSceneIcon.center;
     thermometerSceneIcon.addChild( thermometerNode );
-    const sceneSelectionButtonsContent = [
+    const sceneRadioButtonsContent = [
       {
         value: distanceSceneView.model,
         createNode: () => new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
@@ -72,25 +86,11 @@ class NLDExploreScreenView extends ScreenView {
         } )
       }
     ];
-
-    const resetAllButton = new ResetAllButton( {
-      listener: () => {
-        this.interruptSubtreeInput(); // cancel interactions that may be in progress
-        model.reset();
-        distanceSceneView.reset();
-        temperatureSceneView.reset();
-        elevationSceneView.reset();
-      },
-      right: this.layoutBounds.maxX - NLDConstants.SCREEN_VIEW_X_MARGIN,
-      bottom: this.layoutBounds.maxY - NLDConstants.SCREEN_VIEW_Y_MARGIN,
-      tandem: tandem.createTandem( 'resetAllButton' )
-    } );
-    this.addChild( resetAllButton );
-
-    // Create scene selector radio buttons.
-    const sceneSelectorRadioButtonGroup = new RectangularRadioButtonGroup(
+    
+    // Create radio buttons for selecting a scene.
+    const sceneRadioButtonGroup = new RectangularRadioButtonGroup(
       model.selectedSceneModelProperty,
-      sceneSelectionButtonsContent,
+      sceneRadioButtonsContent,
       {
         orientation: 'horizontal',
         spacing: 7,
@@ -109,7 +109,7 @@ class NLDExploreScreenView extends ScreenView {
         center: resetAllButton.centerTop.plus( NLDConstants.BOTTOM_BOX_BOUNDS.rightCenter ).dividedScalar( 2 )
       }
     );
-    this.addChild( sceneSelectorRadioButtonGroup );
+    this.addChild( sceneRadioButtonGroup );
   }
 
 }
