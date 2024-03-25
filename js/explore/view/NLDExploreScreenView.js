@@ -44,9 +44,9 @@ class NLDExploreScreenView extends ScreenView {
 
     // Link each specific scene view's visibility with whether it is selected in the model.
     const sceneViews = [ distanceSceneView, temperatureSceneView, elevationSceneView ];
-    model.selectedSceneModelProperty.link( selectedSceneModel => {
-      sceneViews.forEach( sceneView => { sceneView.visible = sceneView.model === selectedSceneModel; } );
-    } );
+    model.selectedSceneModelProperty.link( selectedSceneModel => sceneViews.forEach( sceneView => {
+      sceneView.visible = sceneView.model === selectedSceneModel;
+    } ) );
 
     const resetAllButton = new ResetAllButton( {
       listener: () => {
