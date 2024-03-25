@@ -131,7 +131,7 @@ class NLDBaseView extends Node {
       ]
     } );
 
-    // checkboxes for how distance should be represented
+    // Radio buttons for how distance should be represented
     const distanceTypeSelector = new VerticalAquaRadioButtonGroup(
       model.distanceRepresentationProperty,
       [
