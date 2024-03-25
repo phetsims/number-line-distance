@@ -13,21 +13,14 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
-import Matrix3 from '../../../../dot/js/Matrix3.js';
-import { Shape } from '../../../../kite/js/imports.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
 import NLCheckbox from '../../../../number-line-common/js/common/view/NLCheckbox.js';
 import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLCheckboxGroup.js';
 import merge from '../../../../phet-core/js/merge.js';
-import Orientation from '../../../../phet-core/js/Orientation.js';
 import required from '../../../../phet-core/js/required.js';
-import ArrowShape from '../../../../scenery-phet/js/ArrowShape.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { HBox, ManualConstraint, Node, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import { ManualConstraint, Node, Rectangle, RichText, Text } from '../../../../scenery/js/imports.js';
 import AccordionBox from '../../../../sun/js/AccordionBox.js';
-import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';
@@ -35,6 +28,7 @@ import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import NLDPreferences from '../model/NLDPreferences.js';
 import NLDConstants from '../NLDConstants.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
+import PointControllerLegendNode from './PointControllerLegendNode.js';
 
 const pointLabelsStringProperty = NumberLineDistanceStrings.pointLabelsStringProperty;
 const distanceLabelsStringProperty = NumberLineDistanceStrings.distanceLabelsStringProperty;
@@ -46,20 +40,10 @@ const displacementStringProperty = NumberLineDistanceStrings.displacementStringP
 const distanceStatementStringProperty = NumberLineDistanceStrings.distanceStatementStringProperty;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 200 };
-const NODE_SWAP_TEXT_OPTIONS = { font: new MathSymbolFont( 30 ), maxWidth: 50 };
-const NODE_SWAP_HBOX_SPACING = 15;
-const NODE_TEXT_SPACING = 8;
-const SWAP_ICON_PATH_OPTIONS = { stroke: 'black', lineWidth: 4 };
-const ARROW_SIZE = 5;
-const ARROW_SHAPE_OPTIONS = {
-  tailWidth: 0,
-  headHeight: ARROW_SIZE,
-  headWidth: ARROW_SIZE
-};
 const DISTANCE_DESCRIPTION_TEXT_OPTIONS = { font: new PhetFont( 20 ), maxWidth: 515 };
 const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFont( 16 ) };
 
-class NLDBaseView extends Node {
+export default class NLDBaseView extends Node {
 
   /**
    * pointControllerRepresentation parameters are used to represent the point controllers on the bottom left of the view:
@@ -163,112 +147,16 @@ class NLDBaseView extends Node {
       this.addChild( pointControllerBoxNode );
     } );
 
-    // Add pointControllerRepresentations to rectangles that ensure that the representations take up the same space.
-    const largestRepresentationWidth =
-      Math.max( pointControllerRepresentationOne.width, pointControllerRepresentationTwo.width );
-    const largestRepresentationHeight =
-      Math.max( pointControllerRepresentationOne.height, pointControllerRepresentationTwo.height );
-    const pointControllerRepresentationBackgroundOne = new Rectangle(
-      0,
-      0,
-      largestRepresentationWidth,
-      largestRepresentationHeight
-    );
-    const pointControllerRepresentationBackgroundTwo = new Rectangle(
-      0,
-      0,
-      largestRepresentationWidth,
-      largestRepresentationHeight
-    );
-    pointControllerRepresentationOne.center = pointControllerRepresentationBackgroundOne.center;
-    pointControllerRepresentationTwo.center = pointControllerRepresentationBackgroundTwo.center;
-    pointControllerRepresentationBackgroundOne.addChild( pointControllerRepresentationOne );
-    pointControllerRepresentationBackgroundTwo.addChild( pointControllerRepresentationTwo );
-
-    // Create controls on the bottom left for which node is considered to be first and second.
-    // all values used in nodeOrderDisplay were empirically determined
-    const horizontalVisibleProperty = new BooleanProperty( false );
-    const verticalVisibleProperty = new BooleanProperty( false );
-
-    const firstNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
-    const firstNodeHorizontalText = new RichText( NLDConstants.X_1_STRING,
-      merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
-    const firstNodeVerticalText = new RichText( NLDConstants.Y_1_STRING,
-      merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
-    const firstNodeTextHBox = new HBox( { children: [ firstNodeHorizontalText, firstNodeVerticalText, firstNodeEqualToText ], spacing: NODE_TEXT_SPACING } );
-
-    const secondNodeHorizontalText = new RichText( NLDConstants.X_2_STRING,
-      merge( { visibleProperty: horizontalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
-    const secondNodeVerticalText = new RichText( NLDConstants.Y_2_STRING,
-      merge( { visibleProperty: verticalVisibleProperty }, NODE_SWAP_TEXT_OPTIONS ) );
-    const secondNodeEqualToText = new Text( MathSymbols.EQUAL_TO, NODE_SWAP_TEXT_OPTIONS );
-    const secondNodeTextHBox = new HBox( {
-      children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ],
-      spacing: NODE_TEXT_SPACING
-    } );
-
-    const firstNodeHBox = new HBox( {
-      children: [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ],
-      spacing: NODE_SWAP_HBOX_SPACING
-    } );
-    const secondNodeHBox = new HBox( {
-      children: [ secondNodeTextHBox, pointControllerRepresentationBackgroundTwo ],
-      spacing: NODE_SWAP_HBOX_SPACING
-    } );
-    const nodeOrderDisplay = new VBox( {
-      children: [ firstNodeHBox, secondNodeHBox ],
-      spacing: ( 40 - firstNodeHBox.height ) / 2
-    } );
-
-    // button that swaps the primary point controller and secondary point controller when pressed
-    // padding and dilations deterined empirically
-    const swapIcon = new SwapIcon();
-    const swapPrimaryNodesButton = new RectangularPushButton( {
-      content: swapIcon,
-      baseColor: 'white',
-      touchAreaXDilation: 8,
-      touchAreaYDilation: 8,
-      listener: () => { model.isPrimaryControllerSwappedProperty.value = !model.isPrimaryControllerSwappedProperty.value; }
-    } );
-
-    const pointControllerLegend = new HBox( {
-      children: [ nodeOrderDisplay, swapPrimaryNodesButton ],
-      bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30,
-      left: 30,
-      spacing: 20
-    } );
-    this.addChild( pointControllerLegend );
-
-    // Listen for when the primary node should be swapped, and swap the representations.
-    model.isPrimaryControllerSwappedProperty.link( isPrimaryControllerSwapped => {
-      let firstNodeHBoxChildren;
-      let secondNodeHBoxChildren;
-      if ( isPrimaryControllerSwapped ) {
-        firstNodeHBoxChildren = [ firstNodeTextHBox, pointControllerRepresentationBackgroundTwo ];
-        secondNodeHBoxChildren = [ secondNodeTextHBox, pointControllerRepresentationBackgroundOne ];
-      }
-      else {
-        firstNodeHBoxChildren = [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ];
-        secondNodeHBoxChildren = [ secondNodeTextHBox, pointControllerRepresentationBackgroundTwo ];
-      }
-      // Don't have the nodes handled by layout of multiple containers at once
-      firstNodeHBoxChildren.forEach( node => node.detach() );
-      secondNodeHBoxChildren.forEach( node => node.detach() );
-      firstNodeHBox.children = firstNodeHBoxChildren;
-      secondNodeHBox.children = secondNodeHBoxChildren;
-    } );
-
-    // Switch the firstNodeText and secondNodeText to use either x or y based on number line orientation.
-    model.numberLine.orientationProperty.link( orientation => {
-      if ( orientation === Orientation.HORIZONTAL ) {
-        horizontalVisibleProperty.value = true;
-        verticalVisibleProperty.value = false;
-      }
-      else {
-        horizontalVisibleProperty.value = false;
-        verticalVisibleProperty.value = true;
-      }
-    } );
+    // Control at the bottom left for which representation is considered to be first and second.
+    const pointControllerLegendNode = new PointControllerLegendNode(
+      pointControllerRepresentationOne,
+      pointControllerRepresentationTwo,
+      model.isPrimaryControllerSwappedProperty,
+      model.numberLine.orientationProperty, {
+        left: 30,
+        bottom: NLDConstants.NLD_LAYOUT_BOUNDS.maxY - 30
+      } );
+    this.addChild( pointControllerLegendNode );
 
     // @public {BooleanProperty} - controls whether the distance statement accordion box is opened or closed.
     this.accordionBoxOpenedProperty = new BooleanProperty( true );
@@ -294,9 +182,9 @@ class NLDBaseView extends Node {
     // appropriately in the map as needed.
     const unitsStringProperty = new DerivedProperty( [ config.distanceDescriptionStrings.singularUnits, config.distanceDescriptionStrings.pluralUnits, model.distanceProperty ],
       ( singularUnits, pluralUnits, distance ) => {
-      return ( distance === 1 || distance === -1 ) ?
-             singularUnits : pluralUnits;
-    } );
+        return ( distance === 1 || distance === -1 ) ?
+               singularUnits : pluralUnits;
+      } );
     const patternStringValues = {
       primaryPointControllerLabel: config.distanceDescriptionStrings.primaryPointControllerLabelStringProperty,
       secondaryPointControllerLabel: config.distanceDescriptionStrings.secondaryPointControllerLabelStringProperty,
@@ -331,7 +219,6 @@ class NLDBaseView extends Node {
       } );
     const directedNegativeDistanceVisibleProperty = new BooleanProperty( false );
 
-
     // a text description for the distance under the distance statement accordion box
     const distanceDescriptionTextVisibleProperty = new DerivedProperty( [ model.distanceDescriptionVisibleProperty, model.pointValuesProperty ],
       distanceDescriptionVisible => {
@@ -351,12 +238,8 @@ class NLDBaseView extends Node {
       excludeInvisibleChildrenFromBounds: true
     } );
 
-
     Multilink.multilink(
-      [
-        model.distanceRepresentationProperty,
-        model.distanceProperty
-      ],
+      [ model.distanceRepresentationProperty, model.distanceProperty ],
       ( distanceRepresentation, distance ) => {
 
         // Don't say anything about distance if both point controllers aren't on the number line.
@@ -372,46 +255,12 @@ class NLDBaseView extends Node {
 
     this.addChild( distanceDescriptionTextWrapper );
 
-    ManualConstraint.create( this, [ distanceDescriptionTextWrapper, distanceStatementAccordionBox ], ( wrapperProxy, accordionProxy ) => {
-      wrapperProxy.centerX = accordionProxy.centerX;
-      wrapperProxy.top = accordionProxy.bottom + 15; // padding empirically determined
-    } );
+    ManualConstraint.create( this, [ distanceDescriptionTextWrapper, distanceStatementAccordionBox ],
+      ( wrapperProxy, accordionProxy ) => {
+        wrapperProxy.centerX = accordionProxy.centerX;
+        wrapperProxy.top = accordionProxy.bottom + 15; // padding empirically determined
+      } );
   }
-
-}
-
-/**
- * A node that has paths that depict a 'swap' icon which is nearly a half-ellipse with arrows at the end.
- * The half-ellipse is on the right with arrows on the left pointing to the left.
- */
-class SwapIcon extends Node {
-
-  /**
-   * All numbers/values used were determined empirically.
-   */
-  constructor() {
-    super();
-    const ellipseAngleInset = Math.PI / 12;
-    const arrowXTranslation = 4;
-    const arrowYTranslation = 10;
-    this.addChild( new Path(
-      new Shape().ellipticalArc( 0, 0, 8, 12, 0,
-        -Math.PI / 2 + ellipseAngleInset, Math.PI / 2 - ellipseAngleInset ),
-      SWAP_ICON_PATH_OPTIONS
-    ) );
-    this.addChild( new Path(
-      new ArrowShape( 0, 0, -ARROW_SIZE, ARROW_SIZE, ARROW_SHAPE_OPTIONS )
-        .transformed( Matrix3.translation( arrowXTranslation, arrowYTranslation ) ),
-      SWAP_ICON_PATH_OPTIONS
-    ) );
-    this.addChild( new Path(
-      new ArrowShape( 0, 0, -ARROW_SIZE, -ARROW_SIZE, ARROW_SHAPE_OPTIONS )
-        .transformed( Matrix3.translation( arrowXTranslation, -arrowYTranslation ) ),
-      SWAP_ICON_PATH_OPTIONS
-    ) );
-  }
-
 }
 
 numberLineDistance.register( 'NLDBaseView', NLDBaseView );
-export default NLDBaseView;
