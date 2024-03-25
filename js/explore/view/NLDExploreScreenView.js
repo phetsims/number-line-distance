@@ -12,7 +12,7 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
-import { Image, Rectangle } from '../../../../scenery/js/imports.js';
+import { Image } from '../../../../scenery/js/imports.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import house_png from '../../../images/house_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
@@ -63,34 +63,27 @@ class NLDExploreScreenView extends ScreenView {
     this.addChild( resetAllButton );
 
     // Map the scene selection icons to their enum values (used in the radio button group).
-    const thermometerSceneIcon = new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height );
-    const thermometerNode = new ThermometerNode( new NumberProperty( 0.5 ), 0, 1 );
-    thermometerNode.setScaleMagnitude( ICON_SIZE.height / thermometerNode.height );
-    thermometerNode.center = thermometerSceneIcon.center;
-    thermometerSceneIcon.addChild( thermometerNode );
-    const sceneRadioButtonsContent = [
+    const sceneRadioButtonGroupItems = [
       {
         value: distanceSceneView.model,
-        createNode: () => new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
-          children: [ new Image( house_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
-        } )
+        createNode: () => new Image( house_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } )
       },
       {
         value: temperatureSceneView.model,
-        createNode: () => thermometerSceneIcon
+        createNode: () => new ThermometerNode( new NumberProperty( 0.5 ), 0, 1, {
+          scale: 0.25
+        } )
       },
       {
         value: elevationSceneView.model,
-        createNode: () => new Rectangle( 0, 0, ICON_SIZE.width, ICON_SIZE.height, {
-          children: [ new Image( birdInAir_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } ) ]
-        } )
+        createNode: () => new Image( birdInAir_png, { maxWidth: ICON_SIZE.width, maxHeight: ICON_SIZE.height } )
       }
     ];
-    
+
     // Create radio buttons for selecting a scene.
     const sceneRadioButtonGroup = new RectangularRadioButtonGroup(
       model.selectedSceneModelProperty,
-      sceneRadioButtonsContent,
+      sceneRadioButtonGroupItems,
       {
         orientation: 'horizontal',
         spacing: 7,
