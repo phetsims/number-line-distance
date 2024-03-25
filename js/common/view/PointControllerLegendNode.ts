@@ -9,7 +9,7 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import { HBox, HBoxOptions, Node, NodeTranslationOptions, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import { AlignGroup, HBox, HBoxOptions, Node, NodeTranslationOptions, Path, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import NLDConstants from '../NLDConstants.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
@@ -49,15 +49,11 @@ export default class PointControllerLegendNode extends HBox {
       spacing: 20
     }, providedOptions );
 
-    // Add pointControllerRepresentations to rectangles that ensure that the representations take up the same space.
-    const largestWidth = Math.max( pointControllerRepresentation1.width, pointControllerRepresentation2.width );
-    const largestHeight = Math.max( pointControllerRepresentation1.height, pointControllerRepresentation2.height );
-    const pointControllerRepresentationBackground1 = new Rectangle( 0, 0, largestWidth, largestHeight );
-    const pointControllerRepresentationBackground2 = new Rectangle( 0, 0, largestWidth, largestHeight );
-    pointControllerRepresentation1.center = pointControllerRepresentationBackground1.center;
-    pointControllerRepresentation2.center = pointControllerRepresentationBackground2.center;
-    pointControllerRepresentationBackground1.addChild( pointControllerRepresentation1 );
-    pointControllerRepresentationBackground2.addChild( pointControllerRepresentation2 );
+    // Make each pointControllerRepresentation have the same effective size, with the pointControllerRepresentation
+    // centered in the bounds by default.
+    const alignGroup = new AlignGroup();
+    const representation1 = alignGroup.createBox( pointControllerRepresentation1 );
+    const representation2 = alignGroup.createBox( pointControllerRepresentation2 );
 
     // x1 =
     // y1 =
@@ -84,16 +80,17 @@ export default class PointControllerLegendNode extends HBox {
     } );
 
     const topHBox = new HBox( {
-      children: [ symbol1HBox, pointControllerRepresentationBackground1 ],
+      children: [ symbol1HBox, representation1 ],
       spacing: TEXT_ICON_SPACING
     } );
     const bottomHBox = new HBox( {
-      children: [ symbol2HBox, pointControllerRepresentationBackground2 ],
+      children: [ symbol2HBox, representation2 ],
       spacing: TEXT_ICON_SPACING
     } );
     const vBox = new VBox( {
       children: [ topHBox, bottomHBox ],
-      spacing: 1
+      spacing: 1,
+      align: 'left'
     } );
 
     // Button that swaps the primary point controller and secondary point controller when pressed.
@@ -118,12 +115,12 @@ export default class PointControllerLegendNode extends HBox {
       bottomHBox.getChildren().forEach( child => child.detach() );
 
       if ( isPrimaryControllerSwapped ) {
-        topHBox.children = [ symbol1HBox, pointControllerRepresentationBackground2 ];
-        bottomHBox.children = [ symbol2HBox, pointControllerRepresentationBackground1 ];
+        topHBox.children = [ symbol1HBox, representation2 ];
+        bottomHBox.children = [ symbol2HBox, representation1 ];
       }
       else {
-        topHBox.children = [ symbol1HBox, pointControllerRepresentationBackground1 ];
-        bottomHBox.children = [ symbol2HBox, pointControllerRepresentationBackground2 ];
+        topHBox.children = [ symbol1HBox, representation1 ];
+        bottomHBox.children = [ symbol2HBox, representation2 ];
       }
     } );
   }
