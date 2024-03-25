@@ -9,7 +9,7 @@
  */
 
 import numberLineDistance from '../../numberLineDistance.js';
-import { HBox, HBoxOptions, Node, NodeTranslationOptions, Path, Rectangle, RichText, RichTextOptions, Text, VBox } from '../../../../scenery/js/imports.js';
+import { HBox, HBoxOptions, Node, NodeTranslationOptions, Path, Rectangle, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
 import NLDConstants from '../NLDConstants.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
@@ -17,11 +17,11 @@ import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushBut
 import { Shape } from '../../../../kite/js/imports.js';
 import ArrowShape, { ArrowShapeOptions } from '../../../../scenery-phet/js/ArrowShape.js';
 import Matrix3 from '../../../../dot/js/Matrix3.js';
-import optionize, { combineOptions, EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Property from '../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 
 const TEXT_OPTIONS = {
   font: new MathSymbolFont( 30 ),
@@ -36,8 +36,8 @@ type PointControllerLegendNodeOptions = SelfOptions & NodeTranslationOptions;
 export default class PointControllerLegendNode extends HBox {
 
   public constructor(
-    pointControllerRepresentationOne: Node,
-    pointControllerRepresentationTwo: Node,
+    pointControllerRepresentation1: Node,
+    pointControllerRepresentation2: Node,
     isPrimaryControllerSwappedProperty: Property<boolean>,
     orientationProperty: TReadOnlyProperty<Orientation>,
     providedOptions?: PointControllerLegendNodeOptions
@@ -50,55 +50,55 @@ export default class PointControllerLegendNode extends HBox {
     }, providedOptions );
 
     // Add pointControllerRepresentations to rectangles that ensure that the representations take up the same space.
-    const largestRepresentationWidth = Math.max( pointControllerRepresentationOne.width, pointControllerRepresentationTwo.width );
-    const largestRepresentationHeight = Math.max( pointControllerRepresentationOne.height, pointControllerRepresentationTwo.height );
-    const pointControllerRepresentationBackgroundOne = new Rectangle( 0, 0, largestRepresentationWidth, largestRepresentationHeight );
-    const pointControllerRepresentationBackgroundTwo = new Rectangle( 0, 0, largestRepresentationWidth, largestRepresentationHeight );
-    pointControllerRepresentationOne.center = pointControllerRepresentationBackgroundOne.center;
-    pointControllerRepresentationTwo.center = pointControllerRepresentationBackgroundTwo.center;
-    pointControllerRepresentationBackgroundOne.addChild( pointControllerRepresentationOne );
-    pointControllerRepresentationBackgroundTwo.addChild( pointControllerRepresentationTwo );
+    const largestWidth = Math.max( pointControllerRepresentation1.width, pointControllerRepresentation2.width );
+    const largestHeight = Math.max( pointControllerRepresentation1.height, pointControllerRepresentation2.height );
+    const pointControllerRepresentationBackground1 = new Rectangle( 0, 0, largestWidth, largestHeight );
+    const pointControllerRepresentationBackground2 = new Rectangle( 0, 0, largestWidth, largestHeight );
+    pointControllerRepresentation1.center = pointControllerRepresentationBackground1.center;
+    pointControllerRepresentation2.center = pointControllerRepresentationBackground2.center;
+    pointControllerRepresentationBackground1.addChild( pointControllerRepresentation1 );
+    pointControllerRepresentationBackground2.addChild( pointControllerRepresentation2 );
 
-    const horizontalVisibleProperty = new DerivedProperty( [ orientationProperty ],
-      orientation => orientation === Orientation.HORIZONTAL );
-    const verticalVisibleProperty = DerivedProperty.not( horizontalVisibleProperty );
-
-    const firstNodeEqualToText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
-    const firstNodeHorizontalText = new RichText( NLDConstants.X_1_STRING,
-      combineOptions<RichTextOptions>( { visibleProperty: horizontalVisibleProperty }, TEXT_OPTIONS ) );
-    const firstNodeVerticalText = new RichText( NLDConstants.Y_1_STRING,
-      combineOptions<RichTextOptions>( { visibleProperty: verticalVisibleProperty }, TEXT_OPTIONS ) );
-    const firstNodeTextHBox = new HBox( {
-      children: [ firstNodeHorizontalText, firstNodeVerticalText, firstNodeEqualToText ],
+    // x1 =
+    // y1 =
+    const symbol1StringProperty = new DerivedStringProperty(
+      [ orientationProperty, NLDConstants.X_1_STRING, NLDConstants.Y_1_STRING ],
+      ( orientation, x1, y1 ) => ( orientation === Orientation.HORIZONTAL ) ? x1 : y1 );
+    const symbol1Text = new RichText( symbol1StringProperty, TEXT_OPTIONS );
+    const equals1Text = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
+    const symbol1HBox = new HBox( {
+      children: [ symbol1Text, equals1Text ],
       spacing: TEXT_SPACING
     } );
 
-    const secondNodeHorizontalText = new RichText( NLDConstants.X_2_STRING,
-      combineOptions<RichTextOptions>( { visibleProperty: horizontalVisibleProperty }, TEXT_OPTIONS ) );
-    const secondNodeVerticalText = new RichText( NLDConstants.Y_2_STRING,
-      combineOptions<RichTextOptions>( { visibleProperty: verticalVisibleProperty }, TEXT_OPTIONS ) );
-    const secondNodeEqualToText = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
-    const secondNodeTextHBox = new HBox( {
-      children: [ secondNodeHorizontalText, secondNodeVerticalText, secondNodeEqualToText ],
+    // x2 =
+    // y2 =
+    const symbol2StringProperty = new DerivedStringProperty(
+      [ orientationProperty, NLDConstants.X_2_STRING, NLDConstants.Y_2_STRING ],
+      ( orientation, x2, y2 ) => ( orientation === Orientation.HORIZONTAL ) ? x2 : y2 );
+    const symbol2Text = new RichText( symbol2StringProperty, TEXT_OPTIONS );
+    const equals2Text = new Text( MathSymbols.EQUAL_TO, TEXT_OPTIONS );
+    const symbol2HBox = new HBox( {
+      children: [ symbol2Text, equals2Text ],
       spacing: TEXT_SPACING
     } );
 
-    const firstNodeHBox = new HBox( {
-      children: [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ],
+    const topHBox = new HBox( {
+      children: [ symbol1HBox, pointControllerRepresentationBackground1 ],
       spacing: TEXT_ICON_SPACING
     } );
-    const secondNodeHBox = new HBox( {
-      children: [ secondNodeTextHBox, pointControllerRepresentationBackgroundTwo ],
+    const bottomHBox = new HBox( {
+      children: [ symbol2HBox, pointControllerRepresentationBackground2 ],
       spacing: TEXT_ICON_SPACING
     } );
-    const nodeOrderDisplay = new VBox( {
-      children: [ firstNodeHBox, secondNodeHBox ],
-      spacing: ( 40 - firstNodeHBox.height ) / 2
+    const vBox = new VBox( {
+      children: [ topHBox, bottomHBox ],
+      spacing: 1
     } );
 
     // Button that swaps the primary point controller and secondary point controller when pressed.
     // Padding and dilations were determined empirically.
-    const swapPrimaryNodesButton = new RectangularPushButton( {
+    const swapButton = new RectangularPushButton( {
       content: new SwapIcon(),
       baseColor: 'white',
       touchAreaXDilation: 8,
@@ -106,27 +106,25 @@ export default class PointControllerLegendNode extends HBox {
       listener: () => { isPrimaryControllerSwappedProperty.value = !isPrimaryControllerSwappedProperty.value; }
     } );
 
-    options.children = [ nodeOrderDisplay, swapPrimaryNodesButton ];
+    options.children = [ vBox, swapButton ];
 
     super( options );
 
-    // Listen for when the primary node should be swapped, and swap the representations.
+    // Swap the representations.
     isPrimaryControllerSwappedProperty.link( isPrimaryControllerSwapped => {
-      let firstNodeHBoxChildren;
-      let secondNodeHBoxChildren;
+
+      // Don't have the Nodes handled by layout of multiple containers at once.
+      topHBox.getChildren().forEach( child => child.detach() );
+      bottomHBox.getChildren().forEach( child => child.detach() );
+
       if ( isPrimaryControllerSwapped ) {
-        firstNodeHBoxChildren = [ firstNodeTextHBox, pointControllerRepresentationBackgroundTwo ];
-        secondNodeHBoxChildren = [ secondNodeTextHBox, pointControllerRepresentationBackgroundOne ];
+        topHBox.children = [ symbol1HBox, pointControllerRepresentationBackground2 ];
+        bottomHBox.children = [ symbol2HBox, pointControllerRepresentationBackground1 ];
       }
       else {
-        firstNodeHBoxChildren = [ firstNodeTextHBox, pointControllerRepresentationBackgroundOne ];
-        secondNodeHBoxChildren = [ secondNodeTextHBox, pointControllerRepresentationBackgroundTwo ];
+        topHBox.children = [ symbol1HBox, pointControllerRepresentationBackground1 ];
+        bottomHBox.children = [ symbol2HBox, pointControllerRepresentationBackground2 ];
       }
-      // Don't have the nodes handled by layout of multiple containers at once
-      firstNodeHBoxChildren.forEach( node => node.detach() );
-      secondNodeHBoxChildren.forEach( node => node.detach() );
-      firstNodeHBox.children = firstNodeHBoxChildren;
-      secondNodeHBox.children = secondNodeHBoxChildren;
     } );
   }
 }
