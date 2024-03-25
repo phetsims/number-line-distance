@@ -20,14 +20,13 @@ import merge from '../../../../phet-core/js/merge.js';
 import required from '../../../../phet-core/js/required.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { ManualConstraint, Node, Rectangle, RichText, Text } from '../../../../scenery/js/imports.js';
-import AccordionBox from '../../../../sun/js/AccordionBox.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import NLDPreferences from '../model/NLDPreferences.js';
 import NLDConstants from '../NLDConstants.js';
-import DistanceStatementNode from './DistanceStatementNode.js';
+import DistanceStatementAccordionBox from './DistanceStatementAccordionBox.js';
 import PointControllerLegendNode from './PointControllerLegendNode.js';
 
 const pointLabelsStringProperty = NumberLineDistanceStrings.pointLabelsStringProperty;
@@ -37,11 +36,9 @@ const tickMarksStringProperty = NumberLineDistanceStrings.tickMarksStringPropert
 const absoluteValueStringProperty = NumberLineDistanceStrings.absoluteValueStringProperty;
 const directedDistanceStringProperty = NumberLineDistanceStrings.directedDistanceStringProperty;
 const displacementStringProperty = NumberLineDistanceStrings.displacementStringProperty;
-const distanceStatementStringProperty = NumberLineDistanceStrings.distanceStatementStringProperty;
 
 const DISTANCE_TYPE_SELECTOR_TEXT_OPTIONS = { font: new PhetFont( 16 ), maxWidth: 200 };
 const DISTANCE_DESCRIPTION_TEXT_OPTIONS = { font: new PhetFont( 20 ), maxWidth: 515 };
-const DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS = { maxWidth: 300, font: new PhetFont( 16 ) };
 
 export default class NLDBaseView extends Node {
 
@@ -161,20 +158,13 @@ export default class NLDBaseView extends Node {
     // @public {BooleanProperty} - controls whether the distance statement accordion box is opened or closed.
     this.accordionBoxOpenedProperty = new BooleanProperty( true );
 
-    // an accordion box for the distance statement
-    // paddings and width were empirically determined
-    const distanceStatementAccordionBox = new AccordionBox(
-      new DistanceStatementNode( model, config.distanceStatementNodeOptions ),
-      merge( NLCConstants.ACCORDION_BOX_COMMON_OPTIONS, {
-        titleNode: new Text( distanceStatementStringProperty, DISTANCE_STATEMENT_TITLE_TEXT_OPTIONS ),
-        expandedProperty: this.accordionBoxOpenedProperty,
-        top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5,
-        centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
-        contentAlign: 'center',
-        minWidth: 340,
-        maxWidth: 340
-      } )
-    );
+    // Accordion box titled 'Distance Statement'
+    const distanceStatementAccordionBox = new DistanceStatementAccordionBox( model, {
+      expandedProperty: this.accordionBoxOpenedProperty,
+      distanceStatementNodeOptions: config.distanceStatementNodeOptions,
+      centerX: NLDConstants.NLD_LAYOUT_BOUNDS.centerX,
+      top: NLDConstants.NLD_LAYOUT_BOUNDS.minY + 5
+    } );
     this.addChild( distanceStatementAccordionBox );
 
     // DISTANCE DESCRIPTION
