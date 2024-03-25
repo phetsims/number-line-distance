@@ -21,9 +21,12 @@ class DistancePointControllerNode extends PointControllerNode {
    * @public
    */
   constructor( pointController, image ) {
-    image.centerX = 0;
-    image.centerY = 0;
-    image.touchArea = image.localBounds.dilated( IMAGE_DILATION / image.getScaleVector().x );
+
+    image.localBoundsProperty.link( () => {
+      image.centerX = 0;
+      image.centerY = 0;
+      image.touchArea = image.localBounds.dilated( IMAGE_DILATION / image.getScaleVector().x );
+    } );
 
     super( pointController, {
       connectorLine: false,
