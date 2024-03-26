@@ -90,14 +90,14 @@ class DistanceSceneView extends NLDSceneView {
       personPointControllerImage.mouseArea = localBounds.dilated( 5 / personPointControllerImage.getScaleVector().x );
     } );
 
-    const distancePointControllerNode1 = new DistancePointControllerNode( model.pointControllerOne, housePointControllerImage );
-    const distancePointControllerNode2 = new DistancePointControllerNode( model.pointControllerTwo, personPointControllerImage );
+    const housePointControllerNode = new DistancePointControllerNode( model.pointControllerOne, housePointControllerImage );
+    const personPointControllerNode = new DistancePointControllerNode( model.pointControllerTwo, personPointControllerImage );
 
     // Point controllers have different parent Nodes so that the person is always in front of the house.
     const pointControllersLayer = new Node( {
       children: [
-        new Node( { children: [ distancePointControllerNode1 ] } ),
-        new Node( { children: [ distancePointControllerNode2 ] } )
+        new Node( { children: [ housePointControllerNode ] } ),
+        new Node( { children: [ personPointControllerNode ] } )
       ]
     } );
     this.addChild( pointControllersLayer );
