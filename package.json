@@ -49,7 +49,7 @@
         ],
         "parserOptions": {
           "project": [
-            "../number-line-distance/tsconfig.json"
+            "../chipper/tsconfig/eslint-all/tsconfig.json"
           ]
         }
       }
