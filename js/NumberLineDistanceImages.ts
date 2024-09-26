@@ -4,7 +4,9 @@
  * Auto-generated from modulify, DO NOT manually modify.
  */
 /* eslint-disable */
+/* @formatter:off */
 import LocalizedImageProperty from '../../joist/js/i18n/LocalizedImageProperty.js';
+import numberLineDistance from './numberLineDistance.js';
 import africaExploreHomeScreenIcon_png from '../images/africa/africaExploreHomeScreenIcon_png.js';
 import africaExploreNavbarIcon_png from '../images/africa/africaExploreNavbarIcon_png.js';
 import africaPerson_png from '../images/africa/africaPerson_png.js';
@@ -23,7 +25,6 @@ import oceaniaPerson_png from '../images/oceania/oceaniaPerson_png.js';
 import usaExploreHomeScreenIcon_png from '../images/usa/usaExploreHomeScreenIcon_png.js';
 import usaExploreNavbarIcon_png from '../images/usa/usaExploreNavbarIcon_png.js';
 import usaPerson_png from '../images/usa/usaPerson_png.js';
-import numberLineDistance from './numberLineDistance.js';
 
 const NumberLineDistanceImages = {
   exploreHomeScreenIconImageProperty: new LocalizedImageProperty( 'exploreHomeScreenIcon', {
