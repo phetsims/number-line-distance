@@ -8,20 +8,20 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import { AlignGroup, HBox, HBoxOptions, Node, NodeTranslationOptions, Path, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
-import NLDConstants from '../NLDConstants.js';
-import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
-import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
-import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
-import { Shape } from '../../../../kite/js/imports.js';
-import ArrowShape, { ArrowShapeOptions } from '../../../../scenery-phet/js/ArrowShape.js';
-import Matrix3 from '../../../../dot/js/Matrix3.js';
-import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
+import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import TReadOnlyProperty from '../../../../axon/js/TReadOnlyProperty.js';
+import Matrix3 from '../../../../dot/js/Matrix3.js';
+import { Shape } from '../../../../kite/js/imports.js';
+import optionize, { EmptySelfOptions } from '../../../../phet-core/js/optionize.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import DerivedStringProperty from '../../../../axon/js/DerivedStringProperty.js';
+import ArrowShape, { ArrowShapeOptions } from '../../../../scenery-phet/js/ArrowShape.js';
+import MathSymbolFont from '../../../../scenery-phet/js/MathSymbolFont.js';
+import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
+import { AlignGroup, HBox, HBoxOptions, Node, NodeTranslationOptions, Path, RichText, Text, VBox } from '../../../../scenery/js/imports.js';
+import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import NLDConstants from '../NLDConstants.js';
 
 const TEXT_OPTIONS = {
   font: new MathSymbolFont( 30 ),

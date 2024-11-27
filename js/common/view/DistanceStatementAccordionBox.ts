@@ -7,17 +7,17 @@
  * @author Chris Malley (PixelZoom, Inc.)
  */
 
-import numberLineDistance from '../../numberLineDistance.js';
-import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
-import DistanceStatementNode from './DistanceStatementNode.js';
 import NLCConstants from '../../../../number-line-common/js/common/NLCConstants.js';
-import { NodeTranslationOptions, Text } from '../../../../scenery/js/imports.js';
-import AbstractNLDBaseModel from '../model/AbstractNLDBaseModel.js';
 import { optionize4 } from '../../../../phet-core/js/optionize.js';
 import PickRequired from '../../../../phet-core/js/types/PickRequired.js';
 import StrictOmit from '../../../../phet-core/js/types/StrictOmit.js';
-import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import { NodeTranslationOptions, Text } from '../../../../scenery/js/imports.js';
+import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
+import numberLineDistance from '../../numberLineDistance.js';
+import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
+import AbstractNLDBaseModel from '../model/AbstractNLDBaseModel.js';
+import DistanceStatementNode from './DistanceStatementNode.js';
 
 type SelfOptions = {
   distanceStatementNodeOptions?: {
