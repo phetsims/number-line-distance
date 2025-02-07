@@ -12,7 +12,7 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
-import { Image } from '../../../../scenery/js/imports.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import house_png from '../../../images/house_png.js';
 import NLDConstants from '../../common/NLDConstants.js';

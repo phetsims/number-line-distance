@@ -10,7 +10,8 @@ import PreferencesControl from '../../../../joist/js/preferences/PreferencesCont
 import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import PreferencesPanelContentNode from '../../../../joist/js/preferences/PreferencesPanelContentNode.js';
-import { RichText, Text } from '../../../../scenery/js/imports.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';

@@ -9,7 +9,11 @@
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Utils from '../../../../dot/js/Utils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Image, LinearGradient, Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import antarctic_png from '../../../images/antarctic_png.js';
 import desert_png from '../../../images/desert_png.js';
 import trees_png from '../../../images/trees_png.js';

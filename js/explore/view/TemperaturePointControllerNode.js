@@ -11,7 +11,9 @@ import PointControllerNode from '../../../../number-line-common/js/common/view/P
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
-import { Color, Node, Text } from '../../../../scenery/js/imports.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import Color from '../../../../scenery/js/util/Color.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 

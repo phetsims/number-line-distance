@@ -8,7 +8,10 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Image, ManualConstraint, Node, Text } from '../../../../scenery/js/imports.js';
+import ManualConstraint from '../../../../scenery/js/layout/constraints/ManualConstraint.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import house_png from '../../../images/house_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';

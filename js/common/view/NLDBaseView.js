@@ -19,7 +19,11 @@ import NLCheckboxGroup from '../../../../number-line-common/js/common/view/NLChe
 import merge from '../../../../phet-core/js/merge.js';
 import required from '../../../../phet-core/js/required.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { ManualConstraint, Node, Rectangle, RichText, Text } from '../../../../scenery/js/imports.js';
+import ManualConstraint from '../../../../scenery/js/layout/constraints/ManualConstraint.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
 import numberLineDistance from '../../numberLineDistance.js';

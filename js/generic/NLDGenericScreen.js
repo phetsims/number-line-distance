@@ -8,7 +8,7 @@
 
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import { Image } from '../../../scenery/js/imports.js';
+import Image from '../../../scenery/js/nodes/Image.js';
 import genericHomeIcon_png from '../../images/genericHomeIcon_png.js';
 import genericNavbarIcon_png from '../../images/genericNavbarIcon_png.js';
 import NLDColors from '../common/NLDColors.js';

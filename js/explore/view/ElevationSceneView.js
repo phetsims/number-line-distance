@@ -12,7 +12,9 @@ import birdInAir_png from '../../../../number-line-common/images/birdInAir_png.j
 import birdInWater_png from '../../../../number-line-common/images/birdInWater_png.js';
 import fishInAir_png from '../../../../number-line-common/images/fishInAir_png.js';
 import fishInWater_png from '../../../../number-line-common/images/fishInWater_png.js';
-import { Image, Node, Rectangle } from '../../../../scenery/js/imports.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import elevationBackground_png from '../../../images/elevationBackground_png.js';
 import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';

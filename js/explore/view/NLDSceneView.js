@@ -9,7 +9,7 @@
 
 import merge from '../../../../phet-core/js/merge.js';
 import required from '../../../../phet-core/js/required.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
 import numberLineDistance from '../../numberLineDistance.js';

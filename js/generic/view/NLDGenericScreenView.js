@@ -15,7 +15,8 @@ import PointControllerNode from '../../../../number-line-common/js/common/view/P
 import PointsOffScaleCondition from '../../../../number-line-common/js/common/view/PointsOffScaleCondition.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import { Circle, Node } from '../../../../scenery/js/imports.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
