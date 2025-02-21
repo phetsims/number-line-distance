@@ -7,7 +7,6 @@
  */
 
 import PreferencesControl from '../../../../joist/js/preferences/PreferencesControl.js';
-import PreferencesDialog from '../../../../joist/js/preferences/PreferencesDialog.js';
 import PreferencesDialogConstants from '../../../../joist/js/preferences/PreferencesDialogConstants.js';
 import PreferencesPanelContentNode from '../../../../joist/js/preferences/PreferencesPanelContentNode.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
@@ -25,12 +24,12 @@ export default class SimulationPreferencesContentNode extends PreferencesPanelCo
       controlNode: new VerticalAquaRadioButtonGroup( NLDPreferences.terminologyProperty,
         [ {
           createNode: () => new Text( NumberLineDistanceStrings.directedDistanceStringProperty,
-            { font: PreferencesDialog.CONTENT_FONT } ),
+            { font: PreferencesDialogConstants.CONTENT_FONT } ),
           value: 'directedDistance'
         },
           {
             createNode: () => new Text( NumberLineDistanceStrings.displacementStringProperty, {
-              font: PreferencesDialog.CONTENT_FONT
+              font: PreferencesDialogConstants.CONTENT_FONT
             } ),
             value: 'displacement'
           }
