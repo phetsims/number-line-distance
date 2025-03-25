@@ -6,6 +6,7 @@
  * @author Luisa Vargas
  */
 
+import { QueryStringMachine } from '../../../query-string-machine/js/QueryStringMachineModule.js';
 import numberLineDistance from '../numberLineDistance.js';
 
 const NumberLineDistanceQueryParameters = QueryStringMachine.getAll( {
