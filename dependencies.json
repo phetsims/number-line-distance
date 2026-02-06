@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.1.9-rc.1 Tue Feb 03 2026 09:27:49 GMT-0500 (Eastern Standard Time)",
+  "comment": "# number-line-distance 1.1.9 Fri Feb 06 2026 17:25:07 GMT-0500 (Eastern Standard Time)",
   "assert": {
     "sha": "94831413cd4dd4dc27c2a1aebbcafd3987934a99",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "a8e9c87587ad9f7ffa8997f258f9ff8d2163f154",
+    "sha": "4bbb1775ed626e7ee4fe20588e7e29dae34b9d6a",
     "branch": "1.1"
   },
   "perennial-alias": {
