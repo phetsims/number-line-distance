@@ -33,11 +33,11 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "262f245027a89aa2ac9ed837ec6bb5d57dc6d9f7",
+    "sha": "00cbeabab6463084934d429e609af76e425e1902",
     "branch": "1.1"
   },
   "perennial-alias": {
-    "sha": "925db25410efba449d7df06d0412f7a221f1783b",
+    "sha": "5af4b050ea959fb98276e08fe6e1fa159ef52d3a",
     "branch": "HEAD"
   },
   "phet-core": {
