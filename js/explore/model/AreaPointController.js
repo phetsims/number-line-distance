@@ -10,7 +10,6 @@
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 import merge from '../../../../phet-core/js/merge.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import ExplorePointController from './ExplorePointController.js';
 
 class AreaPointController extends ExplorePointController {
@@ -69,5 +68,4 @@ class AreaPointController extends ExplorePointController {
 
 }
 
-numberLineDistance.register( 'AreaPointController', AreaPointController );
 export default AreaPointController;

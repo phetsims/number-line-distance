@@ -26,7 +26,6 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import ToggleNode from '../../../../sun/js/ToggleNode.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import DistanceRepresentation from '../model/DistanceRepresentation.js';
 import NLDConstants from '../NLDConstants.js';
 
@@ -266,5 +265,4 @@ class DistanceShadedNumberLineNode extends SpatializedNumberLineNode {
 
 }
 
-numberLineDistance.register( 'DistanceShadedNumberLineNode', DistanceShadedNumberLineNode );
 export default DistanceShadedNumberLineNode;

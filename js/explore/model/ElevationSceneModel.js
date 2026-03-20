@@ -12,7 +12,6 @@ import SpatializedNumberLine from '../../../../number-line-common/js/common/mode
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import AreaPointController from './AreaPointController.js';
 import DropFromDirection from './DropFromDirection.js';
 
@@ -56,5 +55,4 @@ class ElevationSceneModel extends AbstractNLDBaseModel {
 
 }
 
-numberLineDistance.register( 'ElevationSceneModel', ElevationSceneModel );
 export default ElevationSceneModel;

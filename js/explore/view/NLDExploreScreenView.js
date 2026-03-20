@@ -16,7 +16,6 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import house_png from '../../../images/house_png.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import DistanceSceneView from './DistanceSceneView.js';
 import ElevationSceneView from './ElevationSceneView.js';
 import TemperatureSceneView from './TemperatureSceneView.js';
@@ -107,5 +106,4 @@ class NLDExploreScreenView extends ScreenView {
 
 }
 
-numberLineDistance.register( 'NLDExploreScreenView', NLDExploreScreenView );
 export default NLDExploreScreenView;

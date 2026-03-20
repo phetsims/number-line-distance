@@ -26,7 +26,6 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import RectangularPushButton from '../../../../sun/js/buttons/RectangularPushButton.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NLDConstants from '../NLDConstants.js';
 
 const TEXT_OPTIONS = {
@@ -177,5 +176,3 @@ class SwapIcon extends Node {
     } );
   }
 }
-
-numberLineDistance.register( 'PointControllerLegendNode', PointControllerLegendNode );

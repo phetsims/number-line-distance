@@ -10,7 +10,6 @@
 
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import DropFromDirection from './DropFromDirection.js';
 import ExplorePointController from './ExplorePointController.js';
 
@@ -82,5 +81,4 @@ class DistancePointController extends ExplorePointController {
 
 }
 
-numberLineDistance.register( 'DistancePointController', DistancePointController );
 export default DistancePointController;

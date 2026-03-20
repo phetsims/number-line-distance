@@ -12,7 +12,6 @@ import required from '../../../../phet-core/js/required.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
-import numberLineDistance from '../../numberLineDistance.js';
 
 class NLDSceneView extends Node {
 
@@ -65,5 +64,4 @@ class NLDSceneView extends Node {
 
 }
 
-numberLineDistance.register( 'NLDSceneView', NLDSceneView );
 export default NLDSceneView;

@@ -8,7 +8,6 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NLDQueryParameters from '../NLDQueryParameters.js';
 
 /**
@@ -20,4 +19,3 @@ const NLDPreferences = {
 };
 
 export default NLDPreferences;
-numberLineDistance.register( 'NLDPreferences', NLDPreferences );

@@ -17,7 +17,6 @@ import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
 import antarctic_png from '../../../images/antarctic_png.js';
 import desert_png from '../../../images/desert_png.js';
 import trees_png from '../../../images/trees_png.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 import NLDSceneView from './NLDSceneView.js';
@@ -139,5 +138,4 @@ class TemperatureSceneView extends NLDSceneView {
 
 }
 
-numberLineDistance.register( 'TemperatureSceneView', TemperatureSceneView );
 export default TemperatureSceneView;

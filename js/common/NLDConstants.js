@@ -11,7 +11,6 @@ import PatternStringProperty from '../../../axon/js/PatternStringProperty.js';
 import Bounds2 from '../../../dot/js/Bounds2.js';
 import Range from '../../../dot/js/Range.js';
 import ScreenView from '../../../joist/js/ScreenView.js';
-import numberLineDistance from '../numberLineDistance.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 
 const xStringProperty = NumberLineDistanceStrings.symbol.xStringProperty;
@@ -62,5 +61,4 @@ const NLDConstants = {
   }
 };
 
-numberLineDistance.register( 'NLDConstants', NLDConstants );
 export default NLDConstants;

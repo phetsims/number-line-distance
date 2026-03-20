@@ -15,7 +15,6 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NLDConstants from '../NLDConstants.js';
 import DistanceRepresentation from './DistanceRepresentation.js';
 
@@ -266,5 +265,4 @@ class AbstractNLDBaseModel {
 
 }
 
-numberLineDistance.register( 'AbstractNLDBaseModel', AbstractNLDBaseModel );
 export default AbstractNLDBaseModel;

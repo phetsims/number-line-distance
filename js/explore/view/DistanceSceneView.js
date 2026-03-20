@@ -15,7 +15,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import fireHydrant_png from '../../../images/fireHydrant_png.js';
 import house_png from '../../../images/house_png.js';
 import sidewalk_png from '../../../images/sidewalk_png.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceImages from '../../NumberLineDistanceImages.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import DistancePointControllerNode from './DistancePointControllerNode.js';
@@ -128,5 +127,4 @@ class DistanceSceneView extends NLDSceneView {
   }
 }
 
-numberLineDistance.register( 'DistanceSceneView', DistanceSceneView );
 export default DistanceSceneView;

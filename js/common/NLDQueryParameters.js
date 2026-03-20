@@ -7,7 +7,6 @@
  */
 
 import { QueryStringMachine } from '../../../query-string-machine/js/QueryStringMachineModule.js';
-import numberLineDistance from '../numberLineDistance.js';
 
 const NumberLineDistanceQueryParameters = QueryStringMachine.getAll( {
 
@@ -17,7 +16,5 @@ const NumberLineDistanceQueryParameters = QueryStringMachine.getAll( {
     defaultValue: 'directedDistance'
   }
 } );
-
-numberLineDistance.register( 'NumberLineDistanceQueryParameters', NumberLineDistanceQueryParameters );
 
 export default NumberLineDistanceQueryParameters;

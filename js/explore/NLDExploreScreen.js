@@ -10,7 +10,6 @@ import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Image from '../../../scenery/js/nodes/Image.js';
 import NLDColors from '../common/NLDColors.js';
-import numberLineDistance from '../numberLineDistance.js';
 import NumberLineDistanceImages from '../NumberLineDistanceImages.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDExploreModel from './model/NLDExploreModel.js';
@@ -46,5 +45,4 @@ class NLDExploreScreen extends Screen {
 
 }
 
-numberLineDistance.register( 'NLDExploreScreen', NLDExploreScreen );
 export default NLDExploreScreen;

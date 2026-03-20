@@ -67,6 +67,4 @@ type StringsType = {
 
 const NumberLineDistanceStrings = getStringModule( 'NUMBER_LINE_DISTANCE' ) as StringsType;
 
-numberLineDistance.register( 'NumberLineDistanceStrings', NumberLineDistanceStrings );
-
 export default NumberLineDistanceStrings;

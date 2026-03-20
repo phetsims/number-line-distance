@@ -10,7 +10,6 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import PointController from '../../../../number-line-common/js/common/model/PointController.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import DropFromDirection from './DropFromDirection.js';
 
 class ExplorePointController extends PointController {
@@ -44,5 +43,4 @@ class ExplorePointController extends PointController {
 
 }
 
-numberLineDistance.register( 'ExplorePointController', ExplorePointController );
 export default ExplorePointController;

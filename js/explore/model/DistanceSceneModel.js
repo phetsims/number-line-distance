@@ -10,7 +10,6 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import SpatializedNumberLine from '../../../../number-line-common/js/common/model/SpatializedNumberLine.js';
 import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import DistancePointController from './DistancePointController.js';
 
 // constants
@@ -70,5 +69,4 @@ class DistanceSceneModel extends AbstractNLDBaseModel {
   }
 }
 
-numberLineDistance.register( 'DistanceSceneModel', DistanceSceneModel );
 export default DistanceSceneModel;

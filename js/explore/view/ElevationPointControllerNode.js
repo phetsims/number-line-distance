@@ -8,7 +8,6 @@
 
 import PointControllerNode from '../../../../number-line-common/js/common/view/PointControllerNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import numberLineDistance from '../../numberLineDistance.js';
 
 // constants
 const IMAGE_DILATION = 20;
@@ -52,5 +51,4 @@ class ElevationPointControllerNode extends PointControllerNode {
 
 }
 
-numberLineDistance.register( 'ElevationPointControllerNode', ElevationPointControllerNode );
 export default ElevationPointControllerNode;

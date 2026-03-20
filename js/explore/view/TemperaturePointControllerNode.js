@@ -14,7 +14,6 @@ import ThermometerNode from '../../../../scenery-phet/js/ThermometerNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import TemperatureSceneModel from '../model/TemperatureSceneModel.js';
 
 // constants
@@ -79,5 +78,4 @@ class TemperaturePointControllerNode extends PointControllerNode {
   }
 }
 
-numberLineDistance.register( 'TemperaturePointControllerNode', TemperaturePointControllerNode );
 export default TemperaturePointControllerNode;

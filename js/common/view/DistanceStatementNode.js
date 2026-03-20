@@ -34,7 +34,6 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import VStrut from '../../../../scenery/js/nodes/VStrut.js';
 import NumberPicker from '../../../../sun/js/NumberPicker.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NLDConstants from '../NLDConstants.js';
 
 // constants
@@ -320,5 +319,4 @@ class DistanceStatementNode extends Node {
   }
 }
 
-numberLineDistance.register( 'DistanceStatementNode', DistanceStatementNode );
 export default DistanceStatementNode;

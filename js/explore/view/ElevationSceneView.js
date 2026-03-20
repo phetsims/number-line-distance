@@ -16,7 +16,6 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import elevationBackground_png from '../../../images/elevationBackground_png.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import ElevationPointControllerNode from './ElevationPointControllerNode.js';
 import NLDSceneView from './NLDSceneView.js';
@@ -111,5 +110,4 @@ class ElevationSceneView extends NLDSceneView {
 
 }
 
-numberLineDistance.register( 'ElevationSceneView', ElevationSceneView );
 export default ElevationSceneView;

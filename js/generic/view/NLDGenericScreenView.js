@@ -20,7 +20,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import NLDConstants from '../../common/NLDConstants.js';
 import DistanceShadedNumberLineNode from '../../common/view/DistanceShadedNumberLineNode.js';
 import NLDBaseView from '../../common/view/NLDBaseView.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 
 const genericAbsoluteDistanceTemplateStringProperty = NumberLineDistanceStrings.genericAbsoluteDistanceTemplateStringProperty;
@@ -137,5 +136,4 @@ class NLDGenericScreenView extends ScreenView {
 
 }
 
-numberLineDistance.register( 'NLDGenericScreenView', NLDGenericScreenView );
 export default NLDGenericScreenView;

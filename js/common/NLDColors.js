@@ -18,5 +18,4 @@ const NLDColors = {
   } )
 };
 
-numberLineDistance.register( 'NLDColors', NLDColors );
 export default NLDColors;

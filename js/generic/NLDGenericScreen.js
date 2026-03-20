@@ -12,7 +12,6 @@ import Image from '../../../scenery/js/nodes/Image.js';
 import genericHomeIcon_png from '../../images/genericHomeIcon_png.js';
 import genericNavbarIcon_png from '../../images/genericNavbarIcon_png.js';
 import NLDColors from '../common/NLDColors.js';
-import numberLineDistance from '../numberLineDistance.js';
 import NumberLineDistanceStrings from '../NumberLineDistanceStrings.js';
 import NLDGenericModel from './model/NLDGenericModel.js';
 import NLDGenericScreenView from './view/NLDGenericScreenView.js';
@@ -47,5 +46,4 @@ class NLDGenericScreen extends Screen {
 
 }
 
-numberLineDistance.register( 'NLDGenericScreen', NLDGenericScreen );
 export default NLDGenericScreen;

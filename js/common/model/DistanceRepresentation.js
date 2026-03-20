@@ -8,8 +8,6 @@
  */
 
 import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
-import numberLineDistance from '../../numberLineDistance.js';
 
 const DistanceRepresentation = EnumerationDeprecated.byKeys( [ 'ABSOLUTE', 'DIRECTED' ] );
-numberLineDistance.register( 'DistanceRepresentation', DistanceRepresentation );
 export default DistanceRepresentation;

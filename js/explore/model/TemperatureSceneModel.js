@@ -13,7 +13,6 @@ import SpatializedNumberLine from '../../../../number-line-common/js/common/mode
 import TemperatureToColorMapper from '../../../../number-line-common/js/explore/model/TemperatureToColorMapper.js';
 import AbstractNLDBaseModel from '../../common/model/AbstractNLDBaseModel.js';
 import NLDConstants from '../../common/NLDConstants.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import AreaPointController from './AreaPointController.js';
 import DropFromDirection from './DropFromDirection.js';
 
@@ -114,5 +113,4 @@ class TemperatureSceneModel extends AbstractNLDBaseModel {
 
 TemperatureSceneModel.TEMPERATURE_RANGE = new Range( -50, 50 );
 
-numberLineDistance.register( 'TemperatureSceneModel', TemperatureSceneModel );
 export default TemperatureSceneModel;

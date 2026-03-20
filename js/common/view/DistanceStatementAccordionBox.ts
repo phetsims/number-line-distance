@@ -15,7 +15,6 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { NodeTranslationOptions } from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import AccordionBox, { AccordionBoxOptions } from '../../../../sun/js/AccordionBox.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import AbstractNLDBaseModel from '../model/AbstractNLDBaseModel.js';
 import DistanceStatementNode from './DistanceStatementNode.js';
@@ -49,5 +48,3 @@ export default class DistanceStatementAccordionBox extends AccordionBox {
     super( new DistanceStatementNode( model, options.distanceStatementNodeOptions ), options );
   }
 }
-
-numberLineDistance.register( 'DistanceStatementAccordionBox', DistanceStatementAccordionBox );

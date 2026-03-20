@@ -12,7 +12,6 @@ import PreferencesPanelContentNode from '../../../../joist/js/preferences/Prefer
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import NLDPreferences from '../model/NLDPreferences.js';
 
@@ -47,5 +46,3 @@ export default class SimulationPreferencesContentNode extends PreferencesPanelCo
     );
   }
 }
-
-numberLineDistance.register( 'SimulationPreferencesContentNode', SimulationPreferencesContentNode );

@@ -7,7 +7,6 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import DistanceSceneModel from './DistanceSceneModel.js';
 import ElevationSceneModel from './ElevationSceneModel.js';
 import TemperatureSceneModel from './TemperatureSceneModel.js';
@@ -47,5 +46,4 @@ class NLDExploreModel {
 
 }
 
-numberLineDistance.register( 'NLDExploreModel', NLDExploreModel );
 export default NLDExploreModel;

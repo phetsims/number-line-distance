@@ -26,7 +26,6 @@ import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VerticalAquaRadioButtonGroup from '../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import DistanceRepresentation from '../../common/model/DistanceRepresentation.js';
-import numberLineDistance from '../../numberLineDistance.js';
 import NumberLineDistanceStrings from '../../NumberLineDistanceStrings.js';
 import NLDPreferences from '../model/NLDPreferences.js';
 import NLDConstants from '../NLDConstants.js';
@@ -253,5 +252,3 @@ export default class NLDBaseView extends Node {
       } );
   }
 }
-
-numberLineDistance.register( 'NLDBaseView', NLDBaseView );
