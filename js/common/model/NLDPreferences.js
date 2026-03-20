@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2026, University of Colorado Boulder
 
 /**
  * NLD Preferences is the model that simulation specific preferences Properties.
