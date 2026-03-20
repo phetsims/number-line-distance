@@ -53,4 +53,6 @@ const NumberLineDistanceImages = {
   } )
 };
 
+numberLineDistance.register( 'NumberLineDistanceImages', NumberLineDistanceImages );
+
 export default NumberLineDistanceImages;
