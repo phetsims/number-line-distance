@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "5dd3265be9fadc5869df1b2d8e1784d20a294d5e",
+    "sha": "963ee75f0e0a53c4467d710891676528137b0a3f",
     "branch": "1.1"
   },
   "perennial-alias": {
@@ -69,7 +69,7 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "d19edafb0023fe2864c69ae372e1dd3e1034be5b",
+    "sha": "34b7da02a85bcc192af894343711f364f4fedfa8",
     "branch": "HEAD"
   },
   "scenery-phet": {
