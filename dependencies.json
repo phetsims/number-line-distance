@@ -1,5 +1,5 @@
 {
-  "comment": "# number-line-distance 1.1.10-rc.2 Wed Mar 25 2026 12:14:43 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# number-line-distance 1.1.10 Fri Mar 27 2026 16:49:37 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "94831413cd4dd4dc27c2a1aebbcafd3987934a99",
     "branch": "HEAD"
@@ -33,7 +33,7 @@
     "branch": "HEAD"
   },
   "number-line-distance": {
-    "sha": "8f2c1044bb13b47227f5703212b525126e27d2a5",
+    "sha": "0aeb2d047509add9185b536cd78e0b916d0b6026",
     "branch": "1.1"
   },
   "perennial-alias": {
